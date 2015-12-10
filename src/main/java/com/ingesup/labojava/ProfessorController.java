@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,8 +26,15 @@ public class ProfessorController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String listProfessors(Model model) {
-		model.addAttribute("prof", new Professor());
+		model.addAttribute("professor", new Professor());
 		model.addAttribute("listProfessors", this.professorService.listProfessors());
+		return "professors";
+	}
+	
+	@RequestMapping(value="/add", method = RequestMethod.POST)
+	public String addProfessor(@ModelAttribute("professor") Professor prof) {
+		
+		this.professorService.addProfessor(prof);
 		return "professors";
 	}
 	

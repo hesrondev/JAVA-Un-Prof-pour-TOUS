@@ -2,6 +2,13 @@
 <head>
 <title>UPPT | Professor Page</title>
 <style type="text/css">
+
+body {
+	font-family: Helvetica, sans-serif;
+	font-size: 14px;
+	word-break: normal;
+	background-color: #ffff;
+}
 .tg {
 	border-collapse: collapse;
 	border-spacing: 0;
