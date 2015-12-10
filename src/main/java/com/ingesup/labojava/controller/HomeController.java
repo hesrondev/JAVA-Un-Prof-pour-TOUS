@@ -1,4 +1,4 @@
-package com.ingesup.labojava.uppt;
+package com.ingesup.labojava.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
