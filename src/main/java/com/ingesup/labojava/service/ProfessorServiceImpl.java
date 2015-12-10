@@ -2,6 +2,7 @@ package com.ingesup.labojava.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,7 @@ public class ProfessorServiceImpl implements ProfessorService{
 	
 	private ProfessorDAO professorDAO;
 
-	public void setPersonDAO(ProfessorDAO professorDAO) {
+	public void setProfessorDAO(ProfessorDAO professorDAO) {
 		this.professorDAO = professorDAO;
 	}
 
