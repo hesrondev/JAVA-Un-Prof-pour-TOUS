@@ -6,8 +6,8 @@
 body {
 	font-family: Helvetica, sans-serif;
 	font-size: 14px;
-	word-break: normal;
-	background-color: #ffff;
+	color: #333;
+	background-color: #fff;
 }
 .tg {
 	border-collapse: collapse;

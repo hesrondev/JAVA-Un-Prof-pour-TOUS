@@ -1,7 +1,12 @@
 <section>
-	<c:url var="addAction" value="/professors/add"></c:url>
-	<form:form action="${addAction}" commandName="professor">
+	
+<!--  	<c:url var="inscriptionAction" value="/professors/inscription"></c:url> -->
+
+	<form:form action= "${pageContext.request.contextPath}/professors/inscription" method="POST" commandName="inscriptionBean">
 		<table>
+			<tr>
+				<td colspan="2"><c:out value="${profStatus}"/></td>
+			</tr>
 			<tr>
 				<td><form:label path="firstName">
 						<spring:message text="Prénom" />
@@ -31,17 +36,15 @@
 				<td colspan="2"><form:password path="password" /></td>
 			</tr>
 			<tr>
-				<td colspan ="2"><form:label path="password">
+				<td colspan ="2"><form:label path="rePassword">
 						<spring:message text="Retapez le de passe" />
 					</form:label></td>
 			</tr>
 			<tr>
-				<td colspan="2"><form:password path="password" /></td>
+				<td colspan="2"><form:password path="rePassword" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit"
-					value="<spring:message text="INSCRIPTION"/>" /></td>
-
+				<td colspan="2"><input type="submit" value="INSCRIPTION" /></td>
 			</tr>
 
 		</table>
