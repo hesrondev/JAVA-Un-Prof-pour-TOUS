@@ -1,4 +1,4 @@
-<section>
+<div class="formInsc">
 	
 <!--  	<c:url var="inscriptionAction" value="/professors/inscription"></c:url> -->
 
@@ -49,4 +49,4 @@
 
 		</table>
 	</form:form>
-</section>
+</div>

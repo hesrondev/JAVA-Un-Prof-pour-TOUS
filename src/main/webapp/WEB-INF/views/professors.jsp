@@ -3,9 +3,12 @@
 <title>UPPT | Professor Page</title>
 <style type="text/css">
 
-body {
-	font-family: Helvetica, sans-serif;
-	font-size: 14px;
+.formInsc {
+	font-family: Arial, sans-serif;
+	font-size: 10px;	
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
 	color: #333;
 	background-color: #fff;
 }
