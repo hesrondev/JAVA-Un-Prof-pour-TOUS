@@ -14,6 +14,7 @@
 				<h2>Liste des pages</h2>
 			</li>
 			<li><a href="professors.html">Gestionnaire de professeurs</a></li>
+			<li><a href="login.html">Connexion</a></li>
 		</ul>
 	</div>
 
