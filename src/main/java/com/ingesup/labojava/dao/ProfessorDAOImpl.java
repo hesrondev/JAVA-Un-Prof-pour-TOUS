@@ -1,9 +1,12 @@
 package com.ingesup.labojava.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.internal.IteratorImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -46,15 +49,20 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 		return profList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Professor getProfessor(String email, String pass) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Professor prof = (Professor) session.load(Professor.class, new String(email));
+		Query query = session.createQuery("from Professor p where p.email = :email and p.password = :password");
+		query.setParameter("email", email);
+		query.setParameter("password", pass);
 		
-		if (prof != null)
-			logger.info("Professor loaded successfully, Professor Details:"+ prof);
+		List<Professor> profList = query.list();
 		
-		return prof;
+		if (profList.get(0) != null)
+			logger.info("Professor loaded successfully, Professor Details:"+ profList.get(0));
+		
+		return profList.get(0);
 	}
 
 	@Override

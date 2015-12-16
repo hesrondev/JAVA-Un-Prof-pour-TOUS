@@ -1,11 +1,11 @@
 <div align="center">
 	<!-- Formulaire de connexion -->
-	<form:form modelAttribute="loginForm" method="POST"
-		action="${pageContext.request.contextPath}/login">
+	<form:form modelAttribute="loginBean" method="POST"
+		action="${pageContext.request.contextPath}/professors/login">
 		<table width="350" id="tableForm">
 
 			<tr>
-				<td>Status: <c:out value="${connectionStatus}"></c:out></td>
+				<c:out value="${loginStatus}"></c:out></td>
 			</tr>
 
 			<tr>

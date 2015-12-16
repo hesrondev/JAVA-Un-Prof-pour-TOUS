@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>UPPT | Connection</title>
+<title>UPPT | Connexion</title>
 </head>
 <body>
 	<div align="center">

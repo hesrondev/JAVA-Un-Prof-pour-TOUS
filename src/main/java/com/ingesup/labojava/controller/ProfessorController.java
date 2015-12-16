@@ -15,6 +15,7 @@ import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.factory.ProfessorFactory;
 import com.ingesup.labojava.form.FormsValidator;
 import com.ingesup.labojava.form.InscriptionFormBean;
+import com.ingesup.labojava.form.LoginFormBean;
 import com.ingesup.labojava.service.ProfessorService;
 import com.ingesup.labojava.service.ProfessorServiceImpl;
 
@@ -30,6 +31,9 @@ public class ProfessorController {
 		this.professorService = ps;
 	}
 
+	
+	// Récupérer la liste de tous les professeurs
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String listProfessors(Model model) {
 		
@@ -38,6 +42,9 @@ public class ProfessorController {
 		model.addAttribute("listProfessors", this.professorService.listProfessors());
 		return "professors";
 	}
+	
+	
+	// Inscription d'un professeur
 	
 	@RequestMapping(value="/inscription", method = RequestMethod.POST)
 	public String addProfessor(@ModelAttribute("inscriptionBean") @Valid final InscriptionFormBean iFormBean, 
@@ -72,5 +79,36 @@ public class ProfessorController {
 		
 		return "redirect:"+ "/professors";
 	}
+	
+	
+	// Connexion d'un professeur
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String loginPage(final Model model) {
+		
+		model.addAttribute("loginBean", new LoginFormBean());
+		return "login";		
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String loginProfessor(@ModelAttribute("loginBean") @Valid final LoginFormBean lFormBean,
+			final BindingResult bindingResult, final Model model) {
+		
+		String loginStatus = "";
+		
+		if (bindingResult.hasErrors()) {
+			
+			loginStatus = "Adresse mail ou mot de passe invalides!";
+			model.addAttribute("loginStatus", loginStatus);
+			return "login";
+		}
+		
+		Professor prof = professorService.getProfessor(lFormBean.getEmail(), lFormBean.getPassword());
+		model.addAttribute("loginStatus", prof);
+		
+		return "home";
+		
+	}
+	
 	
 }
