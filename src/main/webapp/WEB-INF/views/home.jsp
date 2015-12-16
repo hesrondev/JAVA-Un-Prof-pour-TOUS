@@ -13,9 +13,9 @@
 			<li>
 				<h2>Liste des pages</h2>
 			</li>
-			<li><a href="/login.html">Se connecter</a></li>
-			<li><a href="/inscription.html">S'inscrire</a></li>
-			<li><a href="/professors.html">Gestionnaire de professeurs</a></li>
+			<li><a href="${pageContext.request.contextPath}/login.html">Se connecter</a></li>
+			<li><a href="${pageContext.request.contextPath}/inscription.html">S'inscrire</a></li>
+			<li><a href="${pageContext.request.contextPath}/professors.html">Gestionnaire de professeurs</a></li>
 		</ul>
 	</div>
 

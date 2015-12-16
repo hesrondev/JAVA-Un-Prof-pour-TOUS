@@ -25,14 +25,14 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 	}
 	
 	@Override
-	public void addPerson(Professor prof) {
+	public void addProfessor(Professor prof) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(prof);
 		logger.info("Professor saved successfully, Professor details : "+ prof);
 	}
 
 	@Override
-	public void updatePerson(Professor prof) {
+	public void updateProfessor(Professor prof) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(prof);
 		logger.info("Professor updated successfully, Professor details : "+ prof);

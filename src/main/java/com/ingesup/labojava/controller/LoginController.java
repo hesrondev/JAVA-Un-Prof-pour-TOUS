@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.form.LoginFormBean;
@@ -17,6 +19,7 @@ import com.ingesup.labojava.service.ProfessorService;
 import com.ingesup.labojava.service.ProfessorServiceImpl;
 
 @Controller
+@SessionAttributes("user")
 public class LoginController {
 
 	// Injection des services
@@ -39,30 +42,35 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPost(@ModelAttribute("loginBean") @Valid final LoginFormBean lFormBean,
-			final BindingResult bindingResult, final Model model) {
+	public ModelAndView loginPost(@ModelAttribute("loginBean") @Valid final LoginFormBean lFormBean,
+			final BindingResult bindingResult) {
 
-		String loginStatus = "";
+		ModelAndView modelView = new ModelAndView();
+		
 
 		if (bindingResult.hasErrors()) {
 
-			loginStatus = "Adresse mail ou mot de passe invalides!";
-			model.addAttribute("loginStatus", loginStatus);
-			return "login";
+			String loginStatus = "Adresse mail ou mot de passe invalides!";
+			modelView.addObject("loginStatus", loginStatus);
+			modelView.setViewName("login");
+			
+			return modelView;
 		}
 
 		Professor prof = professorService.getProfessor(lFormBean.getEmail(), lFormBean.getPassword());
 		
 		if (prof == null) {
-			loginStatus = "Identifiants incorrects!";
-			model.addAttribute("loginStatus", loginStatus);
+			String loginStatus = "Identifiants incorrects!";
+			modelView.addObject("loginStatus", loginStatus);
+			modelView.setViewName("login");
 			
-			return "login";
+			return modelView;
 		}
 			
-		model.addAttribute("loginStatus", prof);
+		modelView.setViewName("profile");
+		modelView.addObject("user", prof);		
 
-		return "redirect:" + "/profile";
+		return modelView;
 
 	}
 

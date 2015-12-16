@@ -21,12 +21,12 @@ public class ProfessorServiceImpl implements ProfessorService{
 
 	@Override
 	public void addProfessor(Professor prof) {
-		this.professorDAO.addPerson(prof);
+		this.professorDAO.addProfessor(prof);
 	}
 
 	@Override
 	public void updateProfessor(Professor prof) {
-		this.professorDAO.updatePerson(prof);
+		this.professorDAO.updateProfessor(prof);
 	}
 
 	@Override

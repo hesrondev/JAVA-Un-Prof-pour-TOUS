@@ -6,8 +6,8 @@ import com.ingesup.labojava.bean.Professor;
 
 public interface ProfessorDAO {
 	
-	public void addPerson(Professor prof);
-	public void updatePerson(Professor prof);
+	public void addProfessor(Professor prof);
+	public void updateProfessor(Professor prof);
 	public List<Professor> listProfessors();
 	public Professor getProfessor(String email, String pass);
 	public void removeProfessor(Long id);

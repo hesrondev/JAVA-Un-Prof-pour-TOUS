@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>UPPT | Profile</title>
+<title>UPPT | ${!empty user ? user.firstName : Profile}</title>
 </head>
 <body>
-	<c:if test="${!empty loginStatus.firstName}">
+	<c:if test="${!empty user}">
 		<h2>
-			<c:out value="Bonjour ${loginStatus}"></c:out>
+			<c:out value="Bonjour ${user.firstName}"></c:out>
 		</h2>
 	</c:if>
 </body>
