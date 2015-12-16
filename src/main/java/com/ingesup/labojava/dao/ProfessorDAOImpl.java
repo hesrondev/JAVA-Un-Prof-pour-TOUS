@@ -59,8 +59,10 @@ public class ProfessorDAOImpl implements ProfessorDAO{
 		
 		List<Professor> profList = query.list();
 		
-		if (profList.get(0) != null)
-			logger.info("Professor loaded successfully, Professor Details:"+ profList.get(0));
+		if (profList.isEmpty())
+			return null;
+		
+		logger.info("Professor loaded successfully, Professor Details:"+ profList.get(0));
 		
 		return profList.get(0);
 	}

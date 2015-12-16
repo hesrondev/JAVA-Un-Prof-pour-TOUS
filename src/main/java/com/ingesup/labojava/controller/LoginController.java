@@ -52,6 +52,14 @@ public class LoginController {
 		}
 
 		Professor prof = professorService.getProfessor(lFormBean.getEmail(), lFormBean.getPassword());
+		
+		if (prof == null) {
+			loginStatus = "Identifiants incorrects!";
+			model.addAttribute("loginStatus", loginStatus);
+			
+			return "login";
+		}
+			
 		model.addAttribute("loginStatus", prof);
 
 		return "redirect:" + "/profile";
