@@ -1,8 +1,6 @@
 <div class="formInsc">
-	
-<!--  	<c:url var="inscriptionAction" value="/professors/inscription"></c:url> -->
 
-	<form:form action= "${pageContext.request.contextPath}/professors/inscription" method="POST" commandName="inscriptionBean">
+	<form:form action= "${pageContext.request.contextPath}/inscription" method="POST" commandName="inscriptionBean">
 		<table>
 			<tr>
 				<td colspan="2"><c:out value="${profStatus}"/></td>

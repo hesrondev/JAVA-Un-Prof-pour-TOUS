@@ -52,10 +52,6 @@
 </head>
 <body>
 
-<h2>Ajouter un professeur</h2>
-
-<%@ include file="inscriptionForm.jsp" %>
-
 <br>
 <hr>
 	<h2>Liste de professeurs</h2>

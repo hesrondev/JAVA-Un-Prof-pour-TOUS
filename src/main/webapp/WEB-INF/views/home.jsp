@@ -13,14 +13,11 @@
 			<li>
 				<h2>Liste des pages</h2>
 			</li>
+			<li><a href="login.html">Se connecter</a></li>
+			<li><a href="inscription.html">S'inscrire</a></li>
 			<li><a href="professors.html">Gestionnaire de professeurs</a></li>
-			<li><a href="professors/login.html">Connexion</a></li>
 		</ul>
 	</div>
-	
-	<p>
-		<c:out value="${loginStatus.email}"/>
-	</p>
 
 </body>
 </html>

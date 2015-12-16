@@ -1,7 +1,7 @@
 <div align="center">
 	<!-- Formulaire de connexion -->
 	<form:form modelAttribute="loginBean" method="POST"
-		action="${pageContext.request.contextPath}/professors/login">
+		action="${pageContext.request.contextPath}/login">
 		<table width="350" id="tableForm">
 
 			<tr>
