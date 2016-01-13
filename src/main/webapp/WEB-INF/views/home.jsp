@@ -6,15 +6,17 @@
 </head>
 <body>
 
+<!--  HEADER INCLUSION  -->
+
+<%@ include file="header.jsp"%>
+
 	<h1 align="center">Bienvenue sur Un Prof Pour Tous</h1>
 
 	<div>
 		<ul>
 			<li>
-				<h2>Liste des pages</h2>
+				<h2>Liste des autres pages</h2>
 			</li>
-			<li><a href="${pageContext.request.contextPath}/login.html">Se connecter</a></li>
-			<li><a href="${pageContext.request.contextPath}/inscription.html">S'inscrire</a></li>
 			<li><a href="${pageContext.request.contextPath}/professors.html">Gestionnaire de professeurs</a></li>
 		</ul>
 	</div>

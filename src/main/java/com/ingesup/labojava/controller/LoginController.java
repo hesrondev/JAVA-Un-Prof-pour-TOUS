@@ -70,7 +70,7 @@ public class LoginController {
 		}
 		
 		mView.addObject("user", prof);
-		mView.setViewName("redirect:/profile");
+		mView.setViewName("redirect:/home");
 		
 		return mView;
 
