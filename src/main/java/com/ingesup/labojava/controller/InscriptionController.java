@@ -79,15 +79,13 @@ public class InscriptionController {
 		
 		System.out.println("STATUT**** : " + iFormBean.getStatus());
 		
-		if (iFormBean.getStatus().equals("professor"))
-		{
+		if (iFormBean.getStatus().equals("professor")) {
 			ProfessorFactory professorFactory = new ProfessorFactory();
 			Professor prof = professorFactory.createProfessor(iFormBean);
 			this.professorService.addProfessor(prof);
 		}
 		
-		else
-		{
+		else {
 			StudentFactory studentFactory = new StudentFactory();
 			Student student = studentFactory.createStudent(iFormBean);
 			this.studentService.addStudent(student);

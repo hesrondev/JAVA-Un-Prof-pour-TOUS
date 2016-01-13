@@ -11,7 +11,7 @@
 
 <br>
 	<hr>
-	<h2>Liste de professeurs</h2>
+	<h2>Liste des professeurs</h2>
 	<c:if test="${!empty listProfessors}">
 		<table class="tg">
 			<tr>

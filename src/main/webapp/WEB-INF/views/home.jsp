@@ -20,7 +20,7 @@
 				<h2>Liste des autres pages</h2>
 			</li>
 			<li><a href="${pageContext.request.contextPath}/professors.html">Gestionnaire de professeurs</a></li>
-			<li><a href="${pageContext.request.contextPath}/students.html">Gestionnaire de élèves</a></li>
+			<li><a href="${pageContext.request.contextPath}/students.html">Gestionnaire d'élèves</a></li>
 		</ul>
 	</div>
 
