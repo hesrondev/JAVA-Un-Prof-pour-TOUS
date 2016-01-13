@@ -75,9 +75,11 @@ public class InscriptionController {
 			return "inscription";
 		}
 
-		// ProfFactory
+		// Factoring...
 		
-		if (iFormBean.getStatus().equals("Professeur"))
+		System.out.println("STATUT**** : " + iFormBean.getStatus());
+		
+		if (iFormBean.getStatus().equals("professor"))
 		{
 			ProfessorFactory professorFactory = new ProfessorFactory();
 			Professor prof = professorFactory.createProfessor(iFormBean);
@@ -91,7 +93,7 @@ public class InscriptionController {
 			this.studentService.addStudent(student);
 		}
 
-		return "redirect:" + "/professors";
+		return "redirect:" + "/home";
 	}
 
 }

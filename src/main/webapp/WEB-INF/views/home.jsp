@@ -2,7 +2,6 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	
 	<link href="<c:url value="/resources/theme-default/css/header.css" />" rel="stylesheet" type="text/css">
 	
 	<title>UPPT | Accueil</title>
@@ -21,6 +20,7 @@
 				<h2>Liste des autres pages</h2>
 			</li>
 			<li><a href="${pageContext.request.contextPath}/professors.html">Gestionnaire de professeurs</a></li>
+			<li><a href="${pageContext.request.contextPath}/students.html">Gestionnaire de élèves</a></li>
 		</ul>
 	</div>
 
