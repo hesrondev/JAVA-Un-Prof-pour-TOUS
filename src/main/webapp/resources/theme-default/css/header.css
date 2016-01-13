@@ -1,0 +1,41 @@
+
+/* Design du menu de header */
+
+#menu-profile-header, #menu-profile-header ul {
+    
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#menu-profile-header {
+    /* Centrer le menu */
+	text-align: center;
+}
+
+#menu-profile-header li {
+    /* on place les liens du menu horizontalement */
+	display: inline-block;
+}
+
+#menu-profile-header ul li {
+    /* on enlève ce comportement pour les liens du sous menu */
+    display: inherit;
+}
+
+#menu-profile-header a {
+    text-decoration: none;
+    display: block;
+    color: #000;
+}
+
+#menu-profile-header ul {
+    position: absolute;
+    left: -999em;
+    text-align: left;
+    z-index: 1000;
+}
+
+#menu-profile-header li:hover ul {
+    left: auto;
+}

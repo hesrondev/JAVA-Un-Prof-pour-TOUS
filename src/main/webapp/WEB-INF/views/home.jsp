@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	
-	<link href="<c:url value="/resources/css/header.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/theme-default/css/header.css" />" rel="stylesheet" type="text/css">
 	
 	<title>UPPT | Accueil</title>
 </head>
@@ -13,7 +13,7 @@
 
 <%@ include file="header.jsp"%>
 
-	<h1 align="center">Bienvenue sur Un Prof Pour Tous</h1>
+	<h1>Bienvenue sur Un Prof Pour Tous</h1>
 
 	<div>
 		<ul>
