@@ -31,7 +31,7 @@ public class InscriptionController {
 		this.professorService = ps;
 	}
 
-	// Inscription d'un utilisateur
+	// Inscription d'un professeur
 	
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 	public String inscriptionPage(final Model model) {
@@ -51,7 +51,7 @@ public class InscriptionController {
 
 			profStatus = "Données du formulaire invalides!!! Vérifiez votre saisie.";
 			model.addAttribute("profStatus", profStatus);
-			return "professors";
+			return "inscription";
 		}
 
 		// Validateur de formulaire
@@ -61,7 +61,7 @@ public class InscriptionController {
 		if (!fValidator.isValidInscriptionForm(iFormBean)) {
 			profStatus = "Données du formulaire invalides!!! Vérifiez votre saisie.";
 			model.addAttribute("profStatus", profStatus);
-			return "professors";
+			return "inscription";
 		}
 
 		// ProfFactory

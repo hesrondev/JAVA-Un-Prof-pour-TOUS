@@ -14,6 +14,8 @@ import com.ingesup.labojava.service.ProfessorServiceImpl;
 @RequestMapping(value="/professors")
 public class ProfessorController {
 	
+	// Injection
+	
 	private ProfessorService professorService = new ProfessorServiceImpl();
 	
 	@Autowired(required=true)

@@ -9,6 +9,7 @@ public class FormsValidator {
 		if (!ifb.getPassword().equals(ifb.getRePassword()))
 			return false;
 		
+		
 		return true;
 	}
 }

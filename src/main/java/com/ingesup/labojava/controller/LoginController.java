@@ -44,33 +44,35 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(@ModelAttribute("loginBean") @Valid final LoginFormBean lFormBean,
 			final BindingResult bindingResult) {
-
-		ModelAndView modelView = new ModelAndView();
 		
+		ModelAndView mView = new ModelAndView();
 
 		if (bindingResult.hasErrors()) {
 
 			String loginStatus = "Adresse mail ou mot de passe invalides!";
-			modelView.addObject("loginStatus", loginStatus);
-			modelView.setViewName("login");
 			
-			return modelView;
+			mView.addObject("loginStatus", loginStatus);
+			mView.setViewName("login");
+			return mView;
+			
 		}
 
+		// Get prof
+		
 		Professor prof = professorService.getProfessor(lFormBean.getEmail(), lFormBean.getPassword());
 		
 		if (prof == null) {
 			String loginStatus = "Identifiants incorrects!";
-			modelView.addObject("loginStatus", loginStatus);
-			modelView.setViewName("login");
 			
-			return modelView;
+			mView.addObject("loginStatus", loginStatus);
+			mView.setViewName("login");
+			return mView;
 		}
-			
-		modelView.setViewName("profile");
-		modelView.addObject("user", prof);		
-
-		return modelView;
+		
+		mView.addObject("user", prof);
+		mView.setViewName("redirect:/profile");
+		
+		return mView;
 
 	}
 
