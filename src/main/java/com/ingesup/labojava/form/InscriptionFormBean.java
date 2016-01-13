@@ -19,8 +19,11 @@ public class InscriptionFormBean {
 	@NotEmpty(message="Mot de passe obligatoire!")
 	@Size(min=6, message="Le mot de passe doit contenir minimum 6 caractères")
 	private String rePassword;
+	@NotEmpty()
+	private String status;
 	
 	//Getters and Setters
+	
 	
 	public String getFirstName() {
 		return firstName;
@@ -51,6 +54,12 @@ public class InscriptionFormBean {
 	}
 	public void setRePassword(String rePassword) {
 		this.rePassword = rePassword;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

@@ -5,6 +5,11 @@
 <title>UPPT | ${!empty user ? user.firstName : Profile}</title>
 </head>
 <body>
+
+	<%@ include file="header.jsp"%>
+
+	<!-- Si l'utilisateur est connecté -->
+	
 	<c:if test="${!empty user}">
 		<h2>
 			<c:out value="Bonjour ${user.firstName}"></c:out>

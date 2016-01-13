@@ -8,21 +8,24 @@
 			
 			<td>			
 				<c:choose>
-					<c:when test="${!empty user}">
+					<c:when test="${!empty user}">														
+						<div id="div-menu-profile"> 
+							<ul id="menu-profile">
+								<!-- Profile -->
+								<li>
+									<a href="#">Hello <c:out value="${user.firstName} ${user.lastName}"></c:out></a>
 							
-							<!-- Profile -->
-							<c:out value="${user.firstName} ${user.lastName}"></c:out>
-							
-							<div id="menu-profile-header"> 
-								<ul>
-									<li><a href="${pageContext.request.contextPath}/#.html">Mon profile</a></li>
-									<li><a href="${pageContext.request.contextPath}/#.html">Mes recherches</a></li>
-									<li><a href="${pageContext.request.contextPath}/#.html">Tableau de bord</a></li>
-									
-									<li><a href="${pageContext.request.contextPath}/#.html">Paramètres</a></li>
-									<li><a href="${pageContext.request.contextPath}/#.html">Se déconnecter</a></li>
-								</ul>	
-							</div>							
+									<ul>															
+										<li><a href="${pageContext.request.contextPath}/profile.html">Mon profile</a></li>
+										<li><a href="${pageContext.request.contextPath}/#.html">Mes recherches</a></li>
+										<li><a href="${pageContext.request.contextPath}/#.html">Tableau de bord</a></li>
+										
+										<li><a href="${pageContext.request.contextPath}/#.html">Paramètres</a></li>
+										<li><a href="${pageContext.request.contextPath}/#.html">Se déconnecter</a></li>
+									</ul>	
+								</li>
+							</ul>
+						</div>							
 					</c:when>
 					
 					<c:otherwise>

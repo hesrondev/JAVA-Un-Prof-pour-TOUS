@@ -42,6 +42,19 @@
 				<td colspan="2"><form:password path="rePassword" /></td>
 			</tr>
 			<tr>
+				<td><form:label path="status">
+						<spring:message text="Votre statut : " />
+					</form:label>
+				</td>
+				<td>
+					<form:select path="status">
+						<form:option value="student">Elève</form:option>  
+						<form:option value="professor">Professeur</form:option>  
+					</form:select>
+				</td>
+			</tr>
+			
+			<tr>
 				<td colspan="2"><input type="submit" value="INSCRIPTION" /></td>
 			</tr>
 

@@ -1,12 +1,10 @@
 package com.ingesup.labojava.dao;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.internal.IteratorImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -17,7 +15,6 @@ import com.ingesup.labojava.bean.Professor;
 public class ProfessorDAOImpl implements ProfessorDAO{
 
 	private static final Logger logger = LoggerFactory.getLogger(ProfessorDAOImpl.class);
-	
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sf) {

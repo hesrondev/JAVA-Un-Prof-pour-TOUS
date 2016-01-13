@@ -7,8 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PROFESSOR")
-public class Professor {
+@Table(name="STUDENT")
+public class Student {
+	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,7 +23,7 @@ public class Professor {
 	
 	public String toString() {
 		
-		return "PROFESSEUR\nID : " +id+ "\nPRENOM : " +firstName+
+		return "ELEVE\nID : " +id+ "\nPRENOM : " +firstName+
 				"\nNOM : " +lastName+ "\nEMAIL : " +email+
 				"\nPASS : " +password;
 	}
@@ -59,5 +60,5 @@ public class Professor {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 }

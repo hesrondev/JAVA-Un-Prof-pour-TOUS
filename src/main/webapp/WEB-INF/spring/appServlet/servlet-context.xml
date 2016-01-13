@@ -51,6 +51,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.ingesup.labojava.bean.Professor</beans:value>
+				<beans:value>com.ingesup.labojava.bean.Student</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -62,7 +63,14 @@
 		</beans:property>
 	</beans:bean>
 
+	<!--  Beans -->
+
 	<beans:bean id="professorDAO" class="com.ingesup.labojava.dao.ProfessorDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean id="studentDAO" class="com.ingesup.labojava.dao.StudentDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
@@ -70,6 +78,11 @@
 	<beans:bean id="professorService"
 		class="com.ingesup.labojava.service.ProfessorServiceImpl">
 		<beans:property name="professorDAO" ref="professorDAO"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="studentService"
+		class="com.ingesup.labojava.service.StudentServiceImpl">
+		<beans:property name="studentDAO" ref="studentDAO"></beans:property>
 	</beans:bean>
 
 	<context:component-scan base-package="com.ingesup.labojava.controller" />
