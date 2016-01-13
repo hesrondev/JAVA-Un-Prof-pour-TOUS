@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	
-	<link rel = "stylesheet" type="text/css" href="${pageContext.request.contextPath}/header.css">
+	<link href="<c:url value="/resources/css/header.css" />" rel="stylesheet">
 	
 	<title>UPPT | Accueil</title>
 </head>

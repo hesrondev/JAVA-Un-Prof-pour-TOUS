@@ -83,7 +83,7 @@
 	</beans:bean>
 	
 	
-	<!-- Spring ressources mapping -->
+	<!-- Spring resources mapping -->
 	
 	<mvc:resources mapping="/resources/**" location="/resources/theme-default/"  
 	cache-period="31556926"/>
