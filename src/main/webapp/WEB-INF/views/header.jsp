@@ -1,15 +1,14 @@
 <!-- Header !!! -->
 
-<div>
+<div id="menu-profile-header">
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/home.html">Logo UPPT</a></li>
 			
 		<c:choose>
 			<c:when test="${!empty user}">
-				<li>
-						
+				<li>						
 					<!-- Profile -->
-					<c:out value="Bonjour ${user.firstName} ${user.lastName}"></c:out>
+					<c:out value="${user.firstName} ${user.lastName}"></c:out>
 					 
 					<ul>
 						<li><a href="${pageContext.request.contextPath}/#.html">Mon profile</a></li>

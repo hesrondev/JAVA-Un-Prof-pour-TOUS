@@ -1,0 +1,13 @@
+#menu-profile-header, #menu-profile-header ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#menu-profile-header {
+	text-align: center;
+}
+
+#menu-profile-header li {
+	display: inline-block;
+}
