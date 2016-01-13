@@ -26,7 +26,7 @@ public class StudentController {
 	// Récupérer la liste de tous les élèves
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String listProfessors(Model model) {
+	public String listStudents(Model model) {
 		
 		model.addAttribute("listStudents", this.studentService.listStudents());
 		return "students";
