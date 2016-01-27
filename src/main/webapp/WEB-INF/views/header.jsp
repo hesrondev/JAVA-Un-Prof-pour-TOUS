@@ -37,6 +37,19 @@
 				</c:choose>
 			</td>					
 		</tr>		
+		
+		<!-- 2e ligne : Menu -->
+		<tr>
+			<td>
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/home.html">Annonces</a></li>
+					<li><a href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
+					<li><a href="${pageContext.request.contextPath}/students.html">Elèves</a></li>
+					<li><a href="${pageContext.request.contextPath}/#.html">Guide</a></li>
+				</ul>
+			</td>
+		</tr>
+	
 	</table>
 	
 	<!-- Ligne horizontal -->

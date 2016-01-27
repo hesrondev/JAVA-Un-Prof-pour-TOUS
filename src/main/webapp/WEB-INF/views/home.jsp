@@ -14,15 +14,6 @@
 
 	<h1>Bienvenue sur Un Prof Pour Tous</h1>
 
-	<div>
-		<ul>
-			<li>
-				<h2>Liste des autres pages</h2>
-			</li>
-			<li><a href="${pageContext.request.contextPath}/professors.html">Gestionnaire de professeurs</a></li>
-			<li><a href="${pageContext.request.contextPath}/students.html">Gestionnaire d'élèves</a></li>
-		</ul>
-	</div>
 
 
 <!--  FOOTER INCLUSION  -->
