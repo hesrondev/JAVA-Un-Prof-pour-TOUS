@@ -6,12 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ingesup.labojava.service.StudentService;
 import com.ingesup.labojava.service.StudentServiceImpl;
 
 @Controller
 @RequestMapping(value="/students")
+@SessionAttributes("user")
 public class StudentController {
 	
 	private StudentService studentService = new StudentServiceImpl();

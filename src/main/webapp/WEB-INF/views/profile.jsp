@@ -6,14 +6,21 @@
 </head>
 <body>
 
+	<!--  HEADER INCLUSION  -->
+
 	<%@ include file="header.jsp"%>
 
 	<!-- Si l'utilisateur est connecté -->
-	
+
 	<c:if test="${!empty user}">
 		<h2>
 			<c:out value="Bonjour ${user.firstName}"></c:out>
 		</h2>
 	</c:if>
 </body>
+
+<!--  FOOTER INCLUSION  -->
+
+<%@ include file="footer.jsp"%>
+
 </html>

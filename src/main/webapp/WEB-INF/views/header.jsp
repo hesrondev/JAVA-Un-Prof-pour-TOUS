@@ -6,6 +6,7 @@
 		<tr> 
 			<td><a href="${pageContext.request.contextPath}/home.html">Logo UPPT</a></td>
 			
+			<!-- Si l'utilisateur n'est pas vide -->
 			<td>			
 				<c:choose>
 					<c:when test="${!empty user}">														
@@ -37,4 +38,8 @@
 			</td>					
 		</tr>		
 	</table>
+	
+	<!-- Ligne horizontal -->
+	<br>
+	<hr>
 </div>

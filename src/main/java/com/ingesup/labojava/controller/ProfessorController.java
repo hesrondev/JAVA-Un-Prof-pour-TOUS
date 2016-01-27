@@ -6,12 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ingesup.labojava.service.ProfessorService;
 import com.ingesup.labojava.service.ProfessorServiceImpl;
 
 @Controller
 @RequestMapping(value="/professors")
+@SessionAttributes("user")
 public class ProfessorController {
 	
 	// Injection

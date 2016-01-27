@@ -5,14 +5,22 @@
 <title>UPPT | Connexion</title>
 </head>
 <body>
-	<div align="center">
+
+	<!--  HEADER INCLUSION  -->
+
+	<%@ include file="header.jsp"%>
+
+
+	<div>
 		<h2>Connexion</h2>
-		<p></p>
 		<p>
 			<%@ include file="loginForm.jsp"%>
 		</p>
-		<p>
-			
-		</p>
+	</div>
+
+	<!--  FOOTER INCLUSION  -->
+
+	<%@ include file="footer.jsp"%>
+	
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
@@ -23,6 +24,7 @@ import com.ingesup.labojava.service.StudentService;
 import com.ingesup.labojava.service.StudentServiceImpl;
 
 @Controller
+@SessionAttributes("user")
 public class InscriptionController {
 
 	// Injection des services

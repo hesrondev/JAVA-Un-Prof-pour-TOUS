@@ -1,16 +1,16 @@
 <html>
 <head>
-	<link href="<c:url value="/resources/theme-default/css/table.css" />" rel="stylesheet" type="text/css">
-	<title>UPPT | Students Page</title>
+<link href="<c:url value="/resources/theme-default/css/table.css" />"
+	rel="stylesheet" type="text/css">
+<title>UPPT | Students Page</title>
 </head>
 <body>
 
-<!--  HEADER INCLUSION  -->
+	<!--  HEADER INCLUSION  -->
 
-<%@ include file="header.jsp"%>
+	<%@ include file="header.jsp"%>
 
-<br>
-	<hr>
+
 	<h2>Liste des élèves</h2>
 	<c:if test="${!empty listStudents}">
 		<table class="tg">
@@ -36,5 +36,12 @@
 			</c:forEach>
 		</table>
 	</c:if>
+
+
+	<!--  FOOTER INCLUSION  -->
+
+	<%@ include file="footer.jsp"%>
+	
+	
 </body>
 </html>

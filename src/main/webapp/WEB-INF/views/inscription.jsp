@@ -5,14 +5,24 @@
 <title>Page d'inscription</title>
 </head>
 <body>
+
+	<!--  HEADER INCLUSION  -->
+
+	<%@ include file="header.jsp"%>
+
+
 	<div>
 		<h2>Inscription</h2>
 		<p>
-			Bienvenue sur Un Prof Pour Tous.</br> Veuillez remplir le formulaire
-			ci-dessous pour vous inscire : </br>
+			Bienvenue sur Un Prof Pour Tous.<br> Veuillez remplir le
+			formulaire ci-dessous pour vous inscire : <br>
 		</p>
 
 		<%@ include file="inscriptionForm.jsp"%>
 	</div>
+
+	<!--  FOOTER INCLUSION  -->
+
+	<%@ include file="footer.jsp"%>
 </body>
 </html>

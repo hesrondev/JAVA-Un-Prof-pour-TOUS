@@ -1,4 +1,4 @@
-<div align="center">
+<div>
 	<!-- Formulaire de connexion -->
 	<form:form modelAttribute="loginBean" method="POST"
 		action="${pageContext.request.contextPath}/login">
@@ -27,11 +27,13 @@
 			<tr>
 				<td><input type="submit" value="CONNEXION" /></td>
 			</tr>
+			
+			<!-- Mot de passe perdu, INSCRIPTION -->
 			<tr>
-				<td>Mot de passe perdu?</td>
+				<td><a href="#">Mot de passe oublié?</a></td>
 			</tr>
 			<tr>
-				<td><a href="#">Cliquez ici</a> pour réinitialiser votre mot de passe.</td>
+				<td>Pas de compte? <a href="${pageContext.request.contextPath}/inscription.html">S'inscrire</a> </td>
 			</tr>
 		</table>
 	</form:form>

@@ -24,5 +24,10 @@
 		</ul>
 	</div>
 
+
+<!--  FOOTER INCLUSION  -->
+
+<%@ include file="footer.jsp"%>
+
 </body>
 </html>
