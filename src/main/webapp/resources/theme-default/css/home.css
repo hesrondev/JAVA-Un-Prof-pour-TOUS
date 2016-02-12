@@ -1,0 +1,164 @@
+/*HEADER*/
+
+#titre_principal
+{
+	display: flex;
+    flex-direction: column;
+}
+
+#logo
+{
+	display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+#logo img
+{
+    width: 59px;
+    height: 60px;
+}
+
+.header a
+{
+	color: #13EBC7;
+}
+
+.header
+{
+	background-color: #333632;
+	border: 3px black outset;
+	display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.header h1
+{
+	font-family: BallparkWeiner, serif;
+    font-size: 2.5em;
+    font-weight: normal;
+    margin: 0 0 0 10px;
+    color: white;
+}
+
+.header h2
+{
+	font-family: Dayrom, serif;
+    font-size: 1.1em;
+    margin-top: 0px;
+    font-weight: normal;
+    color: white;
+}
+
+/*BODY*/
+body
+{
+	 font-family: 'Trebuchet MS', Arial, sans-serif;
+	 background-color : #E6EBEA;
+}
+
+nav a
+{
+    font-family: Dayrom, serif;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+/* Navigation Home Menu*/
+
+#home_menu nav ul
+{
+    list-style-type: none;
+    display: flex;
+}
+
+#home_menu nav li
+{
+    margin-right: 15px;
+}
+
+#home_menu nav a
+{
+	font-size: 1.3em;
+    color: #181818;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+
+#home_menu nav a:hover
+{
+    color: #13EBC7;
+    border-bottom: 3px solid #13EBC7;
+}
+
+/* FOOTER */
+
+.footer
+{
+	background-color: #333632;
+	border: 3px black;
+	font-family: Dayrom, serif;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.footer ul
+{
+	list-style-type: none;
+    display: flex;
+}
+
+.footer li
+{
+	margin-right: 15px;
+}
+
+.footer a
+{
+	color: #13EBC7;
+	}
+
+
+
+
+/* Définition des polices personnalisées */
+@font-face
+{
+
+    font-family: 'BallparkWeiner';
+
+    src: url('fonts/ballpark.eot');
+
+    src: url('fonts/ballpark.eot?#iefix') format('embedded-opentype'),
+
+         url('fonts/ballpark.woff') format('woff'),
+
+         url('fonts/ballpark.ttf') format('truetype'),
+
+         url('fonts/ballpark.svg#BallparkWeiner') format('svg');
+
+    font-weight: normal;
+
+    font-style: normal;
+}
+
+@font-face
+{
+
+    font-family: 'Dayrom';
+
+    src: url('fonts/dayrom.eot');
+
+    src: url('fonts/dayrom.eot?#iefix') format('embedded-opentype'),
+
+         url('fonts/dayrom.woff') format('woff'),
+
+         url('fonts/dayrom.ttf') format('truetype'),
+
+         url('fonts/dayrom.svg#Dayrom') format('svg');
+
+    font-weight: normal;
+
+    font-style: normal;
+}

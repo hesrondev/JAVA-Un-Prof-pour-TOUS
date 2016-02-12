@@ -12,18 +12,18 @@
 		</div>
 
 <br>
-	<hr>
+	
 	<h2>Liste des professeurs</h2>
 	<c:if test="${!empty listProfessors}">
 		<table class="tg">
 			<tr>
-				<th width="80">Professor ID</th>
-				<th width="120">FirstName</th>
-				<th width="120">LastName</th>
-				<th width="120">email</th>
-				<th width="120">password</th>
-				<th width="60">Edit</th>
-				<th width="60">Delete</th>
+				<th>Professor ID</th>
+				<th>FirstName</th>
+				<th>LastName</th>
+				<th>email</th>
+				<th>password</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			</tr>
 			<c:forEach items="${listProfessors}" var="prof">
 				<tr>

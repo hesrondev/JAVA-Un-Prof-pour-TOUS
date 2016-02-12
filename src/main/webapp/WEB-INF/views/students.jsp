@@ -11,20 +11,21 @@
 	<div class="header">
 		<%@ include file="header.jsp"%>
 	</div>
-
-	<br>
-	<hr>
+	
+	<!--  Tableau des élèves  -->
+	
+	
 	<h2>Liste des élèves</h2>
 	<c:if test="${!empty listStudents}">
 		<table class="tg">
 			<tr>
-				<th width="80">Student ID</th>
-				<th width="120">FirstName</th>
-				<th width="120">LastName</th>
-				<th width="120">email</th>
-				<th width="120">password</th>
-				<th width="60">Edit</th>
-				<th width="60">Delete</th>
+				<th>Student ID</th>
+				<th>FirstName</th>
+				<th>LastName</th>
+				<th>email</th>
+				<th>password</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			</tr>
 			<c:forEach items="${listStudents}" var="std">
 				<tr>
@@ -39,6 +40,9 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	
+	
+	
 	<!--  FOOTER INCLUSION  -->
 	<div class="footer">
 		<%@ include file="footer.jsp"%>

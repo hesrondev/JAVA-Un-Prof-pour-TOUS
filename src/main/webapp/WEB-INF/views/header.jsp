@@ -42,3 +42,6 @@
 	</c:choose>
 </nav>
 
+
+<br>
+<hr>
