@@ -1,24 +1,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link href="<c:url value="/resources/theme-default/css/header.css" />" rel="stylesheet" type="text/css">
-	
-	<title>UPPT | Accueil</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="<c:url value="/resources/templated-transit/css/style.css" />"
+	rel="stylesheet" type="text/css">
+<!--<link href="/resources/theme-default/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+
+<title>UPPT | Accueil</title>
 </head>
 <body>
+	<div id="bloc_page">
 
-<!--  HEADER INCLUSION  -->
+		<!--  HEADER INCLUSION  -->
+		
+		<div class="header">
+			<%@ include file="header.jsp"%>
+		</div>
+		
+		<div id="home_menu">
+			<nav> 
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/home.html">Annonces</a></li>
+					<li><a href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
+					<li><a href="${pageContext.request.contextPath}/students.html">Elèves</a></li>
+					<li><a href="${pageContext.request.contextPath}/#.html">Guide</a></li>
+				</ul>
+			</nav>
+		</div>
+		
+		
+			<h2>Bienvenue sur UPPT !</h2>
+		
+		
+		<!--  FOOTER INCLUSION  -->
+		<div class="footer">
+			<%@ include file="footer.jsp"%>
+		</div>
 
-<%@ include file="header.jsp"%>
-
-	<h1>Bienvenue sur Un Prof Pour Tous</h1>
-
-
-
-<!--  FOOTER INCLUSION  -->
-
-<%@ include file="footer.jsp"%>
-
+	</div>
 </body>
 </html>

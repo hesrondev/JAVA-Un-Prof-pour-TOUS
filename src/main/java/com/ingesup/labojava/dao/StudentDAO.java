@@ -2,6 +2,7 @@ package com.ingesup.labojava.dao;
 
 import java.util.List;
 
+import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.Student;
 
 
@@ -12,5 +13,9 @@ public interface StudentDAO {
 	public List<Student> listStudents();
 	public Student getStudent(String email, String pass);
 	public void removeStudent(Long id);
+	
+	// liste des annonces
+	
+	public List<Annonce> getAllAdsByStudent(Long id);
 
 }

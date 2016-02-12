@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+
+import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.Student;
 
 @Repository
@@ -20,7 +22,6 @@ private static final Logger logger = LoggerFactory.getLogger(StudentDAOImpl.clas
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}
-
 	
 	// Methods 
 	
@@ -81,6 +82,25 @@ private static final Logger logger = LoggerFactory.getLogger(StudentDAOImpl.clas
 		
 		logger.info("Student deleted successfully, Student details:"+ std);
 		
+	}
+
+
+	// Récupération de la liste des annonces 
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Annonce> getAllAdsByStudent(Long id) {
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select a from Annonce a where a.id = :id");
+		query.setParameter("id", id);
+		
+		List<Annonce> adsList = query.list();
+		
+		for (Annonce ad : adsList)
+			logger.info("Student List :: "+ ad);
+		
+		return adsList;
 	}
 
 }
