@@ -13,9 +13,9 @@
 
 		<!--  HEADER INCLUSION  -->
 		
-		<div class="header">
+		<!--  <div id="header"> -->
 			<%@ include file="header.jsp"%>
-		</div>
+		<!--  </div> -->
 		
 		<div id="home_menu">
 			<nav> 
@@ -27,9 +27,6 @@
 				</ul>
 			</nav>
 		</div>
-		
-		
-			<h2>Bienvenue sur UPPT !</h2>
 		
 		
 		<!--  FOOTER INCLUSION  -->

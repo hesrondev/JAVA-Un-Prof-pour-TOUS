@@ -1,20 +1,26 @@
 <!-- Header !!! -->
 
-<div id="titre_principal">
+<!-- <div id="titre_principal">  -->
 
-	<div id="logo">
+<div class="icon">
+	<div id="label">
 		<a href="${pageContext.request.contextPath}/home.html"> <img
 			src="#" alt="Logo UPPT" />
 		</a>
-		<h1>UPPT</h1>
 	</div>
-	<h2>Un Prof Pour Tous</h2>
 </div>
 
-<nav>
-	<c:choose>
-		<c:when test="${!empty user}">
-			<div id="div-menu-profile">
+
+<div id="header">
+
+	<h1>UPPT</h1>
+	<h2>Un Prof Pour Tous</h2>
+	<!--  </div>  -->
+
+	<nav>
+		<c:choose>
+			<c:when test="${!empty user}">
+				<!-- <div id="div-menu-profile">  -->
 				<ul id="menu-profile">
 					<!-- Profile -->
 					<li><a href="#">Hello <c:out
@@ -32,16 +38,31 @@
 									déconnecter</a></li>
 						</ul></li>
 				</ul>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<a href="${pageContext.request.contextPath}/login.html">Se
-				connecter</a>
-			<a href="${pageContext.request.contextPath}/inscription.html">S'inscrire</a>
-		</c:otherwise>
-	</c:choose>
-</nav>
+				<!-- </div>  -->
+			</c:when>
+			<c:otherwise>
 
+				<ul>
+					<li class="button"><a
+						href="${pageContext.request.contextPath}/login.html">Se
+							connecter</a></li>
+					<li class="button"><a
+						href="${pageContext.request.contextPath}/inscription.html">S'inscrire</a>
+					</li>
+				</ul>
+
+				<!--  <form action="${pageContext.request.contextPath}/login.html">
+				<input type="submit" value="SE CONNECTER">
+			</form>
+			
+			<form action="${pageContext.request.contextPath}/inscription.html">
+				<input type="submit" value="S'INSCRIRE">
+			</form> -->
+			</c:otherwise>
+		</c:choose>
+	</nav>
+
+</div>
 
 <br>
 <hr>

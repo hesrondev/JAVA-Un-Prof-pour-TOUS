@@ -13,7 +13,7 @@
 			<%@ include file="header.jsp"%>
 		</div>
 		
-	<div>
+	<div class=".align-center">
 		<h2>Inscription</h2>
 		<p>
 			Bienvenue sur Un Prof Pour Tous.</br> Veuillez remplir le formulaire
