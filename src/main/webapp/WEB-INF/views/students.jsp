@@ -1,8 +1,10 @@
 <html>
 <head>
-<link
+
+<!--  <link
+
 	href="<c:url value="/resources/templated-transit/css/style.css" />"
-	rel="stylesheet" type="text/css">
+	rel="stylesheet" type="text/css">  -->
 <title>UPPT | Students Page</title>
 </head>
 <body>
@@ -11,10 +13,10 @@
 	<div class="header">
 		<%@ include file="header.jsp"%>
 	</div>
-	
+
 	<!--  Tableau des élèves  -->
-	
-	
+
+
 	<h2>Liste des élèves</h2>
 	<c:if test="${!empty listStudents}">
 		<table class="tg">
@@ -40,9 +42,9 @@
 			</c:forEach>
 		</table>
 	</c:if>
-	
-	
-	
+
+
+
 	<!--  FOOTER INCLUSION  -->
 	<div class="footer">
 		<%@ include file="footer.jsp"%>

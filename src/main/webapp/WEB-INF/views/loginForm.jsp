@@ -28,10 +28,7 @@
 				<td><input type="submit" value="CONNEXION" /></td>
 			</tr>
 			<tr>
-				<td>Mot de passe perdu?</td>
-			</tr>
-			<tr>
-				<td><a href="#">Cliquez ici</a> pour réinitialiser votre mot de passe.</td>
+				<td><a href="#">Mot de passe perdu?</a></td>
 			</tr>
 		</table>
 	</form:form>

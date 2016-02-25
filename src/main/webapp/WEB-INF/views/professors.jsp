@@ -1,7 +1,8 @@
 <html>
 <head>
+<!-- 
 	<link href="<c:url value="/resources/templated-transit/css/style.css" />"
-	rel="stylesheet" type="text/css">
+	rel="stylesheet" type="text/css">  -->
 	<title>UPPT | Professors Page</title>
 </head>
 <body>
