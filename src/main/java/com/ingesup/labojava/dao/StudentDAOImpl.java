@@ -2,9 +2,9 @@ package com.ingesup.labojava.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -15,53 +15,70 @@ import com.ingesup.labojava.bean.Student;
 @Repository
 public class StudentDAOImpl implements StudentDAO{
 	
-private static final Logger logger = LoggerFactory.getLogger(StudentDAOImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(StudentDAOImpl.class);
 	
-	private SessionFactory sessionFactory;
-	
-	public void setSessionFactory(SessionFactory sf) {
-		this.sessionFactory = sf;
-	}
-	
-	// Methods 
+	@PersistenceContext
+	EntityManager entityManager;
 	
 	@Override
 	public void addStudent(Student std) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(std);
+		entityManager.persist(std);
 		logger.info("Student saved successfully, Student details : "+ std);		
 	}
 
+	// Mise à Jour de de l'utilisateur
+	
 	@Override
-	public void updateStudent(Student std) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.update(std);
-		logger.info("Student updated successfully, Student details : "+ std);		
+	public Student updateStudent(Student std) {
+		
+		return entityManager.merge(std);		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Student> listStudents() {
 		
-		Session session = this.sessionFactory.getCurrentSession();
-		List<Student> stdList = session.createQuery("from Student").list();
+		Query query = entityManager.createQuery("select s from Student s");	
+		
+		List<Student> stdList = query.getResultList();
 		
 		for (Student s : stdList)
-			logger.info("Student List :: "+ s);
+			logger.info("Student-List :: "+ s);
 		return stdList;
 	}
 
+	
+	// Récupération de l'utilisateur par email et mot de passe
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Student getStudent(String email, String pass) {
 		
-		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Student s where s.email = :email and s.password = :password");
+		Query query = entityManager.createQuery("from Student s where s.email = :email and s.password = :password");
 		query.setParameter("email", email);
 		query.setParameter("password", pass);
 		
-		List<Student> stdList = query.list();
+		List<Student> stdList = query.getResultList();
+		
+		if (stdList.isEmpty())
+			return null;
+		
+		logger.info("Student loaded successfully, Student Details:"+ stdList.get(0));
+		
+		return stdList.get(0);
+	}
+	
+	
+	// Récupération de l'utilisateur par ID
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Student getStudent(Long ID) {
+		
+		Query query = entityManager.createQuery("from Student s where s.id = :id");
+		query.setParameter("id", ID);
+		
+		List<Student> stdList = query.getResultList();
 		
 		if (stdList.isEmpty())
 			return null;
@@ -71,36 +88,37 @@ private static final Logger logger = LoggerFactory.getLogger(StudentDAOImpl.clas
 		return stdList.get(0);
 	}
 
-	@Override
-	public void removeStudent(Long id) {
 
-		Session session = this.sessionFactory.getCurrentSession();
-		Student std = (Student) session.load(Student.class, new Long(id));
-		
-		if (std != null)
-			session.delete(std);
-		
-		logger.info("Student deleted successfully, Student details:"+ std);
-		
-	}
-
-
-	// Récupération de la liste des annonces 
+	// Récupération de la liste des annonces de l'utilisateur
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Annonce> getAllAdsByStudent(Long id) {
+	public List<Annonce> getAllAdsByStudent(Long studentId) {
 		
-		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery("select a from Annonce a where a.id = :id");
-		query.setParameter("id", id);
 		
-		List<Annonce> adsList = query.list();
+		Query query = entityManager.createQuery("from Annonce a where a.STUDENT_ID = :id");
+		query.setParameter("id", studentId);
+		
+		List<Annonce> adsList = query.getResultList();
 		
 		for (Annonce ad : adsList)
-			logger.info("Student List :: "+ ad);
+			logger.info("Student-AD-List :: "+ ad);
 		
 		return adsList;
-	}
+	}	
+	
+	// Suppression d'un utilisateur
+	
+		@Override
+		public void removeStudent(Long id) {
+			
+			Query query = entityManager.createQuery("delete from Student s where s.id = :id");
+			query.setParameter("id", id);
+			
+			int n = query.executeUpdate();
+			
+			if (n > 0) 
+				logger.info("[REQ]: " + n + "students deleted !");
+		}
 
 }

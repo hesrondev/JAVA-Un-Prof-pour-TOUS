@@ -32,6 +32,7 @@ public class InscriptionController {
 	private ProfessorService professorService = new ProfessorServiceImpl();
 	private StudentService studentService = new StudentServiceImpl();
 
+	
 	@Autowired(required = true)
 	@Qualifier(value = "professorService")
 	public void setProfessorService(ProfessorService ps) {
@@ -43,6 +44,7 @@ public class InscriptionController {
 	public void setStudentService(StudentService ss) {
 		this.studentService = ss;
 	}
+	
 
 	// Inscription d'un professeur
 	

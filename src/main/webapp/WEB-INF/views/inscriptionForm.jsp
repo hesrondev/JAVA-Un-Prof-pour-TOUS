@@ -14,8 +14,8 @@
 					</form:label></td>
 			</tr>
 			<tr>
-				<td><form:input path="lastName" /></td>
 				<td><form:input path="firstName" /></td>
+				<td><form:input path="lastName" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><form:label path="email">

@@ -26,8 +26,8 @@ public class StudentServiceImpl implements StudentService{
 	}
 
 	@Override
-	public void updateStudent(Student std) {
-		this.studentDAO.updateStudent(std);
+	public Student updateStudent(Student std) {
+		return this.studentDAO.updateStudent(std);
 	}
 
 	@Override
@@ -39,10 +39,18 @@ public class StudentServiceImpl implements StudentService{
 	public Student getStudent(String email, String pass) {
 		return this.studentDAO.getStudent(email, pass);
 	}
+	
+	@Override
+	public Student getStudent(Long ID) {
+		// TODO Auto-generated method stub
+		return this.studentDAO.getStudent(ID);
+	}
 
 	@Override
 	public void removeStudent(Long id) {
 		this.studentDAO.removeStudent(id);		
 	}
+
+	
 
 }

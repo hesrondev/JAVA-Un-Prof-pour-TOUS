@@ -17,13 +17,14 @@ import com.ingesup.labojava.service.StudentServiceImpl;
 public class StudentController {
 	
 	private StudentService studentService = new StudentServiceImpl();
-
+	
+	
 	@Autowired(required = true)
 	@Qualifier(value = "studentService")
 	public void setStudentService(StudentService ss) {
 		this.studentService = ss;
 	}
-
+	
 	
 	// Récupérer la liste de tous les élèves
 	

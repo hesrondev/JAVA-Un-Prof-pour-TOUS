@@ -5,7 +5,7 @@
 		<table width="350" id="tableForm">
 
 			<tr>
-				<c:out value="${loginStatus}"></c:out></td>
+				<td><c:out value="${loginStatus}"></c:out></td>
 			</tr>
 
 			<tr>

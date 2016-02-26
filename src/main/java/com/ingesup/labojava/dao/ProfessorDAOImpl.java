@@ -2,9 +2,10 @@ package com.ingesup.labojava.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -14,65 +15,54 @@ import com.ingesup.labojava.bean.Professor;
 @Repository
 public class ProfessorDAOImpl implements ProfessorDAO{
 
-	private static final Logger logger = LoggerFactory.getLogger(ProfessorDAOImpl.class);
-	private SessionFactory sessionFactory;
+	private static final Logger logger = LoggerFactory.getLogger(StudentDAOImpl.class);
 	
-	public void setSessionFactory(SessionFactory sf) {
-		this.sessionFactory = sf;
-	}
+	@PersistenceContext
+	EntityManager entityManager;
 	
-	@Override
 	public void addProfessor(Professor prof) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(prof);
-		logger.info("Professor saved successfully, Professor details : "+ prof);
+		entityManager.persist(prof);
+		logger.info("Professor saved successfully, Prof details : "+ prof);		
 	}
 
-	@Override
 	public void updateProfessor(Professor prof) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.update(prof);
-		logger.info("Professor updated successfully, Professor details : "+ prof);
+		
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
-	public List<Professor> listProfessors() {
-		Session session = this.sessionFactory.getCurrentSession();
-		List<Professor> profList = session.createQuery("from Professor").list();
+	public List<Professor> getProfessorList() {
+		
+		Query query = entityManager.createQuery("Select p from Professor p");
+		
+		
+		List<Professor> profList = query.getResultList();
 		
 		for (Professor p : profList)
-			logger.info("Professor List :: "+ p);
+			logger.info("Prof-List :: "+ p);
 		return profList;
 	}
 
+	
 	@SuppressWarnings("unchecked")
-	@Override
 	public Professor getProfessor(String email, String pass) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Professor p where p.email = :email and p.password = :password");
+		
+		
+		Query query = entityManager.createQuery("from Professor p where p.email = :email and p.password = :password");
 		query.setParameter("email", email);
 		query.setParameter("password", pass);
 		
-		List<Professor> profList = query.list();
+		List<Professor> profList = query.getResultList();
 		
 		if (profList.isEmpty())
 			return null;
 		
-		logger.info("Professor loaded successfully, Professor Details:"+ profList.get(0));
+		logger.info("Student loaded successfully, Student Details:"+ profList.get(0));
 		
 		return profList.get(0);
 	}
 
-	@Override
 	public void removeProfessor(Long id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Professor prof = (Professor) session.load(Professor.class, new Long(id));
 		
-		if (prof != null)
-			session.delete(prof);
-		
-		logger.info("Professor deleted successfully, professor details:"+ prof);
 	}
 
 }

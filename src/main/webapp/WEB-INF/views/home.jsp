@@ -22,10 +22,9 @@
 			<nav>
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/home.html">Accueil</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
+				<li><a href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
 				<li><a href="${pageContext.request.contextPath}/students.html">Elèves</a></li>
-				<li><a href="${pageContext.request.contextPath}/#.html">Guide</a></li>
+				<li><a href="${pageContext.request.contextPath}/guide.html">Guide</a></li>
 			</ul>
 			</nav>
 		</div>
@@ -35,7 +34,12 @@
 		<div id="">
 			<%@ include file="adSearchForm.jsp"%>
 		</div>
-
+		
+		<br>
+		
+		<div align="center">
+			<a href="${pageContext.request.contextPath}/ad/create.html"><strong>Publier une annonce</strong></a>
+		</div>
 
 		<!--  Dernières annonces -->
 

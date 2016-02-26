@@ -23,5 +23,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/guide", method = RequestMethod.GET)
+	public String displayGuidePage() {
+		return "guide";
+	}
+	
 	
 }

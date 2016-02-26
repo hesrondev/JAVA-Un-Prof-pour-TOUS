@@ -30,8 +30,8 @@ public class ProfessorServiceImpl implements ProfessorService{
 	}
 
 	@Override
-	public List<Professor> listProfessors() {
-		return this.professorDAO.listProfessors();
+	public List<Professor> getProfessorList() {
+		return this.professorDAO.getProfessorList();
 	}
 
 	@Override

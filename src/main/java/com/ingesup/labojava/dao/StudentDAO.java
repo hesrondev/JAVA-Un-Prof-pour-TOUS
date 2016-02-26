@@ -9,9 +9,10 @@ import com.ingesup.labojava.bean.Student;
 public interface StudentDAO {
 	
 	public void addStudent(Student std);
-	public void updateStudent(Student std);
+	public Student updateStudent(Student std);
 	public List<Student> listStudents();
 	public Student getStudent(String email, String pass);
+	public Student getStudent(Long ID);
 	public void removeStudent(Long id);
 	
 	// liste des annonces

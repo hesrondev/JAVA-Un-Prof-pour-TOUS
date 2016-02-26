@@ -30,6 +30,7 @@ public class LoginController {
 	private ProfessorService professorService = new ProfessorServiceImpl();
 	private StudentService studentService = new StudentServiceImpl();
 	
+	
 	@Autowired(required = true)
 	@Qualifier(value = "professorService")
 	public void setProfessorService(ProfessorService ps) {

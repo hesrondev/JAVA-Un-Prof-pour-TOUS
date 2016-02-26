@@ -20,19 +20,20 @@ public class ProfessorController {
 	
 	private ProfessorService professorService = new ProfessorServiceImpl();
 	
+	
 	@Autowired(required=true)
 	@Qualifier(value="professorService")
 	public void setProfessorService(ProfessorService ps) {
 		this.professorService = ps;
 	}
-
+	
 	
 	// Récupérer la liste de tous les professeurs
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String listProfessors(Model model) {
 		
-		model.addAttribute("listProfessors", this.professorService.listProfessors());
+		model.addAttribute("listProfessors", this.professorService.getProfessorList());
 		return "professors";
 	}
 	

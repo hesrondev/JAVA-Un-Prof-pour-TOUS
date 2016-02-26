@@ -8,7 +8,7 @@ public interface ProfessorService {
 	
 	public void addProfessor(Professor prof);
 	public void updateProfessor(Professor prof);
-	public List<Professor> listProfessors();
+	public List<Professor> getProfessorList();
 	public Professor getProfessor(String email, String pass);
 	public void removeProfessor(Long id);
 

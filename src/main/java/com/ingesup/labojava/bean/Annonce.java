@@ -1,5 +1,7 @@
 package com.ingesup.labojava.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,27 +10,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ANNONCES")
-public class Annonce {
+@Table(name="ANNONCE")
+public class Annonce implements Serializable{
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ANNONCE_ID")
 	private Long id;
 	private String title;
+	private double costPerHour;
 	private String description;
 	private String location;
 	private String subject;
+	private Student student;
 	
-	// user
-	
-	//@ManyToOne(fetch = FetchType.LAZY)
-	//private Student student;
-	
+	private static final long serialVersionUID = 1L;
 	
 	// Constructor
 	public Annonce() {}
@@ -37,12 +33,17 @@ public class Annonce {
 	// Méthode toString
 	public String toString() {
 		
-		return "Annonce\nID: " + id + "\nTitle: " +title + "\nSubject: " + subject + "\nDescription: " + 
-		description + "\nlocation:" +location;
+		return "Annonce\nID: " + id + "\nTitle: " +title + "\nSubject: " + subject  + "\nlocation:" +location 
+				+ "Prix/h: " + costPerHour + " €/h" + "\nDescription: " + 
+		description;
 	}
 	
 	// Getters and setters 
 	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ANNONCE_ID")
 	public Long getId() {
 		return id;
 	}
@@ -51,6 +52,7 @@ public class Annonce {
 		this.id = id;
 	}
 	
+	@Column(name="ANNONCE_TITLE")
 	public String getTitle() {
 		return title;
 	}
@@ -59,6 +61,17 @@ public class Annonce {
 		this.title = title;
 	}
 	
+	@Column(name="ANNONCE_COST_PER_HOUR")
+	public double getCostPerHour() {
+		return costPerHour;
+	}
+
+
+	public void setCostPerHour(double costPerHour) {
+		this.costPerHour = costPerHour;
+	}
+	
+	@Column(name="ANNONCE_DESCRIPTION")
 	public String getDescription() {
 		return description;
 	}
@@ -67,6 +80,7 @@ public class Annonce {
 		this.description = description;
 	}
 	
+	@Column(name="ANNONCE_LOCATION")
 	public String getLocation() {
 		return location;
 	}
@@ -75,6 +89,7 @@ public class Annonce {
 		this.location = location;
 	}
 	
+	@Column(name="ANNONCE_SUBJECT")
 	public String getSubject() {
 		return subject;
 	}
@@ -82,8 +97,9 @@ public class Annonce {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-
-	/*
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "STUDENT_ID", nullable = false)
 	public Student getStudent() {
 		return student;
 	}
@@ -91,7 +107,9 @@ public class Annonce {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
-	*/
+
+
+	
 	
 	
 	
