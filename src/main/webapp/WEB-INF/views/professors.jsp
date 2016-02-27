@@ -34,7 +34,7 @@
 					<td>${prof.lastName}</td>
 					<td>${prof.email}</td>
 					<td>${prof.password}</td>
-					<td>${fn:length(std.annonces)}</td>
+					<td>${fn:length(prof.annonces)}</td>
 					<td><a href="<c:url value='/edit/${prof.id}' />">Edit</a></td>
 					<td><a href="<c:url value='/remove/${prof.id}' />">Delete</a></td>
 				</tr>
