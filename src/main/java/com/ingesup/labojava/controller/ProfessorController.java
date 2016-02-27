@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.ingesup.labojava.service.ProfessorService;
 import com.ingesup.labojava.service.ProfessorServiceImpl;
+import com.ingesup.labojava.service.UserService;
 
 @Controller
 @RequestMapping(value="/professors")
@@ -18,13 +18,13 @@ public class ProfessorController {
 	
 	// Injection
 	
-	private ProfessorService professorService = new ProfessorServiceImpl();
+	private UserService userService = new ProfessorServiceImpl();
 	
 	
-	@Autowired(required=true)
-	@Qualifier(value="professorService")
-	public void setProfessorService(ProfessorService ps) {
-		this.professorService = ps;
+	@Autowired(required = true)
+	@Qualifier(value = "userService")
+	public void setUserService(UserService us) {
+		this.userService = us;
 	}
 	
 	
@@ -33,7 +33,7 @@ public class ProfessorController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String listProfessors(Model model) {
 		
-		model.addAttribute("listProfessors", this.professorService.getProfessorList());
+		model.addAttribute("listProfessors", this.userService.getAllProfessors());
 		return "professors";
 	}
 	

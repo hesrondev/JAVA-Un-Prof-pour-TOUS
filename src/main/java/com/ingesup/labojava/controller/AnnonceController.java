@@ -10,18 +10,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ingesup.labojava.bean.Annonce;
-import com.ingesup.labojava.bean.Student;
+import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.factory.AnnonceFactory;
 import com.ingesup.labojava.form.AnnonceFormBean;
-import com.ingesup.labojava.service.ProfessorService;
-import com.ingesup.labojava.service.ProfessorServiceImpl;
-import com.ingesup.labojava.service.StudentService;
-import com.ingesup.labojava.service.StudentServiceImpl;
+import com.ingesup.labojava.service.UserService;
+import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
 @RequestMapping("/ad")
@@ -30,21 +27,13 @@ public class AnnonceController {
 
 	// Injection des services
 
-	private ProfessorService professorService = new ProfessorServiceImpl();
-	private StudentService studentService = new StudentServiceImpl();
+	private UserService userService = new UserServiceImpl();
 
 	@Autowired(required = true)
-	@Qualifier(value = "professorService")
-	public void setProfessorService(ProfessorService ps) {
-		this.professorService = ps;
+	@Qualifier(value = "userService")
+	public void setUserService(UserService us) {
+		this.userService = us;
 	}
-
-	@Autowired(required = true)
-	@Qualifier(value = "studentService")
-	public void setStudentService(StudentService ss) {
-		this.studentService = ss;
-	}
-	
 	
 	// Affichage de la page de création d'une annonce
 	
@@ -68,7 +57,7 @@ public class AnnonceController {
 		
 		if (studentID == 0) {
 			
-			String formStatus = "Vous n'êtes pas connecté! Connectez-vous pour publier une annonce";
+			String formStatus = "Vous n'êtes pas connecté! Connectez-vous pour publier une annonce.";
 			
 			mView.addObject("formStatus", formStatus);
 			mView.setViewName("createAd");
@@ -94,16 +83,15 @@ public class AnnonceController {
 		
 		// On cherche l'utilisateur, on ajoute son annonce, on le met à jour
 		
-		Student student = studentService.getStudent(studentID);
+		User user = userService.getUser(studentID);
 		
-		if (student != null) {
+		if (user != null) {
 			
-			student.addAnnonce(ad); // + AD
+			user.addAnnonce(ad);
+			userService.updateUser(user);
 			
-			studentService.updateStudent(student);	// MAJ
-			
-			mView.addObject("user", student);
-			mView.setViewName("redirect:/students");
+			mView.addObject("user", user);
+			mView.setViewName("redirect:/profile");
 			
 			return mView;
 		}

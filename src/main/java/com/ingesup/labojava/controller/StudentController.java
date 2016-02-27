@@ -8,21 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.ingesup.labojava.service.StudentService;
 import com.ingesup.labojava.service.StudentServiceImpl;
+import com.ingesup.labojava.service.UserService;
 
 @Controller
 @RequestMapping(value="/students")
 @SessionAttributes("user")
 public class StudentController {
 	
-	private StudentService studentService = new StudentServiceImpl();
-	
+	private UserService userService = new StudentServiceImpl();
 	
 	@Autowired(required = true)
-	@Qualifier(value = "studentService")
-	public void setStudentService(StudentService ss) {
-		this.studentService = ss;
+	@Qualifier(value = "userService")
+	public void setUserService(UserService us) {
+		this.userService = us;
 	}
 	
 	
@@ -31,7 +30,7 @@ public class StudentController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String listStudents(Model model) {
 		
-		model.addAttribute("listStudents", this.studentService.listStudents());
+		model.addAttribute("listStudents", this.userService.getAllStudents());
 		return "students";
 	}
 }

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-       xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/security 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security-4.1.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
@@ -40,18 +38,12 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<context:annotation-config></context:annotation-config>
 
-	<bean id="studentDAO" class="com.ingesup.labojava.dao.StudentDAOImpl"></bean>
-	
-	<bean id="professorDAO" class="com.ingesup.labojava.dao.ProfessorDAOImpl"></bean>
+	<bean id="userDAO" class="com.ingesup.labojava.dao.UserDAOImpl"></bean>
 
-	<bean id="studentService" class="com.ingesup.labojava.service.StudentServiceImpl">
-		<property name="studentDAO" ref="studentDAO"></property>
+	<bean id="userService" class="com.ingesup.labojava.service.UserServiceImpl">
+		<property name="userDAO" ref="userDAO"></property>
 	</bean>
 
-	<bean id="professorService" class="com.ingesup.labojava.service.ProfessorServiceImpl">
-		<property name="professorDAO" ref="professorDAO"></property>
-	</bean>
-	
 	<bean id="annonce" class="com.ingesup.labojava.bean.Annonce"></bean>
 
 </beans>

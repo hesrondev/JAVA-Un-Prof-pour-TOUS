@@ -15,11 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
+import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.LoginFormBean;
-import com.ingesup.labojava.service.ProfessorService;
-import com.ingesup.labojava.service.ProfessorServiceImpl;
-import com.ingesup.labojava.service.StudentService;
-import com.ingesup.labojava.service.StudentServiceImpl;
+import com.ingesup.labojava.service.UserService;
+import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
 @SessionAttributes("user")
@@ -27,23 +26,16 @@ public class LoginController {
 
 	// Injection des services
 
-	private ProfessorService professorService = new ProfessorServiceImpl();
-	private StudentService studentService = new StudentServiceImpl();
-	
-	
+	private UserService userService = new UserServiceImpl();
+
 	@Autowired(required = true)
-	@Qualifier(value = "professorService")
-	public void setProfessorService(ProfessorService ps) {
-		this.professorService = ps;
-	}
-	
-	@Autowired(required = true)
-	@Qualifier(value = "studentService")
-	public void setStudentService(StudentService ss) {
-		this.studentService = ss;
+	@Qualifier(value = "userService")
+	public void setUserService(UserService us) {
+		this.userService = us;
 	}
 
-	// Connexion d'un utilisateur
+	
+	// Affichage de la page de connexion d'un utilisateur
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(final Model model) {
@@ -52,6 +44,9 @@ public class LoginController {
 		return "login";
 	}
 
+	
+	// Traitement de la requête POST de connexion
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(@ModelAttribute("loginBean") @Valid final LoginFormBean lFormBean,
 			final BindingResult bindingResult) {
@@ -68,24 +63,17 @@ public class LoginController {
 			
 		}
 
+		
 		// On cherche l'utilisateur dans la base de données
 		
-		Professor prof = professorService.getProfessor(lFormBean.getEmail(), lFormBean.getPassword());
-		Student student = studentService.getStudent(lFormBean.getEmail(), lFormBean.getPassword()); 
+		User user = userService.getUser(lFormBean.getEmail(), lFormBean.getPassword());
 		
-		
-		// Si c'est un prof
-		if (prof != null) {
-			mView.addObject("user", prof);
-			mView.setViewName("redirect:/home");
+		if (user != null) {
 			
-			return mView;
-		}
-		
-		// Si c'est un élève
-		else if (student != null) {
-			mView.addObject("user", student);
-			mView.setViewName("redirect:/home");
+			// Test si c'est un étudiant ou un professor pour le caster
+			
+			mView.addObject("user", user);
+			mView.setViewName("redirect:/profile");
 			
 			return mView;
 		}

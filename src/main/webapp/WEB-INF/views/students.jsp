@@ -26,7 +26,7 @@
 				<th>LastName</th>
 				<th>email</th>
 				<th>password</th>
-				<th>Publications</th>
+				<th>ADs</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
@@ -37,7 +37,7 @@
 					<td>${std.lastName}</td>
 					<td>${std.email}</td>
 					<td>${std.password}</td>
-					<td>${fn:length(std.listAnnonces)}</td>
+					<td>${fn:length(std.annonces)}</td>
 					<td><a href="<c:url value='/edit/${std.id}' />">Edit</a></td>
 					<td><a href="<c:url value='/remove/${std.id}' />">Delete</a></td>
 				</tr>

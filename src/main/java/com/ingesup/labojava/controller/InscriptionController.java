@@ -12,16 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.ingesup.labojava.bean.Professor;
-import com.ingesup.labojava.bean.Student;
-import com.ingesup.labojava.factory.ProfessorFactory;
-import com.ingesup.labojava.factory.StudentFactory;
+import com.ingesup.labojava.bean.User;
+import com.ingesup.labojava.factory.UserFactory;
 import com.ingesup.labojava.form.FormsValidator;
 import com.ingesup.labojava.form.InscriptionFormBean;
-import com.ingesup.labojava.service.ProfessorService;
-import com.ingesup.labojava.service.ProfessorServiceImpl;
-import com.ingesup.labojava.service.StudentService;
-import com.ingesup.labojava.service.StudentServiceImpl;
+import com.ingesup.labojava.service.UserService;
+import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
 @SessionAttributes("user")
@@ -29,25 +25,16 @@ public class InscriptionController {
 
 	// Injection des services
 
-	private ProfessorService professorService = new ProfessorServiceImpl();
-	private StudentService studentService = new StudentServiceImpl();
+	private UserService userService = new UserServiceImpl();
 
-	
 	@Autowired(required = true)
-	@Qualifier(value = "professorService")
-	public void setProfessorService(ProfessorService ps) {
-		this.professorService = ps;
+	@Qualifier(value = "userService")
+	public void setUserService(UserService us) {
+		this.userService = us;
 	}
-	
-	@Autowired(required = true)
-	@Qualifier(value = "studentService")
-	public void setStudentService(StudentService ss) {
-		this.studentService = ss;
-	}
-	
 
-	// Inscription d'un professeur
-	
+	// Affichage de la page d'inscription
+
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
 	public String inscriptionPage(final Model model) {
 
@@ -56,16 +43,19 @@ public class InscriptionController {
 		return "inscription";
 	}
 
+	
+	// Traitement de la requête POST d'inscription
+	
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
 	public String inscriptionPost(@ModelAttribute("inscriptionBean") @Valid final InscriptionFormBean iFormBean,
 			final BindingResult bindingResult, final Model model) {
 
-		String profStatus = "";
+		String userStatus = "";
 
 		if (bindingResult.hasErrors()) {
 
-			profStatus = "Données du formulaire invalides!!! Vérifiez votre saisie.";
-			model.addAttribute("profStatus", profStatus);
+			userStatus = "Données du formulaire invalides!!! Vérifiez votre saisie.";
+			model.addAttribute("userStatus", userStatus);
 			return "inscription";
 		}
 
@@ -74,26 +64,25 @@ public class InscriptionController {
 
 		// Si le formulaire n'est pas valide
 		if (!fValidator.isValidInscriptionForm(iFormBean)) {
-			profStatus = "Données du formulaire invalides!!! Vérifiez votre saisie.";
-			model.addAttribute("profStatus", profStatus);
+			userStatus = "Données du formulaire invalides!!! Vérifiez votre saisie.";
+			model.addAttribute("userStatus", userStatus);
 			return "inscription";
 		}
 
-		// Factoring...
 		
-		System.out.println("STATUT**** : " + iFormBean.getStatus());
+		// Factoring user
 		
-		if (iFormBean.getStatus().equals("professor")) {
-			ProfessorFactory professorFactory = new ProfessorFactory();
-			Professor prof = professorFactory.createProfessor(iFormBean);
-			this.professorService.addProfessor(prof);
-		}
+		UserFactory userFactory = new UserFactory();
+		User newUser = null;
 		
-		else {
-			StudentFactory studentFactory = new StudentFactory();
-			Student student = studentFactory.createStudent(iFormBean);
-			this.studentService.addStudent(student);
-		}
+		if (iFormBean.getStatus().equals("professor")) 
+			newUser = userFactory.createProfessor(iFormBean);
+			
+		else
+			newUser = userFactory.createStudent(iFormBean);
+		
+		if (newUser != null)
+			userService.addUser(newUser);
 
 		return "redirect:" + "/home";
 	}

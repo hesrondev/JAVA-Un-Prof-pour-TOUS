@@ -1,7 +1,5 @@
 package com.ingesup.labojava.bean;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ANNONCE")
-public class Annonce implements Serializable{
+public class Annonce{
 	
 	private Long id;
 	private String title;
@@ -22,24 +20,28 @@ public class Annonce implements Serializable{
 	private String description;
 	private String location;
 	private String subject;
-	private Student student;
+	private User user;
 	
-	private static final long serialVersionUID = 1L;
+	/*
+	 * Constructor
+	 * */
 	
-	// Constructor
 	public Annonce() {}
 	
 	
-	// Méthode toString
+	/*
+	 * ToString
+	 * */
 	public String toString() {
 		
-		return "Annonce\nID: " + id + "\nTitle: " +title + "\nSubject: " + subject  + "\nlocation:" +location 
+		return "[Annonce]\nID: " + id + "\nTitle: " +title + "\nSubject: " + subject  + "\nlocation:" +location 
 				+ "Prix/h: " + costPerHour + " €/h" + "\nDescription: " + 
 		description;
 	}
 	
-	// Getters and setters 
-	
+	/*
+	 * Getters and setters
+	 * */  
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -52,7 +54,7 @@ public class Annonce implements Serializable{
 		this.id = id;
 	}
 	
-	@Column(name="ANNONCE_TITLE")
+	@Column(name="TITLE")
 	public String getTitle() {
 		return title;
 	}
@@ -61,7 +63,7 @@ public class Annonce implements Serializable{
 		this.title = title;
 	}
 	
-	@Column(name="ANNONCE_COST_PER_HOUR")
+	@Column(name="COST_PER_HOUR")
 	public double getCostPerHour() {
 		return costPerHour;
 	}
@@ -71,7 +73,7 @@ public class Annonce implements Serializable{
 		this.costPerHour = costPerHour;
 	}
 	
-	@Column(name="ANNONCE_DESCRIPTION")
+	@Column(name="DESCRIPTION")
 	public String getDescription() {
 		return description;
 	}
@@ -80,7 +82,7 @@ public class Annonce implements Serializable{
 		this.description = description;
 	}
 	
-	@Column(name="ANNONCE_LOCATION")
+	@Column(name="LOCATION")
 	public String getLocation() {
 		return location;
 	}
@@ -89,7 +91,7 @@ public class Annonce implements Serializable{
 		this.location = location;
 	}
 	
-	@Column(name="ANNONCE_SUBJECT")
+	@Column(name="SUBJECT")
 	public String getSubject() {
 		return subject;
 	}
@@ -99,13 +101,13 @@ public class Annonce implements Serializable{
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "STUDENT_ID", nullable = false)
-	public Student getStudent() {
-		return student;
+	@JoinColumn(name = "USER_ID", nullable = false)
+	public User getUser() {
+		return user;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
