@@ -5,7 +5,7 @@
 		<table width="350" id="tableForm">
 
 			<tr>
-				<td><c:out value="${loginStatus}"></c:out></td>
+				<c:out value="${loginStatus}"></c:out></td>
 			</tr>
 
 			<tr>
@@ -28,7 +28,10 @@
 				<td><input type="submit" value="CONNEXION" /></td>
 			</tr>
 			<tr>
-				<td><a href="#">Mot de passe perdu?</a></td>
+				<td>Mot de passe perdu?</td>
+			</tr>
+			<tr>
+				<td><a href="#">Cliquez ici</a> pour réinitialiser votre mot de passe.</td>
 			</tr>
 		</table>
 	</form:form>

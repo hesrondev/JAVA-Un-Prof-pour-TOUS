@@ -2,16 +2,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!--
 <link
 	href="<c:url value="/resources/templated-transit/css/style.css" />"
-	rel="stylesheet" type="text/css"> -->
-<title>UPPT | ${!empty user ? user.firstName : Profile}</title> 
+	rel="stylesheet" type="text/css">
+<title>UPPT | ${!empty user ? user.firstName : Profile}</title>
 </head>
 <body>
 
 	<!--  HEADER INCLUSION  -->
-	<div id="header">
+	<div class="header">
 		<%@ include file="header.jsp"%>
 	</div>
 
@@ -22,9 +21,8 @@
 			<c:out value="Bonjour ${user.firstName}"></c:out>
 		</h2>
 	</c:if>
-	
 	<!--  FOOTER INCLUSION  -->
-	<div id="footer">
+	<div class="footer">
 		<%@ include file="footer.jsp"%>
 	</div>
 </body>
