@@ -38,7 +38,7 @@
 		<!--  Formulaire -->
 
 		<form:form modelAttribute="adBean" method="POST"
-			action="${pageContext.request.contextPath}/ad/create/${userID}">
+			action="${pageContext.request.contextPath}/annonces/create/${userID}">
 
 			<table>
 				<tr>

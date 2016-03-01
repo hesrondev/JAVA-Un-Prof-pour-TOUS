@@ -1,14 +1,25 @@
 
-<div align="center">
-	
+<div>
+
 	<!-- Formulaire de recherche d'une annonce -->
-	
-	<h3>Rechercher une annonce</h3>
-	<form method="GET" action="${pageContext.request.contextPath}/searchAnnonce">
-		<input id="Content" type="text" name="content" placeholder="Mots-clés (ex: cours de maths)"/>
-		<input id="location" type="text" name="location" placeholder="Lieu (ex: Paris)"/>
-		<input type="submit" value="Rechercher"/>
-	</form>
+
+	<form:form modelAttribute="adBean" method="POST"
+		action="${pageContext.request.contextPath}/annonces">
+
+		<table>
+			<tr>
+				<td><form:label path="subject">Matière</form:label></td>
+				<td><form:label path="location">Lieu</form:label></td>
+			</tr>
+			<tr>
+				<td><form:input id="ad_subject" name="subject" path="subject"
+						placeholder="ex: Cours de maths" /></td>
+
+				<td><form:input id="ad_location" name="location"
+						path="location" placeholder="ex: Paris" /></td>
+				<td><input type="submit" value="Rechercher" /></td>
+			</tr>
+		</table>
+	</form:form>
 	<br>
-	<a href="#">Recherche avancée</a>
 </div>

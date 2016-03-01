@@ -21,6 +21,7 @@ public class AnnonceFactory {
 		ad.setSubject(adFormBean.getSubject());
 		ad.setLocation(adFormBean.getLocation());
 		ad.setCostPerHour(adFormBean.getCostPerHour());
+		ad.setDescription(adFormBean.getDescription());
 		
 		return ad;
 	}

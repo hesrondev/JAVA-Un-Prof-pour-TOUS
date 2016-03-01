@@ -21,7 +21,7 @@ import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
-@RequestMapping("/ad")
+@RequestMapping("/annonces")
 @SessionAttributes("user")
 public class AnnonceController {
 
@@ -101,5 +101,17 @@ public class AnnonceController {
 		mView.setViewName("createAd");
 		return mView;
 	}
+	
+	
+	// Affichage de la page des annonces
+	
+	@RequestMapping(value="", method = RequestMethod.GET)
+	public String displayAllAdsPage(final Model model) {
+		
+		model.addAttribute("adBean", new AnnonceFormBean());
+		model.addAttribute("listAnnonces", userService.getAllAds());
+		return "annonces";
+	}
+	
 
 }
