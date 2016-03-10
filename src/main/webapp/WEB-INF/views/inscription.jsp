@@ -2,8 +2,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="<c:url value="/resources/templated-transit/css/style.css" />"
-	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Varela"
+	rel="stylesheet" />
+<link
+	href="<c:url value="/resources/templated-plaindisplay/default.css"/>"
+	rel="stylesheet" type="text/css" media="all" />
+<link
+	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
+	rel="stylesheet" type="text/css" media="all" />
 <title>Page d'inscription</title>
 </head>
 <body>
@@ -13,7 +19,7 @@
 			<%@ include file="header.jsp"%>
 		</div>
 		
-	<div class=".align-center">
+	<div class="container">
 		<h2>Inscription</h2>
 		<p>
 			Bienvenue sur Un Prof Pour Tous.</br> Veuillez remplir le formulaire

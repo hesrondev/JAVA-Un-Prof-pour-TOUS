@@ -1,7 +1,7 @@
 <div class="formInsc">
 
 	<form:form action= "${pageContext.request.contextPath}/inscription" method="POST" commandName="inscriptionBean">
-		<table>
+		<table class = "form">
 			<tr>
 				<td colspan="2"><c:out value="${profStatus}"/></td>
 			</tr>
@@ -46,7 +46,9 @@
 						<spring:message text="Votre statut : " />
 					</form:label>
 				</td>
-				<td>
+			</tr>
+			<tr>
+			<td>
 					<form:select path="status">
 						<form:option value="student">Elève</form:option>  
 						<form:option value="professor">Professeur</form:option>  
