@@ -24,9 +24,9 @@
 
 		<!--  HEADER INCLUSION  -->
 
-		<div id="">
+		
 			<%@ include file="header.jsp"%>
-		</div>
+		
 		<!-- bannière -->
 		<div id="banner">
 			<div class="container">

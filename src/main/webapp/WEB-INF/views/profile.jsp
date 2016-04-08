@@ -26,9 +26,47 @@
 			<c:out value="Bonjour ${user.firstName}"></c:out>
 		</h2>
 	</c:if>
+	
+		<div id="page">
+				<div class="container">
+					<div class="row">
+						<div class="3u">
+							<section id="sidebard2">
+								<header>
+									<h2>Mon profil</h2>
+								</header>
+								<ul class="style1">
+									<li class="first"><span class="fa fa-check"></span><a href="#">Mes compétences</a></li>
+									<li><span class="fa fa-check"></span><a href="#">Mes diplômes</a></li>
+									<li><span class="fa fa-check"></span><a href="#">...</a></li>
+									<li><span class="fa fa-check"></span><a href="#">...</a></li>
+									<li><span class="fa fa-check"></span><a href="#">Mes élèves</a></li>
+									<li><span class="fa fa-check"></span><a href="#">Mes contacts</a></li>
+								</ul>
+								<a href="#" class="button">Modifier</a>
+							</section>
+						</div>
+						
+						
+						<div class="9u skel-cell-important">
+							<section id="content" >
+								<header>
+									<h2>Mon Planning</h2>
+								</header>
+								<p> Planning de la semaine ou du mois </p>
+								<p> ... <br> </p>
+							</section>
+						</div>
+					</div>
+
+				</div>	
+			</div>
+	
 	<!--  FOOTER INCLUSION  -->
-	<div class="footer">
-		<%@ include file="footer.jsp"%>
-	</div>
+			<div id="copyright" class="container">
+				<div class="footer">
+					<%@ include file="footer.jsp"%>
+				</div>
+			</div>
 </body>
 </html>
