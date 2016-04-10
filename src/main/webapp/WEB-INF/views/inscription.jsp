@@ -15,10 +15,10 @@
 <body>
 
 <!--  HEADER INCLUSION  -->
-		<div class="header">
-			<%@ include file="header.jsp"%>
-		</div>
 		
+			<%@ include file="header.jsp"%>
+	
+	<div id="featured">	
 	<div class="container">
 		<h2>Inscription</h2>
 		<p>
@@ -28,9 +28,12 @@
 
 		<%@ include file="inscriptionForm.jsp"%>
 	</div>
+	</div>
 	<!--  FOOTER INCLUSION  -->
+	<div id="copyright" class="container">
 		<div class="footer">
 			<%@ include file="footer.jsp"%>
 		</div>
+	</div>
 </body>
 </html>
