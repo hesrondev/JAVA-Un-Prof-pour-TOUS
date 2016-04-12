@@ -10,11 +10,11 @@ public class Professor extends User {
 	
 	
 	public Professor() {
-		
+		type = "PROFESSOR";
 	}
 
 	public String toString() {
 
-		return "[PROFESSOR]\n" + super.toString();
+		return type +"\n" + super.toString();
 	}
 }

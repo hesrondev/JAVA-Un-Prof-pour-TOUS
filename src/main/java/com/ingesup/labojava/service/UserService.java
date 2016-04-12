@@ -6,6 +6,7 @@ import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
+import com.ingesup.labojava.form.AnnonceFormBean;
 
 public interface UserService {
 	
@@ -16,10 +17,12 @@ public interface UserService {
 	public User getUser(Long userID);
 	public void removeUser(Long userID);
 	
+	public List<Student> getAllStudents();
+	public List<Professor> getAllProfessors();
+	
 	public List<Annonce> getAllAds();
 	public List<Annonce> getAllAdsByUser(Long userID);
 	
-	public List<Student> getAllStudents();
-	public List<Professor> getAllProfessors();
+	public List<Annonce> getFilteredAds(AnnonceFormBean afb);
 
 }

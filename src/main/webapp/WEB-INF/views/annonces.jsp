@@ -53,48 +53,45 @@
 									<td><ul>
 											<li>- Statut
 												<ul>
-													<li><a href="#">Professeurs (1)</a></li>
-													<li><a href="#">Elèves (2)</a></li>
+													<li><a href="${pageContext.request.contextPath}/annonces/status=PROFESSOR">Professeurs (*)</a></li>
+													<li><a href="${pageContext.request.contextPath}/annonces/status=STUDENT">Elèves (*)</a></li>
 												</ul>
 											</li>
 										</ul></td>
 								</tr>
-								<tr>
-									<td><ul>
-											<li>- Catégories
-												<ul>
-													<li><a href="#">Sciences (2)</a></li>
-													<li><a href="#">Economie & Gestion (89)</a></li>
-													<li><a href="#">Littérature (1256)</a></li>
-													<li><a href="#">Arts (23)</a></li>
-													<li><a href="#">Musique (879)</a></li>
-												</ul>
-											</li>
-										</ul></td>
-								</tr>
+								
 								<!-- Par niveau -->
 								<tr>
 									<td><ul>
 											<li>- Niveau scolaire
 												<ul>
-													<li><a href="#">Primaire (256)</a></li>
-													<li><a href="#">Collège (66)</a></li>
-													<li><a href="#">Lycée (965)</a></li>
-													<li><a href="#">Université (695)</a></li>
+													<li><a href="${pageContext.request.contextPath}/annonces/level=primaire">Primaire (*)</a></li>
+													<li><a href="${pageContext.request.contextPath}/annonces/level=college">Collège (*)</a></li>
+													<li><a href="${pageContext.request.contextPath}/annonces/level=lycee">Lycée (*)</a></li>
+													<li><a href="${pageContext.request.contextPath}/annonces/level=universite">Université (*)</a></li>
 												</ul>
 											</li>
 										</ul></td>
 								</tr>
+								
+								<!-- Par matières -->
+								<tr>
+									<td><ul>
+											<li>- Matières
+												<ul>
+													<li><a href="${pageContext.request.contextPath}/annonces/subject=SCIENCES">Sciences (*)</a></li>
+												</ul>
+											</li>
+										</ul></td>
+								</tr>
+								
 
 								<!-- Par Lieu -->
 								<tr>
 									<td><ul>
 											<li>- Lieu
 												<ul>
-													<li><a href="#">Paris (500)</a></li>
-													<li><a href="#">Massy (53)</a></li>
-													<li><a href="#">Versailles (365)</a></li>
-													<li><a href="#">Evry (695)</a></li>
+													<li><a href="${pageContext.request.contextPath}/annonces/location=paris">Paris (*)</a></li>
 												</ul>
 											</li>
 										</ul></td>

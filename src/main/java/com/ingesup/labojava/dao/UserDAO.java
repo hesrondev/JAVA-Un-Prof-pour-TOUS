@@ -6,6 +6,7 @@ import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
+import com.ingesup.labojava.form.AnnonceFormBean;
 
 public interface UserDAO {
 	
@@ -19,6 +20,7 @@ public interface UserDAO {
 	
 	public List<Annonce> getAllAds();
 	public List<Annonce> getAllAdsByUser(Long userID);
+	public List<Annonce> getFilteredAds(AnnonceFormBean afb);
 	
 	public List<Student> getAllStudents();
 	public List<Professor> getAllProfessors();

@@ -1,5 +1,6 @@
 package com.ingesup.labojava.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,7 @@ import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.dao.UserDAO;
+import com.ingesup.labojava.form.AnnonceFormBean;
 
 @Service
 @Transactional
@@ -40,13 +42,6 @@ public class UserServiceImpl implements UserService{
 		userDAO.removeUser(userID);
 	}
 	
-	public List<Annonce> getAllAds() {
-		return userDAO.getAllAds();
-	}
-	public List<Annonce> getAllAdsByUser(Long userID) {
-		return userDAO.getAllAdsByUser(userID);
-	}
-	
 	public List<Student> getAllStudents() {
 		return userDAO.getAllStudents();
 	}
@@ -54,6 +49,20 @@ public class UserServiceImpl implements UserService{
 		return userDAO.getAllProfessors();
 	}
 	
+	// Ads
+	
+	public List<Annonce> getAllAds() {
+		return userDAO.getAllAds();
+	}
+	public List<Annonce> getAllAdsByUser(Long userID) {
+		return userDAO.getAllAdsByUser(userID);
+	}
+	
+	@Override
+	public List<Annonce> getFilteredAds(AnnonceFormBean afb) {
+		return userDAO.getFilteredAds(afb);
+	}
+
 	
 	// UserDAO Getter and Setter
 	
@@ -63,5 +72,5 @@ public class UserServiceImpl implements UserService{
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-
+	
 }

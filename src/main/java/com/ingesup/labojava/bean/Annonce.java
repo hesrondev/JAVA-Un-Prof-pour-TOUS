@@ -20,6 +20,7 @@ public class Annonce{
 	private String description;
 	private String location;
 	private String subject;
+	private String level;
 	private User user;
 	
 	/*
@@ -100,6 +101,15 @@ public class Annonce{
 		this.subject = subject;
 	}
 	
+	@Column(name="LEVEL")
+	public String getLevel() {
+		return level;
+	}
+	
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID", nullable = false)
 	public User getUser() {
@@ -109,11 +119,5 @@ public class Annonce{
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
-	
-	
-	
-	
 
 }

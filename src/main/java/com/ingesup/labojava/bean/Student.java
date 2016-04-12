@@ -9,12 +9,12 @@ public class Student extends User{
 	
 	
 	public Student() {
-		
+		type = "STUDENT";
 	}
 	
 	public String toString() {
 		
-		return "[STUDENT]\n" + super.toString();
+		return type + "\n" + super.toString();
 	}
 
 

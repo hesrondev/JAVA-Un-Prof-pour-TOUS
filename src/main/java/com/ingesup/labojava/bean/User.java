@@ -19,6 +19,7 @@ import javax.persistence.Table;
 public abstract class User {
 
 	protected Long id;
+	protected String type;
 	protected String firstName;
 	protected String lastName;
 	protected String email;
@@ -103,6 +104,13 @@ public abstract class User {
 		this.annonces = annonces;
 	}
 	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 	
 	
 	

@@ -1,4 +1,6 @@
 package com.ingesup.labojava.controller;
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistration;
 
 import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.User;
@@ -24,6 +28,11 @@ import com.ingesup.labojava.service.UserServiceImpl;
 @RequestMapping("/annonces")
 @SessionAttributes("user")
 public class AnnonceController {
+	
+	// List d'annonces
+	
+	AnnonceFormBean annoncefb = new AnnonceFormBean();
+	List<Annonce> annonces = new ArrayList<Annonce>();
 
 	// Injection des services
 
@@ -106,12 +115,47 @@ public class AnnonceController {
 	// Affichage de la page des annonces
 	
 	@RequestMapping(value="", method = RequestMethod.GET)
-	public String displayAllAdsPage(final Model model) {
+	public String displayAdsPage(final Model model) {
 		
 		model.addAttribute("adBean", new AnnonceFormBean());
-		model.addAttribute("listAnnonces", userService.getAllAds());
+		
+		// Envoie des requêtes
+		annonces = userService.getAllAds();
+		
+		model.addAttribute("listAnnonces", annonces);
 		return "annonces";
 	}
+	
+	
+	/* Ajouter un filtre
+	 * Lorqu'on clique sur un filtre, on l'ajoute à la liste de filtres et on réinitialise les résultats
+	 * Si on clique encore sur le même filtre on l'enlève
+	 */
+	
+	@RequestMapping(value="/{category}={value}", method = RequestMethod.GET)
+	private ModelAndView addStatusFilter(@PathVariable(value="category") final String category,
+			@PathVariable(value="value") final String value) {
+		
+		ModelAndView mView = new ModelAndView();
+		
+		// recharger le bean sur la jsp
+		mView.addObject("adBean", new AnnonceFormBean());
+		
+		annoncefb.updateFilter(category, value);
+		
+		
+		// refresh results
+		
+		annonces = userService.getFilteredAds(annoncefb);
+		mView.addObject("listAnnonces", annonces);
+		
+		mView.setViewName("redirect:/annonces");
+		
+		return mView;
+	}
+	
+
+	
 	
 
 }

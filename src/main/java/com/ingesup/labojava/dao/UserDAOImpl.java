@@ -1,5 +1,6 @@
 package com.ingesup.labojava.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,6 +13,9 @@ import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
+import com.ingesup.labojava.form.AnnonceFormBean;
+import com.ingesup.labojava.form.Filter;
+import com.ingesup.labojava.form.FilterCategory;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
@@ -110,6 +114,31 @@ public class UserDAOImpl implements UserDAO{
 		
 	}
 	
+	
+	/*
+	 * Getting the students and professors List
+	 * */
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Student> getAllStudents() {
+		Query query = entityManager.createQuery("select s from Student s");
+		List<Student> students = query.getResultList();
+		
+		return students;
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Professor> getAllProfessors() {
+		Query query = entityManager.createQuery("select p from Professor p");
+		List<Professor> professors = query.getResultList();
+		
+		return professors;
+	}
+	
+	
 	/*
 	 * Get all ads
 	 * */
@@ -140,28 +169,50 @@ public class UserDAOImpl implements UserDAO{
 		
 	}
 	
+	// Filtered ads
 	
-	/*
-	 * Getting the students and professors List
-	 * */
-
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Student> getAllStudents() {
-		Query query = entityManager.createQuery("select s from Student s");
-		List<Student> students = query.getResultList();
+	public List<Annonce> getFilteredAds(AnnonceFormBean afb) {
 		
-		return students;
+		String queryString = initializeStringQuery(afb.getFilters());
+		Query query = entityManager.createQuery(queryString);
+		List<Annonce> annonces = query.getResultList();		
+		
+		return annonces;
 	}
-
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Professor> getAllProfessors() {
-		Query query = entityManager.createQuery("select p from Professor p");
-		List<Professor> professors = query.getResultList();
+	
+	// Ajout des filtres à la requête
+	
+	private String initializeStringQuery(List<Filter> filters) {
 		
-		return professors;
+		String stringQuery = "from Annonce as a where ";
+		
+		for (int i = 0; i < filters.size(); i++) {
+			Filter f = filters.get(i);
+			
+			if (i > 0)
+				stringQuery += " AND ";
+			
+			// status
+			if (f.geteCategory().equals(FilterCategory.STATUS))
+				stringQuery += "a.user.type = '" + f.getValue() + "'";
+
+			// subject
+			else if (f.geteCategory().equals(FilterCategory.SUBJECT))
+				stringQuery += "a.subject = '" + f.getValue() + "'";
+			
+			// level
+			else if (f.geteCategory().equals(FilterCategory.LEVEL))
+				stringQuery += "a.level = '" + f.getValue() + "'";
+			
+			// location
+			else if (f.geteCategory().equals(FilterCategory.LOCATION))
+				stringQuery += "a.location = '" + f.getValue() + "'";
+		}
+		
+		
+		return stringQuery;
 	}
 
 }
