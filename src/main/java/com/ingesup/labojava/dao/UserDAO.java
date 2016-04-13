@@ -18,6 +18,7 @@ public interface UserDAO {
 	public User getUser(Long userID);
 	public void removeUser(Long userID);
 	
+	public Annonce getAdById(Long ID);
 	public List<Annonce> getAllAds();
 	public List<Annonce> getAllAdsByUser(Long userID);
 	public List<Annonce> getFilteredAds(AnnonceFormBean afb);

@@ -298,5 +298,19 @@ public class AnnonceController {
 
 		return filters;
 	}
-
+	
+	
+	
+	
+	// Affichage des détails d'une annonce
+	
+	@RequestMapping(value = "/{adID}", method = RequestMethod.GET)
+	public String displayAdDetails(@PathVariable("adID") final Long ID, final Model model) {
+		
+		Annonce annonce = userService.getAdById(ID);
+		
+		model.addAttribute("annonce", annonce);
+		
+		return "adDetails";
+	}
 }

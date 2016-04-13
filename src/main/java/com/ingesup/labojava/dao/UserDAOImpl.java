@@ -138,6 +138,27 @@ public class UserDAOImpl implements UserDAO{
 		return professors;
 	}
 	
+	/*
+	 * 
+	 * Get Ad by ID
+	 */
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Annonce getAdById(Long ID) {
+		Query query = entityManager.createQuery("from Annonce a where a.id = :ID");
+		query.setParameter("ID", ID);
+		
+		List<Annonce> annonces = query.getResultList();
+		
+		if (!annonces.isEmpty())
+			return annonces.get(0);
+		
+		else
+			return null;
+	}
+
+	
 	
 	/*
 	 * Get all ads
@@ -270,7 +291,6 @@ public class UserDAOImpl implements UserDAO{
 		}
 		
 	}
-
 
 
 }

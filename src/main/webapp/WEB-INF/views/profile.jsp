@@ -20,7 +20,7 @@
 	</div>
 
 	<!-- Si l'utilisateur est connecté -->
-
+	<br>
 	<c:if test="${!empty user}">
 		<h2>
 			<c:out value="Bonjour ${user.firstName}"></c:out>
