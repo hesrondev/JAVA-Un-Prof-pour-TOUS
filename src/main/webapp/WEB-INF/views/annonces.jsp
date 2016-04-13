@@ -49,53 +49,66 @@
 									<td><strong>Filtres:</strong></td>
 								</tr>
 								<!-- Par Statut du postant -->
+								
+								<c:if test="${!empty statusFilters}">
 								<tr>
 									<td><ul>
-											<li>- Statut
+											<li>- Statut												
 												<ul>
-													<li><a href="${pageContext.request.contextPath}/annonces/status=PROFESSOR">Professeurs (*)</a></li>
-													<li><a href="${pageContext.request.contextPath}/annonces/status=STUDENT">Elèves (*)</a></li>
+													<c:forEach items="${statusFilters}" var="item">
+														<li><a href="${pageContext.request.contextPath}/annonces/status=${item.value}">${item.value} (${item.counter})</a></li>
+													</c:forEach>
 												</ul>
 											</li>
 										</ul></td>
 								</tr>
+								</c:if>
 								
 								<!-- Par niveau -->
+								<c:if test="${!empty levelFilters}">
 								<tr>
 									<td><ul>
 											<li>- Niveau scolaire
 												<ul>
-													<li><a href="${pageContext.request.contextPath}/annonces/level=primaire">Primaire (*)</a></li>
-													<li><a href="${pageContext.request.contextPath}/annonces/level=college">Collège (*)</a></li>
-													<li><a href="${pageContext.request.contextPath}/annonces/level=lycee">Lycée (*)</a></li>
-													<li><a href="${pageContext.request.contextPath}/annonces/level=universite">Université (*)</a></li>
+													<c:forEach items="${levelFilters}" var="item">
+													<li><a href="${pageContext.request.contextPath}/annonces/level=${item.value}">${item.value} (${item.counter})</a></li>
+													</c:forEach>
 												</ul>
 											</li>
 										</ul></td>
 								</tr>
+								</c:if>
 								
 								<!-- Par matières -->
+								<c:if test="${!empty subjectFilters}">
 								<tr>
 									<td><ul>
 											<li>- Matières
 												<ul>
-													<li><a href="${pageContext.request.contextPath}/annonces/subject=SCIENCES">Sciences (*)</a></li>
+													<c:forEach items="${subjectFilters}" var="item">
+													<li><a href="${pageContext.request.contextPath}/annonces/subject=${item.value}">${item.value} (${item.counter})</a></li>
+													</c:forEach>
 												</ul>
 											</li>
 										</ul></td>
 								</tr>
+								</c:if>
 								
 
 								<!-- Par Lieu -->
+								<c:if test="${!empty locationFilters}">
 								<tr>
 									<td><ul>
 											<li>- Lieu
 												<ul>
-													<li><a href="${pageContext.request.contextPath}/annonces/location=paris">Paris (*)</a></li>
+													<c:forEach items="${locationFilters}" var="item">
+													<li><a href="${pageContext.request.contextPath}/annonces/location=${item.value}">${item.value} (${item.counter})</a></li>
+													</c:forEach>
 												</ul>
 											</li>
 										</ul></td>
 								</tr>
+								</c:if>
 							</table>
 						</td>
 

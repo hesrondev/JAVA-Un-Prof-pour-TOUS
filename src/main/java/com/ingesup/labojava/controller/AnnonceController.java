@@ -1,6 +1,7 @@
 package com.ingesup.labojava.controller;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistration;
 
 import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.factory.AnnonceFactory;
 import com.ingesup.labojava.form.AnnonceFormBean;
+import com.ingesup.labojava.form.Filter;
+import com.ingesup.labojava.form.FilterCategory;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
@@ -52,7 +53,6 @@ public class AnnonceController {
 		model.addAttribute("adBean", new AnnonceFormBean());
 		return "createAd";
 	}
-	
 	
 	// Méthode POST d'une annonce
 	
@@ -95,8 +95,10 @@ public class AnnonceController {
 		User user = userService.getUser(studentID);
 		
 		if (user != null) {
-			
+			// si l'utilisateur est connecté, on lui ajoute l'annonce
+			// Mais on ajoute aussi l'utilisateur dans l'annonce
 			user.addAnnonce(ad);
+			ad.setUser(user);
 			userService.updateUser(user);
 			
 			mView.addObject("user", user);
@@ -122,6 +124,14 @@ public class AnnonceController {
 		// Envoie des requêtes
 		annonces = userService.getAllAds();
 		
+		/* afficher uniquement les filtres concernées */
+		
+		List<Filter> allFilters = createFilters(annonces);		
+		model.addAttribute("statusFilters", getFiltersByCategory(allFilters, FilterCategory.STATUS));
+		model.addAttribute("locationFilters", getFiltersByCategory(allFilters, FilterCategory.LOCATION));
+		model.addAttribute("subjectFilters", getFiltersByCategory(allFilters, FilterCategory.SUBJECT));
+		model.addAttribute("levelFilters", getFiltersByCategory(allFilters, FilterCategory.LEVEL));
+		
 		model.addAttribute("listAnnonces", annonces);
 		return "annonces";
 	}
@@ -133,7 +143,7 @@ public class AnnonceController {
 	 */
 	
 	@RequestMapping(value="/{category}={value}", method = RequestMethod.GET)
-	private ModelAndView addStatusFilter(@PathVariable(value="category") final String category,
+	private ModelAndView addFilter(@PathVariable(value="category") final String category,
 			@PathVariable(value="value") final String value) {
 		
 		ModelAndView mView = new ModelAndView();
@@ -149,9 +159,112 @@ public class AnnonceController {
 		annonces = userService.getFilteredAds(annoncefb);
 		mView.addObject("listAnnonces", annonces);
 		
-		mView.setViewName("redirect:/annonces");
+		// afficher uniquement les filtres concernées
+		
+		List<Filter> allFilters = createFilters(annonces);		
+		
+		mView.addObject("statusFilters", getFiltersByCategory(allFilters, FilterCategory.STATUS));
+		mView.addObject("locationFilters", getFiltersByCategory(allFilters, FilterCategory.LOCATION));
+		mView.addObject("subjectFilters", getFiltersByCategory(allFilters, FilterCategory.SUBJECT));
+		mView.addObject("levelFilters", getFiltersByCategory(allFilters, FilterCategory.LEVEL));
+		
+		mView.setViewName("annonces");
 		
 		return mView;
+	}
+	
+	
+	// Renvoie la liste d'une catégorie de liste parmi tous les filtres de 'allFilters'
+	
+	private List<Filter> getFiltersByCategory(List<Filter> allFilters, FilterCategory fcat) {
+			
+		List<Filter> filters = new ArrayList<Filter>();
+		
+		for (Filter f : allFilters) {
+			
+			if (f.geteCategory().equals(fcat))
+				filters.add(f);
+		}
+		
+		return filters;
+	}
+	
+	// Initialise tous les filtres en fonctions des annonces
+	// On a aussi besoin de la liste des utilisateurs pour connaitre leurs status
+	
+	private List<Filter> createFilters(List<Annonce> annonces) {
+		List<Filter> filters = new ArrayList<Filter>();
+		
+		System.out.println("//////////////// Creating filters... -- annonces : " + annonces.size());
+
+		for (Annonce ad : annonces) {
+			
+			// On parcourt la liste des filtres pour chercher les filtres
+			
+			// index des éléments dans la liste filters [-1 = pas trouvé, > -1 = index = présent]
+			int iStatus = -1;
+			int iLocation = -1;
+			int iLevel = -1;
+			int iSubject = -1;
+			
+			for (int i = 0; i < filters.size(); i++) {
+								
+				Filter f = filters.get(i);
+																
+				// On compare les valeurs des différents attributs de l'annonce à la valeur du filtre
+				// Si on trouve une valeur égale, on l'incrémente sinon on va le créer
+
+				if (ad.getUser().getType().equals(f.getValue())) {
+					f.counterPlus();
+					System.out.println("--STATUS-- " +ad.getUser().getType() + " -- COUNTER : " + f.getCounter());
+					iStatus = i;
+				}
+				
+				if (ad.getLocation().equals(f.getValue())) {
+					f.counterPlus();
+					iLocation = i;
+					System.out.println("--LOCATION-- " +ad.getLocation() + " -- COUNTER : " + f.getCounter());
+				}
+				
+				else if (ad.getSubject().equals(f.getValue())) {
+					f.counterPlus();
+					iSubject = i;
+					System.out.println("--SUBJECT-- " +ad.getSubject() + " -- COUNTER : " + f.getCounter());
+				}
+				
+				else if (ad.getLevel().equals(f.getValue())) {
+					f.counterPlus();
+					iLevel = i;
+					System.out.println("--LEVEL-- " +ad.getLevel() + " -- COUNTER : " + f.getCounter());
+				}				
+			}
+			
+			// Si l'index est toujours à -1, on ajoute le filtre
+			if (iStatus == -1) {
+				filters.add(new Filter(FilterCategory.STATUS, ad.getUser().getType()));
+				System.out.println("Adding STATUS FILTER...");
+			}
+			
+			if (iLocation == -1) {
+				filters.add(new Filter(FilterCategory.LOCATION, ad.getLocation()));
+				System.out.println("Adding LOCATION FILTER...");
+			}
+
+			if (iSubject == -1) {
+				filters.add(new Filter(FilterCategory.SUBJECT, ad.getSubject()));
+				System.out.println("Adding subject FILTER...");
+			}
+
+			if (iLevel == -1) {
+				filters.add(new Filter(FilterCategory.LEVEL, ad.getLevel()));
+				System.out.println("Adding level FILTER...");
+			}
+		}
+		
+		System.out.println("////////////ALL "+ filters.size());
+		
+		
+		return filters;
 	}
 	
 
