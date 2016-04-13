@@ -214,5 +214,63 @@ public class UserDAOImpl implements UserDAO{
 		
 		return stringQuery;
 	}
+	
+	
+	// Matching ads -- Recherche d'annonce
+	// On recherche d'abord les annonces avec le même titre et la même ville
+	// Puis on recherche celles contenant le titre dans soit le titre, soit la description
+	
+	@SuppressWarnings("unchecked")
+	public List<Annonce> getMatchingAds(String subject, String location) {
+		
+		Query query = null;
+		
+		// Cas 0: si tous les champs sont vides
+		
+		if (subject.isEmpty() && location.isEmpty())
+			return getAllAds();
+
+		
+		// Cas 1: si le titre (seul) est vide
+		
+		else if (subject.isEmpty() && !location.isEmpty()) {
+			query = entityManager.createQuery("from Annonce a where a.location = :location");
+			query.setParameter("location", location);
+			
+			return query.getResultList();
+		}
+		
+		// Cas 2: si le lieu (seul) est vide
+		
+		else if (!subject.isEmpty() && location.isEmpty()) {
+			
+			query = entityManager.createQuery("from Annonce a where a.subject = :subject OR "
+					+ "a.title like :title OR a.description like :description");
+			
+			query.setParameter("subject", subject);
+			query.setParameter("title", "%" + subject + "%");
+			query.setParameter("description", "%" + subject + "%");
+			
+			return query.getResultList();
+		}
+		
+		// Cas 3: si les deux ne sont pas vides 
+		
+		else {
+			
+			query = entityManager.createQuery("from Annonce a where a.subject = :subject OR "
+					+ "a.title like :title OR a.description like :description AND a.location like :location");
+			
+			query.setParameter("subject", subject);
+			query.setParameter("title", "%" + subject + "%");
+			query.setParameter("description", "%" + subject + "%");
+			query.setParameter("location", "%" + location + "%");
+			
+			return query.getResultList();	
+		}
+		
+	}
+
+
 
 }

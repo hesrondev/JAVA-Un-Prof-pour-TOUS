@@ -20,13 +20,15 @@
 		<div class="header">
 			<%@ include file="header.jsp"%>
 		</div>
-		
+		<br><br>
 		<div class="container">
 
 			<c:if test="${!empty listAnnonces}">
-				<p>
-					<strong>${fn:length(listAnnonces)}</strong> ANNONCES SUR LE SITE
-				</p>
+				<h2>
+					<strong>${fn:length(listAnnonces)}</strong> Annonce<c:if test="${fn:length(listAnnonces) > 1}">s</c:if> sur le site 
+					<c:if test="${!empty subject}">: ${subject}</c:if>
+					<c:if test="${!empty location }"> à ${location}</c:if> 
+				</h2>
 			</c:if>
 
 
@@ -123,8 +125,9 @@
 											<table>
 												<!-- 1st line -->
 												<tr>
-													<td><strong><a
-															href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a></strong></td>
+													<td>
+														<strong><a href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a></strong>
+													</td>
 												</tr>
 
 												<!-- 2nd line -->
@@ -136,14 +139,10 @@
 														<p>
 															Lieu: ${item.location}<br>Matière(s):
 															${item.subject}<br> Tarif: ${item.costPerHour} €/h<br>Par:
-															${item.user.id}<br>Date de publication
+															<a href="${pageContext.request.contextPath}/profile/${item.user.id}">${item.user.firstName} ${item.user.lastName}</a>
+															<br>Date de publication
 														</p>
 													</td>
-												</tr>
-
-												<!-- 3rd line -->
-												<tr>
-													<td>Sauvergarder l'annonce</td>
 												</tr>
 											</table>
 										</td>

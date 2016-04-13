@@ -5,6 +5,8 @@ import java.util.List;
 
 public class AnnonceFormBean {
 	
+	
+	/* AJOUTER LES ANNOTATIONS POUR LA GESTION DES ERREURS */
 	private String title;
 	private double costPerHour;
 	private String description;

@@ -22,6 +22,7 @@ public interface UserService {
 	
 	public List<Annonce> getAllAds();
 	public List<Annonce> getAllAdsByUser(Long userID);
+	public List<Annonce> getMatchingAds(String subject, String location);
 	
 	public List<Annonce> getFilteredAds(AnnonceFormBean afb);
 
