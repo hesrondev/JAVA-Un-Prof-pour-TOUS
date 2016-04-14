@@ -137,6 +137,17 @@ public class UserDAOImpl implements UserDAO{
 		return professors;
 	}
 	
+	
+	
+	/**
+	 * UPDATE Annonce
+	 * */
+	
+	@Override
+	public Annonce updateAnnonce(Annonce annonce) {
+		return entityManager.merge(annonce);
+	}
+	
 	/*
 	 * 
 	 * Get Ad by ID
@@ -290,6 +301,8 @@ public class UserDAOImpl implements UserDAO{
 		}
 		
 	}
+
+	
 
 
 }

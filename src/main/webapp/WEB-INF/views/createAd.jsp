@@ -130,13 +130,17 @@
 					<tr>
 						<td>
 							<br>
-							<h3>Détails votre annonce</h3>
+							<h3>Détails de votre annonce</h3>
 							<hr>
 						</td>
 					</tr>
 					<tr>
 						<td><form:textarea id="ad_description" name="description"
 								path="description" placeholder="Détails de l'annonce" /></td>
+					</tr>
+					
+					<tr>
+						<td><form:checkbox id="ad_showPhone" name="showPhone" path="showPhoneNumber"/> <form:label path="showPhoneNumber">Afficher le numéro de téléphone?</form:label></td>
 					</tr>
 
 					<tr>

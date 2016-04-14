@@ -23,6 +23,7 @@ public class AnnonceFactory {
 		ad.setLocation(adFormBean.getLocation());
 		ad.setCostPerHour(adFormBean.getCostPerHour());
 		ad.setDescription(adFormBean.getDescription());
+		ad.setShowPhoneNumber(adFormBean.isShowPhoneNumber());
 		
 		return ad;
 	}

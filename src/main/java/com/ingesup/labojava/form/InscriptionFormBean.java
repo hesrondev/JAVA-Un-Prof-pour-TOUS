@@ -6,20 +6,25 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class InscriptionFormBean {
 	
-	@NotEmpty(message="Prénom obligatoire!")
+	@NotEmpty(message="PRENOM obligatoire!")
 	private String firstName;
-	@NotEmpty(message="Nom obligatoire!")
+	
+	@NotEmpty(message="NOM obligatoire!")
 	private String lastName;
-	@NotEmpty(message="Email obligatoire!")
+	
+	@NotEmpty(message="EMAIL obligatoire!")
 	@Email(message="Vérifiez le format de l'adresse mail")
 	private String email;
-	@NotEmpty(message="Mot de passe obligatoire!")
+	
+	@NotEmpty(message="MOT DE PASSE obligatoire!")
 	@Size(min=6, message="Le mot de passe doit contenir minimum 6 caractères")
 	private String password;
-	@NotEmpty(message="Mot de passe obligatoire!")
+	
+	@NotEmpty(message="MOT DE PASSE obligatoire!")
 	@Size(min=6, message="Le mot de passe doit contenir minimum 6 caractères")
 	private String rePassword;
-	@NotEmpty()
+	
+	@NotEmpty(message="STATUT obligatoire!")
 	private String status;
 	
 	//Getters and Setters

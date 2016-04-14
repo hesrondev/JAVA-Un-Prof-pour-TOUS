@@ -1,13 +1,17 @@
 package com.ingesup.labojava.form;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class LoginFormBean {
 	
-	@NotEmpty(message="email obligatoire!")
+	@NotEmpty(message="EMAIL obligatoire!")
+	@Email(message="Vérifiez le format de l'adresse mail")
 	private String email;
-	@NotEmpty(message="mot de passe obligatoire!")
+	
+	@NotEmpty(message="MOT DE PASSE obligatoire!")
 	private String password;
+	
 	private boolean rememberMe;
 	
 	

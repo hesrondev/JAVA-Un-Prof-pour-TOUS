@@ -33,7 +33,7 @@
 		<div>
 			<h3>** Candidatures</h3>
 			<p>Comparez vous aux autres candidats</p>
-			<p><strong><a href="#">Contacter l'annonceur</a></strong></p>
+			<p><strong><a href="${pageContext.request.contextPath}/annonces/candidater/${annonce.id}">Candidater à l'annonce</a></strong></p>
 		</div>
 		
 		<!--  Suite des détails de l'annonce -->
@@ -42,12 +42,12 @@
 			<p>Matière: ${annonce.subject}<br>
 			Niveau: ${annonce.level}<br>
 			Tarif: ${annonce.costPerHour} euros par heure<br>
-			Contact: **Téléphone** ou Laissez un message à l'annonceur en postulant à l'annonce.</p>
+			Contact: **Téléphone** ou Laissez un message à l'annonceur en candidatant à l'annonce.</p>
 			<hr><br>
 			<h3>Description</h3>
 			<p>${annonce.description}</p>
 			<br><br>
-			<p><strong><a href="#">Contacter l'annonceur</a></strong></p>
+			<p><strong><a href="${pageContext.request.contextPath}/annonces/candidater/${annonce.id}">Candidater</a></strong></p>
 			<p><strong><a href="#">Sauvegarder l'annonce</a></strong></p>
 			
 		</div>

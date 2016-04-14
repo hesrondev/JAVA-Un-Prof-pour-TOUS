@@ -3,16 +3,29 @@ package com.ingesup.labojava.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class AnnonceFormBean {
 	
 	
-	/* AJOUTER LES ANNOTATIONS POUR LA GESTION DES ERREURS */
+	@NotEmpty(message="TITRE obligatoire!")
 	private String title;
+	
 	private double costPerHour;
+	
+	@NotEmpty(message="DESCRIPTION obligatoire!")
 	private String description;
+	
+	@NotEmpty(message="LIEU obligatoire!")
 	private String location;
+	
+	@NotEmpty(message="MATIERE obligatoire!")
 	private String subject;
+	
+	@NotEmpty(message="NIVEAU obligatoire!")
 	private String level;
+	
+	private boolean showPhoneNumber;
 
 	// filtre
 	private List<Filter> filters = new ArrayList<Filter>();
@@ -118,6 +131,14 @@ public class AnnonceFormBean {
 
 	public void setFilters(List<Filter> filters) {
 		this.filters = filters;
+	}
+
+	public boolean isShowPhoneNumber() {
+		return showPhoneNumber;
+	}
+
+	public void setShowPhoneNumber(boolean showPhoneNumber) {
+		this.showPhoneNumber = showPhoneNumber;
 	}
 	
 

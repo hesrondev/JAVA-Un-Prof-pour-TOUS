@@ -65,6 +65,11 @@ public class UserServiceImpl implements UserService{
 	// Ads
 	
 	@Override
+	public Annonce updateAnnonce(Annonce annonce) {
+		return userDAO.updateAnnonce(annonce);
+	}
+	
+	@Override
 	public Annonce getAdById(Long ID) {
 		return userDAO.getAdById(ID);
 	}
@@ -99,6 +104,8 @@ public class UserServiceImpl implements UserService{
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
+
+	
 
 	
 	

@@ -20,6 +20,8 @@ public interface UserService {
 	public List<Student> getAllStudents();
 	public List<Professor> getAllProfessors();
 	
+	
+	public Annonce updateAnnonce(Annonce annonce);
 	public Annonce getAdById(Long ID);
 	public List<Annonce> getAllAds();
 	public List<Annonce> getAllAdsByUser(Long userID);
