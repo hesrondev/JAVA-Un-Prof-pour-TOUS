@@ -26,7 +26,7 @@
 		
 		<div>
 			<h2>${annonce.title}</h2>
-			<p>Par ${annonce.user.lastName} ${annonce.user.firstName} &#8226 ${annonce.location} &#8226 Date</p>
+			<p>Par <a href="${pageContext.request.contextPath}/profile/${item.user.id}">${annonce.user.lastName} ${annonce.user.firstName}</a> &#8226 ${annonce.location} &#8226 Date</p>
 		</div>
 		
 		<!--  Contact de l'annonceur -->
@@ -42,8 +42,7 @@
 			<p>Matière: ${annonce.subject}<br>
 			Niveau: ${annonce.level}<br>
 			Tarif: ${annonce.costPerHour} euros par heure<br>
-			Téléphone: *****<br>
-			Mail: *****</p>
+			Contact: **Téléphone** ou Laissez un message à l'annonceur en postulant à l'annonce.</p>
 			<hr><br>
 			<h3>Description</h3>
 			<p>${annonce.description}</p>
@@ -62,16 +61,17 @@
 		<h3>Offres similaires</h3>
 		<br>
 		<ul>
-			<li>
-				<p><strong>Titre de l'annonce</strong><br>
-				Nom Prénom &#8226 Lieu</p>
-			</li>	
-
-			<li>
-				<p><strong>Titre de l'annonce</strong><br>
-				Nom Prénom &#8226 Lieu</p>
-			</li>	
+			<c:forEach items="${annonces}" var="item">
+				<li>
+					<strong><a href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a></strong><br>
+					${item.location} &#8226 Date**
+				</li>	
+			</c:forEach>
+	
 		</ul>
+		
+		<!-- Recherche les annonces similaires -->
+		<p><strong><a href="${pageContext.request.contextPath}/annonces/recherche?subject=${annonce.subject}&location=${annonce.location}">Voir les offres similaires</a></strong></p>
 		
 	</div>
 	<br><br>

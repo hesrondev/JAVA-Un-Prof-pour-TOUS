@@ -114,7 +114,10 @@ public class AnnonceController {
 		return mView;
 	}
 
-	// Rechercher une annonce
+	
+	/* Rechercher une annonce
+	 * 
+	 */
 
 	@RequestMapping(value = "/recherche", method = RequestMethod.GET)
 	public String searchAnnonces(@RequestParam("subject") final String subject, 
@@ -135,13 +138,15 @@ public class AnnonceController {
 		model.addAttribute("subjectFilters", getFiltersByCategory(allFilters, FilterCategory.SUBJECT));
 		model.addAttribute("levelFilters", getFiltersByCategory(allFilters, FilterCategory.LEVEL));
 
-		model.addAttribute("listAnnonces", annonces);
+		model.addAttribute("listAnnonces", annonces); 
 		
 		// Réafficher les critères
 		model.addAttribute("subject", subject);
 		model.addAttribute("location", location);
 		
+		
 		return "annonces";
+		
 	}
 
 	// Affichage de la page des annonces
@@ -201,105 +206,6 @@ public class AnnonceController {
 
 		return mView;
 	}
-
-	// Renvoie la liste d'une catégorie de liste parmi tous les filtres de
-	// 'allFilters'
-
-	private List<Filter> getFiltersByCategory(List<Filter> allFilters, FilterCategory fcat) {
-
-		List<Filter> filters = new ArrayList<Filter>();
-
-		for (Filter f : allFilters) {
-
-			if (f.geteCategory().equals(fcat))
-				filters.add(f);
-		}
-
-		return filters;
-	}
-
-	// Initialise tous les filtres en fonctions des annonces
-	// On a aussi besoin de la liste des utilisateurs pour connaitre leurs
-	// status
-
-	private List<Filter> createFilters(List<Annonce> annonces) {
-		List<Filter> filters = new ArrayList<Filter>();
-
-		System.out.println("//////////////// Creating filters... -- annonces : " + annonces.size());
-
-		for (Annonce ad : annonces) {
-
-			// On parcourt la liste des filtres pour chercher les filtres
-
-			// index des éléments dans la liste filters [-1 = pas trouvé, > -1 =
-			// index = présent]
-			int iStatus = -1;
-			int iLocation = -1;
-			int iLevel = -1;
-			int iSubject = -1;
-
-			for (int i = 0; i < filters.size(); i++) {
-
-				Filter f = filters.get(i);
-
-				// On compare les valeurs des différents attributs de l'annonce
-				// à la valeur du filtre
-				// Si on trouve une valeur égale, on l'incrémente sinon on va le
-				// créer
-
-				if (ad.getUser().getType().equals(f.getValue())) {
-					f.counterPlus();
-					System.out.println("--STATUS-- " + ad.getUser().getType() + " -- COUNTER : " + f.getCounter());
-					iStatus = i;
-				}
-
-				if (ad.getLocation().equals(f.getValue())) {
-					f.counterPlus();
-					iLocation = i;
-					System.out.println("--LOCATION-- " + ad.getLocation() + " -- COUNTER : " + f.getCounter());
-				}
-
-				else if (ad.getSubject().equals(f.getValue())) {
-					f.counterPlus();
-					iSubject = i;
-					System.out.println("--SUBJECT-- " + ad.getSubject() + " -- COUNTER : " + f.getCounter());
-				}
-
-				else if (ad.getLevel().equals(f.getValue())) {
-					f.counterPlus();
-					iLevel = i;
-					System.out.println("--LEVEL-- " + ad.getLevel() + " -- COUNTER : " + f.getCounter());
-				}
-			}
-
-			// Si l'index est toujours à -1, on ajoute le filtre
-			if (iStatus == -1) {
-				filters.add(new Filter(FilterCategory.STATUS, ad.getUser().getType()));
-				System.out.println("Adding STATUS FILTER...");
-			}
-
-			if (iLocation == -1) {
-				filters.add(new Filter(FilterCategory.LOCATION, ad.getLocation()));
-				System.out.println("Adding LOCATION FILTER...");
-			}
-
-			if (iSubject == -1) {
-				filters.add(new Filter(FilterCategory.SUBJECT, ad.getSubject()));
-				System.out.println("Adding subject FILTER...");
-			}
-
-			if (iLevel == -1) {
-				filters.add(new Filter(FilterCategory.LEVEL, ad.getLevel()));
-				System.out.println("Adding level FILTER...");
-			}
-		}
-
-		System.out.println("////////////ALL " + filters.size());
-
-		return filters;
-	}
-	
-	
 	
 	
 	// Affichage des détails d'une annonce
@@ -307,10 +213,177 @@ public class AnnonceController {
 	@RequestMapping(value = "/{adID}", method = RequestMethod.GET)
 	public String displayAdDetails(@PathVariable("adID") final Long ID, final Model model) {
 		
+		
+		/* Recherche de l'annonce */
+		
 		Annonce annonce = userService.getAdById(ID);
 		
-		model.addAttribute("annonce", annonce);
+		if (annonce != null) {
 		
-		return "adDetails";
+			/* Récupération de la liste des annonces similaires */
+			
+			annonces = userService.getMatchingAds(annonce.getSubject(), annonce.getLocation());
+			
+			System.out.println("SIMILAR ADS size: " +annonces.size());
+			// Si la liste est vide, on recherche les annonces uniquement par matière
+			
+			if (annonces.isEmpty()) {
+				annonces = userService.getMatchingAds(annonce.getSubject(), "");
+				
+				System.out.println("SIMILAR ADS #2 size: " +annonces.size());
+			}
+			
+			/* Afficher uniquement les 5 premières offres*/
+			
+			if (annonces.size() < 6) 
+				model.addAttribute("annonces", annonces);
+			
+			else {
+				List<Annonce> fiveFirstAds = new ArrayList<Annonce>();
+				
+				int counter = 0;
+				
+				while(counter < annonces.size() && counter <= 5) {
+					
+					fiveFirstAds.add(annonces.get(counter));
+					counter++;
+				}
+				
+				System.out.println("SIMILAR (5) ADS size: " +annonces.size());
+				
+				/* Chargment du model */
+				
+				model.addAttribute("annonces", fiveFirstAds);
+			}
+			
+			
+			model.addAttribute("annonce", annonce);
+			
+			return "adDetails";
+		}
+		
+		else
+			return "confirmationPage/{NotFound}";
 	}
+	
+	
+	/* Charge les éléments de la page d'annonce
+	
+	private ModelAndView chargeAnnoncesOnPage(List<Annonce> annonces) {
+		
+		ModelAndView model = new ModelAndView();
+		
+		model.addObject("adBean", new AnnonceFormBean());
+		model.addObject("annonces", annonces);
+		
+		// afficher uniquement les filtres concernées
+
+		List<Filter> allFilters = createFilters(annonces);
+
+		model.addObject("statusFilters", getFiltersByCategory(allFilters, FilterCategory.STATUS));
+		model.addObject("locationFilters", getFiltersByCategory(allFilters, FilterCategory.LOCATION));
+		model.addObject("subjectFilters", getFiltersByCategory(allFilters, FilterCategory.SUBJECT));
+		model.addObject("levelFilters", getFiltersByCategory(allFilters, FilterCategory.LEVEL));
+		
+		return model;
+		
+	} */
+	
+	
+	// Renvoie la liste d'une catégorie de liste parmi tous les filtres de
+		// 'allFilters'
+
+	private List<Filter> getFiltersByCategory(List<Filter> allFilters, FilterCategory fcat) {
+
+		List<Filter> filters = new ArrayList<Filter>();
+		for (Filter f : allFilters) {
+
+			if (f.geteCategory().equals(fcat))
+				filters.add(f);
+		}
+		return filters;
+	}
+	
+	
+	
+	// Initialise tous les filtres en fonctions des annonces
+		// On a aussi besoin de la liste des utilisateurs pour connaitre leurs
+		// status
+
+		private List<Filter> createFilters(List<Annonce> annonces) {
+			List<Filter> filters = new ArrayList<Filter>();
+
+			System.out.println("//////////////// Creating filters... -- annonces : " + annonces.size());
+
+			for (Annonce ad : annonces) {
+
+				// On parcourt la liste des filtres pour chercher les filtres
+
+				// index des éléments dans la liste filters [-1 = pas trouvé, > -1 =
+				// index = présent]
+				int iStatus = -1;
+				int iLocation = -1;
+				int iLevel = -1;
+				int iSubject = -1;
+
+				for (int i = 0; i < filters.size(); i++) {
+
+					Filter f = filters.get(i);
+
+					// On compare les valeurs des différents attributs de l'annonce
+					// à la valeur du filtre
+					// Si on trouve une valeur égale, on l'incrémente sinon on va le
+					// créer
+
+					if (ad.getUser().getType().equals(f.getValue())) {
+						f.counterPlus();
+						System.out.println("--STATUS-- " + ad.getUser().getType() + " -- COUNTER : " + f.getCounter());
+						iStatus = i;
+					}
+
+					if (ad.getLocation().equals(f.getValue())) {
+						f.counterPlus();
+						iLocation = i;
+						System.out.println("--LOCATION-- " + ad.getLocation() + " -- COUNTER : " + f.getCounter());
+					}
+
+					else if (ad.getSubject().equals(f.getValue())) {
+						f.counterPlus();
+						iSubject = i;
+						System.out.println("--SUBJECT-- " + ad.getSubject() + " -- COUNTER : " + f.getCounter());
+					}
+
+					else if (ad.getLevel().equals(f.getValue())) {
+						f.counterPlus();
+						iLevel = i;
+						System.out.println("--LEVEL-- " + ad.getLevel() + " -- COUNTER : " + f.getCounter());
+					}
+				}
+
+				// Si l'index est toujours à -1, on ajoute le filtre
+				if (iStatus == -1) {
+					filters.add(new Filter(FilterCategory.STATUS, ad.getUser().getType()));
+					System.out.println("Adding STATUS FILTER...");
+				}
+
+				if (iLocation == -1) {
+					filters.add(new Filter(FilterCategory.LOCATION, ad.getLocation()));
+					System.out.println("Adding LOCATION FILTER...");
+				}
+
+				if (iSubject == -1) {
+					filters.add(new Filter(FilterCategory.SUBJECT, ad.getSubject()));
+					System.out.println("Adding subject FILTER...");
+				}
+
+				if (iLevel == -1) {
+					filters.add(new Filter(FilterCategory.LEVEL, ad.getLevel()));
+					System.out.println("Adding level FILTER...");
+				}
+			}
+
+			System.out.println("////////////ALL " + filters.size());
+
+			return filters;
+		}
 }

@@ -9,11 +9,11 @@
 	
 
 		<form:label path="subject">Matière</form:label>
-			<form:input id="ad_subject" name="subject" path="subject"
+			<form:input id="ad_subject" name="subject" path="subject" value="${subject}"
 					placeholder="ex: Maths, Physique, ..." />
 								
 		<form:label path="location">Lieu</form:label>
-			<form:input id="ad_location" name="location"
+			<form:input id="ad_location" name="location" value="${location}"
 					path="location" placeholder="ex: Paris, Lyon, Marseille, ..." />
 					
 		<input type="submit" class="button" value="Rechercher" />
