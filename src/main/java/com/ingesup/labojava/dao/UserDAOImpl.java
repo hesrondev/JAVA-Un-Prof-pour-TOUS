@@ -338,4 +338,18 @@ public class UserDAOImpl implements UserDAO{
 		query.executeUpdate();
 	}
 
+
+	@Override
+	public void removeContact(Long userID, Long contactID) {
+		
+		Query query = entityManager.createQuery("delete user_friend f where "
+				+ "f.user_id = :userID AND f.friend_id = :contactID "
+				+ "OR f.user_id = :contactID AND f.friend_id = :userID");
+		query.setParameter("userID", userID);
+		query.setParameter("contactID", contactID);
+		
+		query.executeUpdate();
+		
+	}
+
 }

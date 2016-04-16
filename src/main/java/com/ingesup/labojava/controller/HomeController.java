@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ingesup.labojava.bean.FriendRequest;
@@ -194,5 +193,39 @@ public class HomeController {
 		return "redirect:/test-page";
 	}
 	
+	/** SUPPRIMER UN AMI */
+	
+	@RequestMapping(value="/removeContact/{userID}:{cID}", method = RequestMethod.GET)
+	public String removeContact(@PathVariable("userID") Long userID, @PathVariable("cID") Long cID, final Model model) {
+		
+		String URL = "test-page";
+		
+		System.out.println("Suppression d'un contact...");
+		
+		User contact = userService.getUser(cID);
+		User currentUser = userService.getUser(userID);
+		
+		/** VERIFIER QUE LA SESSION EST ACTIVE 
+		
+		if (currentUser == null || contact == null) {
+			model.addAttribute("status", "Utilisateur introuvable");
+			return "redirect:/statusPage";
+		}
+		
+		/* Utilisateurs trouvés 
+		
+		userService.removeContact(currentUser.getId(), contact.getId()); */
+		
+		currentUser.removeFriend(contact.getId());
+		contact.removeFriend(currentUser.getId());
+		
+		// Mettre à jour les deux car il n'y a plus de mise à jour récurrente
+		userService.updateUser(currentUser);
+		userService.updateUser(contact);
+		
+		System.out.println("Contact supprimé avec succès!"); 
+		
+		return "redirect:/"+URL;
+	}
 	
 }

@@ -31,4 +31,5 @@ public interface UserDAO {
 	
 	public FriendRequest getFriendRequest(Long reqID);
 	public void removeFriendRequest(FriendRequest fRequest);
+	public void removeContact(Long userID, Long contactID);
 }

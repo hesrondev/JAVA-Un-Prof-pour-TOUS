@@ -100,7 +100,7 @@
 					<tr>
 						<td>${item.firstName} ${item.lastName}</td>
 						<td><a
-							href="${pageContext.request.contextPath}/friend-request:remove/${item.id}">SUPPRIMER</a>
+							href="${pageContext.request.contextPath}/removeContact/${user.id}:${item.id}">SUPPRIMER</a>
 						</td>
 					</tr>
 				</c:forEach>

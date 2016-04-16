@@ -3,6 +3,7 @@ package com.ingesup.labojava.bean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -100,9 +101,12 @@ public abstract class User {
 
 	public void removeFriend(Long userID) {
 		
-		for (User fr : myFriends) 
-			if (fr.getId() == userID)
-				myFriends.remove(fr);
+		for (Iterator<User> iterator = myFriends.iterator(); iterator.hasNext();) {
+		    User s = iterator.next();
+		    if (s.getId() == userID) {
+		        iterator.remove();
+		    }       
+		}
 	}
 	
 	/*
