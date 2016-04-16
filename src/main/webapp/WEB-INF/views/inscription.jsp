@@ -26,7 +26,7 @@
 			ci-dessous pour vous inscire : </br>
 		</p>
 
-		<%@ include file="inscriptionForm.jsp"%>
+		<%@ include file="forms/inscriptionForm.jsp"%>
 	</div>
 	</div>
 	<!--  FOOTER INCLUSION  -->

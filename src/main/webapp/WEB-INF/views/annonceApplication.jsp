@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- 
+
 <link href="http://fonts.googleapis.com/css?family=Varela"
 	rel="stylesheet" />
 <link
@@ -10,6 +12,8 @@
 <link
 	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
 	rel="stylesheet" type="text/css" media="all" />
+ -->
+ 
 <title>UPPT | Canditater</title>
 </head>
 <body>
@@ -61,73 +65,17 @@
 		<p>Les champs (*) sont obligatoires</p>
 
 		<br>
-
-		<form:form modelAttribute="annonceApplicationBean" method="POST"
-			action="${pageContext.request.contextPath}/annonces/candidater/${annonce.id}">
-
-			<table>
-				<!-- FIRSTNAME -->
-				<tr>
-					<td><form:label path="firstName">Prénom: *</form:label></td>
-				</tr>
-				<tr>
-					<td> <form:input id="ad_app_firstName" name="firstName" path="firstName"
-							value="${userFirstName}" /></td>
-				</tr>
-				
-				<!-- LASTNAME -->
-				<tr>
-					<td><form:label path="lastName">Nom: *</form:label></td>
-				</tr>
-				<tr>
-					<td> <form:input id="ad_app_lastName" name="lastName" path="lastName"
-							value="${userLastName}" /></td>
-				</tr>
-				
-				<!-- EMAIL -->
-				<tr>
-					<td><form:label path="email">Email: *</form:label></td>
-				</tr>
-				<tr>
-					<td> <form:input id="ad_app_email" name="email" path="email"
-							value="${userEmail}" /></td>
-				</tr>
-				
-				<!-- PHONE 
-				<tr>
-					<td><form:label path="phoneNumber">Téléphone:</form:label></td>
-				</tr>
-				<tr>
-					<td> <form:input id="ad_app_phone" name="phoneNumber" path="phoneNumber"
-							value="${userPhoneNumber}" /></td>
-				</tr>-->
-				
-				<!-- MESSAGE -->
-				<tr>
-					<td><form:label path="message">Message facultatif:</form:label></td>
-				</tr>
-				<tr>
-					<td> <form:textarea id="ad_app_message" name="message" path="message"/></td>
-				</tr>
-				
-				<tr>
-					<td><input type="submit" class="button" value="Candidater" /></td>
-				</tr>
-			</table>
-
-		</form:form>
-		<br>
+		
+		<%@ include file="forms/annonceApplicationForm.jsp"%>
 
 	</div>
-
+	
 	<br>
 	<br>
 
 	<!--  FOOTER INCLUSION  -->
 	<div id="copyright" class="container">
-		<div class="footer">
 			<%@ include file="footer.jsp"%>
-		</div>
 	</div>
 </body>
 </html>

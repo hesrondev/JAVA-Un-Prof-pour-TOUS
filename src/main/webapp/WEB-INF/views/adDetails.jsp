@@ -7,6 +7,8 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 
+<!-- 
+
 <link href="http://fonts.googleapis.com/css?family=Varela"
 	rel="stylesheet" />
 <link
@@ -15,6 +17,8 @@
 <link
 	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
 	rel="stylesheet" type="text/css" media="all" />
+ -->
+ 
 	
 <title>UPPT | <c:if test="${!empty annonce}">${annonce.title}</c:if></title>
 
