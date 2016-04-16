@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -217,8 +218,10 @@ public class AnnonceController {
 
 		Annonce annonce = userService.getAdById(ID);
 
-		if (annonce == null)
-			return "confirmationPage/{NotFound}";
+		if (annonce == null) {
+			model.addAttribute("status", "Annonce introuvable!");
+			return "statusPage";
+		}
 
 		/* Récupération de la liste des annonces similaires */
 
@@ -273,8 +276,10 @@ public class AnnonceController {
 
 		Annonce annonce = userService.getAdById(annonceID);
 
-		if (annonce == null)
-			return "confirmationPage/{NotFound}";
+		if (annonce == null) {
+			model.addAttribute("status", "Annonce introuvable!");
+			return "statusPage";
+		}
 
 		/* Bean */
 
@@ -306,8 +311,10 @@ public class AnnonceController {
 		
 		Annonce annonce = userService.getAdById(annonceID);
 		
-		if (annonce == null)
-			return "confirmationPage/{NotFound}";
+		if (annonce == null) {
+			model.addAttribute("status", "Annonce introuvable!");
+			return "statusPage";
+		}
 		
 		
 		/* Initialisation de la candidature */
@@ -317,16 +324,21 @@ public class AnnonceController {
 		annonce.addApplication(annonceApplication);
 		annonce = userService.updateAnnonce(annonce);
 		
-		if (annonce != null)
-			return "redirect:/confirmationPage/{Success}";
-		else
-			return "redirect:/confirmationPage/{Failure}";
+		if (annonce != null) {
+			model.addAttribute("status", "Votre candidature a été envoyé avec succès!");
+			return "redirect:/statusPage";
+		}
+		else {
+			model.addAttribute("status", "Erreur! L'envoi de votre candidature a échoué. Veuillez réessayer plus tard!");
+			return "redirect:/statusPage";
+		}
 	}
 	
 	
 	/**
 	 * TRIS ET FILTRES
 	 */
+	
 	
 	
 	// Renvoie la liste d'une catégorie de liste parmi tous les filtres de

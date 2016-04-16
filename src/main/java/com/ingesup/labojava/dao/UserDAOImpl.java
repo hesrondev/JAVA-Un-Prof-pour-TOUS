@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.ingesup.labojava.bean.Annonce;
+import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
@@ -52,7 +53,8 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public List<User> getAllUsers() {
 		
-		Query query = entityManager.createQuery("select u from User u");
+		Query query = entityManager.createQuery("select u from User u  left join fetch u.myFriends "
+				+ "left join fetch u.friendOf");
 		List<User> users = query.getResultList();
 		
 		return users;
@@ -67,7 +69,8 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public User getUser(String email, String pass) {
 		
-		Query query = entityManager.createQuery("from User u where u.email = :email AND u.password = :password");
+		Query query = entityManager.createQuery("from User u left join fetch u.myFriends "
+				+ "left join fetch u.friendOf where u.email = :email AND u.password = :password");
 		query.setParameter("email", email);
 		query.setParameter("password", pass);
 		
@@ -87,7 +90,8 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public User getUser(Long userID) {
 		
-		Query query = entityManager.createQuery("from User u where u.id = :id");
+		Query query = entityManager.createQuery("from User u  left join fetch u.myFriends "
+				+ "left join fetch u.friendOf where u.id = :id");
 		query.setParameter("id", userID);
 		
 		List<User> users = query.getResultList();
@@ -303,6 +307,35 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	
+	/**
+	 * GESTION DES DEMANDES D'AMIS
+	 * */
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public FriendRequest getFriendRequest(Long reqID) {
 
+		Query query = entityManager.createQuery("from FriendRequest f where f.id = :id");
+		query.setParameter("id", reqID);
+			
+		List<FriendRequest> fRequests = query.getResultList();
+			
+		if (fRequests.isEmpty())
+			return null;
+			
+		return fRequests.get(0);
+	}
+
+
+	@Override
+	public void removeFriendRequest(FriendRequest fRequest) {
+		
+		Query query = entityManager.createQuery("delete FriendRequest f where "
+				+ "f.senderID = :senderID AND f.receiverID = :receiverID");
+		query.setParameter("senderID", fRequest.getSenderID());
+		query.setParameter("receiverID", fRequest.getReceiverID());
+		
+		query.executeUpdate();
+	}
 
 }

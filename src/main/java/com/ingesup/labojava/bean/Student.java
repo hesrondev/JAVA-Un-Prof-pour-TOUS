@@ -7,8 +7,8 @@ import javax.persistence.Table;
 @Table(name="STUDENT")
 public class Student extends User{
 	
-	
 	public Student() {
+		super();
 		type = "STUDENT";
 	}
 	

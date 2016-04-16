@@ -7,9 +7,13 @@ import javax.persistence.Table;
 @Table(name = "PROFESSOR")
 public class Professor extends User {
 	
+	/* Collection */
 	
+	//protected List<Student> myStudents = new ArrayList<Student>();
+
 	
 	public Professor() {
+		super();
 		type = "PROFESSOR";
 	}
 

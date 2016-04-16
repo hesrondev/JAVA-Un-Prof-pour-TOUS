@@ -2,13 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!--
-<link href="<c:url value="/resources/templated-transit/css/style.css" />"
-	rel="stylesheet" type="text/css"> -->
 
 <title>UPPT | Accueil</title>
+
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+
 <link href="http://fonts.googleapis.com/css?family=Varela"
 	rel="stylesheet" />
 <link
@@ -17,6 +16,7 @@
 <link
 	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
 	rel="stylesheet" type="text/css" media="all" />
+
 
 </head>
 <body>

@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.ingesup.labojava.bean.Annonce;
+import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
@@ -21,6 +22,20 @@ public class UserServiceImpl implements UserService{
 	// User DAO
 	
 	private UserDAO userDAO;
+	
+	// UserDAO Getter and Setter
+	
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+	
+	
+	/**
+	 * METHODS 
+	 * */
 	
 	@Override
 	public void addUser(User user) {
@@ -96,13 +111,15 @@ public class UserServiceImpl implements UserService{
 	}
 
 	
-	// UserDAO Getter and Setter
-	
-	public UserDAO getUserDAO() {
-		return userDAO;
+	/* FRIEND REQUESTS */
+
+	@Override
+	public FriendRequest getFriendRequest(Long reqID) {
+		return userDAO.getFriendRequest(reqID);
 	}
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
+	@Override
+	public void removeFriendRequest(FriendRequest fRequest) {
+		userDAO.removeFriendRequest(fRequest);		
 	}
 
 	

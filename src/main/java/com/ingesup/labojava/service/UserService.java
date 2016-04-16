@@ -3,6 +3,7 @@ package com.ingesup.labojava.service;
 import java.util.List;
 
 import com.ingesup.labojava.bean.Annonce;
+import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
@@ -26,7 +27,9 @@ public interface UserService {
 	public List<Annonce> getAllAds();
 	public List<Annonce> getAllAdsByUser(Long userID);
 	public List<Annonce> getMatchingAds(String subject, String location);
-	
 	public List<Annonce> getFilteredAds(AnnonceFormBean afb);
+	
+	public FriendRequest getFriendRequest(Long reqID);
+	public void removeFriendRequest(FriendRequest fRequest);
 
 }

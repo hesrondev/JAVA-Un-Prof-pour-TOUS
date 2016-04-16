@@ -140,7 +140,7 @@
 															Lieu: ${item.location}<br>Matière(s):
 															${item.subject}<br> Tarif: ${item.costPerHour} €/h<br>Par:
 															<a href="${pageContext.request.contextPath}/profile/${item.user.id}">${item.user.firstName} ${item.user.lastName}</a>
-															<br>Date de publication
+															<br>Publiée le ${item.toStringDate()}
 														</p>
 													</td>
 												</tr>

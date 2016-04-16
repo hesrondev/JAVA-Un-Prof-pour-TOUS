@@ -3,6 +3,7 @@ package com.ingesup.labojava.dao;
 import java.util.List;
 
 import com.ingesup.labojava.bean.Annonce;
+import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
@@ -28,5 +29,6 @@ public interface UserDAO {
 	public List<Student> getAllStudents();
 	public List<Professor> getAllProfessors();
 	
-
+	public FriendRequest getFriendRequest(Long reqID);
+	public void removeFriendRequest(FriendRequest fRequest);
 }
