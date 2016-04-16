@@ -18,14 +18,16 @@
 
 		<table>
 			<tr>
-				<th>Utilisateur</th>
+				<th>Nom</th>
+				<th>Prénom</th>
 				<th>Action</th>
 			</tr>
 
 			<!-- Boucle -->
 			<c:forEach items="${userList}" var="item">
 				<tr>
-					<td>${item.firstName}${item.lastName}</td>
+					<td>${item.firstName}</td>
+					<td>${item.lastName}</td>
 
 					<!-- UTILISER UN FORMULAIRE CACHE ??? -->
 					<!-- Ne pas s'inviter soi même -->
@@ -41,7 +43,8 @@
 
 		<c:if test="${!empty user}">
 			<p>
-				<strong>Vous êtes connecté! Bonjour ${user.firstName}</strong>
+				<strong>Vous êtes connecté! Bonjour ${user.firstName}</strong><br>
+				<a href="${pageContext.request.contextPath}/logout">Se déconnecter</a>
 			</p>
 			<!-- LISTE DES DEMANDES D'AJOUTS -->
 			<h3>> Mes demandes d'ajouts</h3>

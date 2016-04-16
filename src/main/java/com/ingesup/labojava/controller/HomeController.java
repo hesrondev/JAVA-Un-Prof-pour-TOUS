@@ -33,20 +33,17 @@ public class HomeController {
 		this.userService = us;
 	}
 	
+	
+	/* Page d'accueil */
 
-	@RequestMapping(value="/", method = RequestMethod.GET)
+	@RequestMapping(value={"/", "/home**"}, method = RequestMethod.GET)
 	public String homePage(final Model model) {
 		
 		model.addAttribute("adBean", new AnnonceFormBean());
 		return "home";
 	}
 	
-	@RequestMapping(value="/home", method = RequestMethod.GET)
-	public String indexPage(final Model model) {
-		
-		model.addAttribute("adBean", new AnnonceFormBean());
-		return "home";
-	}
+	/* Page du GUIDE */
 	
 	@RequestMapping(value="/guide", method = RequestMethod.GET)
 	public String displayGuidePage() {
@@ -55,21 +52,7 @@ public class HomeController {
 	
 	
 	/**
-	 * Affichage de la page de status
-	 * */
-	
-	/*
-	@RequestMapping(value="/status-page", method = RequestMethod.GET)
-	public String displayStatusPage(@RequestParam("status") String status, final Model model) {
-			
-		model.addAttribute("status", status);
-		
-		return "statusPage";
-	} */
-	
-	/**
-	 * PAGE DE TEST
-	 * */
+	 * PAGE DE TEST * */
 	
 	@RequestMapping(value="/test-page")
 	public String displayTestPage(final Model model) {
@@ -78,9 +61,10 @@ public class HomeController {
 		return "test-page";
 	}
 	
+	
+	
 	/**
-	 * ENVOYER UNE DEMANDE
-	 * */
+	 * ENVOYER UNE DEMANDE * */
 	
 	@RequestMapping(value="/inviter/{senderID}_{receiverID}", method = RequestMethod.GET)
 	public String sendFriendRequest(@PathVariable("senderID") Long senderID, 
@@ -205,16 +189,14 @@ public class HomeController {
 		User contact = userService.getUser(cID);
 		User currentUser = userService.getUser(userID);
 		
-		/** VERIFIER QUE LA SESSION EST ACTIVE 
+		/** VERIFIER QUE LA SESSION EST ACTIVE  */
 		
 		if (currentUser == null || contact == null) {
-			model.addAttribute("status", "Utilisateur introuvable");
+			model.addAttribute("status", "Utilisateur introuvable!");
 			return "redirect:/statusPage";
 		}
 		
-		/* Utilisateurs trouvés 
-		
-		userService.removeContact(currentUser.getId(), contact.getId()); */
+		/* Utilisateurs trouvés */
 		
 		currentUser.removeFriend(contact.getId());
 		contact.removeFriend(currentUser.getId());

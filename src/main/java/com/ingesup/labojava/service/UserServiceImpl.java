@@ -121,13 +121,6 @@ public class UserServiceImpl implements UserService{
 	public void removeFriendRequest(FriendRequest fRequest) {
 		userDAO.removeFriendRequest(fRequest);		
 	}
-	@Override
-	public void removeContact(Long userID, Long contactID) {
-		userDAO.removeContact(userID, contactID);
-		
-	}
-
-	
 
 	
 	

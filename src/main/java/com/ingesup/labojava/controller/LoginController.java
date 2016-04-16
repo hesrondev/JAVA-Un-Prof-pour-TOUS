@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ingesup.labojava.bean.Professor;
@@ -85,6 +86,16 @@ public class LoginController {
 		mView.setViewName("login");
 		return mView;		
 
+	}
+	
+	/**
+	 * Deconnexion */
+	
+	@RequestMapping(value="/logout")
+	public String endSession(SessionStatus sessionStatus) {
+		
+		sessionStatus.setComplete();
+		return "redirect:/login";
 	}
 
 }
