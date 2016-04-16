@@ -1,5 +1,7 @@
 package com.ingesup.labojava.session;
 
+import java.util.Date;
+
 public class userSessionBean {
 	
 	/**
@@ -7,8 +9,11 @@ public class userSessionBean {
 	 * */
 	
 	private Long id;
+	private String type;
 	private String firstName;
 	private String lastName;
+	private Date inscriptionDate;
+	
 	
 
 }

@@ -338,4 +338,29 @@ public class UserDAOImpl implements UserDAO{
 		query.executeUpdate();
 	}
 
+
+	@Override
+	public int countUsers() {
+		Query query = entityManager.createQuery("from User user");
+		return query.getResultList().size();
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getLatestUsers(int max) {
+		Query query = entityManager.createQuery("from User user order by user.inscriptionDate desc");
+		query.setMaxResults(max);
+		return query.getResultList();
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Annonce> getLatestAnnonces(int max) {
+		Query query = entityManager.createQuery("from Annonce a order by a.date desc");
+		query.setMaxResults(max);
+		return query.getResultList();
+	}
+
 }

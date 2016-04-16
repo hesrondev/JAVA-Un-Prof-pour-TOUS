@@ -1,5 +1,7 @@
 package com.ingesup.labojava.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.AnnonceFormBean;
+import com.ingesup.labojava.form.Filter;
+import com.ingesup.labojava.form.FilterCategory;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
@@ -39,7 +43,26 @@ public class HomeController {
 	@RequestMapping(value={"/", "/home**"}, method = RequestMethod.GET)
 	public String homePage(final Model model) {
 		
+		/* CHARGEMENT DES BEANS */
+		
 		model.addAttribute("adBean", new AnnonceFormBean());
+		model.addAttribute("usersCount", userService.countUsers());
+		model.addAttribute("latestUsers", userService.getLatestUsers(10));
+		model.addAttribute("latestAnnonces", userService.getLatestAnnonces(5));
+		
+		/* afficher uniquement les filtres concernées */
+
+		List<Filter> allFilters = Utilities.createFilters(userService.getAllAds());
+		model.addAttribute("locationFilters", Utilities.getFiltersByCategory(allFilters, FilterCategory.LOCATION));
+		model.addAttribute("subjectFilters", Utilities.getFiltersByCategory(allFilters, FilterCategory.SUBJECT));
+		model.addAttribute("levelFilters", Utilities.getFiltersByCategory(allFilters, FilterCategory.LEVEL));
+		
+		
+		/* Initialiser les beans de sessions */
+		
+		
+		
+		
 		return "home";
 	}
 	

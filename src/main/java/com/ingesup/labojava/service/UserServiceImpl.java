@@ -121,6 +121,18 @@ public class UserServiceImpl implements UserService{
 	public void removeFriendRequest(FriendRequest fRequest) {
 		userDAO.removeFriendRequest(fRequest);		
 	}
+	@Override
+	public int countUsers() {
+		return userDAO.countUsers();
+	}
+	@Override
+	public List<User> getLatestUsers(int count) {
+		return userDAO.getLatestUsers(count);
+	}
+	@Override
+	public List<Annonce> getLatestAnnonces(int max) {
+		return userDAO.getLatestAnnonces(max);
+	}
 
 	
 	

@@ -21,6 +21,10 @@ public interface UserService {
 	public List<Student> getAllStudents();
 	public List<Professor> getAllProfessors();
 	
+	public int countUsers();
+	public List<User> getLatestUsers(int max);
+	public List<Annonce> getLatestAnnonces(int max);
+	
 	
 	public Annonce updateAnnonce(Annonce annonce);
 	public Annonce getAdById(Long ID);
