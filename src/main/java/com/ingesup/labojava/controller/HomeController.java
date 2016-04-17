@@ -78,7 +78,15 @@ public class HomeController {
 		return "test-page";
 	}
 	
+	/**
+	 * PAGE DE RESTRICTION */
 	
+	@RequestMapping(value="/restriction")
+	public String displayRestrictionPage(final Model model) {
+		
+		model.addAttribute("statusMessage", "visiter cette page");
+		return "restriction-page";
+	}
 	
 	
 }

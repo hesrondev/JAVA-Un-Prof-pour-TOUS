@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!-- 
 <link href="http://fonts.googleapis.com/css?family=Varela"
 	rel="stylesheet" />
 <link
@@ -10,27 +12,33 @@
 <link
 	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
 	rel="stylesheet" type="text/css" media="all" />
+	 -->
+
 <title>Page d'inscription</title>
 </head>
 <body>
 
-<!--  HEADER INCLUSION  -->
-		
-			<%@ include file="header.jsp"%>
-	
-	<div id="featured">	
-	<div class="container">
-		<h2>Inscription</h2>
-		<p>
-			Bienvenue sur Un Prof Pour Tous.</br> Veuillez remplir le formulaire
-			ci-dessous pour vous inscire : </br>
-		</p>
+	<!--  HEADER INCLUSION  -->
 
-		<%@ include file="forms/inscriptionForm.jsp"%>
+	<div>
+		<%@ include file="header.jsp"%>
 	</div>
+	<div>
+
+		<div>
+			<h2>Inscription</h2>
+			<p>
+				Bienvenue sur Un Prof Pour Tous.</br> Veuillez remplir le formulaire
+				ci-dessous pour vous inscire : </br>
+			</p>
+			<div>
+				<%@ include file="forms/inscriptionForm.jsp"%>
+			</div>
+		</div>
+
 	</div>
 	<!--  FOOTER INCLUSION  -->
-	<div id="copyright" class="container">
+	<div>
 		<div class="footer">
 			<%@ include file="footer.jsp"%>
 		</div>
