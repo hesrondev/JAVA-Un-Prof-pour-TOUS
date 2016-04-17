@@ -26,7 +26,7 @@
 	<br>
 	<c:if test="${!empty user}">
 		<h2>
-			<c:out value="Bonjour ${user.firstName}"></c:out>
+			<c:out value="Profile de: ${user.firstName}"></c:out>
 		</h2>
 	</c:if>
 	

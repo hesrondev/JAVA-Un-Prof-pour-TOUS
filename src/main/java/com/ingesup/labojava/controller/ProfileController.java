@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.WebRequest;
 
 import com.ingesup.labojava.bean.FriendRequest;
-import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
@@ -32,7 +30,7 @@ public class ProfileController {
 		this.userService = us;
 	}
 
-	
+	/* Profil privé */
 	
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
 	public String profilePage(WebRequest request, final Model model) {
@@ -46,6 +44,24 @@ public class ProfileController {
 			return "redirect:/login";
 	}
 	
+	/* Profil Public */
+	
+	@RequestMapping(value="profile/{userID}")
+	public String publicProfilePage(@PathVariable("userID") Long userID, final Model model) {
+		
+		User user = userService.getUser(userID);
+		
+		if (user == null) {
+			model.addAttribute("statusMessage", "Profile utilisateur introuvable!");
+			return "status-page";
+		}
+		
+		// Si trouvé
+		
+		model.addAttribute("user", user);
+		
+		return "profile-public";
+	}
 	
 
 	/**
@@ -89,6 +105,9 @@ public class ProfileController {
 		
 		return "redirect:/test-page";
 	}
+	
+	
+	
 	
 	/**
 	 * GESTION D'UNE DEMANDE ACCEPT - REFUSE

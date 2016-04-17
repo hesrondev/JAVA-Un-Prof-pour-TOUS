@@ -1,6 +1,5 @@
 package com.ingesup.labojava.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ingesup.labojava.bean.Professor;
-import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.LoginFormBean;
 import com.ingesup.labojava.service.UserService;
