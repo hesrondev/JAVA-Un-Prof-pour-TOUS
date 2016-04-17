@@ -30,7 +30,7 @@
 		<%@ include file="header.jsp"%>
 	</div>
 
-<div class="container">
+<div>
 
 	<!-- En tête de l'annonce -->
 	<br><br>

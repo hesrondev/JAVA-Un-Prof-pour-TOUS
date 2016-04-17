@@ -18,14 +18,17 @@
 <title>UPPT | Students Page</title>
 </head>
 <body>
-	<div id="bloc_page">
+	<div>
 
 		<!--  HEADER INCLUSION  -->
 		<div class="header">
 			<%@ include file="header.jsp"%>
 		</div>
-		<br><br>
-		<div class="container">
+		
+		<br>
+		
+		
+		<div>
 
 			<c:if test="${!empty listAnnonces}">
 				<h2>
@@ -34,23 +37,27 @@
 					<c:if test="${!empty location }"> à ${location}</c:if> 
 				</h2>
 			</c:if>
-
+			
+			<hr>
 
 			<!-- Formulaire de recherche  -->
 			<div>
 				<%@ include file="forms/adSearchForm.jsp"%>
 			</div>
+			
+			<br>
+			<hr>
 
-			<!--  Tableau d'annonces des élèves  -->
+			<!--  Tableau d'annonces  -->
 
 			<c:if test="${!empty listAnnonces}">
-
-				<table class=".table-wrapper">
-					<!-- Colonne filtre ******** -->
-
-					<tr>
-						<td valign="top">
-							<table>
+			
+				
+				<div>
+				
+					<!-- FILTRE -->
+					<div>
+						<table>
 								<tr>
 									<td><strong>Filtres:</strong></td>
 								</tr>
@@ -116,20 +123,20 @@
 								</tr>
 								</c:if>
 							</table>
-						</td>
-
-
-						<!-- Colonne LISTE RESULTATS -->
-						<td>
-							<table>
+					</div>
+				
+					<!-- RESULTS -->
+					<div>
+						<table>
 								<c:forEach items="${listAnnonces}" var="item">
+								
 									<!-- Element de la liste -->
 									<tr>
 										<td>
 											<table>
 												<!-- 1st line -->
 												<tr>
-													<td>
+													<td colspan="2">
 														<strong><a href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a></strong>
 													</td>
 												</tr>
@@ -137,9 +144,10 @@
 												<!-- 2nd line -->
 												<tr>
 													<!-- Description de l'annonce -->
-													<td valign="top" width="450">${item.description}</td>
+													<td>${item.description}</td>
+													
 													<!-- Infos -->
-													<td rowspan="2" valign="top">
+													<td>
 														<p>
 															Lieu: ${item.location}<br>Matière(s):
 															${item.subject}<br> Tarif: ${item.costPerHour} €/h<br>Par:
@@ -152,19 +160,35 @@
 										</td>
 									</tr>
 								</c:forEach>
-							</table>
-
-						</td>
-
-					</tr>
-
-				</table>
-
-
+							</table>					
+					</div>
+				</div>
 			</c:if>
 		</div>
+		
+		
+		<!-- Numérotation des pages -->
+		
+		<div></div>
+		
+		
+		<br>
+		
+		<div>
+			<h3>Publiez votre annonce dès maintenant!</h3>
+			<p>Cliquez sur le bouton et soyez visibles auprès des visiteurs</p>
+			<div>
+				<a href="${pageContext.request.contextPath}/annonces/create.html"><strong>Publier
+					une annonce</strong></a>
+			</div>
+		
+		</div>
+		
+		<br>
+		<hr>
+		
 		<!--  FOOTER INCLUSION  -->
-		<div class="footer">
+		<div>
 			<%@ include file="footer.jsp"%>
 		</div>
 
