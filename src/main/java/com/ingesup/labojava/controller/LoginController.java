@@ -1,5 +1,6 @@
 package com.ingesup.labojava.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ingesup.labojava.bean.Professor;
@@ -22,7 +24,7 @@ import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("currentUser")
 public class LoginController {
 
 	// Injection des services
@@ -34,14 +36,33 @@ public class LoginController {
 	public void setUserService(UserService us) {
 		this.userService = us;
 	}
+	
+	
+	@ModelAttribute("loginBean")
+	public LoginFormBean addLoginFormBean() {
+		return new LoginFormBean();
+	}
 
 	
 	// Affichage de la page de connexion d'un utilisateur
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginPage(final Model model) {
+	public String loginPage(WebRequest request, final Model model) {
 
-		model.addAttribute("loginBean", new LoginFormBean());
+		//model.addAttribute("loginBean", new LoginFormBean());
+		
+		
+		/* Vérifions que l'user n'est pas déjà connecté */
+		
+		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
+		
+		
+		/* Déjà connecté */
+		
+		if (currentUser != null) {
+			return "redirect:/profile";
+		}
+		
 		return "login";
 	}
 
@@ -73,7 +94,7 @@ public class LoginController {
 			
 			// Test si c'est un étudiant ou un professor pour le caster
 			
-			mView.addObject("user", user);
+			mView.addObject("currentUser", user);
 			mView.setViewName("redirect:/profile");
 			
 			return mView;

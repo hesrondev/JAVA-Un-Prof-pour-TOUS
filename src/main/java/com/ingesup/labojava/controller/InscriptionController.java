@@ -1,5 +1,6 @@
 package com.ingesup.labojava.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.request.WebRequest;
 
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.factory.UserFactory;
@@ -20,7 +22,7 @@ import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("currentUser")
 public class InscriptionController {
 
 	// Injection des services
@@ -32,14 +34,36 @@ public class InscriptionController {
 	public void setUserService(UserService us) {
 		this.userService = us;
 	}
+	
+	
+	/* INJECTION DES BEANS */
+	
+	@ModelAttribute("inscriptionBean")
+	public InscriptionFormBean addInscriptionFormBean() {
+		return new InscriptionFormBean();
+	}
+	
 
 	// Affichage de la page d'inscription
 
 	@RequestMapping(value = "/inscription", method = RequestMethod.GET)
-	public String inscriptionPage(final Model model) {
+	public String inscriptionPage(WebRequest request, final Model model) {
 
 		// Chargement du bean pour le formulaire d'inscription
-		model.addAttribute("inscriptionBean", new InscriptionFormBean());
+		// model.addAttribute("inscriptionBean", new InscriptionFormBean());
+		
+		
+		/* Vérifions que l'user n'est pas déjà connecté */
+		
+		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
+		
+		
+		/* Déjà connecté */
+		
+		if (currentUser != null) {
+			return "redirect:/profile";
+		}
+		
 		return "inscription";
 	}
 
@@ -83,8 +107,10 @@ public class InscriptionController {
 		
 		if (newUser != null)
 			userService.addUser(newUser);
+		
+		model.addAttribute("currentUser", newUser);
 
-		return "redirect:" + "/home";
+		return "redirect:" + "/profile";
 	}
 
 }

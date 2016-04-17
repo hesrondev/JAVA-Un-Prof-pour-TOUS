@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.request.WebRequest;
 
 import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.Professor;
@@ -16,11 +18,11 @@ import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("currentUser")
 public class ProfileController {
+
 	
-	
-/* INJECTION DE DEPENDANCES */
+	/* INJECTION DE DEPENDANCES */
 	
 	private UserService userService = new UserServiceImpl();
 
@@ -29,12 +31,21 @@ public class ProfileController {
 	public void setUserService(UserService us) {
 		this.userService = us;
 	}
+
+	
 	
 	@RequestMapping(value="/profile", method=RequestMethod.GET)
-	public String profilePage(final Model model) {
-
-		return "profile";
+	public String profilePage(WebRequest request, final Model model) {
+		
+		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
+		
+		if (currentUser != null)
+			return "private/profile-private";
+		
+		else
+			return "redirect:/login";
 	}
+	
 	
 
 	/**

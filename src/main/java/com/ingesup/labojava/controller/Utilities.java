@@ -10,6 +10,7 @@ import com.ingesup.labojava.form.FilterCategory;
 public class Utilities {
 	
 	
+	
 	/**
 	 * TRIS ET FILTRES
 	 */

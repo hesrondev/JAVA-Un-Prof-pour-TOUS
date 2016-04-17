@@ -28,8 +28,8 @@
 		<div>
 			<h2>Inscription</h2>
 			<p>
-				Bienvenue sur Un Prof Pour Tous.</br> Veuillez remplir le formulaire
-				ci-dessous pour vous inscire : </br>
+				Bienvenue sur Un Prof Pour Tous.<br> Veuillez remplir le formulaire
+				ci-dessous pour vous inscire : <br>
 			</p>
 			<div>
 				<%@ include file="forms/inscriptionForm.jsp"%>
