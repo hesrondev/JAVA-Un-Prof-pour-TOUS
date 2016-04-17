@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ingesup.labojava.bean.Annonce;
@@ -32,7 +33,7 @@ import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
 @RequestMapping("/annonces")
-@SessionAttributes("user")
+@SessionAttributes("currentUser")
 public class AnnonceController {
 
 	// List d'annonces
@@ -61,22 +62,11 @@ public class AnnonceController {
 
 	// Méthode POST d'une annonce
 
-	@RequestMapping(value = "create/{studentID}")
-	public ModelAndView createAdPost(@ModelAttribute("adBean") @Valid final AnnonceFormBean adFormBean,
-			@PathVariable(value = "studentID") Long studentID, final BindingResult bindingResult) {
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public ModelAndView createAdPost(WebRequest request,
+			@ModelAttribute("adBean") @Valid final AnnonceFormBean adFormBean, final BindingResult bindingResult) {
 
 		ModelAndView mView = new ModelAndView();
-
-		// Vérification de l'utilisateur
-
-		if (studentID == 0) {
-
-			String formStatus = "Vous n'êtes pas connecté! Connectez-vous pour publier une annonce.";
-
-			mView.addObject("formStatus", formStatus);
-			mView.setViewName("createAd");
-			return mView;
-		}
 
 		// S'il y'a des erreurs
 
@@ -89,31 +79,32 @@ public class AnnonceController {
 			return mView;
 		}
 
+		// Vérification de l'utilisateur
+
+		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
+
+		if (currentUser == null) {
+
+			String formStatus = "Vous n'êtes pas connecté! Connectez-vous pour publier une annonce.";
+
+			mView.addObject("notConnectedStatus", formStatus);
+			mView.setViewName("createAd");
+			return mView;
+		}
+
 		// Création de l'annonce
 
 		AnnonceFactory annonceFactory = new AnnonceFactory();
 		Annonce ad = annonceFactory.createAnnonce(adFormBean);
 
-		// On cherche l'utilisateur, on ajoute son annonce, on le met à jour
+		currentUser.addAnnonce(ad);
+		ad.setUser(currentUser);
 
-		User user = userService.getUser(studentID);
+		userService.updateUser(currentUser);
 
-		if (user != null) {
-			// si l'utilisateur est connecté, on lui ajoute l'annonce
-			// Mais on ajoute aussi l'utilisateur dans l'annonce
-			user.addAnnonce(ad);
-			ad.setUser(user);
-			userService.updateUser(user);
+		mView.addObject("currentUser", currentUser);
+		mView.setViewName("redirect:/profile");
 
-			mView.addObject("user", user);
-			mView.setViewName("redirect:/profile");
-
-			return mView;
-		}
-
-		String formStatus = "Utilisateur non trouvé!";
-		mView.addObject("formStatus", formStatus);
-		mView.setViewName("createAd");
 		return mView;
 	}
 
@@ -288,49 +279,47 @@ public class AnnonceController {
 		return "annonceApplication";
 
 	}
-	
-	
+
 	/**
 	 * 
 	 * POSTER la candidature
 	 */
-	
-	@RequestMapping(value="/candidater/{annonceID}", method = RequestMethod.POST)
-	public String postAnnonceAppication(@PathVariable("annonceID") Long annonceID, 
-			@ModelAttribute("AnnonceApplicationBean") @Valid AnnonceApplicationFormBean apb, 
+
+	@RequestMapping(value = "/candidater/{annonceID}", method = RequestMethod.POST)
+	public String postAnnonceAppication(@PathVariable("annonceID") Long annonceID,
+			@ModelAttribute("AnnonceApplicationBean") @Valid AnnonceApplicationFormBean apb,
 			final BindingResult bindingResult, final Model model) {
-		
+
 		if (bindingResult.hasErrors()) {
-			
+
 			model.addAttribute("ERRORS", "Vérifiez les champs des formulaires");
 			return "annonceApplication";
 		}
-		
+
 		/* Recherche Annonce */
-		
+
 		Annonce annonce = userService.getAdById(annonceID);
-		
+
 		if (annonce == null) {
 			model.addAttribute("status", "Annonce introuvable!");
 			return "statusPage";
 		}
-		
-		
+
 		/* Initialisation de la candidature */
 		AnnonceApplicationFactory apFactory = new AnnonceApplicationFactory();
 		AnnonceApplication annonceApplication = apFactory.createAnnonceApplication(annonce, apb);
-		
+
 		annonce.addApplication(annonceApplication);
 		annonce = userService.updateAnnonce(annonce);
-		
+
 		if (annonce != null) {
 			model.addAttribute("status", "Votre candidature a été envoyé avec succès!");
 			return "redirect:/statusPage";
-		}
-		else {
-			model.addAttribute("status", "Erreur! L'envoi de votre candidature a échoué. Veuillez réessayer plus tard!");
+		} else {
+			model.addAttribute("status",
+					"Erreur! L'envoi de votre candidature a échoué. Veuillez réessayer plus tard!");
 			return "redirect:/statusPage";
 		}
 	}
-	
+
 }

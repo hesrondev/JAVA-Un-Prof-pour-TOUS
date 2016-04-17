@@ -15,7 +15,7 @@
 	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
 	rel="stylesheet" type="text/css" media="all" />
  -->
- 
+
 <title>UPPT | Publier une annonce</title>
 </head>
 <body>
@@ -32,27 +32,43 @@
 		<!--  On passe l'ID de l'utilisateur en paramètre -->
 		<div>
 			<br>
+			<c:if test="${!empty notConnectedStatus}">
+
+				<div>
+					<c:out value="${notConnectedStatus}"></c:out>
+					<p>
+						<a href="${pageContext.request.contextPath}/inscription">S'inscrire</a>
+						<a href="${pageContext.request.contextPath}/login">Se
+							connecter</a>
+					</p>
+				</div>
+			</c:if>
+			
+			<br>
+			
 			<h3>Indiquez les informations de l'annonce à publier</h3>
 
 			<!--  Condition pour user ID, si vide alors userID = 0  -->
 
-			<c:set var="userID" value="${!empty user ? user.id : 0}" />
-
 			<!--  Formulaire -->
 
 			<form:form modelAttribute="adBean" method="POST"
-				action="${pageContext.request.contextPath}/annonces/create/${userID}">
+				action="${pageContext.request.contextPath}/annonces/create">
 
 				<table class="form">
+
+					<!-- Erreur FORM -->
+
 					<tr>
 						<td><c:out value="${formStatus}"></c:out></td>
 					</tr>
+
+
 					<tr>
-						<td>
-							<br>
+						<td><br>
 							<h3>Informations générales</h3>
-							<hr><br>
-						</td>
+							<hr>
+							<br></td>
 					</tr>
 					<tr>
 						<td><form:label path="title">Titre de l'annonce</form:label></td>
@@ -61,49 +77,44 @@
 						<td><form:input id="ad_title" name="title" path="title"
 								placeholder="Saisir le titre de l'annonce" /></td>
 					</tr>
-					
-					
+
+
 					<!-- LIEU -->
 					<tr>
 						<td><form:label path="location">Lieu</form:label></td>
 					</tr>
 					<tr>
-						<td>
-							<form:select path="location">
+						<td><form:select path="location">
 								<form:option value="paris">Paris</form:option>
 								<form:option value="massy">Massy</form:option>
 								<form:option value="versailles">Versailles</form:option>
-								
+
 								<!-- MAP KEY-VALUE A PARCOURIR !!! -->
-								
-							</form:select>
-						</td>
+
+							</form:select></td>
 					</tr>
-					
-					
+
+
 					<!-- Spécifications de la matière -->
-					
+
 					<tr>
-						<td>
-							<br>
-							<h3> A propos de la matière</h3>
-							<hr><br>
-						</td>
+						<td><br>
+							<h3>A propos de la matière</h3>
+							<hr>
+							<br></td>
 					</tr>
 					<tr>
 						<td><form:label path="subject">Matière</form:label></td>
 					</tr>
 
 					<tr>
-						<td>
-							<form:select path="subject">
+						<td><form:select path="subject">
 								<form:option value="litterature">Français - Littérature</form:option>
 								<form:option value="SES">Sciences économiques et sociales</form:option>
-								
+
 								<!-- MAP KEY-VALUE A PARCOURIR !!! -->
-								
-							</form:select>
-						</td>
+
+							</form:select></td>
 					</tr>
 
 					<tr>
@@ -111,14 +122,12 @@
 					</tr>
 
 					<tr>
-						<td>
-							<form:select path="level">
+						<td><form:select path="level">
 								<form:option value="primaire">Primaire</form:option>
 								<form:option value="college">Collège</form:option>
 								<form:option value="lycee">Lycée</form:option>
 								<form:option value="universite">Université</form:option>
-							</form:select>
-						</td>
+							</form:select></td>
 					</tr>
 
 					<tr>
@@ -129,22 +138,21 @@
 						<td><form:input id="ad_costPerHour" name="costPerHour"
 								path="costPerHour" placeholder="ex: Maths" /></td>
 					</tr>
-					
+
 
 					<tr>
-						<td>
-							<br>
+						<td><br>
 							<h3>Détails de votre annonce</h3>
-							<hr>
-						</td>
+							<hr></td>
 					</tr>
 					<tr>
 						<td><form:textarea id="ad_description" name="description"
 								path="description" placeholder="Détails de l'annonce" /></td>
 					</tr>
-					
+
 					<tr>
-						<td><form:checkbox id="ad_showPhone" name="showPhone" path="showPhoneNumber"/> <form:label path="showPhoneNumber">Afficher le numéro de téléphone?</form:label></td>
+						<td><form:checkbox id="ad_showPhone" name="showPhone"
+								path="showPhoneNumber" /> <form:label path="showPhoneNumber">Afficher le numéro de téléphone?</form:label></td>
 					</tr>
 
 					<tr>
