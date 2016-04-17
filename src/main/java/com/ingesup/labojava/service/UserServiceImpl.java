@@ -134,6 +134,11 @@ public class UserServiceImpl implements UserService{
 		return userDAO.getLatestAnnonces(max);
 	}
 
+	@Override
+	public List<User> getMatchingUsers(String[] splited, String status) {
+		return userDAO.getMatchingUsers(splited, status);
+	}
+
 	
 	
 }

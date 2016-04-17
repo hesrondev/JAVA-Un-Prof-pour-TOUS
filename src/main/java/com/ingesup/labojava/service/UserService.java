@@ -14,6 +14,7 @@ public interface UserService {
 	public void addUser(User user);
 	public User updateUser(User user);
 	public List<User> getAllUsers();
+	public List<User> getMatchingUsers(String[] splited, String status);
 	public User getUser(String email, String pass);
 	public User getUser(Long userID);
 	public void removeUser(Long userID);

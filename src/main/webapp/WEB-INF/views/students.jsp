@@ -21,40 +21,35 @@
 		<%@ include file="header.jsp"%>
 	</div>
 
-	<!--  Tableau des élèves  -->
-	<div class="container">
+	<div>
+		<%@ include file="forms/userSearchForm.jsp"%>
+	</div>
 
+	<hr>
+
+	<div>
 		<h2>Liste des élèves</h2>
 		<c:if test="${!empty listStudents}">
-			<table class="tg">
-				<tr>
-					<th>Student ID</th>
-					<th>FirstName</th>
-					<th>LastName</th>
-					<th>email</th>
-					<th>password</th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
-				<c:forEach items="${listStudents}" var="std">
+			<table>
+				<c:forEach items="${listStudents}" var="item">
 					<tr>
-						<td>${std.id}</td>
-						<td>${std.firstName}</td>
-						<td>${std.lastName}</td>
-						<td>${std.email}</td>
-						<td>${std.password}</td>
-						<td><a href="<c:url value='/edit/${std.id}' />">Edit</a></td>
-						<td><a href="<c:url value='/remove/${std.id}' />">Delete</a></td>
+						<td>${item.id}</td>
+						<td>${item.firstName}</td>
+						<td>${item.lastName}</td>
+						<td>${item.email}</td>
+						<td>${item.password}</td>
+						<td><a href="<c:url value='/edit/${item.id}' />">Edit</a></td>
+						<td><a href="<c:url value='/remove/${item.id}' />">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</c:if>
-
 	</div>
 
 	<!--  FOOTER INCLUSION  -->
 	<div class="footer">
 		<%@ include file="footer.jsp"%>
 	</div>
+
 </body>
 </html>

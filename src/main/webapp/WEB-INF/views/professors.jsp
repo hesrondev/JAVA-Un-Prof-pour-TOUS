@@ -11,7 +11,7 @@
 	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
 	rel="stylesheet" type="text/css" media="all" />
  -->
- 
+
 <title>UPPT | Professors Page</title>
 </head>
 <body>
@@ -21,20 +21,16 @@
 		<%@ include file="header.jsp"%>
 	</div>
 
-	<div class="container">
+	<div>
+		<%@ include file="forms/userSearchForm.jsp"%>
+	</div>
 
+	<hr>
+
+	<div>
 		<h2>Liste des professeurs</h2>
 		<c:if test="${!empty listProfessors}">
-			<table class="tg">
-				<tr>
-					<th>Professor ID</th>
-					<th>FirstName</th>
-					<th>LastName</th>
-					<th>email</th>
-					<th>password</th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
+			<table>
 				<c:forEach items="${listProfessors}" var="prof">
 					<tr>
 						<td>${prof.id}</td>
