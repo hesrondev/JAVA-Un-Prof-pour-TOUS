@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ingesup.labojava.bean.FriendRequest;
@@ -16,6 +18,7 @@ import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.AnnonceFormBean;
 import com.ingesup.labojava.form.Filter;
 import com.ingesup.labojava.form.FilterCategory;
+import com.ingesup.labojava.form.FriendRequestBean;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
@@ -23,7 +26,7 @@ import com.ingesup.labojava.service.UserServiceImpl;
  * Handles requests for the application home page.
  */
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("currentUser")
 public class HomeController {
 	
 	
@@ -36,6 +39,12 @@ public class HomeController {
 	public void setUserService(UserService us) {
 		this.userService = us;
 	}
+	
+	@ModelAttribute("requestBean")
+	public FriendRequestBean addFriendRequest() {
+		return new FriendRequestBean();
+	}
+	
 	
 	
 	/* Page d'accueil */
@@ -82,11 +91,23 @@ public class HomeController {
 	 * PAGE DE RESTRICTION */
 	
 	@RequestMapping(value="/restriction")
-	public String displayRestrictionPage(final Model model) {
+	public String displayRestrictionPage(@RequestParam(value="statusMessage", required=false) String statusPage, final Model model) {
 		
-		model.addAttribute("statusMessage", "visiter cette page");
+		String status = statusPage;
+		
+		if (status.isEmpty())
+			status = "visiter cette page";
+		
+		model.addAttribute("statusMessage", status);
 		return "restriction-page";
 	}
 	
+	@RequestMapping(value="/status-page")
+	public String displayStatusPage(@RequestParam("statusMessage") String statusMessage,
+			final Model model) {
+		
+		model.addAttribute("statusMessage", statusMessage);
+		return "status-page";
+	}
 	
 }

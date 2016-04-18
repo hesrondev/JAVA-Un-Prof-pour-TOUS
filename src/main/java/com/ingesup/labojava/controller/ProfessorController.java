@@ -19,7 +19,7 @@ import com.ingesup.labojava.service.UserService;
 
 @Controller
 @RequestMapping(value="/professors")
-@SessionAttributes("user")
+@SessionAttributes("currentUser")
 public class ProfessorController {
 	
 	// Injection

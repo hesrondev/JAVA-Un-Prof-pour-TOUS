@@ -20,7 +20,7 @@ import com.ingesup.labojava.service.UserService;
 
 @Controller
 @RequestMapping(value = "/students")
-@SessionAttributes("user")
+@SessionAttributes("currentUser")
 public class StudentController {
 
 	private UserService userService = new StudentServiceImpl();

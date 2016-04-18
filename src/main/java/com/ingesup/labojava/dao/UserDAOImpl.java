@@ -52,7 +52,8 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> getAllUsers() {
 
 		Query query = entityManager
-				.createQuery("select u from User u  left join fetch u.myFriends " + "left join fetch u.friendOf");
+				.createQuery("select u from User u left join fetch u.myFriends " + "left join fetch u.friendOf "
+						+ "left join fetch u.annonces " + "left join fetch u.friendRequests");
 		List<User> users = query.getResultList();
 
 		return users;
@@ -66,8 +67,10 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User getUser(String email, String pass) {
 
-		Query query = entityManager.createQuery("from User u left join fetch u.myFriends "
-				+ "left join fetch u.friendOf where u.email = :email AND u.password = :password");
+		Query query = entityManager.createQuery("from User u left join fetch u.myFriends " + "left join fetch u.friendOf "
+						+ "left join fetch u.annonces " + "left join fetch u.friendRequests " 
+						+ "where u.email = :email AND u.password = :password");
+		
 		query.setParameter("email", email);
 		query.setParameter("password", pass);
 
@@ -87,7 +90,9 @@ public class UserDAOImpl implements UserDAO {
 	public User getUser(Long userID) {
 
 		Query query = entityManager.createQuery(
-				"from User u  left join fetch u.myFriends " + "left join fetch u.friendOf where u.id = :id");
+				"from User u  left join fetch u.myFriends " + "left join fetch u.myFriends " + "left join fetch u.friendOf "
+						+ "left join fetch u.annonces " + "left join fetch u.friendRequests " 
+						+ "where u.id = :id");
 		query.setParameter("id", userID);
 
 		List<User> users = query.getResultList();

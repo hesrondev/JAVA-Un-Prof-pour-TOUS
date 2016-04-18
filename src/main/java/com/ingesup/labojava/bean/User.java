@@ -42,12 +42,12 @@ public abstract class User {
 
 	// Collections
 
-	protected List<Annonce> annonces = new ArrayList<Annonce>();
+	protected Set<Annonce> annonces = new HashSet<Annonce>();
 	protected Set<User> myFriends = new HashSet<User>();
 	protected Set<User> friendOf = new HashSet<User>();
 	
 	/* Listes des demandes: reçues et envoyées */
-	protected List<FriendRequest> friendRequests = new ArrayList<FriendRequest>();
+	protected Set<FriendRequest> friendRequests = new HashSet<FriendRequest>();
 		
 
 	public User() {
@@ -68,25 +68,85 @@ public abstract class User {
 		annonces.add(ad);
 	}
 	
+	public void removeAnnonce(Annonce ad) {
+		
+		for (Iterator<Annonce> iterator = annonces.iterator(); iterator.hasNext();) {
+		    Annonce annonce = iterator.next();
+		    if (annonce.getId() == ad.getId())
+		    	iterator.remove();
+		}
+	}
+	
+	// Add friend request
+	
 	public void addFriendRequest(FriendRequest fRequest) {
 		friendRequests.add(fRequest);
 	}
 	
-	public void removeFriendRequest(FriendRequest fReq) {
+	/*
+	 * Supprime un une requête
+	 * Renvoie vrai si "trouvé et supprimé
+	 * Renvoie faux si non trouvé
+	 * */
+	public boolean removeFriendRequest(FriendRequest req) {
 		
-		for (FriendRequest fr : friendRequests) 
-			if (fr.equals(fReq))
-				friendRequests.remove(fr);
+		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
+		    FriendRequest fr = iterator.next();
+			
+			if(fr.getReceiverID() == req.getReceiverID() && fr.getSenderID() == req.getSenderID())
+			{
+				System.out.println("Suppression de la requete " +fr.getId()+ " par " +firstName);
+				iterator.remove();
+				return true;
+			}
+		}
+
+		return false;
 	}
 	
 	
-	/**
-	 * PROVISOIRE!!! Supprime la requête envoyée */
-	public void removeSentFriendRequest(FriendRequest req) {
+	// Récupérer une requête
+	
+	public FriendRequest getFriendRequest(Long id) {
 		
-		for (FriendRequest fr : friendRequests) 
-			if (fr.isSent() && fr.getReceiverID() == req.getReceiverID() && fr.getSenderID() == req.getSenderID())
-				friendRequests.remove(fr);
+		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
+		    FriendRequest fr = iterator.next();
+			if (fr.getId() == id)
+				return fr;
+		}
+		
+		return null;		
+	}
+	
+	
+	// Vérifie si le requête existe déjà
+	
+	// Vérifie si je n'ai pas déjà invité un ami / si on ne m'a pas déjà invité
+	// Renvoie l'ID de la requête
+	
+	public Long hasRequestedFriend(Long friendID) {
+		
+		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
+		    FriendRequest fr = iterator.next();
+			if (fr.getReceiverID() == friendID)
+				return fr.getId();
+		}
+		
+		return -1L;
+	}
+	
+	// Vérifie si je n'ai pas déjà invité un ami / si on ne m'a pas déjà invité
+	// Renvoie l'ID de la requête
+	
+	public Long hasBeenRequestedByFriend(Long friendID) {
+		
+		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
+		    FriendRequest fr = iterator.next();
+			if (fr.getSenderID() == friendID)
+				return fr.getId();
+		}
+		
+		return -1L;
 	}
 	
 	// ADD a friend
@@ -96,17 +156,39 @@ public abstract class User {
 	}
 	
 	public void addFriendOf(User user) {
+		friendOf.add(user);
+	}
+	
+	// Récupère un ami
+	
+	public User getFriend(Long id) {
 		
+		for (Iterator<User> iterator = myFriends.iterator(); iterator.hasNext();) {
+		    User s = iterator.next();
+		    if (s.getId() == id) {
+		        return s;
+		    }       
+		}
+		
+		return null;
 	}
 
-	public void removeFriend(Long userID) {
+	/*
+	 * Supprime un ami
+	 * Renvoie vrai si "trouvé et supprimé
+	 * Renvoie faux si non trouvé
+	 * */
+	public boolean removeFriend(Long userID) {
 		
 		for (Iterator<User> iterator = myFriends.iterator(); iterator.hasNext();) {
 		    User s = iterator.next();
 		    if (s.getId() == userID) {
 		        iterator.remove();
+		        return true;
 		    }       
 		}
+		
+		return false;
 	}
 	
 	/*
@@ -163,12 +245,12 @@ public abstract class User {
 	
 	/* LIST of annonces */
 
-	@OneToMany(mappedBy="user", targetEntity=Annonce.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	public List<Annonce> getAnnonces() {
+	@OneToMany(mappedBy="user", targetEntity=Annonce.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public Set<Annonce> getAnnonces() {
 		return annonces;
 	}
 
-	public void setAnnonces(List<Annonce> annonces) {
+	public void setAnnonces(Set<Annonce> annonces) {
 		this.annonces = annonces;
 	}
 	
@@ -276,13 +358,41 @@ public abstract class User {
 	
 	/* Friend Requests */
 	
-	@OneToMany(mappedBy="user", targetEntity=FriendRequest.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	public List<FriendRequest> getFriendRequests() {
+	@OneToMany(mappedBy="user", targetEntity=FriendRequest.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	public Set<FriendRequest> getFriendRequests() {
 		return friendRequests;
 	}
 
-	public void setFriendRequests(List<FriendRequest> myFriendRequests) {
+	public void setFriendRequests(Set<FriendRequest> myFriendRequests) {
 		this.friendRequests = myFriendRequests;
+	}
+	
+	
+	
+	// Equals AND hASH
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+
+		User other = (User) obj;
+		
+		if (id == other.id && email == other.email)
+			return true;
+		
+		else
+			return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
 	}
 	
 }

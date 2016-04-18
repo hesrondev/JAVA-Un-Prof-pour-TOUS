@@ -286,14 +286,17 @@ public class AnnonceController {
 	 */
 
 	@RequestMapping(value = "/candidater/{annonceID}", method = RequestMethod.POST)
-	public String postAnnonceAppication(@PathVariable("annonceID") Long annonceID,
+	public ModelAndView postAnnonceAppication(@PathVariable("annonceID") Long annonceID,
 			@ModelAttribute("AnnonceApplicationBean") @Valid AnnonceApplicationFormBean apb,
-			final BindingResult bindingResult, final Model model) {
-
+			final BindingResult bindingResult) {
+		
+		ModelAndView model = new ModelAndView();
+		
 		if (bindingResult.hasErrors()) {
 
-			model.addAttribute("ERRORS", "Vérifiez les champs des formulaires");
-			return "annonceApplication";
+			model.addObject("ERRORS", "Vérifiez les champs des formulaires");
+			model.setViewName("annonceApplication");
+			return model;
 		}
 
 		/* Recherche Annonce */
@@ -301,8 +304,9 @@ public class AnnonceController {
 		Annonce annonce = userService.getAdById(annonceID);
 
 		if (annonce == null) {
-			model.addAttribute("status", "Annonce introuvable!");
-			return "statusPage";
+			model.addObject("statusMessage", "Annonce introuvable!");
+			model.setViewName("status-page");
+			return model;
 		}
 
 		/* Initialisation de la candidature */
@@ -312,14 +316,18 @@ public class AnnonceController {
 		annonce.addApplication(annonceApplication);
 		annonce = userService.updateAnnonce(annonce);
 
+		String status = "";
+		
 		if (annonce != null) {
-			model.addAttribute("status", "Votre candidature a été envoyé avec succès!");
-			return "redirect:/statusPage";
+			status = "Votre candidature a été envoyé avec succès!";
+			
 		} else {
-			model.addAttribute("status",
-					"Erreur! L'envoi de votre candidature a échoué. Veuillez réessayer plus tard!");
-			return "redirect:/statusPage";
+			status = "Erreur! L'envoi de votre candidature a échoué. Veuillez réessayer plus tard!";
 		}
+		
+		model.addObject("statusMessage", status);
+		model.setViewName("redirect:/status-page");	
+		return model;
 	}
 
 }

@@ -67,22 +67,15 @@ public class FriendRequest implements Serializable {
 
 		FriendRequest other = (FriendRequest) obj;
 		
-		if (user.getId() != other.getUser().getId())
-			return false;
-		if (senderID != other.getSenderID())
-			return false;
-		if (receiverID != other.getReceiverID())
-			return false;
-		if (received != other.isReceived())
-			return false;
-		if (sent != other.isSent())
-			return false;
+		if (id == other.id && senderID == other.senderID && receiverID == other.receiverID)
+			return true;
 		
-		return true;
+		else
+			return false;
 	}
 	
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID", nullable = false)
 	public User getUser() {
 		return user;

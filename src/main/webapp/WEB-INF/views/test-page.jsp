@@ -31,19 +31,63 @@
 
 					<!-- UTILISER UN FORMULAIRE CACHE ??? -->
 					<!-- Ne pas s'inviter soi même -->
-					<c:if test="${item.id != user.id}">
-						<td><a
-							href="${pageContext.request.contextPath}/inviter/${user.id}_${item.id}">INVITER</a></td>
-					</c:if>
+					
+					<c:choose>
+					
+						<c:when test="${item.id == currentUser.id || currentUser.hasBeenRequestedByFriend(item.id) > -1}">
+							<td>
+								<!-- CAS OU JE NE PEUX RIEN FAIRE -->
+								BEAU GOSS!
+							</td>
+						</c:when>						
+						<c:when test="${currentUser.getFriend(item.id) != null}">
+							<td>
+							<!--  CAS OU JE PEUX SUPPRIMER -->
+							<!-- BOUTON SUPPRIMER -->
+							<!-- UN AUTRE FORMULAIRE ICI !!! -->
+							->SUPPRIMER BOUTON
+							</td>
+						</c:when>
+						
+						
+						<c:when test="${currentUser.hasRequestedFriend(item.id) > -1}">
+							<td>
+							<!-- BOUTON ANNULER -->
+							<!-- CAS OU JE PEUX ANNULER -->
+							<div>
+								<c:set var="action" value="cancel"></c:set>
+								<c:set var="requestID" value="${currentUser.hasRequestedFriend(item.id)}"></c:set>
+								<c:set var="senderID" value="${currentUser.id}"></c:set>
+								<c:set var="receiverID" value="${item.id}"></c:set>
+								<%@ include file="forms/generic-request-hidden-form.jsp"%>
+							</div>
+						</td>
+						</c:when>
+						
+						
+						<c:otherwise>
+							<td>
+							<!-- CAS OU JE PEUX AJOUTER -->
+							<!-- BOUTON AJOUTER -->
+							<div>
+								<c:set var="action" value="add"></c:set>
+								<c:set var="requestID" value="${0}"></c:set>
+								<c:set var="senderID" value="${currentUser.id}"></c:set>
+								<c:set var="receiverID" value="${item.id}"></c:set>
+								<%@ include file="forms/generic-request-hidden-form.jsp"%>
+							</div>
+						</td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 			</c:forEach>
 		</table>
 
 		<!-- ESPACE USER -->
 
-		<c:if test="${!empty user}">
+		<c:if test="${!empty currentUser}">
 			<p>
-				<strong>Vous êtes connecté! Bonjour ${user.firstName}</strong><br>
+				<strong>Vous êtes connecté! Bonjour ${currentUser.firstName}</strong><br>
 				<a href="${pageContext.request.contextPath}/logout">Se déconnecter</a>
 			</p>
 			<!-- LISTE DES DEMANDES D'AJOUTS -->
@@ -56,14 +100,28 @@
 				</tr>
 
 				<!-- Boucle -->
-				<c:forEach items="${user.friendRequests}" var="item">
+				<c:forEach items="${currentUser.friendRequests}" var="item">
 					<c:if test="${item.received}">
 						<tr>
 							<td>${item.senderName}</td>
-							<td><a
-								href="${pageContext.request.contextPath}/friend-request:accept/${item.id}">ACCEPTER</a>
-								<a
-								href="${pageContext.request.contextPath}/friend-request:refuse/${item.id}">REFUSER</a>
+							<td>
+								<!-- BOUTON ACCEPT -->
+								<div>
+									<c:set var="action" value="accept"></c:set>
+									<c:set var="requestID" value="${item.id}"></c:set>
+									<c:set var="senderID" value="${item.senderID}"></c:set>
+									<c:set var="receiverID" value="${item.senderID}"></c:set>
+									<%@ include file="forms/generic-request-hidden-form.jsp"%>
+								</div>
+								
+								<!-- BOUTON REFUSE -->
+								<div>
+									<c:set var="action" value="refuse"></c:set>
+									<c:set var="requestID" value="${item.id}"></c:set>
+									<c:set var="senderID" value="${item.senderID}"></c:set>
+									<c:set var="receiverID" value="${item.senderID}"></c:set>
+									<%@ include file="forms/generic-request-hidden-form.jsp"%>
+								</div>
 							</td>
 						</tr>
 					</c:if>
@@ -80,13 +138,23 @@
 				</tr>
 
 				<!-- Boucle -->
-				<c:forEach items="${user.friendRequests}" var="item">
+				<c:forEach items="${currentUser.friendRequests}" var="item">
 					<c:if test="${item.sent}">
 						<tr>
-							<td>${item.receiverID}</td>
-							<td><a
-								href="${pageContext.request.contextPath}/friend-request:accept/${item.receiverName}">ANNULER</a>
+							<td>${item.receiverName}</td>
+							
+							<!-- BOUTON ANNULER -->
+							<td>
+								<div class="header">
+									<c:set var="action" value="cancel"></c:set>
+									<c:set var="requestID" value="${item.id}"></c:set>
+									<c:set var="senderID" value="${item.senderID}"></c:set>
+									<c:set var="receiverID" value="${item.senderID}"></c:set>
+									<%@ include file="forms/generic-request-hidden-form.jsp"%>
+								</div>
 							</td>
+							
+							
 						</tr>
 					</c:if>
 				</c:forEach>
@@ -99,7 +167,7 @@
 					<th>Action</th>
 				</tr>
 				<!-- Boucle -->
-				<c:forEach items="${user.myFriends}" var="item">
+				<c:forEach items="${currentUser.myFriends}" var="item">
 					<tr>
 						<td>${item.firstName} ${item.lastName}</td>
 						<td><a
