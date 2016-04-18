@@ -58,6 +58,11 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+	public User getUser(String email) {
+		return userDAO.getUser(email);
+	}
+	
+	@Override
 	public User getUser(Long userID) {
 		return userDAO.getUser(userID);
 	}

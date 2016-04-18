@@ -258,6 +258,11 @@ public class AnnonceController {
 	/**
 	 * Afficher la page de candidature
 	 */
+	
+	@ModelAttribute("annonceApplicationBean")
+	public AnnonceApplicationFormBean addAnnonceApplicationBean() {
+		return new AnnonceApplicationFormBean();
+	}
 
 	@RequestMapping(value = "/candidater/{annonceID}", method = RequestMethod.GET)
 	public String displayAnnonceApplicationPage(@PathVariable("annonceID") Long annonceID, final Model model) {
@@ -273,7 +278,6 @@ public class AnnonceController {
 
 		/* Bean */
 
-		model.addAttribute("annonceApplicationBean", new AnnonceApplication());
 		model.addAttribute("annonce", annonce);
 
 		return "annonceApplication";
@@ -298,6 +302,7 @@ public class AnnonceController {
 			model.setViewName("annonceApplication");
 			return model;
 		}
+		
 
 		/* Recherche Annonce */
 
@@ -308,11 +313,21 @@ public class AnnonceController {
 			model.setViewName("status-page");
 			return model;
 		}
-
+		
+		
 		/* Initialisation de la candidature */
 		AnnonceApplicationFactory apFactory = new AnnonceApplicationFactory();
 		AnnonceApplication annonceApplication = apFactory.createAnnonceApplication(annonce, apb);
 
+		/* Vérifions si le mail n'a pas déjà été utilisé */
+		
+		if (annonce.hasAlreadyApplied(annonceApplication)) {
+			model.addObject("ERRORS", "Cette adresse mail a déjà été utilisée!");
+			model.setViewName("annonceApplication");
+			return model;
+		}
+		
+		
 		annonce.addApplication(annonceApplication);
 		annonce = userService.updateAnnonce(annonce);
 

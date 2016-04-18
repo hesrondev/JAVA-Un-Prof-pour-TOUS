@@ -4,6 +4,13 @@
 		action="${pageContext.request.contextPath}/annonces/candidater/${annonce.id}">
 
 		<table>
+		
+			<tr>
+				<td>
+					<form:label path=""><c:out value="${ERRORS}"></c:out></form:label>
+				</td>
+			</tr>
+		
 			<!-- FIRSTNAME -->
 			<tr>
 				<td><form:label path="firstName">Prénom: *</form:label></td>
@@ -31,14 +38,14 @@
 						value="${userEmail}" /></td>
 			</tr>
 
-			<!-- PHONE 
-				<tr>
-					<td><form:label path="phoneNumber">Téléphone:</form:label></td>
-				</tr>
-				<tr>
-					<td> <form:input id="ad_app_phone" name="phoneNumber" path="phoneNumber"
-							value="${userPhoneNumber}" /></td>
-				</tr>-->
+
+			<tr>
+				<td><form:label path="phoneNumber">Téléphone:</form:label></td>
+			</tr>
+			<tr>
+				<td><form:input id="ad_app_phone" name="phoneNumber"
+						path="phoneNumber" value="${userPhoneNumber}" /></td>
+			</tr>
 
 			<!-- MESSAGE -->
 			<tr>

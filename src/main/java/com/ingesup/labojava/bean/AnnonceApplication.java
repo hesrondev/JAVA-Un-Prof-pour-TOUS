@@ -11,9 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ANNONCE_APPLICATION")
+@Table(name = "ANNONCE_APPLICATION")
 public class AnnonceApplication {
-	
+
 	private Long id;
 	private String firstName;
 	private String lastName;
@@ -21,10 +21,9 @@ public class AnnonceApplication {
 	private String phoneNumber;
 	private String message;
 	private Annonce annonce;
-	
-	
+
 	/* Constructors */
-	
+
 	public AnnonceApplication() {
 		firstName = "";
 		lastName = "";
@@ -32,7 +31,7 @@ public class AnnonceApplication {
 		phoneNumber = "";
 		message = "";
 	}
-	
+
 	public AnnonceApplication(Annonce annonce, String fname, String lname, String em, String phone, String msg) {
 		this.annonce = annonce;
 		firstName = fname;
@@ -41,30 +40,30 @@ public class AnnonceApplication {
 		phoneNumber = phone;
 		message = msg;
 	}
-	
+
 	/* Getters and Setters */
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ANNONCE_APPLICATION_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ANNONCE_APPLICATION_ID")
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	@Column(name="USER_FIRSTNAME")
+
+	@Column(name = "USER_FIRSTNAME")
 	public String getFirstName() {
 		return firstName;
 	}
-	
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	@Column(name="USER_LASTNAME")
+	@Column(name = "USER_LASTNAME")
 	public String getLastName() {
 		return lastName;
 	}
@@ -73,8 +72,7 @@ public class AnnonceApplication {
 		this.lastName = lastName;
 	}
 
-
-	@Column(name="USER_EMAIL")
+	@Column(name = "USER_EMAIL")
 	public String getEmail() {
 		return email;
 	}
@@ -83,7 +81,7 @@ public class AnnonceApplication {
 		this.email = email;
 	}
 
-	@Column(name="USER_PHONE_NUMBER")
+	@Column(name = "USER_PHONE_NUMBER")
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -92,7 +90,7 @@ public class AnnonceApplication {
 		this.phoneNumber = phoneNumber;
 	}
 
-	@Column(name="MESSAGE")
+	@Column(name = "MESSAGE")
 	public String getMessage() {
 		return message;
 	}
@@ -100,9 +98,9 @@ public class AnnonceApplication {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="ANNONCE_ID", nullable = false)
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ANNONCE_ID", nullable = false)
 	public Annonce getAnnonce() {
 		return annonce;
 	}
@@ -111,7 +109,30 @@ public class AnnonceApplication {
 		this.annonce = annonce;
 	}
 
-	
-	
+	// EQUALS & HASH METHODS
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+
+		AnnonceApplication other = (AnnonceApplication) obj;
+		
+		if (id == other.id && email == other.email)
+			return true;
+		
+		else
+			return false;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
 
 }

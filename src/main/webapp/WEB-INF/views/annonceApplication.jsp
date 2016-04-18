@@ -25,7 +25,7 @@
 			<c:set var="userFirstName" value=""></c:set>
 			<c:set var="userLastName" value=""></c:set>
 			<c:set var="userEmail" value=""></c:set>
-			<!--<c:set var="userPhoneNumber" value=""></c:set>-->
+			<c:set var="userPhoneNumber" value=""></c:set>
 
 		</c:when>
 		<c:otherwise>
@@ -33,7 +33,7 @@
 			<c:set var="userFirstName" value="${user.firstName}"></c:set>
 			<c:set var="userLastName" value="${user.lastName}"></c:set>
 			<c:set var="userEmail" value="${user.email}"></c:set>
-			<!--<c:set var="userPhoneNumer" value="${user.phoneNumber}"></c:set>-->
+			<c:set var="userPhoneNumer" value="${user.phoneNumber}"></c:set>
 
 		</c:otherwise>
 	</c:choose>
@@ -50,12 +50,12 @@
 		<c:if test="${!empty annonce}">
 			<h1>${annonce.title}</h1>
 		</c:if>
-		<p>Votre candidature va être envoyée à l'annonceur. Ce dernier,
-			s'il le souhaite, vous contactera après avoir reçu votre candidature.</p>
+		<p>Votre candidature va être envoyée à l'annonceur</p>
 
 		<!-- Si pas connecté, on propose l'inscription -->
-		<c:if test="${empty user}">
-			<p>Pas encore inscrit? Inscrivez-vous</p>
+		<c:if test="${empty currentUser}">
+			<p>Pas encore inscrit? <a href="${pageContext.request.contextPath}/inscription">Inscrivez-vous</a></p>
+			<p>Déjà membre? <a href="${pageContext.request.contextPath}/login">Connectez-vous</a></p>
 		</c:if>
 	</div>
 
@@ -64,9 +64,9 @@
 		<h2>Renseignez vos coordonnées</h2>
 		<p>Les champs (*) sont obligatoires</p>
 
-		<br>
-		
-		<%@ include file="forms/annonceApplicationForm.jsp"%>
+		<div>
+			<%@ include file="forms/annonceApplicationForm.jsp"%>
+		</div>
 
 	</div>
 	

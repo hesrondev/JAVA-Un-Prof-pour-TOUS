@@ -44,8 +44,18 @@
 		
 		<!--  Contact de l'annonceur -->
 		<div>
-			<h3>${fn:length(annonce.applications)} Candidatures</h3>
-			<p>Comparez vous aux autres candidats</p>
+			<c:set var="listSize" value="${fn:length(annonce.applications)}"></c:set>
+			<c:choose>
+				<c:when test="${listSize == 0}">
+					<h3>Candidatures</h3>
+					<p>Soyez le premier à candidater pour cette annonce</p>
+				</c:when>
+				<c:otherwise>
+					<h3>${listSize} Candidature<c:if test="${listSize > 1}">s</c:if></h3>
+					<p>Comparez vous aux autres candidats</p>				
+				</c:otherwise>			
+			</c:choose>
+		
 			<p><strong><a href="${pageContext.request.contextPath}/annonces/candidater/${annonce.id}">Candidater à l'annonce</a></strong></p>
 		</div>
 		

@@ -81,6 +81,28 @@ public class UserDAOImpl implements UserDAO {
 
 		return users.get(0);
 	}
+	
+	
+	// FIND BY MAIL
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public User getUser(String email) {
+
+		Query query = entityManager.createQuery("from User u left join fetch u.myFriends " + "left join fetch u.friendOf "
+						+ "left join fetch u.annonces " + "left join fetch u.friendRequests " 
+						+ "where u.email = :email");
+		
+		query.setParameter("email", email);
+
+		List<User> users = query.getResultList();
+
+		if (users.isEmpty())
+			return null;
+
+		return users.get(0);
+	}
+	
 
 	/*
 	 * Get an user by id
@@ -192,7 +214,7 @@ public class UserDAOImpl implements UserDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Annonce getAdById(Long ID) {
-		Query query = entityManager.createQuery("from Annonce a where a.id = :ID");
+		Query query = entityManager.createQuery("from Annonce a " + "left join fetch a.applications " + "where a.id = :ID");
 		query.setParameter("ID", ID);
 
 		List<Annonce> annonces = query.getResultList();

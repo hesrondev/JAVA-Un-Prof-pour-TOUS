@@ -17,6 +17,7 @@ public interface UserDAO {
 	public List<User> getAllUsers();
 	public List<User> getMatchingUsers(String[] splited, String status);
 	public User getUser(String email, String pass);
+	public User getUser(String email);
 	public User getUser(Long userID);
 	public void removeUser(Long userID);
 	

@@ -92,6 +92,17 @@ public class InscriptionController {
 			return "inscription";
 		}
 
+		/* On vérifie le mail */
+		
+		User user = userService.getUser(iFormBean.getEmail());
+			
+		if (user != null) {
+			userStatus = "Ce mail est déjà utilisé!";
+			model.addAttribute("userStatus", userStatus);
+			return "inscription";			
+		}
+		
+		
 		
 		// Factoring user
 		

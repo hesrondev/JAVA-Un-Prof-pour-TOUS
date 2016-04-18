@@ -81,7 +81,7 @@
 						<!-- Table inside a column -->
 						<table>
 							<tr>
-								<td><a href="${pageContext.request.contextPath}/annonces/${item.id}"></a>${item.title}</td>
+								<td><a href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a></td>
 							</tr>
 							<tr>
 								<td>${item.location} &#8226 ${item.toStringDate()}</td>

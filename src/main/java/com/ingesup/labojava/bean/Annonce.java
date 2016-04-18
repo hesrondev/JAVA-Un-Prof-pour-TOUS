@@ -4,7 +4,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,7 +40,7 @@ public class Annonce{
 	
 	// Collections
 	
-	private List<AnnonceApplication> applications = new ArrayList<AnnonceApplication>();
+	private Set<AnnonceApplication> applications = new HashSet<AnnonceApplication>();
 	
 	/*
 	 * Constructor
@@ -55,6 +58,33 @@ public class Annonce{
 		DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
 		return dateFormat.format(date);
 	}
+	
+	/* Récupère une candidature */
+	public AnnonceApplication getAnnonceApplication(AnnonceApplication ap) {
+		
+		for (Iterator<AnnonceApplication> iterator = applications.iterator(); iterator.hasNext();) {
+		    AnnonceApplication a = iterator.next();
+		    if (ap.getId() == a.getId())
+		    	return a;
+		}
+		
+		return null;
+	}
+	
+	/* Vérifie qu'on a pas déjà envoyé ue candidature*/
+	
+	public boolean hasAlreadyApplied(AnnonceApplication ap) {
+		
+		for (Iterator<AnnonceApplication> iterator = applications.iterator(); iterator.hasNext();) {
+		    AnnonceApplication a = iterator.next();
+		    if (ap.getEmail().equals(a.getEmail()))
+		    	return true;
+		}
+		
+		return false;
+	}
+	
+	
 	
 	/*
 	 * ToString
@@ -154,13 +184,13 @@ public class Annonce{
 		this.user = user;
 	}
 
-	@OneToMany(mappedBy="annonce", targetEntity=AnnonceApplication.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	public List<AnnonceApplication> getApplications() {
+	@OneToMany(mappedBy="annonce", targetEntity=AnnonceApplication.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	public Set<AnnonceApplication> getApplications() {
 		return applications;
 	}
 
 
-	public void setApplications(List<AnnonceApplication> applications) {
+	public void setApplications(Set<AnnonceApplication> applications) {
 		this.applications = applications;
 	}
 	
@@ -182,4 +212,31 @@ public class Annonce{
 		this.date = date;
 	}
 
+	
+	
+	// EQUALS & HASH METHODS
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+
+		Annonce other = (Annonce) obj;
+		
+		if (id == other.id)
+			return true;
+		
+		else
+			return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
 }
