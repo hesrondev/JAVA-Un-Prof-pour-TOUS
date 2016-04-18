@@ -44,11 +44,15 @@
 							<td>
 							<!--  CAS OU JE PEUX SUPPRIMER -->
 							<!-- BOUTON SUPPRIMER -->
-							<!-- UN AUTRE FORMULAIRE ICI !!! -->
-							->SUPPRIMER BOUTON
+							<div>
+								<c:set var="action" value="delete"></c:set>
+								<c:set var="requestID" value="${0}"></c:set>
+								<c:set var="senderID" value="${currentUser.id}"></c:set>
+								<c:set var="receiverID" value="${item.id}"></c:set>
+								<%@ include file="forms/generic-request-hidden-form.jsp"%>
+							</div>
 							</td>
 						</c:when>
-						
 						
 						<c:when test="${currentUser.hasRequestedFriend(item.id) > -1}">
 							<td>

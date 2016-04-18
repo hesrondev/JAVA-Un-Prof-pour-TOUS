@@ -1,5 +1,5 @@
 <!-- FORMULAIRE CACHE 
-	 VARIABLE ${action} OBLIGATOIRE avec les valeurs: 'add' - 'cancel' - 'accept' ou 'refuse'
+	 VARIABLE ${action} OBLIGATOIRE avec les valeurs: 'add' - 'cancel' - 'accept' - 'refuse' ou 'delete'
 	 
 	 IL EST NECESSAIRE DE DEFINIR LES VARIABLES AVANT D'inclure le formulaire
 	  -->
@@ -12,7 +12,7 @@
 	<form:hidden path="id" value="${requestID}" />
 	<form:hidden path="senderID" value="${senderID}" />
 	<form:hidden path="receiverID" value="${receiverID}" />
-	<form:hidden path="response" value="${action}" />
+	<form:hidden path="action" value="${action}" />
 	
 	<c:if test="${action == 'add'}">
 		<input type="submit" value="AJOUTER" />
@@ -29,4 +29,9 @@
 	<c:if test="${action == 'accept'}">
 		<input type="submit" value="ACCEPTER" />
 	</c:if>
+	
+	<c:if test="${action == 'delete'}">
+		<input type="submit" value="SUPPRIMER" />
+	</c:if>
+	
 </form:form>

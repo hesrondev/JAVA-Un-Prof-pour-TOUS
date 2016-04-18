@@ -236,19 +236,27 @@ public class ProfileController {
 	
 	/** SUPPRIMER UN AMI */
 	
-	@RequestMapping(value="/removeContact/{userID}:{cID}", method = RequestMethod.GET)
-	public String removeContact(@PathVariable("userID") Long userID, @PathVariable("cID") Long cID, final Model model) {
+	@RequestMapping(value="/profile/request-processing/delete", method = RequestMethod.POST)
+	public String removeContact(WebRequest request, @ModelAttribute("requestBean") FriendRequestBean requestBean, final Model model) {
 		
 		String URL = "test-page";
 		
 		System.out.println("Suppression d'un contact...");
 		
-		User contact = userService.getUser(cID);
-		User currentUser = userService.getUser(userID);
+		/* Recherche de l'utilisateur courant */
+		
+		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
+		
+		if (currentUser == null) {
+			model.addAttribute("statusMessage", "traiter une requête");
+			return "redirect:/restriction";
+		}
+		
+		User contact = userService.getUser(requestBean.getReceiverID());
 		
 		/** VERIFIER QUE LA SESSION EST ACTIVE  */
 		
-		if (currentUser == null || contact == null) {
+		if (contact == null) {
 			model.addAttribute("status", "Utilisateur introuvable!");
 			return "redirect:/statusPage";
 		}
@@ -261,6 +269,8 @@ public class ProfileController {
 		// Mettre à jour les deux car il n'y a plus de mise à jour récurrente
 		userService.updateUser(currentUser);
 		userService.updateUser(contact);
+		
+		model.addAttribute("currentUser", userService.getUser(currentUser.getId()));
 		
 		System.out.println("Contact supprimé avec succès!"); 
 		

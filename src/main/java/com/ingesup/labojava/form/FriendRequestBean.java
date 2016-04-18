@@ -12,7 +12,7 @@ public class FriendRequestBean {
 	@NotEmpty
 	private Long receiverID;
 	@NotEmpty
-	private String response;
+	private String action;
 	
 	
 	public Long getId() {
@@ -21,11 +21,11 @@ public class FriendRequestBean {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getResponse() {
-		return response;
+	public String getAction() {
+		return action;
 	}
-	public void setResponse(String response) {
-		this.response = response;
+	public void setAction(String action) {
+		this.action = action;
 	}
 	public Long getSenderID() {
 		return senderID;
