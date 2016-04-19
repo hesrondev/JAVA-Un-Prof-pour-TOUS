@@ -17,7 +17,7 @@
 		<c:choose>
 			<c:when test="${!empty currentUser}">
 				<nav class="col-lg-12">
-					<div class="navbar navbar-default">
+					<div class="">
 						<div class="container-fluid">
 							<ul class="nav navbar-nav">
 								<!-- Espace personnel -->
@@ -62,7 +62,7 @@
 			<c:otherwise>
 
 				<nav class="col-lg-12">
-					<div class="navbar navbar-default navbar navbar-default">
+					<div class="">
 						<div class="container-fluid">
 							<ul class="nav navbar-nav">
 								<!-- Nos annonces -->
@@ -98,4 +98,5 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
+	<br>
 </div>

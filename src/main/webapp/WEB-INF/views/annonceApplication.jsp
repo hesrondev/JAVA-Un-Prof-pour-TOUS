@@ -2,25 +2,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- 
 
-<link href="http://fonts.googleapis.com/css?family=Varela"
+
+<link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/default.css"/>"
-	rel="stylesheet" type="text/css" media="all" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
-	rel="stylesheet" type="text/css" media="all" />
- -->
- 
+<!-- INCLURE UN CSS PERSO ICI -->
+
 <title>UPPT | Canditater</title>
 </head>
 <body>
 	<!-- Déclaration des variables -->
 
 	<c:choose>
-		<c:when test="${empty user}">
+		<c:when test="${empty currentUser}">
 
 			<c:set var="userFirstName" value=""></c:set>
 			<c:set var="userLastName" value=""></c:set>
@@ -30,52 +24,82 @@
 		</c:when>
 		<c:otherwise>
 
-			<c:set var="userFirstName" value="${user.firstName}"></c:set>
-			<c:set var="userLastName" value="${user.lastName}"></c:set>
-			<c:set var="userEmail" value="${user.email}"></c:set>
-			<c:set var="userPhoneNumer" value="${user.phoneNumber}"></c:set>
+			<c:set var="userFirstName" value="${currentUser.firstName}"></c:set>
+			<c:set var="userLastName" value="${currentUser.lastName}"></c:set>
+			<c:set var="userEmail" value="${currentUser.email}"></c:set>
+			<c:set var="userPhoneNumer" value="${currentUser.phoneNumber}"></c:set>
 
 		</c:otherwise>
 	</c:choose>
 
 
 	<!--  HEADER INCLUSION  -->
-	<div class="header">
-		<%@ include file="header.jsp"%>
+
+
+	<div class="container">
+		<header class="row">
+		<div class="col-lg-12">
+			<%@ include file="header.jsp"%>
+		</div>
+		</header>
 	</div>
 
-	<br>
-	<!-- Titre de l'annonce -->
-	<div>
-		<c:if test="${!empty annonce}">
-			<h1>${annonce.title}</h1>
-		</c:if>
-		<p>Votre candidature va être envoyée à l'annonceur</p>
 
-		<!-- Si pas connecté, on propose l'inscription -->
-		<c:if test="${empty currentUser}">
-			<p>Pas encore inscrit? <a href="${pageContext.request.contextPath}/inscription">Inscrivez-vous</a></p>
-			<p>Déjà membre? <a href="${pageContext.request.contextPath}/login">Connectez-vous</a></p>
-		</c:if>
-	</div>
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
 
-	<!-- Formulaire, Remplissage automatique si connecté -->
-	<div>
-		<h3>Renseignez vos coordonnées</h3>
-		<p>Les champs (*) sont obligatoires</p>
+				<div class="col-lg-8">
+						<!-- Titre de l'annonce -->
+						<h3 class="text-uppercase">Annonce ${annonce.title}</h3>
+						<c:out value="Votre annonce sera envoyé à l'annonceur. En envoyant votre candidature
+						vous acceptez que l'annonceur vous contacte par mail ou par téléphone."></c:out>
+				</div>
+				<!-- Si pas connecté, on propose l'inscription -->
+				<c:if test="${empty currentUser}">
+					<div class="col-lg-4">
+						<div class="well">
+							<h4 align="center">Espace compte</h4>
+							<div class="btn-group btn-group-justified btn-sm">
+								<a class="btn btn-warning"
+									href="${pageContext.request.contextPath}/inscription">Inscrivez-vous!</a>
+								<a class="btn btn-default btn-sm"
+									href="${pageContext.request.contextPath}/login">Connectez-vous!</a>
+							</div>
+						</div>
+					</div>
+				</c:if>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-lg-6">
+					<!-- FORMULAIRE -->
+					<!-- Formulaire, Remplissage automatique si connecté -->
+					<div>
+						<div>
+							<%@ include file="forms/annonceApplicationForm.jsp"%>
+						</div>
+					</div>
 
-		<div>
-			<%@ include file="forms/annonceApplicationForm.jsp"%>
+				</div>
+			</div>
 		</div>
 
+
 	</div>
-	
-	<br>
-	<br>
+
 
 	<!--  FOOTER INCLUSION  -->
-	<div id="copyright" class="container">
-			<%@ include file="footer.jsp"%>
+
+	<div class="jumbotron">
+		<div class="container">
+			<footer class="row">
+			<div class="col-lg-12">
+				<%@ include file="footer.jsp"%>
+			</div>
+			</footer>
+		</div>
 	</div>
+
 </body>
 </html>

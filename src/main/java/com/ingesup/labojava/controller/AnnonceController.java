@@ -321,7 +321,7 @@ public class AnnonceController {
 
 		/* Vérifions si le mail n'a pas déjà été utilisé */
 		
-		if (annonce.hasAlreadyApplied(annonceApplication)) {
+		if (annonce.hasAlreadyApplied(annonceApplication) || annonce.getUser().getEmail().equals(apb.getEmail())) {
 			model.addObject("ERRORS", "Cette adresse mail a déjà été utilisée!");
 			model.setViewName("annonceApplication");
 			return model;

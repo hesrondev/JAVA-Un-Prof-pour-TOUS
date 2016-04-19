@@ -63,7 +63,7 @@
 
 			<div class="row">
 				<div class="col-lg-3">
-					<a class="btn btn-info btn-lg btn-block" role="button"
+					<a class="btn btn-info btn-lg btn-block"
 						href="${pageContext.request.contextPath}/annonces/create.html">Publier
 						une annonce <span class="glyphicon glyphicon glyphicon-hand-right"></span>
 					</a>
