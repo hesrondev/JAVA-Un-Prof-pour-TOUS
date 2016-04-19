@@ -11,7 +11,7 @@
 	<h1>Page de Test des fonctionnalités du site</h1>
 
 	<div>
-		<h2>1. Gestion des amitiés</h2>
+		<h3>1. Gestion des amitiés</h3>
 
 		<!-- Liste de tous les utilisateurs  -->
 		<h3>> Liste de tous les utilisateurs</h3>

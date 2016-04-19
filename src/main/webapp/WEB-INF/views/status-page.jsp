@@ -17,7 +17,7 @@
 	<div>		
 
 		<div align="center">
-			<h2>${statusMessage}</h2>
+			<h3>${statusMessage}</h3>
 			<p><a href="${pageContext.request.contextPath}/home">Retourner vers la page d'accueil</a></p>
 		</div>
 

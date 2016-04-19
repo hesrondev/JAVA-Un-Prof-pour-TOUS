@@ -31,11 +31,11 @@
 		<div>
 
 			<c:if test="${!empty listAnnonces}">
-				<h2>
+				<h3>
 					<strong>${fn:length(listAnnonces)}</strong> Annonce<c:if test="${fn:length(listAnnonces) > 1}">s</c:if> sur le site 
 					<c:if test="${!empty subject}">: ${subject}</c:if>
 					<c:if test="${!empty location }"> à ${location}</c:if> 
-				</h2>
+				</h3>
 			</c:if>
 			
 			<hr>

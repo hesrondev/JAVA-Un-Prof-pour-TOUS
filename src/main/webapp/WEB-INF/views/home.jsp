@@ -1,140 +1,236 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
+	rel="stylesheet" />
+<!-- INCLURE UN CSS PERSO ICI -->
 
 <title>UPPT | Accueil</title>
 
-<meta name="keywords" content="" />
-<meta name="description" content="" />
 
 </head>
 <body>
 
 	<!--  HEADER INCLUSION  -->
 
-	<div>
-		<%@ include file="header.jsp"%>
+
+	<div class="container">
+		<header class="row">
+		<div class="col-lg-12">
+			<%@ include file="header.jsp"%>
+		</div>
+		</header>
 	</div>
+
+
+
+
 
 	<!-- Formulaire Recherche d'annonce -->
 
-	<div>
-		<h2>Trouver votre prochain cours</h2>
-		
-		<%@ include file="forms/adSearchForm.jsp"%>
-		<a href="#">Recherche avancée</a>
-
-	</div>
-
-	<br>
-	<hr>
-
-
-	<!-- Déposer une annonce -->
-
-	<div>
-		<div>
-			<h2>Déposer votre annonce</h2>
-			<p>Soyez visible auprès des visiteurs</p>
-		</div>
-		<div>
-			<a href="${pageContext.request.contextPath}/annonces/create.html"><strong>Publier
-					une annonce</strong></a>
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-offset-4 col-lg-6">
+					<h3>Trouver votre prochain cours</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-offset-1 col-lg-10">
+					<%@ include file="forms/adSearchForm.jsp"%>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-offset-5 col-lg-4">
+					<a href="#">Recherche avancée</a>
+				</div>
+			</div>
 		</div>
 	</div>
-	<br>
-	<hr>
+
+
+
+
+	<div class="jumbotron">
+		<div class="container">
+			<h3>Déposer votre annonce</h3>
+			<div class="row">
+				<div class="col-lg-4">
+					<p>Soyez visible auprès des visiteurs</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-3">
+					<a class="btn btn-info btn-lg btn-block" role="button"
+						href="${pageContext.request.contextPath}/annonces/create.html">Publier
+						une annonce <span class="glyphicon glyphicon glyphicon-hand-right"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Nos professeurs & elèves -->
 
-	<div>
-		<h2>Consulter plus de ${usersCount} profils de professeurs et élèves</h2> 
-		
-		<table>
-			<c:forEach items="${latestUsers}" var="item">
-				<tr>
-					<td><a href="${pageContext.request.contextPath}/profile/${item.firstName}.${item.lastName}/${item.id}">${item.firstName} ${item.lastName}</a> <br> ${item.type}</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<p>
-			<a href="${pageContext.request.contextPath}/professors">Voir plus de professeurs</a><br>
-			<a href="${pageContext.request.contextPath}/students">Voir plus d'élèves</a>
-		</p>
+	<div class="jumbotron">
+		<div class="container">
+			<section class="row">
+			<div class="col-lg-12">
 
+				<div class="row">
+					<div class="col-lg-8">
+						<h3>Consulter plus de ${usersCount} profils de professeurs et
+							élèves</h3>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<c:forEach items="${latestUsers}" var="item">
+						<div class="col-lg-2">
+							<a
+								href="${pageContext.request.contextPath}/profile/${item.firstName}.${item.lastName}/${item.id}">${item.firstName}
+								${item.lastName}</a> <br> ${item.type}
+						</div>
+					</c:forEach>
+				</div>
+
+				<br>
+
+				<div class="row">
+					<div class="col-lg-2">
+						<a href="${pageContext.request.contextPath}/professors">Voir
+							plus de professeurs</a>
+					</div>
+
+					<div class="col-lg-2">
+						<a href="${pageContext.request.contextPath}/students">Voir
+							plus d'élèves</a>
+					</div>
+				</div>
+			</div>
+			</section>
+		</div>
 	</div>
 
 
-	<br>
-	<hr>
 
 	<!--  Dernières annonces -->
 
-	<div>
-		<h2>Dernières annonces</h2>
-		
-		<table>
-			<c:forEach items="${latestAnnonces}" var="item">
-				<tr>
-					<td>
-						<!-- Table inside a column -->
-						<table>
-							<tr>
-								<td><a href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a></td>
-							</tr>
-							<tr>
-								<td>${item.location} &#8226 ${item.toStringDate()}</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-		
-		<p><a href="${pageContext.request.contextPath}/annonces">Voir plus d'annonces</a></p>
+	<div class="jumbotron">
+		<div class="container">
+			<section class="row">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-6">
+						<h3>Dernières annonces</h3>
+					</div>
+				</div>
+				<div class="row">
+					<c:forEach items="${latestAnnonces}" var="item">
+						<div class="col-lg-2">
+							<!-- Table inside a column -->
+							<table>
+								<tr>
+									<td><a
+										href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a></td>
+								</tr>
+								<tr>
+									<td>${item.location}&#8226${item.toStringDate()}</td>
+								</tr>
+							</table>
+						</div>
+					</c:forEach>
+				</div>
+				<div class="row">
+					<div class="col-lg-4">
+						<br> <a href="${pageContext.request.contextPath}/annonces">Voir
+							plus d'annonces</a>
+					</div>
+				</div>
+				<br>
+				<hr>
+			</div>
+			</section>
+		</div>
 	</div>
 
-	<br>
-	<hr>
+
 
 	<!-- Recherches populaires -->
 
-	<div>
-		<h2>Recherches populaires</h2>
-		
-		<table>
-			<tr>
-				<th>Matières</th>
-				<th>Lieux</th>
-			</tr>
-			<tr>
-				<td>
-					<c:forEach items="${subjectFilters}" var="item" varStatus="loop">
-						<a href="${pageContext.request.contextPath}/annonces/recherche?subject=${item.value}&location=">${item.value}
-						<c:if test="${loop.index < fn:length(subjectFilters) - 1}"> &#8226 </c:if></a>
-					</c:forEach>
-				</td>
-				<td>
-					<c:forEach items="${locationFilters}" var="item">
-						<a href="${pageContext.request.contextPath}/annonces/recherche?subject=&location=${item.value}">${item.value} 
-						<c:if test="${loop.index < fn:length(subjectFilters) - 1}"> &#8226 </c:if></a>
-					</c:forEach>
-				</td>
-			</tr>
-		
-		</table>
+	<div class="jumbotron">
+		<div class="container">
+			<section class="row">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-6">
+						<h3>Recherches populaires</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-4">
+								<h4>Matières</h4>
+							</div>
+							<div class="col-lg-4">
+								<h4>Lieux</h4>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4">
+								<div class="row">
+									<div class="col-lg-1">
+										<c:forEach items="${subjectFilters}" var="item"
+											varStatus="loop">
+											<a class="label label-info"
+												href="${pageContext.request.contextPath}/annonces/recherche?subject=${item.value}&location=">${item.value}
+												<c:if test="${loop.index < fn:length(subjectFilters) - 1}"> &#8226 </c:if>
+											</a>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4">
+								<div class="row">
+									<div class="col-lg-1">
+										<c:forEach items="${locationFilters}" var="item">
+											<a class="label label-info"
+												href="${pageContext.request.contextPath}/annonces/recherche?subject=&location=${item.value}">${item.value}
+												<c:if test="${loop.index < fn:length(subjectFilters) - 1}"> &#8226 </c:if>
+											</a>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</section>
+		</div>
 	</div>
 
-	<br>
-	<hr>
-	<br>
 
 	<!--  FOOTER INCLUSION  -->
 
-	<div>
-		<%@ include file="footer.jsp"%>
+	<div class="jumbotron">
+		<div class="container">
+			<footer class="row">
+			<div class="col-lg-12">
+				<%@ include file="footer.jsp"%>
+			</div>
+			</footer>
+		</div>
 	</div>
+
+
+
+
+
 
 </body>
 </html>

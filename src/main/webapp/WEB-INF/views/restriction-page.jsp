@@ -17,7 +17,7 @@
 	<div>		
 
 		<div align="center">
-			<h2>Vous devez être connecté pour ${statusMessage}!</h2>
+			<h3>Vous devez être connecté pour ${statusMessage}!</h3>
 			<p>Choisissez une action pour continuer.</p>
 
 			<!-- Boutons -->

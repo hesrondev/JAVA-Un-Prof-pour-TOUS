@@ -61,7 +61,7 @@
 
 	<!-- Formulaire, Remplissage automatique si connecté -->
 	<div>
-		<h2>Renseignez vos coordonnées</h2>
+		<h3>Renseignez vos coordonnées</h3>
 		<p>Les champs (*) sont obligatoires</p>
 
 		<div>

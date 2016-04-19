@@ -28,7 +28,7 @@
 	<hr>
 
 	<div>
-		<h2>Liste des professeurs</h2>
+		<h3>Liste des professeurs</h3>
 		<c:if test="${!empty listProfessors}">
 			<table>
 				<c:forEach items="${listProfessors}" var="prof">

@@ -7,7 +7,7 @@
 
 		<fieldset id="connexionForm">
 			
-			<h2>Connexion</h2>
+			<h3>Connexion</h3>
 			
 			<dl>
 				<c:out value="${loginStatus}"></c:out>

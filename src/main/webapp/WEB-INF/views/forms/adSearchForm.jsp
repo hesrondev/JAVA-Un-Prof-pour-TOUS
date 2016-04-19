@@ -1,27 +1,40 @@
 
+
+<!-- Formulaire de recherche d'une annonce -->
+
+
 <div>
-	<br>
-	<!-- Formulaire de recherche d'une annonce -->
+		<form:form modelAttribute="adBean" method="GET"
+			action="${pageContext.request.contextPath}/annonces/recherche"
+			class="well">
 
-	<form:form modelAttribute="adBean" method="GET"
-		action="${pageContext.request.contextPath}/annonces/recherche">
 
-		<table>
+			<div class="row">
+				<div class="col-lg-2">
+					<form:label path="subject">Matière</form:label>
+				</div>
+				<div class="col-lg-offset-4 col-lg-2">
+					<form:label path="location">Lieu</form:label>
+				</div>
+			</div>
 
-			<tr>
-				<td><form:label path="subject">Matière</form:label></td>
-				<td><form:label path="location">Lieu</form:label></td>
-			</tr>
-			<tr>
-			<td><form:input id="ad_subject" name="subject" path="subject"
-				value="${subject}" placeholder="ex: Maths, Physique, ..." /></td>
-				
-				<td><form:input id="ad_location" name="location" value="${location}"
-				path="location" placeholder="ex: Paris, Lyon, Marseille, ..." /></td>
-				<td><input type="submit" class="button" value="Rechercher" /></td>
-			</tr>
-		</table>
 
-	</form:form>
-	<br>
+			<div class="row">
+				<div class="col-lg-6">
+					<form:input id="ad_subject" name="subject" path="subject"
+						value="${subject}" placeholder="ex: Maths, Physique, ..."
+						class="form-control input-lg" />
+
+				</div>
+				<div class="col-lg-4">
+					<form:input id="ad_location" name="location" value="${location}"
+						path="location" placeholder="ex: Paris, Lyon, Marseille, ..."
+						class="form-control input-lg" />
+				</div>
+				<div class="col-lg-2">
+					<input type="submit" value="Rechercher"
+						class="btn btn-primary btn-lg" />
+				</div>
+			</div>
+		</form:form>
 </div>

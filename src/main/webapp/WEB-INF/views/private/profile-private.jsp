@@ -27,9 +27,9 @@
 	<!-- Si l'utilisateur est connecté -->
 	<br>
 	<c:if test="${!empty currentUser}">
-		<h2>
+		<h3>
 			<c:out value="Bonjour ${currentUser.firstName}"></c:out>
-		</h2>
+		</h3>
 		<a href="${pageContext.request.contextPath}/logout">Se déconnecter</a>
 	</c:if>
 

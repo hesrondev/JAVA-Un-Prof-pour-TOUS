@@ -38,7 +38,7 @@
 		<c:if test="${!empty annonce}">
 		
 		<div>
-			<h2>${annonce.title}</h2>
+			<h3>${annonce.title}</h3>
 			<p>Par <a href="${pageContext.request.contextPath}/profile/${item.user.id}">${annonce.user.lastName} ${annonce.user.firstName}</a> &#8226 ${annonce.location} &#8226 ${annonce.toStringDate()}</p>
 		</div>
 		

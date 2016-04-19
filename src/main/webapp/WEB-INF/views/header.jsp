@@ -1,24 +1,29 @@
 <!-- Header !!! -->
-<div id="header-wrapper">
-	<div id="header" class="container">
 
-		<!--  LOGO -->
-		<div id="logo">
-			<h1>
-				<a href="${pageContext.request.contextPath}/home.html"> <img
-					src="#" /> Un Prof Pour Tous
-				</a>
-			</h1>
+<div class="col-lg-12">
+	<!--  LOGO -->
+	<div class="row">
+		<div class="col-lg-4">
+			<h3>
+				<img src="#" />
+				<a href="${pageContext.request.contextPath}/home.html"> Un Prof
+					Pour Tous </a>
+			</h3>
 		</div>
+	</div>
 
+	<div class="row">
 		<!-- MENU 1 -->
 		<c:choose>
-			<c:when test="${!empty user}">
-				<div id="menu">
-					<ul>
-						<!-- Espace personnel -->
-						<li><a href="${pageContext.request.contextPath}/profile.html">
-								Mon Espace Personnel</a> <!-- 
+			<c:when test="${!empty currentUser}">
+				<nav class="col-lg-12">
+					<div class="navbar navbar-default navbar navbar-default">
+						<div class="container-fluid">
+							<ul class="nav navbar-nav">
+								<!-- Espace personnel -->
+								<li><a
+									href="${pageContext.request.contextPath}/profile.html"> Mon
+										Espace Personnel</a> <!-- 
 								<ul>
 									<li><a
 										href="${pageContext.request.contextPath}/profile.html">Mon
@@ -32,55 +37,64 @@
 											déconnecter</a></li>
 								</ul>  --></li>
 
-						<!-- Nos annonces -->
-						<li><a
-							href="${pageContext.request.contextPath}/annonces.html">Annonces</a></li>
+								<!-- Nos annonces -->
+								<li><a
+									href="${pageContext.request.contextPath}/annonces.html">Annonces</a></li>
 
-						<!-- Nos professeurs -->
-						<li><a
-							href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
+								<!-- Nos professeurs -->
+								<li><a
+									href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
 
-						<!-- Nos élèves -->
-						<li><a
-							href="${pageContext.request.contextPath}/students.html">Elèves</a></li>
+								<!-- Nos élèves -->
+								<li><a
+									href="${pageContext.request.contextPath}/students.html">Elèves</a></li>
 
-						<!-- Le guide du site -->
-						<li><a href="${pageContext.request.contextPath}/guide.html">Le
-								Guide UPPT</a></li>
-					</ul>
-				</div>
+								<!-- Le guide du site -->
+								<li><a href="${pageContext.request.contextPath}/guide.html">Le
+										Guide UPPT</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
 			</c:when>
+
+
 			<c:otherwise>
-				<div id="menu">
-					<ul>
-						<!-- Nos annonces -->
-						<li><a
-							href="${pageContext.request.contextPath}/annonces.html">Annonces</a></li>
 
-						<!-- Nos professeurs -->
-						<li><a
-							href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
+				<nav class="col-lg-12">
+					<div class="navbar navbar-default navbar navbar-default">
+						<div class="container-fluid">
+							<ul class="nav navbar-nav">
+								<!-- Nos annonces -->
+								<li><a
+									href="${pageContext.request.contextPath}/annonces.html">Annonces</a></li>
 
-						<!-- Nos élèves -->
-						<li><a
-							href="${pageContext.request.contextPath}/students.html">Elèves</a></li>
+								<!-- Nos professeurs -->
+								<li><a
+									href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
 
-						<!-- Le guide du site -->
-						<li><a href="${pageContext.request.contextPath}/guide.html">Le
-								Guide UPPT</a></li>
-					</ul>
-				</div>
+								<!-- Nos élèves -->
+								<li><a
+									href="${pageContext.request.contextPath}/students.html">Elèves</a></li>
 
-				<div id="menu-login">
-					<ul>					
-						<!-- Login -->
-						<li><a href="${pageContext.request.contextPath}/login.html">Connexion</a></li>
+								<!-- Le guide du site -->
+								<li><a href="${pageContext.request.contextPath}/guide.html">Le
+										Guide UPPT</a></li>
+							</ul>
+							<div class="navbar-form navbar-right inline-form">
+								<div class="form-group">
+									<!-- Login -->
+									<a href="${pageContext.request.contextPath}/login.html"
+										class="btn btn-default">Connexion</a>
 
-						<!-- Inscription -->
-						<li><a class="small"
-							href="${pageContext.request.contextPath}/inscription.html">Inscription</a></li>
-					</ul>
-				</div>
+									<!-- Inscription -->
+									<a href="${pageContext.request.contextPath}/inscription.html"
+										class="btn btn-primary">Inscription</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
 			</c:otherwise>
 		</c:choose>
 	</div>

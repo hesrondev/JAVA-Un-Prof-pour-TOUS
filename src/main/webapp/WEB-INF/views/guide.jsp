@@ -24,7 +24,7 @@
 		<%@ include file="header.jsp"%>
 	</div>
 
-	<h2>Guide d'utilisation du site...</h2>
+	<h3>Guide d'utilisation du site...</h3>
 
 	<!--  FOOTER INCLUSION  -->
 	<div class="footer">

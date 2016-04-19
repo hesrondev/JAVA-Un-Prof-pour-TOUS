@@ -25,9 +25,9 @@
 	<!-- Si l'utilisateur est connecté -->
 	<br>
 	<c:if test="${!empty user}">
-		<h2>
+		<h3>
 			<c:out value="Profile de: ${user.firstName}"></c:out>
-		</h2>
+		</h3>
 	</c:if>
 	
 		<div id="page">
@@ -36,7 +36,7 @@
 						<div class="3u">
 							<section id="sidebard2">
 								<header>
-									<h2>Mon profil</h2>
+									<h3>Mon profil</h3>
 								</header>
 								<ul class="style1">
 									<li class="first"><span class="fa fa-check"></span><a href="#">Mes compétences</a></li>
@@ -54,7 +54,7 @@
 						<div class="9u skel-cell-important">
 							<section id="content" >
 								<header>
-									<h2>Mon Planning</h2>
+									<h3>Mon Planning</h3>
 								</header>
 								<p> Planning de la semaine ou du mois </p>
 								<p> ... <br> </p>

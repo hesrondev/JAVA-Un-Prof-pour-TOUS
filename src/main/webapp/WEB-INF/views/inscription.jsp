@@ -3,16 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<!-- 
-<link href="http://fonts.googleapis.com/css?family=Varela"
+<link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/default.css"/>"
-	rel="stylesheet" type="text/css" media="all" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
-	rel="stylesheet" type="text/css" media="all" />
-	 -->
+<!-- INCLURE UN CSS PERSO ICI -->
 
 <title>Page d'inscription</title>
 </head>
@@ -20,28 +13,44 @@
 
 	<!--  HEADER INCLUSION  -->
 
-	<div>
-		<%@ include file="header.jsp"%>
-	</div>
-	<div>
+	<!--  HEADER INCLUSION  -->
 
-		<div>
-			<h2>Inscription</h2>
-			<p>
-				Bienvenue sur Un Prof Pour Tous.<br> Veuillez remplir le formulaire
-				ci-dessous pour vous inscire : <br>
-			</p>
-			<div>
-				<%@ include file="forms/inscriptionForm.jsp"%>
+
+	<div class="container">
+		<header class="row">
+		<div class="col-lg-12">
+			<%@ include file="header.jsp"%>
+		</div>
+		</header>
+	</div>
+
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div>
+						<%@ include file="forms/inscriptionForm.jsp"%>
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
 
-	</div>
-	<!--  FOOTER INCLUSION  -->
 	<div>
-		<div class="footer">
-			<%@ include file="footer.jsp"%>
+
+
+
+
+		<!--  FOOTER INCLUSION  -->
+
+		<div class="jumbotron">
+			<div class="container">
+				<footer class="row">
+				<div class="col-lg-12">
+					<%@ include file="footer.jsp"%>
+				</div>
+				</footer>
+			</div>
 		</div>
-	</div>
 </body>
 </html>
