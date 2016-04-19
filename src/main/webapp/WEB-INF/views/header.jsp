@@ -17,7 +17,7 @@
 		<c:choose>
 			<c:when test="${!empty currentUser}">
 				<nav class="col-lg-12">
-					<div class="navbar navbar-default navbar navbar-default">
+					<div class="navbar navbar-default">
 						<div class="container-fluid">
 							<ul class="nav navbar-nav">
 								<!-- Espace personnel -->

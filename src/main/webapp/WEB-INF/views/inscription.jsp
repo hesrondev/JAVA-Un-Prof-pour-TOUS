@@ -13,8 +13,6 @@
 
 	<!--  HEADER INCLUSION  -->
 
-	<!--  HEADER INCLUSION  -->
-
 
 	<div class="container">
 		<header class="row">
@@ -36,7 +34,6 @@
 		</div>
 	</div>
 
-	<div>
 
 
 
