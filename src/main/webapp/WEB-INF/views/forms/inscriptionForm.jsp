@@ -3,7 +3,8 @@
 		<form:form action="${pageContext.request.contextPath}/inscription"
 			method="POST" commandName="inscriptionBean">
 
-			<legend>Inscription</legend>
+			<br>
+			<legend>Formulaire d'inscription</legend>
 
 			<c:if test="${!empty userStatus}">
 				<div class="alert span5 alert-danger">
@@ -57,7 +58,6 @@
 					<spring:message text="Retapez le de passe" />
 				</form:label>
 				<form:password path="rePassword" class="form-control" />
-
 			</div>
 
 			<div class="form-group">

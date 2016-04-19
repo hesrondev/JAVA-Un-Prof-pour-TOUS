@@ -4,173 +4,182 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- 
 
-<link href="http://fonts.googleapis.com/css?family=Varela"
+<link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/default.css"/>"
-	rel="stylesheet" type="text/css" media="all" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
-	rel="stylesheet" type="text/css" media="all" />
- -->
+<!-- INCLURE UN CSS PERSO ICI -->
 
 <title>UPPT | Publier une annonce</title>
 </head>
 <body>
 
+
 	<!--  HEADER INCLUSION  -->
 
-	<div id="">
-		<%@ include file="header.jsp"%>
+
+	<div class="container">
+		<header class="row">
+		<div class="col-lg-12">
+			<%@ include file="header.jsp"%>
+		</div>
+		</header>
 	</div>
 
+	<hr>
 	<div class="container">
 
 		<!-- Bloc formulaire d'annonce  -->
 		<!--  On passe l'ID de l'utilisateur en paramètre -->
-		<div>
-			<br>
-			<c:if test="${!empty notConnectedStatus}">
 
-				<div>
-					<c:out value="${notConnectedStatus}"></c:out>
-					<p>
-						<a href="${pageContext.request.contextPath}/inscription">S'inscrire</a>
-						<a href="${pageContext.request.contextPath}/login">Se
-							connecter</a>
-					</p>
-				</div>
-			</c:if>
-			
-			<br>
-			
-			<h3>Indiquez les informations de l'annonce à publier</h3>
+		<div class="row">
+			<div class="col-lg-6">
 
-			<!--  Condition pour user ID, si vide alors userID = 0  -->
+				<h3>Publication d'une annonce</h3>
+				<c:out
+					value="Veuillez renseigner dans le formulaire ci-dessous les informations relatives à votre annonce."></c:out>
 
-			<!--  Formulaire -->
 
-			<form:form modelAttribute="adBean" method="POST"
-				action="${pageContext.request.contextPath}/annonces/create">
+				<!--  Formulaire -->
 
-				<table class="form">
+				<form:form modelAttribute="adBean" method="POST"
+					action="${pageContext.request.contextPath}/annonces/create">
 
 					<!-- Erreur FORM -->
+					<br>
 
-					<tr>
-						<td><c:out value="${formStatus}"></c:out></td>
-					</tr>
-
-
-					<tr>
-						<td><br>
-							<h3>Informations générales</h3>
-							<hr>
-							<br></td>
-					</tr>
-					<tr>
-						<td><form:label path="title">Titre de l'annonce</form:label></td>
-					</tr>
-					<tr>
-						<td><form:input id="ad_title" name="title" path="title"
-								placeholder="Saisir le titre de l'annonce" /></td>
-					</tr>
+					<c:if test="${!empty notConnectedStatus}">
+						<div class="alert span5 alert-danger">
+							<div>
+								<c:out value="${notConnectedStatus}"></c:out>
+								<p>
+									<a href="${pageContext.request.contextPath}/inscription"><strong>S'inscrire</strong></a> ou
+									<a href="${pageContext.request.contextPath}/login"><strong>Se
+										connecter</strong></a>
+								</p>
+							</div>
+						</div>
+					</c:if>
 
 
-					<!-- LIEU -->
-					<tr>
-						<td><form:label path="location">Lieu</form:label></td>
-					</tr>
-					<tr>
-						<td><form:select path="location">
+					<c:if test="${!empty formStatus}">
+						<div class="alert span5 alert-danger">
+							<h3>Saisie invalide!</h3>
+							<c:out value="${formStatus}" />
+						</div>
+					</c:if>
+
+					<br>
+					<legend>Informations générales</legend>
+
+					<div class="form-group">
+						<div class="form-group">
+							<form:label path="title">Titre de l'annonce</form:label>
+
+							<form:input id="ad_title" name="title" path="title"
+								placeholder="Saisir le titre de l'annonce" class="form-control" />
+						</div>
+
+						<!-- LIEU -->
+
+						<div class="form-group">
+							<form:label path="location">Lieu</form:label>
+							<form:select path="location" class="form-control">
 								<form:option value="paris">Paris</form:option>
 								<form:option value="massy">Massy</form:option>
 								<form:option value="versailles">Versailles</form:option>
 
 								<!-- MAP KEY-VALUE A PARCOURIR !!! -->
 
-							</form:select></td>
-					</tr>
-
+							</form:select>
+						</div>
+					</div>
 
 					<!-- Spécifications de la matière -->
+					<br>
+					<legend>A propos de la matière</legend>
 
-					<tr>
-						<td><br>
-							<h3>A propos de la matière</h3>
-							<hr>
-							<br></td>
-					</tr>
-					<tr>
-						<td><form:label path="subject">Matière</form:label></td>
-					</tr>
+					<div class="form-group">
 
-					<tr>
-						<td><form:select path="subject">
+						<div class="form-group">
+							<form:label path="subject">Matière</form:label>
+							<form:select path="subject" class="form-control">
 								<form:option value="litterature">Français - Littérature</form:option>
 								<form:option value="SES">Sciences économiques et sociales</form:option>
 
 								<!-- MAP KEY-VALUE A PARCOURIR !!! -->
+							</form:select>
+						</div>
 
-							</form:select></td>
-					</tr>
 
-					<tr>
-						<td><form:label path="level">Niveau scolaire</form:label></td>
-					</tr>
-
-					<tr>
-						<td><form:select path="level">
+						<div class="form-group">
+							<form:label path="level">Niveau scolaire</form:label>
+							<form:select path="level" class="form-control">
 								<form:option value="primaire">Primaire</form:option>
 								<form:option value="college">Collège</form:option>
 								<form:option value="lycee">Lycée</form:option>
 								<form:option value="universite">Université</form:option>
-							</form:select></td>
-					</tr>
+							</form:select>
+						</div>
 
-					<tr>
-						<td><form:label path="costPerHour">Tarif (€/h)</form:label></td>
-					</tr>
+						<div class="form-group">
+							<form:label path="costPerHour">Tarif</form:label>
 
-					<tr>
-						<td><form:input id="ad_costPerHour" name="costPerHour"
-								path="costPerHour" placeholder="ex: Maths" /></td>
-					</tr>
+							<div class="input-group">
+								<form:input id="ad_costPerHour" name="costPerHour"
+									path="costPerHour" class="form-control"
+									style="text-align:right" />
+								<span class="input-group-addon">€</span>
+							</div>
+						</div>
 
+					</div>
 
-					<tr>
-						<td><br>
-							<h3>Détails de votre annonce</h3>
-							<hr></td>
-					</tr>
-					<tr>
-						<td><form:textarea id="ad_description" name="description"
-								path="description" placeholder="Détails de l'annonce" /></td>
-					</tr>
+					<br>
+					<legend>Détails de votre annonce</legend>
 
-					<tr>
-						<td><form:checkbox id="ad_showPhone" name="showPhone"
-								path="showPhoneNumber" /> <form:label path="showPhoneNumber">Afficher le numéro de téléphone?</form:label></td>
-					</tr>
+					<div class="form-group">
+						<form:textarea id="ad_description" name="description"
+							path="description" placeholder="Détails de l'annonce" rows="6"
+							class="form-control" />
+					</div>
 
-					<tr>
-						<td><input type="submit" value="Publier" /></td>
-					</tr>
+					<div class="form-group">
 
-				</table>
+						<form:label path="showPhoneNumber">
+							<form:checkbox id="ad_showPhone" name="showPhone"
+								path="showPhoneNumber" />
+							<c:out value="Afficher le numéro de téléphone?"></c:out>
+						</form:label>
 
-			</form:form>
+					</div>
 
+					<div class="form-group">
+						<input type="submit" value="Publier l'annonce"
+							class="btn btn-default pull-right input-lg" />
+					</div>
+
+				</form:form>
+
+			</div>
 		</div>
-
 	</div>
+	<br>
+	<br>
 
 	<!--  FOOTER INCLUSION  -->
-	<div class="footer">
-		<%@ include file="footer.jsp"%>
+
+	<div class="jumbotron">
+		<div class="container">
+			<footer class="row">
+			<div class="col-lg-12">
+				<%@ include file="footer.jsp"%>
+			</div>
+			</footer>
+		</div>
 	</div>
+
+
+
 
 </body>
 </html>

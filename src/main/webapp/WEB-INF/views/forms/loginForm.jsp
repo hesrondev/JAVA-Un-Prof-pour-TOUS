@@ -4,8 +4,7 @@
 
 <div>
 	<form:form modelAttribute="loginBean" method="POST"
-		action="${pageContext.request.contextPath}/login"
-		class="well">
+		action="${pageContext.request.contextPath}/login" class="well">
 
 		<legend align="center">Connexion</legend>
 
@@ -28,12 +27,14 @@
 		</div>
 
 		<div class="form-group">
-			<form:checkbox path="rememberMe" />
-			<form:label path="rememberMe"> Se souvenir de moi</form:label>
+			<form:label path="rememberMe">
+				<form:checkbox path="rememberMe"/> <c:out value="Se souvenir de moi"></c:out>
+			</form:label>
 		</div>
 
 		<div class="form-group">
-			<input type="submit" value="CONNEXION" class="btn btn-primary btn-block" />
+			<input type="submit" value="CONNEXION"
+				class="btn btn-primary btn-block" />
 		</div>
 
 		<div class="form-group">

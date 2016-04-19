@@ -45,7 +45,7 @@
 	</div>
 
 
-	<div class="jumbotron">
+	<hr>
 		<div class="container">
 			<div class="row">
 
@@ -84,9 +84,6 @@
 				</div>
 			</div>
 		</div>
-
-
-	</div>
 
 
 	<!--  FOOTER INCLUSION  -->

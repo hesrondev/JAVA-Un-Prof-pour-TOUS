@@ -22,32 +22,28 @@
 		</header>
 	</div>
 
-	<div class="jumbotron">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div>
-						<%@ include file="forms/inscriptionForm.jsp"%>
-					</div>
+	<hr>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<%@ include file="forms/inscriptionForm.jsp"%>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
+	<!--  FOOTER INCLUSION  -->
 
-
-
-		<!--  FOOTER INCLUSION  -->
-
-		<div class="jumbotron">
-			<div class="container">
-				<footer class="row">
-				<div class="col-lg-12">
-					<%@ include file="footer.jsp"%>
-				</div>
-				</footer>
+	<div class="jumbotron">
+		<div class="container">
+			<footer class="row">
+			<div class="col-lg-12">
+				<%@ include file="footer.jsp"%>
 			</div>
+			</footer>
 		</div>
+	</div>
 </body>
 </html>
