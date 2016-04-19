@@ -5,10 +5,10 @@
 
 		<legend>Inscription</legend>
 
-		<div class="form-group">
+		<div class="alert span5 alert-danger">
+			<h3>Formulaire invalide!</h3>
 			<c:out value="${userStatus}" />
 		</div>
-
 
 		<div class="form-group">
 			<div class="row">
@@ -36,7 +36,7 @@
 		</div>
 
 		<div class="form-group">
-		
+
 			<form:label path="email">
 				<spring:message text="Email" />
 			</form:label>
@@ -49,6 +49,8 @@
 				<spring:message text="Mot de passe" />
 			</form:label>
 			<form:password path="password" class="form-control" />
+		</div>
+		<div class="form-group">
 			<form:label path="rePassword">
 				<spring:message text="Retapez le de passe" />
 			</form:label>
