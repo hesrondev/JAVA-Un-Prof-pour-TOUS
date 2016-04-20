@@ -63,12 +63,12 @@
 			<div class="form-group">
 
 				<form:label path="status">
-					<spring:message text="Votre statut : " />
+					<spring:message text="Type de compte? " />
 				</form:label>
 
 				<form:select path="status" class="form-control">
-					<form:option value="student">Elève</form:option>
-					<form:option value="professor">Professeur</form:option>
+					<form:option value="student">Compte Elève</form:option>
+					<form:option value="professor">Compte Professeur Particulier</form:option>
 				</form:select>
 			</div>
 

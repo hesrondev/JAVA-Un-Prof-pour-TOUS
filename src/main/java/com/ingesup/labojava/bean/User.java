@@ -37,8 +37,10 @@ public abstract class User {
 	protected String phoneNumber;
 	protected String city;
 	protected String country;
-	protected String level;
+	protected String gradeLevel;
 	protected String aboutMe;
+	private String profession;
+
 
 	// Collections
 
@@ -52,6 +54,7 @@ public abstract class User {
 
 	public User() {
 		inscriptionDate = new Date();
+		id = 0L;
 	}
 
 	// toString
@@ -312,14 +315,14 @@ public abstract class User {
 		this.country = country;
 	}
 
-	@Column(name="LEVEL")
-	public String getLevel() {
-		return level;
+	@Column(name="GRADE_LEVEL")
+	public String getGradeLevel() {
+		return gradeLevel;
 	}
 
 	
-	public void setLevel(String level) {
-		this.level = level;
+	public void setGradeLevel(String level) {
+		this.gradeLevel = level;
 	}
 
 	@Column(name="ABOUT_ME")
@@ -331,10 +334,20 @@ public abstract class User {
 	public void setAboutMe(String aboutMe) {
 		this.aboutMe = aboutMe;
 	}
+	
+	public String getProfession() {
+		return profession;
+	}
+
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
 
 	
 	/* Friends section */
 	
+	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name="USER_FRIEND", joinColumns=@JoinColumn(name="USER_ID", nullable = false, updatable = false),
 	inverseJoinColumns=@JoinColumn(name="FRIEND_ID", nullable = false, updatable = false))

@@ -7,11 +7,22 @@ import javax.persistence.Table;
 @Table(name = "PROFESSOR")
 public class Professor extends User {
 	
+	
+	private int experience;
+	
 	/* Collection */
 	
 	//protected List<Student> myStudents = new ArrayList<Student>();
 
 	
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+
 	public Professor() {
 		super();
 		type = "PROFESSOR";

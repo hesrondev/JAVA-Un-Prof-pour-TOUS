@@ -120,7 +120,7 @@ public class InscriptionController {
 		
 		model.addAttribute("currentUser", newUser);
 
-		return "redirect:" + "/profile";
+		return "redirect:" + "profile/completeUserInfos";
 	}
 
 }
