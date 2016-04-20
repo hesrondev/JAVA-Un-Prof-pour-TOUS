@@ -282,13 +282,6 @@
 
 	</div>
 
-
-
-	<!-- Numérotation des pages -->
-
-	<div></div>
-
-
 	<br>
 	<br>
 	<hr>

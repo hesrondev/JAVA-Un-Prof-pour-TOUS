@@ -51,11 +51,14 @@
 
 			<h3>Déposer votre annonce</h3>
 			<p>
-			<c:out value="Soyez visible auprès des visiteurs"></c:out></p><p>
-			<a class="btn btn-info"
-				href="${pageContext.request.contextPath}/annonces/create.html">Publier
-				une annonce <span class="glyphicon glyphicon glyphicon-hand-right"></span>
-			</a></p>
+				<c:out value="Soyez visible auprès des visiteurs"></c:out>
+			</p>
+			<p>
+				<a class="btn btn-info"
+					href="${pageContext.request.contextPath}/annonces/create.html"><span
+					class="glyphicon glyphicon glyphicon-hand-right"></span> Publier une
+					annonce</a>
+			</p>
 		</div>
 
 	</div>
@@ -203,20 +206,19 @@
 	</div>
 
 
+	<br>
+	<br>
+	<hr>
+
 	<!--  FOOTER INCLUSION  -->
 
-	<div class="jumbotron">
-		<div class="container">
-			<footer class="row">
-			<div class="col-lg-12">
-				<%@ include file="footer.jsp"%>
-			</div>
-			</footer>
+	<div class="container">
+		<footer class="row">
+		<div class="col-lg-12">
+			<%@ include file="footer.jsp"%>
 		</div>
+		</footer>
 	</div>
-
-
-
 
 
 

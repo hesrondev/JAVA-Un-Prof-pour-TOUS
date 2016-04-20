@@ -2,33 +2,52 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head><!-- 
+<head>
 
-<link href="http://fonts.googleapis.com/css?family=Varela"
+
+<link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/default.css"/>"
-	rel="stylesheet" type="text/css" media="all" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
-	rel="stylesheet" type="text/css" media="all" />
- -->
- 
+<!-- INCLURE UN CSS PERSO ICI -->
+
 <title>UPPT | Guide</title>
+
+
 </head>
 <body>
 
 	<!--  HEADER INCLUSION  -->
 
-	<div id="">
-		<%@ include file="header.jsp"%>
+
+	<div class="container">
+		<header class="row">
+		<div class="col-lg-12">
+			<%@ include file="header.jsp"%>
+		</div>
+		</header>
 	</div>
 
-	<h3>Guide d'utilisation du site...</h3>
+	<div class="jumbotron">
+		<div class="container" align="center">
+			<h3>Bienvenue sur Un Prof Pour Tous</h3>
+			<p>Le site de référence pour trouver votre prochain cours!</p>
+			<p>
+		</div>
+
+	</div>
+
+
+	<br>
+	<br>
+	<hr>
 
 	<!--  FOOTER INCLUSION  -->
-	<div class="footer">
-		<%@ include file="footer.jsp"%>
+
+	<div class="container">
+		<footer class="row">
+		<div class="col-lg-12">
+			<%@ include file="footer.jsp"%>
+		</div>
+		</footer>
 	</div>
 </body>
 </html>
