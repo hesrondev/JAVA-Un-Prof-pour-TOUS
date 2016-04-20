@@ -128,7 +128,7 @@
 								<form:input id="ad_costPerHour" name="costPerHour"
 									path="costPerHour" class="form-control"
 									style="text-align:right" />
-								<span class="input-group-addon">€</span>
+								<span class="input-group-addon">€/h</span>
 							</div>
 						</div>
 

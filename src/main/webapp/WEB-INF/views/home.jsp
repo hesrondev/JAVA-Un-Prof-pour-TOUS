@@ -48,17 +48,16 @@
 
 	<div class="jumbotron">
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-4">
-					<h3>Déposer votre annonce</h3>
-					<c:out value="Soyez visible auprès des visiteurs"></c:out>
-					<a class="btn btn-info btn-sm"
-						href="${pageContext.request.contextPath}/annonces/create.html">Publier
-						une annonce <span class="glyphicon glyphicon glyphicon-hand-right"></span>
-					</a>
-				</div>
-			</div>
+
+			<h3>Déposer votre annonce</h3>
+			<p>
+			<c:out value="Soyez visible auprès des visiteurs"></c:out></p><p>
+			<a class="btn btn-info"
+				href="${pageContext.request.contextPath}/annonces/create.html">Publier
+				une annonce <span class="glyphicon glyphicon glyphicon-hand-right"></span>
+			</a></p>
 		</div>
+
 	</div>
 
 	<!-- Nos professeurs & elèves -->
