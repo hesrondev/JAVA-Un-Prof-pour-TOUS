@@ -55,6 +55,40 @@
 										class="glyphicon glyphicon-time"></span>
 									${annonce.toStringDate()}
 								</p>
+
+								<!-- Labels -->
+								<p>
+									<a class="btn btn-sm btn-default"
+										href="${pageContext.request.contextPath}/annonces/recherche?subject=${annonce.subject}&location=">
+										<span class="glyphicon glyphicon-tags"></span>
+										&nbsp;${annonce.subject}
+
+									</a> &nbsp;&nbsp; <a class="btn btn-sm btn-default"
+										href="${pageContext.request.contextPath}/annonces/recherche?subject=&location=${annonce.location}">
+										<span class="glyphicon glyphicon-tags"></span>
+										&nbsp;${annonce.location}
+									</a>&nbsp;&nbsp;
+
+
+									<!-- Si le pays de l'utilisateur n'est pas vide -->
+
+									<c:if test="!empty ${annonce.user.country}">
+
+										<a class="btn btn-sm btn-pill btn-default"
+											href="${pageContext.request.contextPath}/annonces/recherche?subject=&location=${annonce.location}">
+
+											<span class="glyphicon glyphicon-tags"></span>&nbsp;${annonce.user.country}
+
+
+										</a>
+									</c:if>
+								</p>
+								<br>
+								<p>
+									<a class="btn btn-lg btn-warning"
+										href="${pageContext.request.contextPath}/annonces/candidater/${annonce.id}">Candidater
+										maintenant !</a>
+								</p>
 							</div>
 
 
@@ -63,50 +97,50 @@
 							<div class="col-lg-offset-1 col-lg-3" align="center">
 								<c:set var="listSize" value="${fn:length(annonce.applications)}"></c:set>
 
-								<div class="well">
+								<div class="">
 
-										<c:choose>
-											<c:when test="${listSize == 0}">
-												<h3>
-													<c:out value="${listSize}" />
-													Candidature
-												</h3>
-												<p>Soyez le premier à candidater!</p>
-											</c:when>
-											<c:when test="${listSize == 1}">
-												<h3>
-													<c:out value="${listSize}" />
-													Candidature
-												</h3>
-												<p>Comparez vous aux autres candidats</p>
-											</c:when>
+									<c:choose>
+										<c:when test="${listSize == 0}">
+											<h3>
+												<c:out value="${listSize}" />
+												Candidature
+											</h3>
+											<p>Soyez le premier à candidater!</p>
+										</c:when>
+										<c:when test="${listSize == 1}">
+											<h3>
+												<c:out value="${listSize}" />
+												Candidature
+											</h3>
+											<p>Comparez vous aux autres candidats</p>
+										</c:when>
 
-											<c:otherwise>
-												<h3>
-													<c:out value="${listSize}" />
-													Candidatures
-												</h3>
-												<p>Comparez vous aux autres candidats</p>
-											</c:otherwise>
-										</c:choose>
+										<c:otherwise>
+											<h3>
+												<c:out value="${listSize}" />
+												Candidatures
+											</h3>
+											<p>Comparez vous aux autres candidats</p>
+										</c:otherwise>
+									</c:choose>
 
-										<!-- Si pas connecté -->
+									<!-- Si pas connecté -->
 
-										<c:if test="${empty currentUser}">
+									<c:if test="${empty currentUser}">
 
-											<p>Accédez au profil des autres candidats.</p>
-											<p>
-												<a class="btn btn-info btn-sm"
-													href="${pageContext.request.contextPath}/inscription">Je
-													veux créer un compte</a>
-											</p>
+										<p>Accédez au profil des autres candidats.</p>
+										<p>
+											<a class="btn btn-info btn-sm"
+												href="${pageContext.request.contextPath}/inscription">Je
+												veux créer un compte</a>
+										</p>
 
-											<p>
-												<a href="${pageContext.request.contextPath}/login"><strong>J'ai
-														déjà un compte</strong></a>
-											</p>
-										</c:if>
-									</div>
+										<p>
+											<a href="${pageContext.request.contextPath}/login"><strong>J'ai
+													déjà un compte</strong></a>
+										</p>
+									</c:if>
+								</div>
 							</div>
 
 
