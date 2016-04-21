@@ -38,17 +38,19 @@
 		</div>
 	</div>
 
+	<br>
+	<br>
+	<hr>
 
 	<!--  FOOTER INCLUSION  -->
 
-	<div class="jumbotron">
-		<div class="container">
-			<footer class="row">
-			<div class="col-lg-12">
-				<%@ include file="footer.jsp"%>
-			</div>
-			</footer>
+	<div class="container">
+		<footer class="row">
+		<div class="col-lg-12">
+			<%@ include file="footer.jsp"%>
 		</div>
+		</footer>
+
 	</div>
 </body>
 </html>

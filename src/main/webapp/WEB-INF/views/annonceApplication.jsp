@@ -46,56 +46,58 @@
 
 
 	<hr>
-		<div class="container">
-			<div class="row">
+	<div class="container">
+		<div class="row">
 
-				<div class="col-lg-8">
-						<!-- Titre de l'annonce -->
-						<h3 class="text-uppercase">Annonce ${annonce.title}</h3>
-						<c:out value="Votre annonce sera envoyé à l'annonceur. En envoyant votre candidature
+			<div class="col-lg-8">
+				<!-- Titre de l'annonce -->
+				<h3 class="text-uppercase">Annonce ${annonce.title}</h3>
+				<c:out
+					value="Votre annonce sera envoyé à l'annonceur. En envoyant votre candidature
 						vous acceptez que l'annonceur vous contacte par mail ou par téléphone."></c:out>
-				</div>
-				<!-- Si pas connecté, on propose l'inscription -->
-				<c:if test="${empty currentUser}">
-					<div class="col-lg-4">
-						<div class="well">
-							<h4 align="center">Espace compte</h4>
-							<div class="btn-group btn-group-justified btn-sm">
-								<a class="btn btn-warning"
-									href="${pageContext.request.contextPath}/inscription">Inscrivez-vous!</a>
-								<a class="btn btn-default btn-sm"
-									href="${pageContext.request.contextPath}/login">Connectez-vous!</a>
-							</div>
-						</div>
-					</div>
-				</c:if>
 			</div>
-			<br>
-			<div class="row">
-				<div class="col-lg-6">
-					<!-- FORMULAIRE -->
-					<!-- Formulaire, Remplissage automatique si connecté -->
-					<div>
-						<div>
-							<%@ include file="forms/annonceApplicationForm.jsp"%>
+			<!-- Si pas connecté, on propose l'inscription -->
+			<c:if test="${empty currentUser}">
+				<div class="col-lg-4">
+					<div class="well">
+						<h4 align="center">Espace compte</h4>
+						<div class="btn-group btn-group-justified btn-sm">
+							<a class="btn btn-warning"
+								href="${pageContext.request.contextPath}/inscription">Inscrivez-vous!</a>
+							<a class="btn btn-default btn-sm"
+								href="${pageContext.request.contextPath}/login">Connectez-vous!</a>
 						</div>
 					</div>
-
 				</div>
+			</c:if>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-lg-6">
+				<!-- FORMULAIRE -->
+				<!-- Formulaire, Remplissage automatique si connecté -->
+				<div>
+					<div>
+						<%@ include file="forms/annonceApplicationForm.jsp"%>
+					</div>
+				</div>
+
 			</div>
 		</div>
+	</div>
 
 
+	<br>
+	<br>
+	<hr>
 	<!--  FOOTER INCLUSION  -->
 
-	<div class="jumbotron">
-		<div class="container">
-			<footer class="row">
-			<div class="col-lg-12">
-				<%@ include file="footer.jsp"%>
-			</div>
-			</footer>
+	<div class="container">
+		<footer class="row">
+		<div class="col-lg-12">
+			<%@ include file="footer.jsp"%>
 		</div>
+		</footer>
 	</div>
 
 </body>

@@ -35,8 +35,9 @@
 
 
 	<!--  FOOTER INCLUSION  -->
-
-	<div class="jumbotron">
+	<br>
+	<br>
+	<hr>
 		<div class="container">
 			<footer class="row">
 			<div class="col-lg-12">
@@ -44,6 +45,5 @@
 			</div>
 			</footer>
 		</div>
-	</div>
 </body>
 </html>

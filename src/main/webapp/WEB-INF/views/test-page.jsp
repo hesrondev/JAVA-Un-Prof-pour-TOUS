@@ -4,6 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
+	rel="stylesheet" />
+<!-- INCLURE UN CSS PERSO ICI -->
+
+
 <title>Test Page</title>
 </head>
 <body>

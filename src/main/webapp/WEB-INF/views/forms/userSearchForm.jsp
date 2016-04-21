@@ -1,22 +1,14 @@
 <div>
-	<br>
 	<!-- Formulaire de recherche d'un utilisateur -->
 
 	<form:form modelAttribute="userBean" method="GET"
-		action="${pageContext.request.contextPath}/${urlStatus}/search">
+		action="${pageContext.request.contextPath}/${urlStatus}/search" class="form-inline">
 
-		<table>
-
-			<tr>
-				<td><form:label path="fullName">Nom ${userStatus}</form:label></td>
-			</tr>
-			<tr>
-				<td><form:input id="fullName" name="fullName" path="fullName" value="${name}"/></td>
-				
-				<td><input type="submit" class="button" value="Rechercher" /></td>
-			</tr>
-		</table>
-
+		<div class="form-group">
+			<form:input path="fullName" value="${name}"
+				placeholder="${userStatus}" class="form-control input-sm" />
+			<input type="submit" class="btn btn-default btn-sm"
+				value="Rechercher" />
+		</div>
 	</form:form>
-	<br>
 </div>
