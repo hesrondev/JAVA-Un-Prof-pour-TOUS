@@ -4,127 +4,250 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="keywords" content="" />
-<meta name="description" content="" />
 
-<!-- 
-
-<link href="http://fonts.googleapis.com/css?family=Varela"
+<link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/default.css"/>"
-	rel="stylesheet" type="text/css" media="all" />
-<link
-	href="<c:url value="/resources/templated-plaindisplay/fonts.css" />"
-	rel="stylesheet" type="text/css" media="all" />
- -->
- 
-	
+<!-- INCLURE UN CSS PERSO ICI -->
+
+
 <title>UPPT | <c:if test="${!empty annonce}">${annonce.title}</c:if></title>
 
 </head>
 
 <body>
+
+
 	<!--  HEADER INCLUSION  -->
-	<div class="header">
-		<%@ include file="header.jsp"%>
-	</div>
 
-<div>
 
-	<!-- En tête de l'annonce -->
-	<br><br>
-	<div>
-		<c:if test="${!empty annonce}">
-		
-		<div>
-			<h3>${annonce.title}</h3>
-			<p>Par <a href="${pageContext.request.contextPath}/profile/${item.user.id}">${annonce.user.lastName} ${annonce.user.firstName}</a> &#8226 ${annonce.location} &#8226 ${annonce.toStringDate()}</p>
+	<div class="container">
+		<header class="row">
+		<div class="col-lg-12">
+			<%@ include file="header.jsp"%>
 		</div>
-		
-		<!--  Contact de l'annonceur -->
-		<div>
-			<c:set var="listSize" value="${fn:length(annonce.applications)}"></c:set>
-			<c:choose>
-				<c:when test="${listSize == 0}">
-					<h3>Candidatures</h3>
-					<p>Soyez le premier à candidater pour cette annonce</p>
-				</c:when>
-				<c:otherwise>
-					<h3>${listSize} Candidature<c:if test="${listSize > 1}">s</c:if></h3>
-					<p>Comparez vous aux autres candidats</p>				
-				</c:otherwise>			
-			</c:choose>
-		
-			<p><strong><a href="${pageContext.request.contextPath}/annonces/candidater/${annonce.id}">Candidater à l'annonce</a></strong></p>
-		</div>
-		
-		<!--  Suite des détails de l'annonce -->
-		<div>
-			<h3>Informations sur l'annonce</h3>
-			<hr>
-			
-			<table>
-				<tr>
-					<th>Matière</th>
-					<th>Rémunération de base</th>
-					<th>Niveau</th>
-				</tr>
-				<tr>
-					<td>${annonce.subject}</td>
-					<td>${annonce.costPerHour} €/heure</td>
-					<td>${annonce.level}</td>
-				</tr>
-			</table>
-			<hr><br>
-			
-			<h3>Description</h3>
-			<p>${annonce.description}</p>
-			<br>
-			
-			<!-- Si contact disponible -->
-			<c:if test="${annonce.showPhoneNumber}">
-				<h3>Contact</h3>
-				<p>***Numéro de téléphone***</p>
-			</c:if>
-			
-			
-			<br><br>
-			<p><strong><a href="${pageContext.request.contextPath}/annonces/candidater/${annonce.id}">Candidater</a></strong></p>
-			
-		</div>
-		
-		</c:if>	
+		</header>
 	</div>
-	
-	<!--  A ranger à droite de l'écran -->
 	<hr>
-	<div>
-		<h3>Offres similaires</h3>
-		<br>
-		<ul>
-			<c:forEach items="${annonces}" var="item">
-				<li>
-					<strong><a href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a></strong><br>
-					${item.location} &#8226 ${annonce.toStringDate()}
-				</li>	
-			</c:forEach>
-	
-		</ul>
-		
-		<!-- Recherche les annonces similaires -->
-		<p><strong><a href="${pageContext.request.contextPath}/annonces/recherche?subject=${annonce.subject}&location=${annonce.location}">Voir les offres similaires</a></strong></p>
-		
-	</div>
-	<br><br>
 
-</div>
+
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<c:if test="${!empty annonce}">
+
+					<!-- En tête de l'annonce -->
+
+					<section class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+
+
+							<div class="col-lg-8">
+								<h1>${annonce.title}</h1>
+								<p>
+									<span class="glyphicon glyphicon-user"></span> <a
+										href="${pageContext.request.contextPath}/profile/${item.user.id}">
+										${annonce.user.lastName} ${annonce.user.firstName}</a>&nbsp;&nbsp;&nbsp;<span
+										class="glyphicon glyphicon-globe"></span>
+									${annonce.location}&nbsp;&nbsp;&nbsp;<span
+										class="glyphicon glyphicon-time"></span>
+									${annonce.toStringDate()}
+								</p>
+							</div>
+
+
+							<!-- CANDIDATURES -->
+
+							<div class="col-lg-offset-1 col-lg-3" align="center">
+								<c:set var="listSize" value="${fn:length(annonce.applications)}"></c:set>
+
+								<div class="well">
+
+										<c:choose>
+											<c:when test="${listSize == 0}">
+												<h3>
+													<c:out value="${listSize}" />
+													Candidature
+												</h3>
+												<p>Soyez le premier à candidater!</p>
+											</c:when>
+											<c:when test="${listSize == 1}">
+												<h3>
+													<c:out value="${listSize}" />
+													Candidature
+												</h3>
+												<p>Comparez vous aux autres candidats</p>
+											</c:when>
+
+											<c:otherwise>
+												<h3>
+													<c:out value="${listSize}" />
+													Candidatures
+												</h3>
+												<p>Comparez vous aux autres candidats</p>
+											</c:otherwise>
+										</c:choose>
+
+										<!-- Si pas connecté -->
+
+										<c:if test="${empty currentUser}">
+
+											<p>Accédez au profil des autres candidats.</p>
+											<p>
+												<a class="btn btn-info btn-sm"
+													href="${pageContext.request.contextPath}/inscription">Je
+													veux créer un compte</a>
+											</p>
+
+											<p>
+												<a href="${pageContext.request.contextPath}/login"><strong>J'ai
+														déjà un compte</strong></a>
+											</p>
+										</c:if>
+									</div>
+							</div>
+
+
+						</div>
+					</div>
+					</section>
+
+
+					<!--  Suite des détails de l'annonce -->
+
+					<section class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+
+							<div class="col-lg-9">
+
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="page-header">
+											<h3>Informations sur l'annonce</h3>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-8">
+										<table class="table table-condensed">
+											<tr>
+												<td>Matière</td>
+												<td>Rémunération de base</td>
+												<td>Niveau</td>
+											</tr>
+											<tr>
+												<td><big>${annonce.subject}</big></td>
+												<td><big>${annonce.costPerHour}&nbsp;€/h</big></td>
+												<td><big>${annonce.level}</big></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-12">
+
+										<!-- DESCRIPTION -->
+										<div class="page-header">
+											<h3>Description</h3>
+										</div>
+
+										<p>${annonce.description}</p>
+										<br>
+
+										<!-- Si contact disponible -->
+										<c:if test="${annonce.showPhoneNumber}">
+											<div class="page-header">
+												<h4>Contact</h4>
+											</div>
+											<p>
+												<span class="glyphicon glyphicon-earphone"></span>${annonce.user.phoneNumber}</p>
+										</c:if>
+
+										<p>
+											<a class="btn btn-warning"
+												href="${pageContext.request.contextPath}/annonces/candidater/${annonce.id}">Candidater
+												maintenant !</a>
+										</p>
+
+
+									</div>
+
+
+
+								</div>
+
+
+
+							</div>
+
+							<!-- PLUS D'OFFRES //// PANEL GAUChe -->
+
+							<div class="col-lg-3">
+
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">Offres similaires</h3>
+									</div>
+									<table class="table table-striped table-condensed">
+
+										<tbody>
+
+											<c:forEach items="${annonces}" var="item">
+												<tr>
+													<td>
+														<p>
+															<a
+																href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a>
+															<br> <span class="glyphicon glyphicon-globe"></span>
+															${item.location}&nbsp;&nbsp;&nbsp;<span
+																class="glyphicon glyphicon-time"></span>
+															${annonce.toStringDate()}
+														</p>
+													</td>
+												</tr>
+											</c:forEach>
+
+										</tbody>
+									</table>
+
+
+									<!-- Recherche les annonces similaires -->
+									<div class="panel-footer" align="center">
+
+										<a class="btn btn-default btn-lg"
+											href="${pageContext.request.contextPath}/annonces/recherche?subject=${annonce.subject}&location=${annonce.location}">Voir
+											les offres similaires</a>
+									</div>
+								</div>
+
+							</div>
+
+
+						</div>
+					</div>
+					</section>
+				</c:if>
+			</div>
+		</div>
+	</div>
+
+
+	<br>
+	<br>
+	<hr>
 
 	<!--  FOOTER INCLUSION  -->
-	<div id="copyright" class="container">
-		<div class="footer">
+
+	<div class="container">
+		<footer class="row">
+		<div class="col-lg-12">
 			<%@ include file="footer.jsp"%>
 		</div>
-	</div>
+		</footer>
 </body>
 </html>

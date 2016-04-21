@@ -36,7 +36,7 @@ public class ProfileController {
 		this.userService = us;
 	}
 
-	/* Profil privé */
+	/* Profil privï¿½ */
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profilePage(WebRequest request, final Model model) {
@@ -62,7 +62,7 @@ public class ProfileController {
 			return "status-page";
 		}
 
-		// Si trouvé
+		// Si trouvï¿½
 
 		model.addAttribute("user", user);
 
@@ -100,9 +100,9 @@ public class ProfileController {
 		/* Friend request */
 		boolean requestIsSent = true;
 
-		// Si on est pas déjà amis
-		// Si la requête n'existe pas déjà
-		// Si la requête n'est pas déjà reçue
+		// Si on est pas dï¿½jï¿½ amis
+		// Si la requï¿½te n'existe pas dï¿½jï¿½
+		// Si la requï¿½te n'est pas dï¿½jï¿½ reï¿½ue
 
 		if (senderUser.getFriend(requestBean.getReceiverID()) == null
 				&& senderUser.hasRequestedFriend(requestBean.getReceiverID()) == -1
@@ -139,7 +139,7 @@ public class ProfileController {
 		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
 
 		if (currentUser == null) {
-			model.addAttribute("statusMessage", "traiter une requête");
+			model.addAttribute("statusMessage", "traiter une requï¿½te");
 			return "redirect:/restriction";
 		}
 
@@ -149,7 +149,7 @@ public class ProfileController {
 
 		if (fRequest == null) {
 
-			model.addAttribute("status", "La ressource 'Requête' demandée est introuvable!");
+			model.addAttribute("status", "La ressource 'Requï¿½te' demandï¿½e est introuvable!");
 			return "statusPage";
 		}
 
@@ -159,16 +159,16 @@ public class ProfileController {
 
 			System.out.println("ACCEPT OU REFUSE RESQUEST !!!");
 
-			// On récupère celui qui l'a envoyé
+			// On rï¿½cupï¿½re celui qui l'a envoyï¿½
 			User senderUser = userService.getUser(fRequest.getSenderID());
 
 			if (senderUser == null) {
 
-				model.addAttribute("status", "La ressource 'Utilisateur' demandée est introuvable!");
+				model.addAttribute("status", "La ressource 'Utilisateur' demandï¿½e est introuvable!");
 				return "statusPage";
 			}
 
-			// Suppression des requêtes de contact
+			// Suppression des requï¿½tes de contact
 
 			senderUser.removeFriendRequest(fRequest);
 			currentUser.removeFriendRequest(fRequest);
@@ -179,9 +179,9 @@ public class ProfileController {
 			}
 
 			/*
-			 * Mise à jour des utilisateurs : ATTENTION --> Un seul élément doit
+			 * Mise ï¿½ jour des utilisateurs : ATTENTION --> Un seul ï¿½lï¿½ment doit
 			 * persister. En parcourant sa liste, Il persistera automatiquement
-			 * les autres éléments
+			 * les autres ï¿½lï¿½ments
 			 */
 
 			userService.updateUser(currentUser);
@@ -197,24 +197,24 @@ public class ProfileController {
 
 			System.out.println("CANCEL RESQUEST !!!");
 
-			// On récupère celui à qui on l'a envoyé
+			// On rï¿½cupï¿½re celui ï¿½ qui on l'a envoyï¿½
 			User receiverUser = userService.getUser(fRequest.getReceiverID());
 
 			if (receiverUser == null) {
 
-				model.addAttribute("status", "La ressource 'Utilisateur' demandée est introuvable!");
+				model.addAttribute("status", "La ressource 'Utilisateur' demandï¿½e est introuvable!");
 				return "statusPage";
 			}
 
 			/*
-			 * Suppression des requêtes de contact On supprime d'abord celui du
+			 * Suppression des requï¿½tes de contact On supprime d'abord celui du
 			 * receveur car fRequest est celui de l'utilisateur courant
 			 */
 
 			receiverUser.removeFriendRequest(fRequest);
 			currentUser.removeFriendRequest(fRequest);
 
-			/* Mise à jour des deux utilisateurs : PAS DE RECURSIVITE */
+			/* Mise ï¿½ jour des deux utilisateurs : PAS DE RECURSIVITE */
 
 			userService.updateUser(currentUser);
 			userService.updateUser(receiverUser);
@@ -247,7 +247,7 @@ public class ProfileController {
 		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
 
 		if (currentUser == null) {
-			model.addAttribute("statusMessage", "traiter une requête");
+			model.addAttribute("statusMessage", "traiter une requï¿½te");
 			return "redirect:/restriction";
 		}
 
@@ -260,18 +260,18 @@ public class ProfileController {
 			return "redirect:/statusPage";
 		}
 
-		/* Utilisateurs trouvés */
+		/* Utilisateurs trouvï¿½s */
 
 		currentUser.removeFriend(contact.getId());
 		contact.removeFriend(currentUser.getId());
 
-		// Mettre à jour les deux car il n'y a plus de mise à jour récurrente
+		// Mettre ï¿½ jour les deux car il n'y a plus de mise ï¿½ jour rï¿½currente
 		userService.updateUser(currentUser);
 		userService.updateUser(contact);
 
 		model.addAttribute("currentUser", userService.getUser(currentUser.getId()));
 
-		System.out.println("Contact supprimé avec succès!");
+		System.out.println("Contact supprimï¿½ avec succï¿½s!");
 
 		return "redirect:/" + URL;
 	}
@@ -285,7 +285,7 @@ public class ProfileController {
 
 		model.addAttribute("userInfosBean", new UserComplementInfosBean());
 
-		/* Vérification de la session */
+		/* Vï¿½rification de la session */
 
 		User user = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
 
@@ -301,13 +301,13 @@ public class ProfileController {
 	public String saveCompleteUserInfos(WebRequest request,
 			@ModelAttribute("userInfosBean") UserComplementInfosBean ucb, BindingResult bindingResult, Model model) {
 
-		/* Vérification de la session */
+		/* Vï¿½rification de la session */
 
 		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
 
 		if (currentUser == null) {
 			System.err.println("COMPLETE INFOS: Session not found!");
-			model.addAttribute("statusMessage", "compléter les informations de votre profil");
+			model.addAttribute("statusMessage", "complï¿½ter les informations de votre profil");
 			return "redirect:/restriction";
 		}
 		/*
@@ -315,7 +315,7 @@ public class ProfileController {
 		if (bindingResult.hasErrors()) {
 			
 			System.err.println(bindingResult.getFieldErrorCount());
-			model.addAttribute("errorStatus", "Vérifiez votre saisie.");
+			model.addAttribute("errorStatus", "Vï¿½rifiez votre saisie.");
 			model.addAttribute("userInfosBean", new UserComplementInfosBean());
 			return "/private/userComplementInfosPage";
 		} */
@@ -326,7 +326,7 @@ public class ProfileController {
 
 		model.addAttribute("currentUser", userService.getUser(currentUser.getId()));
 		
-		return "private/profile-private";
+		return "redirect:/profile";
 	}
 
 }
