@@ -5,8 +5,8 @@
 	<div class="row">
 		<div class="col-lg-4">
 			<h3>
-				<img src="#" />
-				<a href="${pageContext.request.contextPath}/home.html"> Un Prof
+				<img src="#" /> <a
+					href="${pageContext.request.contextPath}/home.html"> Un Prof
 					Pour Tous </a>
 			</h3>
 		</div>
@@ -62,38 +62,38 @@
 			<c:otherwise>
 
 				<nav class="col-lg-12">
-					<div class="">
-						<div class="container-fluid">
-							<ul class="nav navbar-nav">
-								<!-- Nos annonces -->
-								<li><a
-									href="${pageContext.request.contextPath}/annonces.html">Annonces</a></li>
 
-								<!-- Nos professeurs -->
-								<li><a
-									href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
+					<div class="container-fluid">
+					<div class="navbar-header">
+						<ul class="nav navbar-nav">
+							<!-- Nos annonces -->
+							<li><a
+								href="${pageContext.request.contextPath}/annonces.html">Annonces</a></li>
 
-								<!-- Nos élèves -->
-								<li><a
-									href="${pageContext.request.contextPath}/students.html">Elèves</a></li>
+							<!-- Nos professeurs -->
+							<li><a
+								href="${pageContext.request.contextPath}/professors.html">Professeurs</a></li>
 
-								<!-- Le guide du site -->
-								<li><a href="${pageContext.request.contextPath}/guide.html">Le
-										Guide UPPT</a></li>
-							</ul>
-							<div class="navbar-form navbar-right inline-form">
-								<div class="form-group">
-									<!-- Login -->
-									<a href="${pageContext.request.contextPath}/login.html"
-										class="btn btn-default">Connexion</a>
+							<!-- Nos élèves -->
+							<li><a
+								href="${pageContext.request.contextPath}/students.html">Elèves</a></li>
 
-									<!-- Inscription -->
-									<a href="${pageContext.request.contextPath}/inscription.html"
-										class="btn btn-primary">Inscription</a>
-								</div>
+							<!-- Le guide du site -->
+							<li><a href="${pageContext.request.contextPath}/guide.html">Le
+									Guide UPPT</a></li>
+						</ul>
+						<div class="navbar-form navbar-right inline-form">
+							<div class="form-group">
+								<!-- Login -->
+								<a href="${pageContext.request.contextPath}/login.html"
+									class="btn btn-default">Connexion</a>
+
+								<!-- Inscription -->
+								<a href="${pageContext.request.contextPath}/inscription.html"
+									class="btn btn-primary">Inscription</a>
 							</div>
 						</div>
-					</div>
+					</div></div>
 				</nav>
 			</c:otherwise>
 		</c:choose>

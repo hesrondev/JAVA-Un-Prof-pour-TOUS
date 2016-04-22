@@ -50,7 +50,7 @@
 									<span class="glyphicon glyphicon-user"></span> <a
 										href="${pageContext.request.contextPath}/profile/${item.user.id}">
 										${annonce.user.lastName} ${annonce.user.firstName}</a>&nbsp;&nbsp;&nbsp;<span
-										class="glyphicon glyphicon-globe"></span>
+										class="glyphicon glyphicon-marker"></span>
 									${annonce.location}&nbsp;&nbsp;&nbsp;<span
 										class="glyphicon glyphicon-time"></span>
 									${annonce.toStringDate()}
@@ -58,12 +58,12 @@
 
 								<!-- Labels -->
 								<p>
-									<a class="btn btn-sm btn-default"
+									<a class="btn btn-xs btn-default"
 										href="${pageContext.request.contextPath}/annonces/recherche?subject=${annonce.subject}&location=">
 										<span class="glyphicon glyphicon-tags"></span>
 										&nbsp;${annonce.subject}
 
-									</a> &nbsp;&nbsp; <a class="btn btn-sm btn-default"
+									</a> &nbsp;&nbsp; <a class="btn btn-xs btn-default"
 										href="${pageContext.request.contextPath}/annonces/recherche?subject=&location=${annonce.location}">
 										<span class="glyphicon glyphicon-tags"></span>
 										&nbsp;${annonce.location}
@@ -74,7 +74,7 @@
 
 									<c:if test="!empty ${annonce.user.country}">
 
-										<a class="btn btn-sm btn-pill btn-default"
+										<a class="btn btn-xs btn-pill btn-default"
 											href="${pageContext.request.contextPath}/annonces/recherche?subject=&location=${annonce.location}">
 
 											<span class="glyphicon glyphicon-tags"></span>&nbsp;${annonce.user.country}
@@ -174,9 +174,9 @@
 												<td>Niveau</td>
 											</tr>
 											<tr>
-												<td><big>${annonce.subject}</big></td>
-												<td><big>${annonce.costPerHour}&nbsp;€/h</big></td>
-												<td><big>${annonce.level}</big></td>
+												<td><strong>${annonce.subject}</strong></td>
+												<td><strong>${annonce.costPerHour}&nbsp;€/h</strong></td>
+												<td><strong>${annonce.level}</strong></td>
 											</tr>
 										</table>
 									</div>
@@ -199,7 +199,9 @@
 												<h4>Contact</h4>
 											</div>
 											<p>
-												<span class="glyphicon glyphicon-earphone"></span>${annonce.user.phoneNumber}</p>
+												<span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;${currentUser.email}<br>
+												<span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;${annonce.user.phoneNumber}
+											</p>
 										</c:if>
 
 										<p>
@@ -237,7 +239,7 @@
 														<p>
 															<a
 																href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a>
-															<br> <span class="glyphicon glyphicon-globe"></span>
+															<br> <span class="glyphicon glyphicon-map-marker"></span>
 															${item.location}&nbsp;&nbsp;&nbsp;<span
 																class="glyphicon glyphicon-time"></span>
 															${annonce.toStringDate()}

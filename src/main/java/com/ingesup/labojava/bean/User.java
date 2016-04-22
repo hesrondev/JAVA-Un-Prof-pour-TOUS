@@ -1,5 +1,7 @@
 package com.ingesup.labojava.bean;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -19,10 +21,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.persistence.Transient;
 
 @Entity
-@Table(name="USER")
+@Table(name = "USER")
 public abstract class User {
 
 	protected Long id;
@@ -31,7 +33,7 @@ public abstract class User {
 	protected String lastName;
 	protected String email;
 	protected String password;
-	
+
 	protected Date inscriptionDate;
 	protected Date birthDate;
 	protected String phoneNumber;
@@ -41,16 +43,14 @@ public abstract class User {
 	protected String aboutMe;
 	private String profession;
 
-
 	// Collections
 
 	protected Set<Annonce> annonces = new HashSet<Annonce>();
 	protected Set<User> myFriends = new HashSet<User>();
 	protected Set<User> friendOf = new HashSet<User>();
-	
-	/* Listes des demandes: reçues et envoyées */
+
+	/* Listes des demandes: reï¿½ues et envoyï¿½es */
 	protected Set<FriendRequest> friendRequests = new HashSet<FriendRequest>();
-		
 
 	public User() {
 		inscriptionDate = new Date();
@@ -63,42 +63,139 @@ public abstract class User {
 		return "ID : " + id + "\nFIRSTNAME : " + firstName + "\nLASTNAME : " + lastName + "\nEMAIL : " + email
 				+ "\nPASSWORD : " + password;
 	}
-	
+
 	/**
-	 *  Ajout et suppression des éléments dans les listes */
+	 * Ajout et suppression des ï¿½Ã©lÃ©ments dans les listes
+	 */
 	
+	
+	// Ignorer cette mÃ©thode
+	@Transient
+	public boolean isStudent() {
+		if ("STUDENT".equals(type))
+			return true;
+		else
+			return false;
+	}
+	
+	public String toStringJoinedDate() {
+		DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+		return dateFormat.format(inscriptionDate);
+	}
+
+	public String toStringBirthDate() {
+
+		if (birthDate != null) {
+			DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+			return dateFormat.format(birthDate);
+		}
+
+		return null;
+	}
+
+	public int friendsCount() {
+		return myFriends.size();
+	}
+
+	public int publicationsCount() {
+		return annonces.size();
+	}
+
+	// Demandes d'amis reÃ§ues
+	public int receivedFriendRequestsCount() {
+		int counter = 0;
+
+		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
+			FriendRequest fr = iterator.next();
+
+			if (fr.isReceived()) {
+
+				counter++;
+			}
+		}
+
+		return counter;
+	}
+
+	// Demandes d'amis reÃ§ues
+	public int sentFriendRequestsCount() {
+		int counter = 0;
+
+		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
+			FriendRequest fr = iterator.next();
+
+			if (fr.isSent()) {
+
+				counter++;
+			}
+		}
+
+		return counter;
+	}
+
+	// Toutes les candidatures d'une annonce
+	public int annonceApplicationsCount(int adID) {
+		int counter = 0;
+
+		for (Iterator<Annonce> iterator = annonces.iterator(); iterator.hasNext();) {
+			Annonce annonce = iterator.next();
+
+			if (annonce.getId() == adID)
+				counter = annonce.applicationsCount();
+		}
+
+		return counter;
+	}
+
+	// Toutes les candidatures de toutes les annonces
+	public int allAnnonceApplicationsCount() {
+		int counter = 0;
+
+		for (Iterator<Annonce> iterator = annonces.iterator(); iterator.hasNext();) {
+			Annonce annonce = iterator.next();
+
+			counter += annonce.applicationsCount();
+		}
+
+		return counter;
+	}
+
+	// Toutes les notifications cumulÃ©es
+
+	public int notificationsCount() {
+		return receivedFriendRequestsCount() + allAnnonceApplicationsCount();
+	}
+
 	public void addAnnonce(Annonce ad) {
 		annonces.add(ad);
 	}
-	
+
 	public void removeAnnonce(Annonce ad) {
-		
+
 		for (Iterator<Annonce> iterator = annonces.iterator(); iterator.hasNext();) {
-		    Annonce annonce = iterator.next();
-		    if (annonce.getId() == ad.getId())
-		    	iterator.remove();
+			Annonce annonce = iterator.next();
+			if (annonce.getId() == ad.getId())
+				iterator.remove();
 		}
 	}
-	
+
 	// Add friend request
-	
+
 	public void addFriendRequest(FriendRequest fRequest) {
 		friendRequests.add(fRequest);
 	}
-	
+
 	/*
-	 * Supprime un une requête
-	 * Renvoie vrai si "trouvé et supprimé
-	 * Renvoie faux si non trouvé
-	 * */
+	 * Supprime un une requï¿½te Renvoie vrai si "trouvï¿½ et supprimï¿½ Renvoie faux
+	 * si non trouvï¿½
+	 */
 	public boolean removeFriendRequest(FriendRequest req) {
-		
+
 		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
-		    FriendRequest fr = iterator.next();
-			
-			if(fr.getReceiverID() == req.getReceiverID() && fr.getSenderID() == req.getSenderID())
-			{
-				System.out.println("Suppression de la requete " +fr.getId()+ " par " +firstName);
+			FriendRequest fr = iterator.next();
+
+			if (fr.getReceiverID() == req.getReceiverID() && fr.getSenderID() == req.getSenderID()) {
+				System.out.println("Suppression de la requete " + fr.getId() + " par " + firstName);
 				iterator.remove();
 				return true;
 			}
@@ -106,102 +203,98 @@ public abstract class User {
 
 		return false;
 	}
-	
-	
-	// Récupérer une requête
-	
+
+	// Rï¿½cupï¿½rer une requï¿½te
+
 	public FriendRequest getFriendRequest(Long id) {
-		
+
 		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
-		    FriendRequest fr = iterator.next();
+			FriendRequest fr = iterator.next();
 			if (fr.getId() == id)
 				return fr;
 		}
-		
-		return null;		
+
+		return null;
 	}
-	
-	
-	// Vérifie si le requête existe déjà
-	
-	// Vérifie si je n'ai pas déjà invité un ami / si on ne m'a pas déjà invité
-	// Renvoie l'ID de la requête
-	
+
+	// Vï¿½rifie si le requï¿½te existe dï¿½jï¿½
+
+	// Vï¿½rifie si je n'ai pas dï¿½jï¿½ invitï¿½ un ami / si on ne m'a pas dï¿½jï¿½ invitï¿½
+	// Renvoie l'ID de la requï¿½te
+
 	public Long hasRequestedFriend(Long friendID) {
-		
+
 		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
-		    FriendRequest fr = iterator.next();
+			FriendRequest fr = iterator.next();
 			if (fr.getReceiverID() == friendID)
 				return fr.getId();
 		}
-		
+
 		return -1L;
 	}
-	
-	// Vérifie si je n'ai pas déjà invité un ami / si on ne m'a pas déjà invité
-	// Renvoie l'ID de la requête
-	
+
+	// Vï¿½rifie si je n'ai pas dï¿½jï¿½ invitï¿½ un ami / si on ne m'a pas dï¿½jï¿½ invitï¿½
+	// Renvoie l'ID de la requï¿½te
+
 	public Long hasBeenRequestedByFriend(Long friendID) {
-		
+
 		for (Iterator<FriendRequest> iterator = friendRequests.iterator(); iterator.hasNext();) {
-		    FriendRequest fr = iterator.next();
+			FriendRequest fr = iterator.next();
 			if (fr.getSenderID() == friendID)
 				return fr.getId();
 		}
-		
+
 		return -1L;
 	}
-	
+
 	// ADD a friend
-	
+
 	public void addFriend(User user) {
 		myFriends.add(user);
 	}
-	
+
 	public void addFriendOf(User user) {
 		friendOf.add(user);
 	}
-	
-	// Récupère un ami
-	
+
+	// Rï¿½cupï¿½re un ami
+
 	public User getFriend(Long id) {
-		
+
 		for (Iterator<User> iterator = myFriends.iterator(); iterator.hasNext();) {
-		    User s = iterator.next();
-		    if (s.getId() == id) {
-		        return s;
-		    }       
+			User s = iterator.next();
+			if (s.getId() == id) {
+				return s;
+			}
 		}
-		
+
 		return null;
 	}
 
 	/*
-	 * Supprime un ami
-	 * Renvoie vrai si "trouvé et supprimé
-	 * Renvoie faux si non trouvé
-	 * */
+	 * Supprime un ami Renvoie vrai si "trouvï¿½ et supprimï¿½ Renvoie faux si non
+	 * trouvï¿½
+	 */
 	public boolean removeFriend(Long userID) {
-		
+
 		for (Iterator<User> iterator = myFriends.iterator(); iterator.hasNext();) {
-		    User s = iterator.next();
-		    if (s.getId() == userID) {
-		        iterator.remove();
-		        return true;
-		    }       
+			User s = iterator.next();
+			if (s.getId() == userID) {
+				iterator.remove();
+				return true;
+			}
 		}
-		
+
 		return false;
 	}
-	
+
 	/*
 	 * Getters and Setters
-	 * */
-	
+	 */
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="USER_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "USER_ID")
 	public Long getId() {
 		return id;
 	}
@@ -210,7 +303,7 @@ public abstract class User {
 		this.id = id;
 	}
 
-	@Column(name="FIRSTNAME")
+	@Column(name = "FIRSTNAME")
 	public String getFirstName() {
 		return firstName;
 	}
@@ -219,7 +312,7 @@ public abstract class User {
 		this.firstName = firstName;
 	}
 
-	@Column(name="LASTNAME")
+	@Column(name = "LASTNAME")
 	public String getLastName() {
 		return lastName;
 	}
@@ -228,7 +321,7 @@ public abstract class User {
 		this.lastName = lastName;
 	}
 
-	@Column(name="EMAIL")
+	@Column(name = "EMAIL")
 	public String getEmail() {
 		return email;
 	}
@@ -237,7 +330,7 @@ public abstract class User {
 		this.email = email;
 	}
 
-	@Column(name="PASSWORD")
+	@Column(name = "PASSWORD")
 	public String getPassword() {
 		return password;
 	}
@@ -245,10 +338,10 @@ public abstract class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	/* LIST of annonces */
 
-	@OneToMany(mappedBy="user", targetEntity=Annonce.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", targetEntity = Annonce.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public Set<Annonce> getAnnonces() {
 		return annonces;
 	}
@@ -256,8 +349,8 @@ public abstract class User {
 	public void setAnnonces(Set<Annonce> annonces) {
 		this.annonces = annonces;
 	}
-	
-	@Column(name="USER_TYPE")
+
+	@Column(name = "USER_TYPE")
 	public String getType() {
 		return type;
 	}
@@ -265,48 +358,44 @@ public abstract class User {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	@Column(name="INSCRIPTION_DATE")
+
+	@Column(name = "INSCRIPTION_DATE")
 	public Date getInscriptionDate() {
 		return inscriptionDate;
 	}
-
 
 	public void setInscriptionDate(Date inscriptionDate) {
 		this.inscriptionDate = inscriptionDate;
 	}
 
-	@Column(name="BIRTH_DATE")
+	@Column(name = "BIRTH_DATE")
 	public Date getBirthDate() {
 		return birthDate;
 	}
-
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
-	@Column(name="PHONE_NUMBER")
+	@Column(name = "PHONE_NUMBER")
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
-	@Column(name="CITY")
+	@Column(name = "CITY")
 	public String getCity() {
 		return city;
 	}
-
 
 	public void setCity(String city) {
 		this.city = city;
 	}
 
-	@Column(name="COUNTRY")
+	@Column(name = "COUNTRY")
 	public String getCountry() {
 		return country;
 	}
@@ -315,26 +404,24 @@ public abstract class User {
 		this.country = country;
 	}
 
-	@Column(name="GRADE_LEVEL")
+	@Column(name = "GRADE_LEVEL")
 	public String getGradeLevel() {
 		return gradeLevel;
 	}
 
-	
 	public void setGradeLevel(String level) {
 		this.gradeLevel = level;
 	}
 
-	@Column(name="ABOUT_ME")
+	@Column(name = "ABOUT_ME")
 	public String getAboutMe() {
 		return aboutMe;
 	}
 
-
 	public void setAboutMe(String aboutMe) {
 		this.aboutMe = aboutMe;
 	}
-	
+
 	public String getProfession() {
 		return profession;
 	}
@@ -343,14 +430,10 @@ public abstract class User {
 		this.profession = profession;
 	}
 
-	
 	/* Friends section */
-	
-	
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name="USER_FRIEND", joinColumns=@JoinColumn(name="USER_ID", nullable = false, updatable = false),
-	inverseJoinColumns=@JoinColumn(name="FRIEND_ID", nullable = false, updatable = false))
+	@JoinTable(name = "USER_FRIEND", joinColumns = @JoinColumn(name = "USER_ID", nullable = false, updatable = false), inverseJoinColumns = @JoinColumn(name = "FRIEND_ID", nullable = false, updatable = false))
 	public Set<User> getMyFriends() {
 		return myFriends;
 	}
@@ -358,7 +441,7 @@ public abstract class User {
 	public void setMyFriends(Set<User> myFriends) {
 		this.myFriends = myFriends;
 	}
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "myFriends")
 	public Set<User> getFriendOf() {
 		return friendOf;
@@ -367,11 +450,10 @@ public abstract class User {
 	public void setFriendOf(Set<User> friendOf) {
 		this.friendOf = friendOf;
 	}
-	
-	
+
 	/* Friend Requests */
-	
-	@OneToMany(mappedBy="user", targetEntity=FriendRequest.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+
+	@OneToMany(mappedBy = "user", targetEntity = FriendRequest.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public Set<FriendRequest> getFriendRequests() {
 		return friendRequests;
 	}
@@ -379,11 +461,9 @@ public abstract class User {
 	public void setFriendRequests(Set<FriendRequest> myFriendRequests) {
 		this.friendRequests = myFriendRequests;
 	}
-	
-	
-	
+
 	// Equals AND hASH
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -394,18 +474,18 @@ public abstract class User {
 			return false;
 
 		User other = (User) obj;
-		
+
 		if (id == other.id && email == other.email)
 			return true;
-		
+
 		else
 			return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
 		return super.hashCode();
 	}
-	
+
 }

@@ -68,7 +68,7 @@ public class UserDAOImpl implements UserDAO {
 	public User getUser(String email, String pass) {
 
 		Query query = entityManager.createQuery("from User u left join fetch u.myFriends " + "left join fetch u.friendOf "
-						+ "left join fetch u.annonces " + "left join fetch u.friendRequests " 
+						+ "left join fetch u.annonces " + "left join fetch u.friendRequests "
 						+ "where u.email = :email AND u.password = :password");
 		
 		query.setParameter("email", email);
@@ -163,8 +163,8 @@ public class UserDAOImpl implements UserDAO {
 
 	/**
 	 * Renvoie les utilisateurs qui dont les noms correspondent au tableau de
-	 * valeur entrée Si le statut est Professor alors on ne cherche que les
-	 * profs Si le status est Student alors on ne cherche que les étudiants
+	 * valeur entrï¿½e Si le statut est Professor alors on ne cherche que les
+	 * profs Si le status est Student alors on ne cherche que les ï¿½tudiants
 	 * Si le status est User alors on cherche tous les utilisateurs
 	 */
 
@@ -269,7 +269,7 @@ public class UserDAOImpl implements UserDAO {
 		return annonces;
 	}
 
-	// Ajout des filtres à la requête
+	// Ajout des filtres ï¿½ la requï¿½te
 
 	private String initializeStringQuery(List<Filter> filters) {
 
@@ -302,7 +302,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	// Matching ads -- Recherche d'annonce
-	// On recherche d'abord les annonces avec le même titre et la même ville
+	// On recherche d'abord les annonces avec le mï¿½me titre et la mï¿½me ville
 	// Puis on recherche celles contenant le titre dans soit le titre, soit la
 	// description
 

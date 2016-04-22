@@ -19,6 +19,7 @@ import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.FriendRequestBean;
 import com.ingesup.labojava.form.InscriptionFormBean;
 import com.ingesup.labojava.form.UserComplementInfosBean;
+import com.ingesup.labojava.form.UserFormBean;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
@@ -50,6 +51,15 @@ public class ProfileController {
 			return "redirect:/login";
 	}
 
+	/* INJECTION DES BEANS */
+	
+	@ModelAttribute("userBean")
+	public UserFormBean addUserBean() {
+		return new UserFormBean();
+	}
+	
+	
+	
 	/* Profil Public */
 
 	@RequestMapping(value = "profile/{userID}")

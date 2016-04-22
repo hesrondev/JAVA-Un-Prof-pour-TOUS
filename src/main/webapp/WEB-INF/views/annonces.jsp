@@ -104,7 +104,7 @@
 											<tr>
 												<td><a
 													href="${pageContext.request.contextPath}/annonces/status=${item.value}">${item.value}
-														<span class="badge">${item.counter}</span>
+														&nbsp;&nbsp;&nbsp;<span class="badge">${item.counter}</span>
 												</a></td>
 											</tr>
 										</c:forEach>
@@ -130,7 +130,7 @@
 											<tr>
 												<td><a
 													href="${pageContext.request.contextPath}/annonces/status=${item.value}">${item.value}
-														<span class="badge">${item.counter}</span>
+														&nbsp;&nbsp;&nbsp;<span class="badge">${item.counter}</span>
 												</a></td>
 											</tr>
 										</c:forEach>
@@ -155,7 +155,7 @@
 											<tr>
 												<td><a
 													href="${pageContext.request.contextPath}/annonces/status=${item.value}">${item.value}
-														<span class="badge">${item.counter}</span>
+														&nbsp;&nbsp;&nbsp;<span class="badge">${item.counter}</span>
 												</a></td>
 											</tr>
 										</c:forEach>
@@ -181,7 +181,7 @@
 											<tr>
 												<td><a
 													href="${pageContext.request.contextPath}/annonces/status=${item.value}">${item.value}
-														<span class="badge">${item.counter}</span>
+														&nbsp;&nbsp;&nbsp;<span class="badge">${item.counter}</span>
 												</a></td>
 											</tr>
 										</c:forEach>

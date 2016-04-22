@@ -59,7 +59,7 @@ public class Annonce{
 		return dateFormat.format(date);
 	}
 	
-	/* Récupère une candidature */
+	/* Rï¿½cupï¿½re une candidature */
 	public AnnonceApplication getAnnonceApplication(AnnonceApplication ap) {
 		
 		for (Iterator<AnnonceApplication> iterator = applications.iterator(); iterator.hasNext();) {
@@ -71,7 +71,7 @@ public class Annonce{
 		return null;
 	}
 	
-	/* Vérifie qu'on a pas déjà envoyé ue candidature*/
+	/* Vï¿½rifie qu'on a pas dï¿½jï¿½ envoyï¿½ ue candidature*/
 	
 	public boolean hasAlreadyApplied(AnnonceApplication ap) {
 		
@@ -85,6 +85,10 @@ public class Annonce{
 	}
 	
 	
+	public int applicationsCount() {
+		return applications.size();
+	}
+	
 	
 	/*
 	 * ToString
@@ -92,7 +96,7 @@ public class Annonce{
 	public String toString() {
 		
 		return "[Annonce]\nID: " + id + "\nTitle: " +title + "\nSubject: " + subject  + "\nlocation:" +location 
-				+ "Prix/h: " + costPerHour + " €/h" + "\nDescription: " + 
+				+ "Prix/h: " + costPerHour + " ï¿½/h" + "\nDescription: " + 
 		description;
 	}
 	
@@ -184,7 +188,7 @@ public class Annonce{
 		this.user = user;
 	}
 
-	@OneToMany(mappedBy="annonce", targetEntity=AnnonceApplication.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="annonce", targetEntity=AnnonceApplication.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	public Set<AnnonceApplication> getApplications() {
 		return applications;
 	}
