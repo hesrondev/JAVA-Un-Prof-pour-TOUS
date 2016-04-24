@@ -34,6 +34,7 @@ public class LoginController {
 		this.userService = us;
 	}
 	
+	/* INJECTION bean LOGIN */
 	
 	@ModelAttribute("loginBean")
 	public LoginFormBean addLoginFormBean() {
@@ -49,12 +50,12 @@ public class LoginController {
 		//model.addAttribute("loginBean", new LoginFormBean());
 		
 		
-		/* Vérifions que l'user n'est pas déjà connecté */
+		/* Vï¿½rifions que l'user n'est pas dï¿½jï¿½ connectï¿½ */
 		
 		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
 		
 		
-		/* Déjà connecté */
+		/* Dï¿½jï¿½ connectï¿½ */
 		
 		if (currentUser != null) {
 			return "redirect:/profile";
@@ -64,7 +65,7 @@ public class LoginController {
 	}
 
 	
-	// Traitement de la requête POST de connexion
+	// Traitement de la requï¿½te POST de connexion
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(@ModelAttribute("loginBean") @Valid final LoginFormBean lFormBean,
@@ -83,13 +84,13 @@ public class LoginController {
 		}
 
 		
-		// On cherche l'utilisateur dans la base de données
+		// On cherche l'utilisateur dans la base de donnï¿½es
 		
 		User user = userService.getUser(lFormBean.getEmail(), lFormBean.getPassword());
 		
 		if (user != null) {
 			
-			// Test si c'est un étudiant ou un professor pour le caster
+			// Test si c'est un ï¿½tudiant ou un professor pour le caster
 			
 			mView.addObject("currentUser", user);
 			mView.setViewName("redirect:/profile");

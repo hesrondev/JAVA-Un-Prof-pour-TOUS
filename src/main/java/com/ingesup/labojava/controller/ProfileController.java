@@ -58,6 +58,10 @@ public class ProfileController {
 		return new UserFormBean();
 	}
 	
+	@ModelAttribute("requestBean")
+	public FriendRequestBean addFriendRequest() {
+		return new FriendRequestBean();
+	}
 	
 	
 	/* Profil Public */

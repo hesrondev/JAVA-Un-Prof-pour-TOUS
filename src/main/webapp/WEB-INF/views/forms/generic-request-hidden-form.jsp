@@ -4,8 +4,6 @@
 	 IL EST NECESSAIRE DE DEFINIR LES VARIABLES AVANT D'inclure le formulaire
 	  -->
 
-
-
 <form:form
 	action="${pageContext.request.contextPath}/profile/request-processing/${action}"
 	method="POST" commandName="requestBean">
@@ -15,23 +13,28 @@
 	<form:hidden path="action" value="${action}" />
 	
 	<c:if test="${action == 'add'}">
-		<input type="submit" value="AJOUTER" />
+		<button type="submit" class="btn btn-default btn-xs">
+		<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Ajouter contact</button>
 	</c:if>
 	
 	<c:if test="${action == 'cancel'}">
-		<input type="submit" value="ANNULER" />
+		<button type="submit" class="btn btn-default btn-xs">
+		<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Annuler</button>
 	</c:if>
 	
 	<c:if test="${action == 'refuse'}">
-		<input type="submit" value="REFUSER" />
+		<button type="submit" class="btn btn-danger btn-xs">
+		<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Refuser</button>
 	</c:if>
 	
 	<c:if test="${action == 'accept'}">
-		<input type="submit" value="ACCEPTER" />
+		<button type="submit" class="btn btn-success btn-xs">
+		<span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Accepter</button>
 	</c:if>
 	
 	<c:if test="${action == 'delete'}">
-		<input type="submit" value="SUPPRIMER" />
+		<button type="submit" class="btn btn-default btn-xs">
+		<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;Retirer de la liste</button>
 	</c:if>
 	
 </form:form>

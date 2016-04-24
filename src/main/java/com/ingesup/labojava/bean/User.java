@@ -352,7 +352,11 @@ public abstract class User {
 
 	@Column(name = "USER_TYPE")
 	public String getType() {
-		return type;
+		
+		if (type.equals("PROFESSOR"))
+			return "Professeur";
+		else
+			return "Etudiant(e)";
 	}
 
 	public void setType(String type) {

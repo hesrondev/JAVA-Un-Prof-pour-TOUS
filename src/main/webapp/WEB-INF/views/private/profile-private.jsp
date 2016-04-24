@@ -17,15 +17,13 @@
 	<!--  HEADER INCLUSION  -->
 
 
-	<div class="container">
-		<header class="row">
-		<div class="col-lg-12">
-			<%@ include file="../header.jsp"%>
-		</div>
-		</header>
-	</div>
-	<hr>
 
+	<header class="">
+	<div class="">
+		<%@ include file="../header.jsp"%>
+	</div>
+	</header>
+	<br>
 
 	<div class="container">
 		<div class="row">
@@ -33,7 +31,7 @@
 
 			<!-- SECTION GAUCHE INFOS PROFIL-->
 
-			<div class="col-lg-offset-1 col-lg-3">
+			<div class="col-lg-3">
 
 				<!-- LIGNE NOM + photo profil -->
 
@@ -43,6 +41,17 @@
 						<a href="#"> <img src="resources/img/default-picture.jpg"
 							class="img-thumbnail"></a>
 						<h3>${currentUser.firstName}&nbsp;${currentUser.lastName}</h3>
+
+						<!-- Inclusion du bouton approprié -->
+						<div class="">
+
+							<c:set var="item" value="${currentUser}"></c:set>
+							<%@ include file="../forms/generic-friendAction-button.jsp"%>
+
+						</div>
+
+
+
 					</div>
 				</div>
 				<hr>
@@ -53,11 +62,9 @@
 						<p>
 							<span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;${currentUser.type}<br>
 							<span class="glyphicon glyphicon-briefcase"></span>&nbsp;&nbsp;${currentUser.profession}
-							<c:if test="${!empty currentUser.gradeLevel}">
-						- ${currentUser.gradeLevel}</c:if>
-							<br> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;${currentUser.city}
-							- ${currentUser.country}<br> <span
-								class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;${currentUser.email}<br>
+							<c:if test="${!empty currentUser.gradeLevel}">&nbsp;&bull;&nbsp;${currentUser.gradeLevel}</c:if>
+							<br> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;${currentUser.city}&nbsp;&bull;&nbsp;${currentUser.country}<br>
+							<span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;${currentUser.email}<br>
 							<span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;${currentUser.phoneNumber}<br>
 
 							<c:if test="${!empty currentUser.birthDate}">
@@ -67,6 +74,7 @@
 					</div>
 				</div>
 				<hr>
+
 				<!-- Statistiques -->
 
 				<div class="row" align="center">
@@ -76,21 +84,21 @@
 								<h3>
 									<a href="#"> ${currentUser.friendsCount()} </a>
 								</h3>
-								<p>amis</p>
+								<p>Amis</p>
 							</div>
 
 							<div class="col-lg-4">
 								<h3>
 									<a href="#"> ${currentUser.publicationsCount()} </a>
 								</h3>
-								<p>publications</p>
+								<p>Publications</p>
 							</div>
 
 							<div class="col-lg-4">
 								<h3>
 									<a href="#"> ${currentUser.notificationsCount()} </a>
 								</h3>
-								<p>notifications</p>
+								<p>Notifications</p>
 							</div>
 
 						</div>
@@ -149,7 +157,7 @@
 			<!-- SECTION DROITE -->
 
 
-			<div class="col-lg-8">
+			<div class="col-lg-9">
 
 
 				<!-- LIGNE ENTETE NAV TAB -->
@@ -158,10 +166,12 @@
 						<div class="container-fluid">
 
 							<ul class="nav nav-tabs">
-								<li role="presentation" class="active"><a href="#"><span
-										class="glyphicon glyphicon-calendar"></span>&nbsp;Mon planning</a></li>
-								<li role="presentation"><a href="#"><span
-										class="glyphicon glyphicon-education"></span>&nbsp; <c:choose>
+								<li role="presentation" class="active"><a data-toggle="tab"
+									href="#A"><span class="glyphicon glyphicon-calendar"></span>&nbsp;&nbsp;Mon
+										planning</a></li>
+
+								<li role="presentation"><a data-toggle="tab" href="#B"><span
+										class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;<c:choose>
 											<c:when test="${currentUser.isStudent()}">
 												<c:out value="Mes professeurs"></c:out>
 											</c:when>
@@ -170,54 +180,113 @@
 											</c:otherwise>
 										</c:choose></a></li>
 
-								<li role="presentation"><a href="#"><span
-										class="glyphicon glyphicon-bullhorn"></span>&nbsp;Annonces <c:out
-											value="&"></c:out> Publications</a></li>
+								<li role="presentation"><a data-toggle="tab" href="#C"><span
+										class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Annonces
+										<c:out value="&"></c:out> Publications</a></li>
 
-								<li role="presentation"><a href="#"><span
-										class="glyphicon glyphicon-user"></span>&nbsp;Mes amis</li>
-
-								<li>
-									<!-- Ajouter -->
-									<form class="navbar-form navbar-right">
-										<button type="submit" class="btn btn-xs btn-default">
-											<span class="glyphicon glyphicon-plus"></span>&nbsp;Ajouter
-											contact
-										</button>
-									</form>
-								</li>
-
+								<li role="presentation"><a data-toggle="tab" href="#D"><span
+										class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Mes amis</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
+
+
 				<!-- FIN DE LA NAV TAB -->
 
 				<br>
 
 				<!-- CORPS DE LA NAV TAB -->
-				<!-- Afficher ce contenu de manière dynamique
-					voir la possibilité avec JS -->
-				
-				<div class="row">
-					<div class="col-lg-12">
-						<%@ include file="myProfessors-Board.jsp" %>
+				<!-- TAB CONTENTS -->
+
+				<div class="tab-content">
+
+					<!-- Mon emploi du temps -->
+					<div id="A" class="tab-pane fade in active">
+						<div class="row">
+							<div class="col-lg-12">
+
+								<h3 align="center">
+									Mon emploi du temps! <small>Section à remplir</small>
+								</h3>
+
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<%@ include file="myStudents-Board.jsp" %>
+
+					<!-- Mes profs / Eleves -->
+
+					<c:choose>
+						<c:when test="${currentUser.isStudent()}">
+							<div id="B" class="tab-pane fade">
+								<div class="row">
+									<div class="col-lg-12">
+
+										<%@ include file="myProfessors-Board.jsp"%>
+									</div>
+
+								</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div id="B" class="tab-pane fade">
+								<div class="row">
+									<div class="col-lg-12">
+
+										<%@ include file="myStudents-Board.jsp"%>
+									</div>
+
+								</div>
+							</div>
+						</c:otherwise>
+
+					</c:choose>
+
+
+					<!-- Mes annonces -->
+					<div id="C" class="tab-pane fade">
+						<div class="row">
+							<div class="col-lg-12">
+
+								<%@ include file="myAnnonces.jsp"%>
+							</div>
+						</div>
 					</div>
+
+
+					<!-- Ma liste d'amis / Requetes Envoyées + Reçues -->
+
+					<div id="D" class="tab-pane fade">
+
+						<div class="row">
+							<div class="col-lg-12">
+
+								<%@ include file="myFriends-List.jsp"%>
+							</div>
+
+						</div>
+
+						<!-- Mes demandes en ami received/sent -->
+
+						<div class="row">
+							<div class="col-lg-6">
+								<%@ include file="receivedRequests-List.jsp"%>
+							</div>
+
+							<div class="col-lg-6">
+								<%@ include file="sentRequests-List.jsp"%>
+							</div>
+						</div>
+
+					</div>
+
+
+
 				</div>
+				<!-- FIN DIV TABCONTENT -->
 
 			</div>
-
-
-
 		</div>
-
-
-
 	</div>
 
 	<br>
@@ -233,6 +302,30 @@
 		</div>
 		</footer>
 	</div>
+
+
+
+	<!-- INCLUSION JS -->
+
+	<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/resources/js/jquery.js"></script>
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet"
+		href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>
