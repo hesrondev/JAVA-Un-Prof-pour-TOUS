@@ -35,30 +35,63 @@
 		<!-- Proposer un tableau de valeurs Ã  cocher et rÃ©cup OPTIONNEL-->
 
 		<legend>A propos de votre profession</legend>
-
+		
 		<div class="form-group">
 			<form:label path="profession">Profession</form:label>
 			<form:select path="profession" class="form-control">
-				<form:option value="">--Choisir sa profession--</form:option>
-				<form:option value="eleve">Etudiant</form:option>
-				<form:option value="prof_college">Professeur de CollÃ¨ge</form:option>
-				<form:option value="prof_lycee">Professeur de LycÃ©e</form:option>
-				<form:option value="prof_univ">Professeur d'UniversitÃ©ï¿½</form:option>
-				<form:option value="ingenieur_agronome">IngÃ©nieur agronome</form:option>
-
-				<!-- MAP KEY-VALUE A PARCOURIR !!! -->
+				<form:option value="">--Choisir sa profession--</form:option>			
+				<form:options items="${formMaps.jobsMap}"/>
 			</form:select>
 		</div>
 
-		<!-- AnnÃ©e d'expÃ©riences SI COMPTE PROF A METTRE -->
+		<!-- Années d'expériences SI COMPTE PROF A METTRE -->
 
 		<c:if test="${currentUser.type == 'PROFESSOR'}">
 
 			<div class="form-group">
-				<form:label path="experience">ExpÃ©rience</form:label>
-				<div class="input-group">
-					<form:select path="experience" class="form-control">
-						<c:forEach begin="" end="100" var="val">
+				<form:label path="experience">Expérience</form:label>
+				<form:select path="experience" class="form-control">
+					<form:option value="">--Nombre d'années d'expérience--</form:option>			
+					<form:options items="${formMaps.experiencesMap}"/>		
+				</form:select>
+			</div>
+
+		</c:if>
+
+
+		<legend>Votre emplacement</legend>
+		
+		<div class="form-group">
+			<form:label path="departement">Département</form:label>
+			<form:select path="departement" class="form-control">
+				<form:option value="">--Choisir son département--</form:option>			
+				<form:options items="${formMaps.departementsMap}"/>
+			</form:select>
+		</div>
+
+		<div class="form-group">
+			<form:label path="city">Ville</form:label>
+			<form:select path="city" class="form-control">
+				<form:option value="">--Choisir sa Ville--</form:option>			
+				<form:options items="${formMaps.citiesMap}"/>
+			</form:select>
+		</div>
+
+		<div class="form-group">
+			<form:label path="country">Pays</form:label>
+			<form:select path="country" class="form-control">
+				<form:option value="">--Choisir son pays--</form:option>			
+				<form:options items="${formMaps.countriesMap}"/>
+			</form:select>
+		</div>
+
+		<legend>A propos de vous?</legend>
+
+		<div class="form-group">
+			<form:label path="birthDay">Jour de naissance</form:label>
+			<div class="input-group">
+					<form:select path="birthDay" class="form-control">
+						<c:forEach begin="" end="31" var="val">
 							<form:option value="${val}">
 								<c:out value="${val}"></c:out>
 							</form:option>
@@ -66,52 +99,28 @@
 					</form:select>
 					<span class="input-group-addon">an</span>
 				</div>
-			</div>
-
-		</c:if>
-
-
-		<legend>Votre emplacement</legend>
-
-		<div class="form-group">
-			<form:label path="city">Ville</form:label>
-			<form:select path="city" class="form-control">
-				<form:option value="paris">Paris</form:option>
-				<form:option value="massy">Massy</form:option>
-				<form:option value="versailles">Versailles</form:option>
-
-				<!-- MAP KEY-VALUE A PARCOURIR !!! -->
-
-			</form:select>
-		</div>
-		
-		<div class="form-group">
-			<form:label path="city">MAP TEST</form:label>
-			<form:select path="city" class="form-control">
-				
-				<form:options items="${formMaps.subjectsMap}"/>
-				<!-- MAP KEY-VALUE A PARCOURIR !!! -->
-
-			</form:select>
-		</div>
-
-		<div class="form-group">
-			<form:label path="country">Pays</form:label>
-			<form:select path="country" class="form-control">
-				<form:option value="france">France</form:option>
-				<form:option value="belgique">Belgique</form:option>
-				<form:option value="congo">Congo</form:option>
-
-				<!-- MAP KEY-VALUE A PARCOURIR !!! -->
-
-			</form:select>
-		</div>
-
-		<legend>A propos de vous?</legend>
-
-		<div class="form-group">
-			<form:label path="birthDate">Date de naissance</form:label>
-			<form:input type="date" path="birthDate" class="form-control" />
+			<form:label path="birthMonth">Mois de naissance</form:label>
+			<div class="input-group">
+					<form:select path="birthMonth" class="form-control">
+						<c:forEach begin="" end="12" var="val">
+							<form:option value="${val}">
+								<c:out value="${val}"></c:out>
+							</form:option>
+						</c:forEach>
+					</form:select>
+					<span class="input-group-addon">an</span>
+				</div>
+			<form:label path="birthYear">Année de naissance</form:label>
+			<div class="input-group">
+					<form:select path="yearDate" class="form-control">
+						<c:forEach begin="1970" end="2016" var="val">
+							<form:option value="${val}">
+								<c:out value="${val}"></c:out>
+							</form:option>
+						</c:forEach>
+					</form:select>
+					<span class="input-group-addon">an</span>
+				</div>
 		</div>
 
 		<div class="form-group">

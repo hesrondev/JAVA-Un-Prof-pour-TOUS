@@ -36,7 +36,11 @@ public abstract class User {
 
 	protected Date inscriptionDate;
 	protected Date birthDate;
+	protected int birthDay;
+	protected int birthMonth;
+	protected int birthYear;
 	protected String phoneNumber;
+	protected String departement;
 	protected String city;
 	protected String country;
 	protected String gradeLevel;
@@ -372,13 +376,31 @@ public abstract class User {
 		this.inscriptionDate = inscriptionDate;
 	}
 
-	@Column(name = "BIRTH_DATE")
-	public Date getBirthDate() {
-		return birthDate;
+	@Column(name = "BIRTH_DAY")
+	public int getBirthDay() {
+		return birthDay;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setBirthDay(int birthDay) {
+		this.birthDay = birthDay;
+	}
+	
+	@Column(name = "BIRTH_MONTH")
+	public int getBirthMonth() {
+		return birthMonth;
+	}
+
+	public void setBirthMonth(int birthMonth) {
+		this.birthMonth = birthMonth;
+	}
+	
+	@Column(name = "BIRTH_YEAR")
+	public int getBirthYear() {
+		return birthYear;
+	}
+
+	public void setBirthYear(int birthYear) {
+		this.birthYear = birthYear;
 	}
 
 	@Column(name = "PHONE_NUMBER")
@@ -388,6 +410,15 @@ public abstract class User {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+	
+	@Column(name = "DEPARTEMENT")
+	public String getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(String departement) {
+		this.departement = departement;
 	}
 
 	@Column(name = "CITY")

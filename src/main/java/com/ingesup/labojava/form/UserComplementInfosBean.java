@@ -11,9 +11,21 @@ import com.ingesup.labojava.bean.User;
 
 public class UserComplementInfosBean {
 
-	@NotEmpty(message="Date de naissance obligatoire!")
-	private Date birthDate;
+	/*@NotEmpty(message="Date de naissance obligatoire!")
+	private Date birthDate;*/
 	
+	@NotEmpty(message="Date de naissance obligatoire!")
+	private int birthDay;
+	
+	@NotEmpty(message="Date de naissance obligatoire!")
+	private int birthMonth;
+	
+	@NotEmpty(message="Date de naissance obligatoire!")
+	private int birthYear;
+	
+	@NotEmpty(message="Département obligatoire!")
+	private String departement;
+
 	@NotEmpty(message="Ville obligatoire!")
 	private String city;
 	
@@ -45,7 +57,9 @@ public class UserComplementInfosBean {
 	public User completeInfos(User u) {
 
 		if (u != null) {
-			u.setBirthDate(birthDate);
+			u.setBirthDay(birthDay);
+			u.setBirthMonth(birthMonth);
+			u.setBirthYear(birthYear);
 			u.setPhoneNumber(phoneNumber);
 			u.setCity(city);
 			u.setCountry(country);
@@ -60,14 +74,38 @@ public class UserComplementInfosBean {
 		return u;
 	}
 
-	public Date getBirthDate() {
+	/*public Date getBirthDate() {
 		return birthDate;
 	}
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}*/
+
+	public int getBirthDay() {
+		return birthDay;
 	}
 
+	public void setBirthDay(int birthDay) {
+		this.birthDay = birthDay;
+	}
+
+	public int getBirthMonth() {
+		return birthMonth;
+	}
+
+	public void setBirthMonth(int birthMonth) {
+		this.birthMonth = birthMonth;
+	}
+
+	public int getBirthYear() {
+		return birthYear;
+	}
+
+	public void setBirthYear(int birthYear) {
+		this.birthYear = birthYear;
+	}
+	
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -124,6 +162,12 @@ public class UserComplementInfosBean {
 		this.experience = experience;
 	}
 
-	
+	public String getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
 
 }
