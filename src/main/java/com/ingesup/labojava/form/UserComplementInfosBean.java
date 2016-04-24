@@ -1,6 +1,8 @@
 package com.ingesup.labojava.form;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -27,7 +29,15 @@ public class UserComplementInfosBean {
 	private int experience;
 	private String aboutMe;
 	
-	/*Liste de matière souhaitées*/
+	
+	
+	
+	// Constructor by default
+	
+	public UserComplementInfosBean() {
+		
+	}
+	
 	
 
 	/* Complete User infos */
@@ -113,7 +123,7 @@ public class UserComplementInfosBean {
 	public void setExperience(int experience) {
 		this.experience = experience;
 	}
-	
+
 	
 
 }

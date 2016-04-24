@@ -6,6 +6,10 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
+	
+<link href="<c:url value="/resources/bootstrap/css/bootstrap-theme.min.css"/>"
+	rel="stylesheet" />	
+
 <!-- INCLURE UN CSS PERSO ICI -->
 
 <title>UPPT | Students Page</title>

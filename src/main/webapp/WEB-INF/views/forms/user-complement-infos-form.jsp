@@ -14,8 +14,8 @@
 
 		<h3>Completez votre profil</h3>
 		<c:out
-			value="ComplÃ©ter votre profil en renseignant les informations demandÃ©es ci-dessous
-		nous aidera vous proposer des offres adaptÃ©es Ã  vos attentes. Ces informations ne sont pas obligatoires."></c:out>
+			value="Compléter votre profil en renseignant les informations demandées ci-dessous
+		nous aidera vous proposer des offres adaptées à  vos attentes. Ces informations ne sont pas obligatoires."></c:out>
 		<br>
 
 
@@ -84,6 +84,16 @@
 
 			</form:select>
 		</div>
+		
+		<div class="form-group">
+			<form:label path="city">MAP TEST</form:label>
+			<form:select path="city" class="form-control">
+				
+				<form:options items="${formMaps.subjectsMap}"/>
+				<!-- MAP KEY-VALUE A PARCOURIR !!! -->
+
+			</form:select>
+		</div>
 
 		<div class="form-group">
 			<form:label path="country">Pays</form:label>
@@ -105,12 +115,12 @@
 		</div>
 
 		<div class="form-group">
-			<form:label path="phoneNumber">TÃ©lÃ©phone</form:label>
+			<form:label path="phoneNumber">Téléphone</form:label>
 			<form:input path="phoneNumber" class="form-control" />
 		</div>
 
 		<div class="form-group">
-			<form:label path="aboutMe">DÃ©crivez-vous en quelques mots</form:label>
+			<form:label path="aboutMe">Décrivez-vous en quelques mots</form:label>
 			<form:textarea path="aboutMe" rows="6" class="form-control" />
 		</div>
 

@@ -4,8 +4,12 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-	
-	<link href="<c:url value="/resources/custom/css/custom-design.css"/>"
+
+<link
+	href="<c:url value="/resources/bootstrap/css/bootstrap-theme.min.css"/>"
+	rel="stylesheet" />
+
+<link href="<c:url value="/resources/custom/css/custom-design.css"/>"
 	rel="stylesheet" />
 <!-- INCLURE UN CSS PERSO ICI -->
 
@@ -18,10 +22,10 @@
 	<!--  HEADER INCLUSION  -->
 
 
-	
-		<header class="row">
-			<%@ include file="header.jsp"%>
-		</header>
+
+
+	<%@ include file="header.jsp"%>
+
 
 	<!-- Formulaire Recherche d'annonce -->
 
@@ -56,8 +60,8 @@
 			<p>
 				<a class="btn btn-info"
 					href="${pageContext.request.contextPath}/annonces/create.html"><span
-					class="glyphicon glyphicon glyphicon-hand-right"></span> Publier une
-					annonce</a>
+					class="glyphicon glyphicon glyphicon-hand-right"></span> Publier
+					une annonce</a>
 			</p>
 		</div>
 

@@ -16,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.User;
+import com.ingesup.labojava.form.FormMaps;
 import com.ingesup.labojava.form.FriendRequestBean;
 import com.ingesup.labojava.form.InscriptionFormBean;
 import com.ingesup.labojava.form.UserComplementInfosBean;
@@ -61,6 +62,16 @@ public class ProfileController {
 	@ModelAttribute("requestBean")
 	public FriendRequestBean addFriendRequest() {
 		return new FriendRequestBean();
+	}
+	
+	// Méthode qui injecte les MAPs
+	// Ajouter cette méthode dans chaque controlleur qui affiche une JSP qui doit utiliser cet objet
+	// J'ai choisi de séparer les MAPs pour les utiliser dans plusieur formulaires de manière indépendante
+	// RDV DANS LA JSP Du formulaire de completement d'infos pour voir ma déclaration
+	
+	@ModelAttribute("formMaps")
+	public FormMaps addMaps() {
+		return new FormMaps();
 	}
 	
 	

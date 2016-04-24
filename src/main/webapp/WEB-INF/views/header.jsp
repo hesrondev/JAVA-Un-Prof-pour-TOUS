@@ -1,35 +1,47 @@
 <!-- Header !!! -->
 
-<div class="container">
-	
-	<!--  LOGO -->
-	<div class="navbar navbar-header">
-		<h4>
-			<a href="${pageContext.request.contextPath}/home.html">
-			<img class="img-thumbnail" src="resources/img/default-picture-s22.png">&nbsp;&nbsp;Un Prof Pour Tous </a>
-		</h4>
+
+
+<!--  LOGO -->
+
+<div class="page-header">
+	<div class="container">
+		<header class="row">
+			<h4>
+				<a href="${pageContext.request.contextPath}/home.html"> <img
+					class="img-thumbnail" src="resources/img/default-picture-s22.png">&nbsp;&nbsp;Un
+					Prof Pour Tous
+				</a>
+			</h4>
+		</header>
 	</div>
+
 
 	<!-- ICONE PROFIL HAUT DROITE  -->
 	<c:if test="${!empty currentUser}">
 
 		<div class="dropdown pull-right">
-			
+
 			<h4 class="dropdown-toggle" data-toggle="dropdown">
-				<img class="img-thumbnail" src="resources/img/default-picture-s22.png">&nbsp;<span
-				class="caret"></span>
+				<img class="img-thumbnail"
+					src="resources/img/default-picture-s22.png">&nbsp;<span
+					class="caret"></span>
 			</h4>
-			
+
 			<ul class="dropdown-menu">
 				<li><a href="${pageContext.request.contextPath}/profile.html">Mon
 						profile</a></li>
-				<li><a href="${pageContext.request.contextPath}/#.html">Mon planning</a></li>
-				<li><a href="${pageContext.request.contextPath}/#.html">Mes annonces</a></li>
-				<li><a href="${pageContext.request.contextPath}/#.html">Mes amis</a></li>
-				
+				<li><a href="${pageContext.request.contextPath}/#.html">Mon
+						planning</a></li>
+				<li><a href="${pageContext.request.contextPath}/#.html">Mes
+						annonces</a></li>
+				<li><a href="${pageContext.request.contextPath}/#.html">Mes
+						amis</a></li>
+
 				<li class="divider"></li>
-				<li><a href="${pageContext.request.contextPath}/logout">Se déconnecter</a></li>
-				
+				<li><a href="${pageContext.request.contextPath}/logout">Se
+						déconnecter</a></li>
+
 			</ul>
 
 		</div>
@@ -44,7 +56,7 @@
 				<nav class="col-lg-12">
 					<div class="">
 						<div class="container-fluid">
-							<ul class="nav navbar-nav">
+							<ul class="nav nav-pills">
 
 								<!-- Accueil -->
 
