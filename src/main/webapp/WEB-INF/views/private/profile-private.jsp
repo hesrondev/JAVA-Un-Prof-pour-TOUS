@@ -49,9 +49,6 @@
 							<%@ include file="../forms/generic-friendAction-button.jsp"%>
 
 						</div>
-
-
-
 					</div>
 				</div>
 				<hr>
@@ -61,11 +58,46 @@
 					<div class="col-lg-12">
 						<p>
 							<span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;${currentUser.type}<br>
-							<span class="glyphicon glyphicon-briefcase"></span>&nbsp;&nbsp;${currentUser.profession}
+							<span class="glyphicon glyphicon-briefcase"></span>&nbsp;
+
+							<!-- Champ profession -->
+							<c:choose>
+								<c:when test="${empty currentUser.profession && empty currentUser.gradeLevel}">
+									<c:out value="Non renseigné"></c:out>
+								</c:when>
+								<c:otherwise>
+							${currentUser.profession}
+							</c:otherwise>
+							</c:choose>
+							<!-- Si le niveau est renseigné -->
 							<c:if test="${!empty currentUser.gradeLevel}">&nbsp;&bull;&nbsp;${currentUser.gradeLevel}</c:if>
-							<br> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;${currentUser.city}&nbsp;&bull;&nbsp;${currentUser.country}<br>
+
+							<br> <span class="glyphicon glyphicon-map-marker"></span>&nbsp;
+
+							<!-- Champ ville pays -->
+							<c:choose>
+								<c:when test="${empty currentUser.city && empty currentUser.country}">
+									<c:out value="Non renseigné"></c:out><br>
+								</c:when>
+								<c:otherwise>
+									${currentUser.city}&nbsp;&bull;&nbsp;${currentUser.country}<br>
+								</c:otherwise>
+							</c:choose>
+
+
 							<span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;${currentUser.email}<br>
-							<span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;${currentUser.phoneNumber}<br>
+							
+							<!-- Champ télephone -->
+							<span class="glyphicon glyphicon-earphone"></span>&nbsp;
+							
+							<c:choose>
+								<c:when test="${empty currentUser.city && empty currentUser.country}">
+									<c:out value="Non renseigné"></c:out><br>
+								</c:when>
+								<c:otherwise>
+									${currentUser.phoneNumber}<br>	
+								</c:otherwise>
+							</c:choose>
 
 							<c:if test="${!empty currentUser.birthDate}">
 								<span class="glyphicon glyphicon-star-empty"></span>&nbsp;&nbsp;&nbsp;${currentUser.toStringBirthDate()}

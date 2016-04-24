@@ -19,7 +19,7 @@
 	
 	<c:if test="${action == 'cancel'}">
 		<button type="submit" class="btn btn-default btn-xs">
-		<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Annuler</button>
+		<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Annuler la demande</button>
 	</c:if>
 	
 	<c:if test="${action == 'refuse'}">
