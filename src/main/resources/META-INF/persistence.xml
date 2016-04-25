@@ -7,11 +7,12 @@
   <persistence-unit name="UP_UPPT" transaction-type="RESOURCE_LOCAL">
   	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
   	<class>com.ingesup.labojava.bean.Annonce</class>
+  	<class>com.ingesup.labojava.bean.Publication</class>
   	<class>com.ingesup.labojava.bean.Professor</class>
   	<class>com.ingesup.labojava.bean.Student</class>
   	<properties>  		
   		<property name="hibernate.show_sql" value="true" />
-  		<property name="hibernate.hbm2ddl.auto" value="update"/>
+  		<property name="hibernate.hbm2ddl.auto" value="create"/>
   		<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
   	</properties>
   </persistence-unit>  

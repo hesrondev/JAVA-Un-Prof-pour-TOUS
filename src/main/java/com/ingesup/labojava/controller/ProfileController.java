@@ -19,6 +19,7 @@ import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.FormMaps;
 import com.ingesup.labojava.form.FriendRequestBean;
 import com.ingesup.labojava.form.InscriptionFormBean;
+import com.ingesup.labojava.form.PublicationFormBean;
 import com.ingesup.labojava.form.UserComplementInfosBean;
 import com.ingesup.labojava.form.UserFormBean;
 import com.ingesup.labojava.service.UserService;
@@ -62,6 +63,11 @@ public class ProfileController {
 	@ModelAttribute("requestBean")
 	public FriendRequestBean addFriendRequest() {
 		return new FriendRequestBean();
+	}
+	
+	@ModelAttribute("publiBean")
+	public PublicationFormBean addPubliBean() {
+		return new PublicationFormBean();
 	}
 	
 	// Méthode qui injecte les MAPs

@@ -5,6 +5,7 @@ import java.util.List;
 import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.Professor;
+import com.ingesup.labojava.bean.Publication;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.AnnonceFormBean;
@@ -37,5 +38,8 @@ public interface UserService {
 	
 	public FriendRequest getFriendRequest(Long reqID);
 	public void removeFriendRequest(FriendRequest fRequest);
+	
+	public Publication getPubliById(Long ID);
+	public List<Publication> getAllPubliByUser(Long userID);
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.Professor;
+import com.ingesup.labojava.bean.Publication;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.dao.UserDAO;
@@ -113,6 +114,16 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<Annonce> getMatchingAds(String subject, String location) {
 		return userDAO.getMatchingAds(subject, location);
+	}
+	
+	@Override
+	public Publication getPubliById(Long ID) {
+		return userDAO.getPubliById(ID);
+	}
+	
+	@Override
+	public List<Publication> getAllPubliByUser(Long userID) {
+		return userDAO.getAllPubliByUser(userID);
 	}
 
 	

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.ingesup.labojava.bean.Annonce;
 import com.ingesup.labojava.bean.FriendRequest;
 import com.ingesup.labojava.bean.Professor;
+import com.ingesup.labojava.bean.Publication;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.AnnonceFormBean;
@@ -113,7 +114,7 @@ public class UserDAOImpl implements UserDAO {
 
 		Query query = entityManager.createQuery(
 				"from User u  left join fetch u.myFriends " + "left join fetch u.myFriends " + "left join fetch u.friendOf "
-						+ "left join fetch u.annonces " + "left join fetch u.friendRequests " 
+						+ "left join fetch u.annonces " + "left join fetch u.friendRequests " + "left join fetch u.publications "
 						+ "where u.id = :id");
 		query.setParameter("id", userID);
 
@@ -225,6 +226,26 @@ public class UserDAOImpl implements UserDAO {
 		else
 			return null;
 	}
+	
+	/*
+	 * 
+	 * Get Publication by ID
+	 */
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Publication getPubliById(Long ID) {
+		Query query = entityManager.createQuery("from Publication p " + "where p.id = :ID");
+		query.setParameter("ID", ID);
+
+		List<Publication> publications = query.getResultList();
+
+		if (!publications.isEmpty())
+			return publications.get(0);
+
+		else
+			return null;
+	}
 
 	/*
 	 * Get all ads
@@ -253,6 +274,22 @@ public class UserDAOImpl implements UserDAO {
 		List<Annonce> adList = query.getResultList();
 
 		return adList;
+
+	}
+	
+	/*
+	 * Get All publications by User
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Publication> getAllPubliByUser(Long userID) {
+
+		Query query = entityManager.createQuery("from Publication p where p.USER_ID = :id");
+		query.setParameter("id", userID);
+
+		List<Publication> publiList = query.getResultList();
+
+		return publiList;
 
 	}
 

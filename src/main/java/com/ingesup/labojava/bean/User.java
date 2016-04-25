@@ -50,6 +50,7 @@ public abstract class User {
 	protected Set<Annonce> annonces = new HashSet<Annonce>();
 	protected Set<User> myFriends = new HashSet<User>();
 	protected Set<User> friendOf = new HashSet<User>();
+	protected Set<Publication> publications = new HashSet<Publication>();
 
 	/* Listes des demandes: reï¿½ues et envoyï¿½es */
 	protected Set<FriendRequest> friendRequests = new HashSet<FriendRequest>();
@@ -148,7 +149,7 @@ public abstract class User {
 		return annonces.size();
 	}
 
-	// Demandes d'amis reÃ§ues
+	// Demandes d'amis reçues
 	public int receivedFriendRequestsCount() {
 		int counter = 0;
 
@@ -222,6 +223,19 @@ public abstract class User {
 		for (Iterator<Annonce> iterator = annonces.iterator(); iterator.hasNext();) {
 			Annonce annonce = iterator.next();
 			if (annonce.getId() == ad.getId())
+				iterator.remove();
+		}
+	}
+	
+	public void addPublication(Publication publi) {
+		publications.add(publi);
+	}
+
+	public void removePublication(Publication publi) {
+
+		for (Iterator<Publication> iterator = publications.iterator(); iterator.hasNext();) {
+			Publication publication = iterator.next();
+			if (publication.getId() == publi.getId())
 				iterator.remove();
 		}
 	}
@@ -395,6 +409,17 @@ public abstract class User {
 
 	public void setAnnonces(Set<Annonce> annonces) {
 		this.annonces = annonces;
+	}
+	
+	/* LIST of publications */
+	
+	@OneToMany(mappedBy = "user", targetEntity = Publication.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	public Set<Publication> getPublications() {
+		return publications;
+	}
+
+	public void setPublications(Set<Publication> publications) {
+		this.publications = publications;
 	}
 
 	@Column(name = "USER_TYPE")
