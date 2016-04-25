@@ -69,8 +69,7 @@ public abstract class User {
 	/**
 	 * Ajout et suppression des �éléments dans les listes
 	 */
-	
-	
+
 	// Ignorer cette méthode
 	@Transient
 	public boolean isStudent() {
@@ -79,10 +78,56 @@ public abstract class User {
 		else
 			return false;
 	}
-	
+
 	public String toStringJoinedDate() {
 		DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
 		return dateFormat.format(inscriptionDate);
+	}
+
+	@SuppressWarnings("deprecation")
+	public String duration() {
+		Date today = new Date();
+		int y = today.getYear() - inscriptionDate.getYear();
+		int m = today.getMonth() - inscriptionDate.getMonth();
+		int d = today.getDay() - inscriptionDate.getDay();
+		
+		String value = "";
+		
+		// Si même mois
+		// Soit année suivante, soit quelques jours
+		if (m == 0) {
+			if ( y > 0) {
+				value = y + " an";
+				if (y > 1)
+					value += "s";
+			}
+			else {
+				value = d + " jour";
+					if (d > 1)
+						value += "s";
+			}
+		}
+		
+		// Si mois sup, soit même année soit année suivante
+		else if (m > 0) {
+			
+			if ( y > 0) {
+				value = y + " an";
+				if (y > 1)
+					value += "s";
+			}
+			else {
+				value = m + " mois";
+			}				
+		}
+		
+		// Si mois inférieur
+		// Année suivante
+		else {
+			value = (12 - m) + " mois";
+		}
+		
+		return value;
 	}
 
 	public String toStringBirthDate() {
@@ -354,7 +399,7 @@ public abstract class User {
 
 	@Column(name = "USER_TYPE")
 	public String getType() {
-		
+
 		if (type.equals("PROFESSOR"))
 			return "Professeur";
 		else
@@ -369,7 +414,7 @@ public abstract class User {
 	public Date getInscriptionDate() {
 		return inscriptionDate;
 	}
-	
+
 	public void setInscriptionDate(Date inscriptionDate) {
 		this.inscriptionDate = inscriptionDate;
 	}
@@ -382,9 +427,8 @@ public abstract class User {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
-	@Column(name="BIRTH_DATE")
+
+	@Column(name = "BIRTH_DATE")
 	public Date getBirthDate() {
 		return birthDate;
 	}

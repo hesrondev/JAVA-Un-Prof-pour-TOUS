@@ -28,13 +28,13 @@ public class FormMaps {
 
 		// On ajout quelques valeurs dans la MAP pour exemple
 
-		subjectsMap.put("maths", "Mathématiques");
+		subjectsMap.put("maths", "Mathï¿½matiques");
 		subjectsMap.put("physique", "Physique Chimie");
-		subjectsMap.put("francais", "Français");
+		subjectsMap.put("francais", "Franï¿½ais");
 		subjectsMap.put("philo", "philosophie");
 		
-		jobsMap.put("étudiant", "étudiant");
-		jobsMap.put("ingénieur", "ingénieur");
+		jobsMap.put("Ã©tudiant", "Ã©tudiant");
+		jobsMap.put("ingÃ©nieur", "ingÃ©nieur");
 		
 		experiencesMap.put("moins de 2 ans", "moins de 2 ans");
 		experiencesMap.put("entre 2 et 5 ans", "entre 2 et 5 ans");
@@ -56,13 +56,13 @@ public class FormMaps {
 		departementsMap.put("69", "69");
 		
 		levelsMap.put("Primaire", "Primaire");
-		levelsMap.put("Collège", "Collège");
-		levelsMap.put("Lycée", "Lycée");
-		levelsMap.put("Université", "Université");
-		levelsMap.put("Débutant", "Débutant");
-		levelsMap.put("Intermédiaire", "Intermédiaire");
-		levelsMap.put("Avancé", "Avancé");
-		 //on remplit la map professions à partir du fichier du même nom
+		levelsMap.put("Collï¿½ge", "Collï¿½ge");
+		levelsMap.put("Lycï¿½e", "Lycï¿½e");
+		levelsMap.put("Universitï¿½", "Universitï¿½");
+		levelsMap.put("Dï¿½butant", "Dï¿½butant");
+		levelsMap.put("Intermï¿½diaire", "Intermï¿½diaire");
+		levelsMap.put("Avancï¿½", "Avancï¿½");
+		 //on remplit la map professions ï¿½ partir du fichier du mï¿½me nom
 		/*try
 	      {
 			lecteurAvecBuffer = new BufferedReader(new FileReader("professions"));

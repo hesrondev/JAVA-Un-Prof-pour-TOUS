@@ -26,7 +26,6 @@
 
 	<%@ include file="header.jsp"%>
 
-
 	<!-- Formulaire Recherche d'annonce -->
 
 	<div class="jumbotron">
@@ -80,14 +79,18 @@
 							élèves</h3>
 					</div>
 				</div>
-
+				<br>
 				<div class="row">
 
 					<c:forEach items="${latestUsers}" var="item">
 						<div class="col-lg-2">
-							<a
-								href="${pageContext.request.contextPath}/profile/${item.firstName}.${item.lastName}/${item.id}">${item.firstName}
-								${item.lastName}</a> <br> ${item.type}
+							<div align="center">
+								<img class="img-thumbnail" alt=""
+									src="resources/img/default-picture-s64.png"><br> <a
+									href="${pageContext.request.contextPath}/profile/${item.firstName}.${item.lastName}/${item.id}">${item.firstName}
+									${item.lastName}</a> <br> ${item.type}<br>
+									Membre depuis ${item.duration()}
+							</div>
 						</div>
 					</c:forEach>
 				</div>
@@ -209,9 +212,6 @@
 		</div>
 	</div>
 
-
-	<br>
-	<br>
 	<hr>
 
 	<!--  FOOTER INCLUSION  -->

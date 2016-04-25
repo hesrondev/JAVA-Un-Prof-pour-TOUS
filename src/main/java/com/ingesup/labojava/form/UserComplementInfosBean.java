@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.User;
@@ -40,6 +41,7 @@ public class UserComplementInfosBean {
 	private String gradeLevel;
 	private int experience;
 	private String aboutMe;
+	
 	
 	
 	
@@ -174,5 +176,6 @@ public class UserComplementInfosBean {
 	public void setDepartement(String departement) {
 		this.departement = departement;
 	}
-
+	
+	
 }
