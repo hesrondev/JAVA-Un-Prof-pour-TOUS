@@ -23,7 +23,7 @@ public class UserComplementInfosBean {
 	@NotEmpty(message="Date de naissance obligatoire!")
 	private int birthYear;
 	
-	@NotEmpty(message="Département obligatoire!")
+	@NotEmpty(message="DÃ©partement obligatoire!")
 	private String departement;
 
 	@NotEmpty(message="Ville obligatoire!")
@@ -54,12 +54,17 @@ public class UserComplementInfosBean {
 
 	/* Complete User infos */
 
+	@SuppressWarnings("deprecation")
 	public User completeInfos(User u) {
 
 		if (u != null) {
-			u.setBirthDay(birthDay);
-			u.setBirthMonth(birthMonth);
-			u.setBirthYear(birthYear);
+			
+			Date birthDate= new Date();
+			birthDate.setDate(birthDay);
+			birthDate.setMonth(birthMonth);
+			birthDate.setYear(birthYear);
+			
+			u.setBirthDate(birthDate);
 			u.setPhoneNumber(phoneNumber);
 			u.setCity(city);
 			u.setCountry(country);

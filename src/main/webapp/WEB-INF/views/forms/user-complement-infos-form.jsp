@@ -35,12 +35,12 @@
 		<!-- Proposer un tableau de valeurs Ã  cocher et rÃ©cup OPTIONNEL-->
 
 		<legend>A propos de votre profession</legend>
-		
+
 		<div class="form-group">
 			<form:label path="profession">Profession</form:label>
 			<form:select path="profession" class="form-control">
-				<form:option value="">--Choisir sa profession--</form:option>			
-				<form:options items="${formMaps.jobsMap}"/>
+				<form:option value="">--Choisir sa profession--</form:option>
+				<form:options items="${formMaps.jobsMap}" />
 			</form:select>
 		</div>
 
@@ -51,8 +51,8 @@
 			<div class="form-group">
 				<form:label path="experience">Expérience</form:label>
 				<form:select path="experience" class="form-control">
-					<form:option value="">--Nombre d'années d'expérience--</form:option>			
-					<form:options items="${formMaps.experiencesMap}"/>		
+					<form:option value="">--Nombre d'années d'expérience--</form:option>
+					<form:options items="${formMaps.experiencesMap}" />
 				</form:select>
 			</div>
 
@@ -60,67 +60,69 @@
 
 
 		<legend>Votre emplacement</legend>
-		
+
 		<div class="form-group">
 			<form:label path="departement">Département</form:label>
 			<form:select path="departement" class="form-control">
-				<form:option value="">--Choisir son département--</form:option>			
-				<form:options items="${formMaps.departementsMap}"/>
+				<form:option value="">--Choisir son département--</form:option>
+				<form:options items="${formMaps.departementsMap}" />
 			</form:select>
 		</div>
 
 		<div class="form-group">
 			<form:label path="city">Ville</form:label>
 			<form:select path="city" class="form-control">
-				<form:option value="">--Choisir sa Ville--</form:option>			
-				<form:options items="${formMaps.citiesMap}"/>
+				<form:option value="">--Choisir sa Ville--</form:option>
+				<form:options items="${formMaps.citiesMap}" />
 			</form:select>
 		</div>
 
 		<div class="form-group">
 			<form:label path="country">Pays</form:label>
 			<form:select path="country" class="form-control">
-				<form:option value="">--Choisir son pays--</form:option>			
-				<form:options items="${formMaps.countriesMap}"/>
+				<form:option value="">--Choisir son pays--</form:option>
+				<form:options items="${formMaps.countriesMap}" />
 			</form:select>
 		</div>
 
 		<legend>A propos de vous?</legend>
 
 		<div class="form-group">
-			<form:label path="birthDay">Jour de naissance</form:label>
-			<div class="input-group">
+
+			<div class="row">
+				<div class="col-lg-3">
+					<form:label path="birthDay">Jour de naissance</form:label>
 					<form:select path="birthDay" class="form-control">
-						<c:forEach begin="" end="31" var="val">
+						<c:forEach begin="1" end="31" var="val">
 							<form:option value="${val}">
 								<c:out value="${val}"></c:out>
 							</form:option>
 						</c:forEach>
 					</form:select>
-					<span class="input-group-addon">an</span>
 				</div>
-			<form:label path="birthMonth">Mois de naissance</form:label>
-			<div class="input-group">
+				<div class="col-lg-5">
+					<form:label path="birthMonth">Mois de naissance</form:label>
+
 					<form:select path="birthMonth" class="form-control">
-						<c:forEach begin="" end="12" var="val">
+						<c:forEach begin="1" end="12" var="val">
 							<form:option value="${val}">
 								<c:out value="${val}"></c:out>
 							</form:option>
 						</c:forEach>
 					</form:select>
-					<span class="input-group-addon">an</span>
 				</div>
-			<form:label path="birthYear">Année de naissance</form:label>
-			<div class="input-group">
-					<form:select path="yearDate" class="form-control">
-						<c:forEach begin="1970" end="2016" var="val">
+				<div class="col-lg-4">
+					<form:label path="birthYear">Année de naissance</form:label>
+					<form:select path="birthYear" class="form-control">
+						<c:forEach begin="1930" end="2016" var="val">
 							<form:option value="${val}">
 								<c:out value="${val}"></c:out>
 							</form:option>
 						</c:forEach>
 					</form:select>
-					<span class="input-group-addon">an</span>
 				</div>
+
+			</div>
 		</div>
 
 		<div class="form-group">
@@ -140,8 +142,8 @@
 		</div>
 		<br>
 		<div class="form-group">
-			<a href="${pageContext.request.contextPath}/profile">Passer
-				cette Ã©tape</a>
+			<a href="${pageContext.request.contextPath}/profile">Passer cette
+				Ã©tape</a>
 		</div>
 
 	</form:form>

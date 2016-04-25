@@ -146,7 +146,7 @@ public class ProfileController {
 		} else
 			System.out.println("DEMANDE DEJA EN ATTENTE DE TRAITEMENT!");
 
-		return "redirect:/test-page";
+		return "redirect:/profile";
 	}
 
 	/**
@@ -215,7 +215,7 @@ public class ProfileController {
 
 			model.addAttribute("currentUser", userService.getUser(currentUser.getId()));
 
-			return "redirect:/test-page";
+			return "redirect:/profile";
 		}
 
 		else if ("cancel".equals(response)) {
@@ -248,7 +248,7 @@ public class ProfileController {
 
 			model.addAttribute("currentUser", userService.getUser(currentUser.getId()));
 
-			return "redirect:/test-page";
+			return "redirect:/profile";
 		}
 
 		else {
@@ -262,8 +262,6 @@ public class ProfileController {
 	@RequestMapping(value = "/profile/request-processing/delete", method = RequestMethod.POST)
 	public String removeContact(WebRequest request, @ModelAttribute("requestBean") FriendRequestBean requestBean,
 			final Model model) {
-
-		String URL = "test-page";
 
 		System.out.println("Suppression d'un contact...");
 
@@ -296,9 +294,9 @@ public class ProfileController {
 
 		model.addAttribute("currentUser", userService.getUser(currentUser.getId()));
 
-		System.out.println("Contact supprim� avec succ�s!");
+		System.out.println("Contact supprimé� avec succès!");
 
-		return "redirect:/" + URL;
+		return "redirect:/profile";
 	}
 
 	/** FORMULAIRE DE COMPLEMENT D'INFOS APRES INSCRIPTION */

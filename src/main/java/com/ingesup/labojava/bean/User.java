@@ -36,9 +36,7 @@ public abstract class User {
 
 	protected Date inscriptionDate;
 	protected Date birthDate;
-	protected int birthDay;
-	protected int birthMonth;
-	protected int birthYear;
+
 	protected String phoneNumber;
 	protected String departement;
 	protected String city;
@@ -371,36 +369,9 @@ public abstract class User {
 	public Date getInscriptionDate() {
 		return inscriptionDate;
 	}
-
+	
 	public void setInscriptionDate(Date inscriptionDate) {
 		this.inscriptionDate = inscriptionDate;
-	}
-
-	@Column(name = "BIRTH_DAY")
-	public int getBirthDay() {
-		return birthDay;
-	}
-
-	public void setBirthDay(int birthDay) {
-		this.birthDay = birthDay;
-	}
-	
-	@Column(name = "BIRTH_MONTH")
-	public int getBirthMonth() {
-		return birthMonth;
-	}
-
-	public void setBirthMonth(int birthMonth) {
-		this.birthMonth = birthMonth;
-	}
-	
-	@Column(name = "BIRTH_YEAR")
-	public int getBirthYear() {
-		return birthYear;
-	}
-
-	public void setBirthYear(int birthYear) {
-		this.birthYear = birthYear;
 	}
 
 	@Column(name = "PHONE_NUMBER")
@@ -412,6 +383,16 @@ public abstract class User {
 		this.phoneNumber = phoneNumber;
 	}
 	
+	
+	@Column(name="BIRTH_DATE")
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
 	@Column(name = "DEPARTEMENT")
 	public String getDepartement() {
 		return departement;
@@ -510,7 +491,7 @@ public abstract class User {
 
 		User other = (User) obj;
 
-		if (id == other.id && email == other.email)
+		if (id == other.id && email.equals(other.email))
 			return true;
 
 		else
