@@ -188,6 +188,20 @@
 							</div>
 						</div>
 					</div>
+					
+					<!-- Mes publication -->
+					<div id="C" class="tab-pane fade in active">
+						<div class="row">
+							<div class="col-lg-12">
+
+								<%@ include file="publications.jsp"%>
+							</div>
+						</div>
+					</div>
+					
+					<!-- formulaire ajout publication -->
+					
+					<%@ include file="postPublication.jsp"%>
 
 
 					<!-- Liste d'amis -->
