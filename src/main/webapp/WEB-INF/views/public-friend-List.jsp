@@ -1,7 +1,5 @@
 <!-- Panel de la liste d'amis de l'utilisateur -->
 
-
-
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h4>Amis</h4>

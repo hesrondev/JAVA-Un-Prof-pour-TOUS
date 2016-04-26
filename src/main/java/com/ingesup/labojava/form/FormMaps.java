@@ -22,10 +22,31 @@ public class FormMaps {
 	private Map<String, String> departementsMap = new LinkedHashMap<String, String>();
 	private Map<String, String> levelsMap = new LinkedHashMap<String, String>();
 	
+	// Mois
+	
+	private Map<String, String> months = new LinkedHashMap<String, String>();
+	
 	BufferedReader lecteurAvecBuffer = null;
     String ligne;
 	public FormMaps() {
-
+		
+		// Les mois
+		
+		months.put("0", "Janvier");
+		months.put("1", "Février");
+		months.put("2", "Mars");
+		months.put("3", "Avril");
+		months.put("4", "Mai");
+		months.put("5", "Juin");
+		months.put("6", "Juillet");
+		months.put("7", "Août");
+		months.put("8", "Septembre");
+		months.put("9", "Octobre");
+		months.put("10", "Novembre");
+		months.put("11", "Décembre");
+		
+		
+		
 		// On ajout quelques valeurs dans la MAP pour exemple
 
 		subjectsMap.put("maths", "Math�matiques");
@@ -140,6 +161,19 @@ public class FormMaps {
 	public void setSubjectsMap(Map<String, String> subjectsMap) {
 		this.subjectsMap = subjectsMap;
 	}
+
+
+
+	public Map<String, String> getMonths() {
+		return months;
+	}
+
+
+
+	public void setMonths(Map<String, String> months) {
+		this.months = months;
+	}
+	
 	
 	
 }

@@ -6,9 +6,6 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-	
-<link href="<c:url value="/resources/bootstrap/css/bootstrap-theme.min.css"/>"
-	rel="stylesheet" />	
 
 <!-- INCLURE UN CSS PERSO ICI -->
 
@@ -19,14 +16,9 @@
 	<!--  HEADER INCLUSION  -->
 
 
-	<div class="container">
-		<header class="row">
-		<div class="col-lg-12">
-			<%@ include file="header.jsp"%>
-		</div>
-		</header>
+	<div>
+		<%@ include file="header.jsp"%>
 	</div>
-	<hr>
 
 	<div class="container">
 		<div class="row">
@@ -34,7 +26,7 @@
 				<c:choose>
 
 					<c:when test="${!empty listAnnonces}">
-						<h2>
+						<h2 class="text-uppercase">
 							<strong>${fn:length(listAnnonces)}</strong>
 
 							<c:choose>
@@ -51,7 +43,7 @@
 						</h2>
 					</c:when>
 					<c:otherwise>
-						<h2>Aucune annonce ne correspond à critères de recherche</h2>
+						<h3 class="text-uppercase">Aucune annonce ne correspond à vos critères de recherche</h3>
 					</c:otherwise>
 				</c:choose>
 			</div>

@@ -185,12 +185,6 @@
 			</div>
 
 
-
-
-
-
-
-
 			<!-- SECTION DROITE -->
 
 
@@ -239,23 +233,13 @@
 				<div class="tab-content">
 
 					<!-- Mon emploi du temps -->
-					<div id="A" class="tab-pane fade in active">
-						<div class="row">
-							<div class="col-lg-12">
-
-								<h3 align="center">
-									Mon emploi du temps! <small>Section à remplir</small>
-								</h3>
-
-							</div>
-						</div>
-					</div>
+					<!-- Afficher si professeur -->
 
 					<!-- Mes profs / Eleves -->
 
 					<c:choose>
 						<c:when test="${currentUser.isStudent()}">
-							<div id="B" class="tab-pane fade">
+							<div id="B" class="tab-pane fade in active">
 								<div class="row">
 									<div class="col-lg-12">
 
@@ -266,6 +250,17 @@
 							</div>
 						</c:when>
 						<c:otherwise>
+
+							<div id="A" class="tab-pane fade in active">
+								<div class="row">
+									<div class="col-lg-12">
+
+										<%@ include file="myTimeTable.jsp"%>
+
+									</div>
+								</div>
+							</div>
+
 							<div id="B" class="tab-pane fade">
 								<div class="row">
 									<div class="col-lg-12">

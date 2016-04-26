@@ -17,25 +17,10 @@
 	<!--  HEADER INCLUSION  -->
 
 
-	<div class="container">
-		<header class="row">
-		<div class="col-lg-12">
-			<%@ include file="header.jsp"%>
-		</div>
-		</header>
-	</div>
-	<hr>
-
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-offset-4 col-sm-4">
-				<!-- Formulaire de recherche d'utilisateurs -->
-				<%@ include file="forms/userSearchForm.jsp"%>
-			</div>
-		</div>
+	<div>
+		<%@ include file="header.jsp"%>
 	</div>
 
-	<hr>
 
 	<div class="container">
 		<div class="row">
