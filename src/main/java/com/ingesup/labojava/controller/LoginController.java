@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.LoginFormBean;
+import com.ingesup.labojava.form.UserFormBean;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
@@ -39,6 +40,11 @@ public class LoginController {
 	@ModelAttribute("loginBean")
 	public LoginFormBean addLoginFormBean() {
 		return new LoginFormBean();
+	}
+	
+	@ModelAttribute("userBean") 
+	public UserFormBean addUserBean() {
+		return new UserFormBean();
 	}
 
 	

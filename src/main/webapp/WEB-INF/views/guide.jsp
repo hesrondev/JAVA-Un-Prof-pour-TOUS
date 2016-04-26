@@ -18,12 +18,8 @@
 	<!--  HEADER INCLUSION  -->
 
 
-	<div class="container">
-		<header class="row">
-		<div class="col-lg-12">
-			<%@ include file="header.jsp"%>
-		</div>
-		</header>
+	<div>
+		<%@ include file="header.jsp"%>
 	</div>
 
 	<div class="jumbotron">

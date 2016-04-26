@@ -17,9 +17,6 @@
 
 	<!--  HEADER INCLUSION  -->
 
-
-
-
 	<%@ include file="header.jsp"%>
 
 	<!-- Formulaire Recherche d'annonce -->

@@ -15,6 +15,7 @@ import com.ingesup.labojava.bean.CourseEvent;
 import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.CourseEventFormBean;
+import com.ingesup.labojava.form.UserFormBean;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
@@ -40,6 +41,11 @@ public class PlanningController {
 	@ModelAttribute("courseEventBean")
 	public CourseEventFormBean addCourseEventBean() {
 		return new CourseEventFormBean();
+	}
+	
+	@ModelAttribute("userBean") 
+	public UserFormBean addUserBean() {
+		return new UserFormBean();
 	}
 	
 	

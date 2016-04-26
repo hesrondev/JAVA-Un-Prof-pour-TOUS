@@ -16,15 +16,10 @@
 
 	<!--  HEADER INCLUSION  -->
 
-
-	<div class="container">
-		<header class="row">
-		<div class="col-lg-12">
-			<%@ include file="header.jsp"%>
-		</div>
-		</header>
+	<div>
+		<%@ include file="header.jsp"%>
 	</div>
-	<hr>
+
 
 	<div class="container">
 		<div class="row">
@@ -41,33 +36,33 @@
 
 	<div class="container">
 		<div class="row">
-		<div class="col-lg-offset-1 col-lg-8">
-			<div>
-				<h3>Liste des professeurs</h3>
-				<c:if test="${!empty listProfessors}">
-					<table>
-						<c:forEach items="${listProfessors}" var="prof">
-							<tr>
-								<td>${prof.id}</td>
-								<td>${prof.firstName}</td>
-								<td>${prof.lastName}</td>
-								<td>${prof.email}</td>
-								<td>${prof.password}</td>
-								<td><a href="<c:url value='/edit/${prof.id}' />">Edit</a></td>
-								<td><a href="<c:url value='/remove/${prof.id}' />">Delete</a></td>
-							</tr>
-						</c:forEach>
-					</table>
-				</c:if>
+			<div class="col-lg-offset-1 col-lg-8">
+				<div>
+					<h3>Liste des professeurs</h3>
+					<c:if test="${!empty listProfessors}">
+						<table>
+							<c:forEach items="${listProfessors}" var="prof">
+								<tr>
+									<td>${prof.id}</td>
+									<td>${prof.firstName}</td>
+									<td>${prof.lastName}</td>
+									<td>${prof.email}</td>
+									<td>${prof.password}</td>
+									<td><a href="<c:url value='/edit/${prof.id}' />">Edit</a></td>
+									<td><a href="<c:url value='/remove/${prof.id}' />">Delete</a></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:if>
+				</div>
+
+				<br> <br>
+
 			</div>
-
-			<br> <br>
-
-		</div>
 		</div>
 	</div>
 
-<br>
+	<br>
 	<br>
 	<hr>
 

@@ -19,6 +19,7 @@ import com.ingesup.labojava.form.AnnonceFormBean;
 import com.ingesup.labojava.form.Filter;
 import com.ingesup.labojava.form.FilterCategory;
 import com.ingesup.labojava.form.FriendRequestBean;
+import com.ingesup.labojava.form.UserFormBean;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
@@ -45,6 +46,10 @@ public class HomeController {
 		return new FriendRequestBean();
 	}
 	
+	@ModelAttribute("userBean") 
+	public UserFormBean addUserBean() {
+		return new UserFormBean();
+	}
 	
 	
 	/* Page d'accueil */
@@ -59,7 +64,7 @@ public class HomeController {
 		model.addAttribute("latestUsers", userService.getLatestUsers(10));
 		model.addAttribute("latestAnnonces", userService.getLatestAnnonces(5));
 		
-		/* afficher uniquement les filtres concernées */
+		/* afficher uniquement les filtres concernï¿½es */
 
 		List<Filter> allFilters = Utilities.createFilters(userService.getAllAds());
 		model.addAttribute("locationFilters", Utilities.getFiltersByCategory(allFilters, FilterCategory.LOCATION));

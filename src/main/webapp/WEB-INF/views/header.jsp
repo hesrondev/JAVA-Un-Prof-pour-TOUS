@@ -18,7 +18,7 @@
 			<!-- MENU 1 -->
 			<c:choose>
 				<c:when test="${!empty currentUser}">
-					<nav class="col-lg-9">
+					<nav class="col-lg-6">
 						<ul class="nav nav-pills">
 
 							<!-- Nos annonces -->
@@ -38,6 +38,10 @@
 									Guide UPPT</a></li>
 						</ul>
 					</nav>
+					
+					<div class="col-lg-3">
+						<%@ include file="forms/userSearchForm.jsp"%>
+					</div>
 
 					<!-- ICONE PROFIL HAUT DROITE  -->
 
@@ -72,7 +76,7 @@
 
 				<c:otherwise>
 
-					<nav class="col-lg-7">
+					<nav class="col-lg-5">
 
 						<ul class="nav nav-pills">
 
@@ -93,6 +97,10 @@
 									Guide UPPT</a></li>
 						</ul>
 					</nav>
+
+					<div class="col-lg-2">
+						<%@ include file="forms/userSearchForm.jsp"%>
+					</div>
 
 					<div class="col-lg-3">
 						<div class="form-group pull-right">
