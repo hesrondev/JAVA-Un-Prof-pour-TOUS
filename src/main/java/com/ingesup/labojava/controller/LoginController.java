@@ -20,6 +20,7 @@ import com.ingesup.labojava.form.LoginFormBean;
 import com.ingesup.labojava.form.UserFormBean;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
+import com.ingesup.labojava.utils.Crypto;
 
 @Controller
 @SessionAttributes("currentUser")
@@ -52,8 +53,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(WebRequest request, final Model model) {
-
-		//model.addAttribute("loginBean", new LoginFormBean());
 		
 		
 		/* V�rifions que l'user n'est pas d�j� connect� */
@@ -90,9 +89,10 @@ public class LoginController {
 		}
 
 		
-		// On cherche l'utilisateur dans la base de donn�es
+		// On cherche l'utilisateur dans la base de données
+		// On cherche avec le mot de passe crypté
 		
-		User user = userService.getUser(lFormBean.getEmail(), lFormBean.getPassword());
+		User user = userService.getUser(lFormBean.getEmail(), Crypto.crypter(lFormBean.getPassword()));
 		
 		if (user != null) {
 			

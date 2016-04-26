@@ -21,16 +21,6 @@
 		<%@ include file="header.jsp"%>
 	</div>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-offset-4 col-sm-4">
-				<!-- Formulaire de recherche d'utilisateurs -->
-				<%@ include file="forms/userSearchForm.jsp"%>
-			</div>
-		</div>
-	</div>
-
-	<hr>
 
 	<div class="container">
 		<div class="row">

@@ -13,9 +13,7 @@
 		<p>
 			<c:out
 				value="Renseignez les informations concernant le cours puis enregistrer les modifications."></c:out>
-			<br>
-			Tous les champs sont obligatoires!
-			<br>
+			<br> Tous les champs sont obligatoires! <br>
 		</p>
 
 		<c:if test="${!empty errorStatus}">
@@ -25,27 +23,27 @@
 			</div>
 		</c:if>
 		<br>
-		
+
 
 		<div class="form-group">
 			<form:label path="title">Nom du cours</form:label>
 			<form:input path="title" class="form-control" />
 		</div>
-		
+
 		<div class="form-group">
 			<form:label path="studentName">Nom de l'élève</form:label>
 			<form:input path="studentName" class="form-control" />
 		</div>
-		
+
 		<div class="form-group">
 			<form:label path="city">Ville</form:label>
 			<form:input path="city" class="form-control" />
 		</div>
 
 		<legend>Début du cours</legend>
-		
+
 		<div class="form-group">
-			
+
 			<div class="row">
 				<div class="col-lg-2">
 					<form:label path="startDay">Jour</form:label>
@@ -59,13 +57,8 @@
 				</div>
 				<div class="col-lg-3">
 					<form:label path="startMonth">Mois</form:label>
-
 					<form:select path="startMonth" class="form-control">
-						<c:forEach begin="1" end="12" var="val">
-							<form:option value="${val}">
-								<c:out value="${val}"></c:out>
-							</form:option>
-						</c:forEach>
+						<form:options items="${formMaps.months}" />
 					</form:select>
 				</div>
 				<div class="col-lg-3">
@@ -101,10 +94,11 @@
 					</form:select>
 				</div>
 			</div>
-		</div> <!-- FIN startDATE -->
-		
+		</div>
+		<!-- FIN startDATE -->
+
 		<legend>Fin du cours</legend>
-		
+
 		<!-- End Date -->
 		<div class="form-group">
 
@@ -123,11 +117,7 @@
 					<form:label path="endMonth">Mois</form:label>
 
 					<form:select path="endMonth" class="form-control">
-						<c:forEach begin="1" end="12" var="val">
-							<form:option value="${val}">
-								<c:out value="${val}"></c:out>
-							</form:option>
-						</c:forEach>
+						<form:options items="${formMaps.months}" />
 					</form:select>
 				</div>
 				<div class="col-lg-3">
@@ -164,7 +154,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 
 		<div class="form-group">
 			<form:label path="comment">Un commentaire sur le cours?</form:label>

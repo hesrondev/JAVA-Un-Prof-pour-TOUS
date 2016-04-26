@@ -4,6 +4,7 @@ import com.ingesup.labojava.bean.Professor;
 import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.form.InscriptionFormBean;
+import com.ingesup.labojava.utils.Crypto;
 
 public class UserFactory {
 	
@@ -19,7 +20,7 @@ public class UserFactory {
 		professor.setFirstName(ifb.getFirstName());
 		professor.setLastName(ifb.getLastName());
 		professor.setEmail(ifb.getEmail());
-		professor.setPassword(ifb.getPassword());
+		professor.setPassword(Crypto.crypter(ifb.getPassword()));	// On crypte le mot de passe
 		
 		return professor;
 	}
@@ -35,7 +36,7 @@ public class UserFactory {
 		student.setFirstName(ifb.getFirstName());
 		student.setLastName(ifb.getLastName());
 		student.setEmail(ifb.getEmail());
-		student.setPassword(ifb.getPassword());
+		student.setPassword(Crypto.crypter(ifb.getPassword())); // On crypte le mot de passe
 		
 		return student;
 	}

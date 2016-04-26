@@ -7,6 +7,11 @@
 
 <link href="<c:url value="/resources/custom/css/custom-design.css"/>"
 	rel="stylesheet" />
+	
+<link href="<c:url value="/resources/custom/css/flaty.css"/>"
+	rel="stylesheet" />
+	
+	
 <!-- INCLURE UN CSS PERSO ICI -->
 
 <title>UPPT | Accueil</title>

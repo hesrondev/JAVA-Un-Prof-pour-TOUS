@@ -1,6 +1,7 @@
 package com.ingesup.labojava.bean;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,11 +22,12 @@ public class CourseEvent {
 	private Long id;
 	private String title;
 	private String studentName;
-	private Date startDate;
-	private Date endDate;
+	private Calendar startDate;
+	private Calendar endDate;
 	private String city;
 	private String comment;
-
+	
+	
 	// Planning dont fait parti l'événement
 
 	Planning planning;
@@ -38,7 +40,7 @@ public class CourseEvent {
 		this.planning = planning;
 	}
 
-	public CourseEvent(String title, String sName, Date sdate, Date eDate, String city,
+	public CourseEvent(String title, String sName, Calendar sdate, Calendar eDate, String city,
 			String comment) {
 		this.title = title;
 		studentName = sName;
@@ -53,7 +55,10 @@ public class CourseEvent {
 	
 	public String toStringDate() {
 		
-		return "Date à formater";
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEE d MMM yyyy à HH:mm");
+		String str = dateFormat.format(startDate.getTime());
+		
+		return str;
 	}
 
 	// Getters and Setters
@@ -99,19 +104,19 @@ public class CourseEvent {
 		this.studentName = studentName;
 	}
 
-	public Date getStartDate() {
+	public Calendar getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(Calendar startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public Calendar getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(Calendar endDate) {
 		this.endDate = endDate;
 	}
 

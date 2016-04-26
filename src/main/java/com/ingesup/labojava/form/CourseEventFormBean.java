@@ -1,6 +1,9 @@
 package com.ingesup.labojava.form;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,46 +14,36 @@ public class CourseEventFormBean {
 	
 	/* Bean Form d'un évenement du calendrier */
 	
-	@NotEmpty
+	@NotEmpty(message="TITRE obligatoire!")
 	private String title;
 	
-	@NotEmpty
+	@NotEmpty(message="NOM_ETUDIANT obligatoire!")
 	private String studentName;
 	
-	@NotEmpty
 	private int startHour;
 	
-	@NotEmpty
 	private int startMinutes;
 	
-	@NotEmpty
 	private int startDay;
 	
-	@NotEmpty
 	private int startMonth;
 	
-	@NotEmpty
 	private int startYear;
 	
-	@NotEmpty
 	private int endHour;
 	
-	@NotEmpty
 	private int endMinutes;
 	
-	@NotEmpty
 	private int endDay;
 	
-	@NotEmpty
 	private int endMonth;
 	
-	@NotEmpty
 	private int endYear;
 	
-	@NotEmpty
+	@NotEmpty(message="VILLE obligatoire!")
 	private String city;
 	
-	@NotEmpty
+	@NotEmpty(message="COMMENTAIRE obligatoire!")
 	private String comment;
 	
 	
@@ -64,23 +57,23 @@ public class CourseEventFormBean {
 	@SuppressWarnings("deprecation")
 	public CourseEvent createEvent() {
 		
-		Date startDate = new Date();
-		Date endDate = new Date();
+
+		Calendar cal = Calendar.getInstance();
+		cal.set(startYear, startMonth, startDay, startHour, startMinutes);
 		
-		startDate.setHours(startHour);
-		startDate.setMinutes(startMinutes);
-		startDate.setDate(startDay);
-		startDate.setMonth(startMonth);
-		startDate.setYear(startYear);
+		Date startDate = cal.getTime();
 		
-		endDate.setHours(endHour);
-		endDate.setMinutes(endMinutes);
-		endDate.setDate(endDay);
-		endDate.setMonth(endMonth);
-		endDate.setYear(endYear);
+		System.out.println("DEBUT " + startDate.toString());
 		
-		return new CourseEvent(title, studentName, startDate, endDate, city, comment);
+		Calendar cal2 = new GregorianCalendar(endYear, endMonth, endDay);
+		cal2.set(Calendar.HOUR, endHour);
+		cal2.set(Calendar.MINUTE, endMinutes);
 		
+		Date endDate = cal2.getTime();
+		
+		System.out.println("FIN " +endDate.toString());
+		
+		return new CourseEvent(title, studentName, cal, cal2, city, comment);
 	}
 
 	

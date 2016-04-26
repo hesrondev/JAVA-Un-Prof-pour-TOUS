@@ -89,12 +89,20 @@ public abstract class User {
 		Date today = new Date();
 		int y = today.getYear() - inscriptionDate.getYear();
 		int m = today.getMonth() - inscriptionDate.getMonth();
-		int d = today.getDay() - inscriptionDate.getDay();
+		int d = today.getDate() - inscriptionDate.getDate();
+		
+		System.out.println("SUB: " + y + " // " + m + " // " + d);
+		
 		
 		String value = "";
 		
 		// Si même mois
 		// Soit année suivante, soit quelques jours
+		
+		
+		if (d == 0) 
+			return "aujourd'hui";
+		
 		if (m == 0) {
 			if ( y > 0) {
 				value = y + " an";

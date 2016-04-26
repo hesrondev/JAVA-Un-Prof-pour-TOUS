@@ -22,7 +22,6 @@
 		<%@ include file="../header.jsp"%>
 	</div>
 
-	<hr>
 	<!-- Formulaire -->
 
 	<div class="container">

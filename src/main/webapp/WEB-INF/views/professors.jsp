@@ -23,19 +23,6 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-offset-4 col-sm-4">
-				<!-- Formulaire de recherche d'utilisateurs -->
-				<div>
-					<%@ include file="forms/userSearchForm.jsp"%>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<hr>
-
-	<div class="container">
-		<div class="row">
 			<div class="col-lg-offset-1 col-lg-8">
 				<div>
 					<h3>Liste des professeurs</h3>
