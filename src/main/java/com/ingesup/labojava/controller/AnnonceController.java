@@ -28,6 +28,7 @@ import com.ingesup.labojava.form.AnnonceApplicationFormBean;
 import com.ingesup.labojava.form.AnnonceFormBean;
 import com.ingesup.labojava.form.Filter;
 import com.ingesup.labojava.form.FilterCategory;
+import com.ingesup.labojava.form.UserFormBean;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
@@ -50,8 +51,15 @@ public class AnnonceController {
 	public void setUserService(UserService us) {
 		this.userService = us;
 	}
+	
+	// Injection des beans forms
+	
+	@ModelAttribute("userBean") 
+	public UserFormBean addUserBean() {
+		return new UserFormBean();
+	}
 
-	// Affichage de la page de création d'une annonce
+	// Affichage de la page de crï¿½ation d'une annonce
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String displayAdCreationPage(final Model model) {
@@ -60,7 +68,7 @@ public class AnnonceController {
 		return "createAd";
 	}
 
-	// Méthode POST d'une annonce
+	// Mï¿½thode POST d'une annonce
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView createAdPost(WebRequest request,
@@ -72,27 +80,27 @@ public class AnnonceController {
 
 		if (bindingResult.hasErrors()) {
 
-			String formStatus = "Erreur: vérifiez les champs!";
+			String formStatus = "Erreur: vï¿½rifiez les champs!";
 
 			mView.addObject("formStatus", formStatus);
 			mView.setViewName("createAd");
 			return mView;
 		}
 
-		// Vérification de l'utilisateur
+		// Vï¿½rification de l'utilisateur
 
 		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
 
 		if (currentUser == null) {
 
-			String formStatus = "Vous n'êtes pas connecté! Connectez-vous pour publier une annonce.";
+			String formStatus = "Vous n'ï¿½tes pas connectï¿½! Connectez-vous pour publier une annonce.";
 
 			mView.addObject("notConnectedStatus", formStatus);
 			mView.setViewName("createAd");
 			return mView;
 		}
 
-		// Création de l'annonce
+		// Crï¿½ation de l'annonce
 
 		AnnonceFactory annonceFactory = new AnnonceFactory();
 		Annonce ad = annonceFactory.createAnnonce(adFormBean);
@@ -123,7 +131,7 @@ public class AnnonceController {
 
 		model.addAttribute("adBean", new AnnonceFormBean());
 
-		/* afficher uniquement les filtres concernées */
+		/* afficher uniquement les filtres concernï¿½es */
 
 		List<Filter> allFilters = Utilities.createFilters(annonces);
 		model.addAttribute("statusFilters", Utilities.getFiltersByCategory(allFilters, FilterCategory.STATUS));
@@ -133,7 +141,7 @@ public class AnnonceController {
 
 		model.addAttribute("listAnnonces", annonces);
 
-		// Réafficher les critères
+		// Rï¿½afficher les critï¿½res
 		model.addAttribute("subject", subject);
 		model.addAttribute("location", location);
 
@@ -148,10 +156,10 @@ public class AnnonceController {
 
 		model.addAttribute("adBean", new AnnonceFormBean());
 
-		// Envoie des requêtes
+		// Envoie des requï¿½tes
 		annonces = userService.getAllAds();
 
-		/* afficher uniquement les filtres concernées */
+		/* afficher uniquement les filtres concernï¿½es */
 
 		List<Filter> allFilters = Utilities.createFilters(annonces);
 		model.addAttribute("statusFilters", Utilities.getFiltersByCategory(allFilters, FilterCategory.STATUS));
@@ -164,9 +172,9 @@ public class AnnonceController {
 	}
 
 	/*
-	 * Ajouter un filtre Lorqu'on clique sur un filtre, on l'ajoute à la liste
-	 * de filtres et on réinitialise les résultats Si on clique encore sur le
-	 * même filtre on l'enlève
+	 * Ajouter un filtre Lorqu'on clique sur un filtre, on l'ajoute ï¿½ la liste
+	 * de filtres et on rï¿½initialise les rï¿½sultats Si on clique encore sur le
+	 * mï¿½me filtre on l'enlï¿½ve
 	 */
 
 	@RequestMapping(value = "/{category}={value}", method = RequestMethod.GET)
@@ -185,7 +193,7 @@ public class AnnonceController {
 		annonces = userService.getFilteredAds(annoncefb);
 		mView.addObject("listAnnonces", annonces);
 
-		// afficher uniquement les filtres concernées
+		// afficher uniquement les filtres concernï¿½es
 
 		List<Filter> allFilters = Utilities.createFilters(annonces);
 
@@ -199,7 +207,7 @@ public class AnnonceController {
 		return mView;
 	}
 
-	// Affichage des détails d'une annonce
+	// Affichage des dï¿½tails d'une annonce
 
 	@RequestMapping(value = "/{adID}", method = RequestMethod.GET)
 	public String displayAnnonceDetails(@PathVariable("adID") final Long ID, final Model model) {
@@ -213,20 +221,20 @@ public class AnnonceController {
 			return "statusPage";
 		}
 
-		/* Récupération de la liste des annonces similaires */
+		/* Rï¿½cupï¿½ration de la liste des annonces similaires */
 
 		annonces = userService.getMatchingAds(annonce.getSubject(), annonce.getLocation());
 
 		System.out.println("SIMILAR ADS size: " + annonces.size());
 		// Si la liste est vide, on recherche les annonces uniquement par
-		// matière
+		// matiï¿½re
 
 		if (annonces.isEmpty()) {
 			annonces = userService.getMatchingAds(annonce.getSubject(), "");
 			System.out.println("SIMILAR ADS #2 size: " + annonces.size());
 		}
 
-		/* Afficher uniquement les 5 premières annonces */
+		/* Afficher uniquement les 5 premiï¿½res annonces */
 
 		if (annonces.size() < 6)
 			model.addAttribute("annonces", annonces);
@@ -298,7 +306,7 @@ public class AnnonceController {
 		
 		if (bindingResult.hasErrors()) {
 
-			model.addObject("ERRORS", "Vérifiez les champs des formulaires");
+			model.addObject("ERRORS", "Vï¿½rifiez les champs des formulaires");
 			model.setViewName("annonceApplication");
 			return model;
 		}
@@ -319,10 +327,10 @@ public class AnnonceController {
 		AnnonceApplicationFactory apFactory = new AnnonceApplicationFactory();
 		AnnonceApplication annonceApplication = apFactory.createAnnonceApplication(annonce, apb);
 
-		/* Vérifions si le mail n'a pas déjà été utilisé */
+		/* Vï¿½rifions si le mail n'a pas dï¿½jï¿½ ï¿½tï¿½ utilisï¿½ */
 		
 		if (annonce.hasAlreadyApplied(annonceApplication) || annonce.getUser().getEmail().equals(apb.getEmail())) {
-			model.addObject("ERRORS", "Cette adresse mail a déjà été utilisée!");
+			model.addObject("ERRORS", "Cette adresse mail a dï¿½jï¿½ ï¿½tï¿½ utilisï¿½e!");
 			model.setViewName("annonceApplication");
 			return model;
 		}
@@ -334,10 +342,10 @@ public class AnnonceController {
 		String status = "";
 		
 		if (annonce != null) {
-			status = "Votre candidature a été envoyé avec succès!";
+			status = "Votre candidature a ï¿½tï¿½ envoyï¿½ avec succï¿½s!";
 			
 		} else {
-			status = "Erreur! L'envoi de votre candidature a échoué. Veuillez réessayer plus tard!";
+			status = "Erreur! L'envoi de votre candidature a ï¿½chouï¿½. Veuillez rï¿½essayer plus tard!";
 		}
 		
 		model.addObject("statusMessage", status);

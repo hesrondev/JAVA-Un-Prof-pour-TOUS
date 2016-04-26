@@ -14,9 +14,14 @@
 </head>
 <body>
 
-	<h1>Page de Test des fonctionnalités du site</h1>
-
 	<div>
+		<%@ include file="header.jsp"%>
+	</div>
+
+
+
+	<div class="container">
+		<h1 class="page-header">Page de Test des fonctionnalités du site</h1>
 		<h3>1. Gestion des amitiés</h3>
 
 		<!-- Liste de tous les utilisateurs  -->
@@ -37,56 +42,54 @@
 
 					<!-- UTILISER UN FORMULAIRE CACHE ??? -->
 					<!-- Ne pas s'inviter soi même -->
-					
+
 					<c:choose>
-					
-						<c:when test="${item.id == currentUser.id || currentUser.hasBeenRequestedByFriend(item.id) > -1}">
+
+						<c:when
+							test="${item.id == currentUser.id || currentUser.hasBeenRequestedByFriend(item.id) > -1}">
 							<td>
-								<!-- CAS OU JE NE PEUX RIEN FAIRE -->
-								BEAU GOSS!
+								<!-- CAS OU JE NE PEUX RIEN FAIRE --> BEAU GOSS!
 							</td>
-						</c:when>						
+						</c:when>
 						<c:when test="${currentUser.getFriend(item.id) != null}">
 							<td>
-							<!--  CAS OU JE PEUX SUPPRIMER -->
-							<!-- BOUTON SUPPRIMER -->
-							<div>
-								<c:set var="action" value="delete"></c:set>
-								<c:set var="requestID" value="${0}"></c:set>
-								<c:set var="senderID" value="${currentUser.id}"></c:set>
-								<c:set var="receiverID" value="${item.id}"></c:set>
-								<%@ include file="forms/generic-request-hidden-form.jsp"%>
-							</div>
+								<!--  CAS OU JE PEUX SUPPRIMER --> <!-- BOUTON SUPPRIMER -->
+								<div>
+									<c:set var="action" value="delete"></c:set>
+									<c:set var="requestID" value="${0}"></c:set>
+									<c:set var="senderID" value="${currentUser.id}"></c:set>
+									<c:set var="receiverID" value="${item.id}"></c:set>
+									<%@ include file="forms/generic-request-hidden-form.jsp"%>
+								</div>
 							</td>
 						</c:when>
-						
+
 						<c:when test="${currentUser.hasRequestedFriend(item.id) > -1}">
 							<td>
-							<!-- BOUTON ANNULER -->
-							<!-- CAS OU JE PEUX ANNULER -->
-							<div>
-								<c:set var="action" value="cancel"></c:set>
-								<c:set var="requestID" value="${currentUser.hasRequestedFriend(item.id)}"></c:set>
-								<c:set var="senderID" value="${currentUser.id}"></c:set>
-								<c:set var="receiverID" value="${item.id}"></c:set>
-								<%@ include file="forms/generic-request-hidden-form.jsp"%>
-							</div>
-						</td>
+								<!-- BOUTON ANNULER --> <!-- CAS OU JE PEUX ANNULER -->
+								<div>
+									<c:set var="action" value="cancel"></c:set>
+									<c:set var="requestID"
+										value="${currentUser.hasRequestedFriend(item.id)}"></c:set>
+									<c:set var="senderID" value="${currentUser.id}"></c:set>
+									<c:set var="receiverID" value="${item.id}"></c:set>
+									<%@ include file="forms/generic-request-hidden-form.jsp"%>
+								</div>
+							</td>
 						</c:when>
-						
-						
+
+
 						<c:otherwise>
 							<td>
-							<!-- CAS OU JE PEUX AJOUTER -->
-							<!-- BOUTON AJOUTER -->
-							<div>
-								<c:set var="action" value="add"></c:set>
-								<c:set var="requestID" value="${0}"></c:set>
-								<c:set var="senderID" value="${currentUser.id}"></c:set>
-								<c:set var="receiverID" value="${item.id}"></c:set>
-								<%@ include file="forms/generic-request-hidden-form.jsp"%>
-							</div>
-						</td>
+								<!-- CAS OU JE PEUX AJOUTER --> <!-- BOUTON AJOUTER -->
+								<div>
+									<c:set var="action" value="add"></c:set>
+									<c:set var="requestID" value="${0}"></c:set>
+									<c:set var="senderID" value="${currentUser.id}"></c:set>
+									<c:set var="receiverID" value="${item.id}"></c:set>
+									<%@ include file="forms/generic-request-hidden-form.jsp"%>
+								</div>
+							</td>
 						</c:otherwise>
 					</c:choose>
 				</tr>
@@ -97,8 +100,9 @@
 
 		<c:if test="${!empty currentUser}">
 			<p>
-				<strong>Vous êtes connecté! Bonjour ${currentUser.firstName}</strong><br>
-				<a href="${pageContext.request.contextPath}/logout">Se déconnecter</a>
+				<strong>Vous êtes connecté! Bonjour
+					${currentUser.firstName}</strong><br> <a
+					href="${pageContext.request.contextPath}/logout">Se déconnecter</a>
 			</p>
 			<!-- LISTE DES DEMANDES D'AJOUTS -->
 			<h3>> Mes demandes d'ajouts</h3>
@@ -122,9 +126,7 @@
 									<c:set var="senderID" value="${item.senderID}"></c:set>
 									<c:set var="receiverID" value="${item.senderID}"></c:set>
 									<%@ include file="forms/generic-request-hidden-form.jsp"%>
-								</div>
-								
-								<!-- BOUTON REFUSE -->
+								</div> <!-- BOUTON REFUSE -->
 								<div>
 									<c:set var="action" value="refuse"></c:set>
 									<c:set var="requestID" value="${item.id}"></c:set>
@@ -135,10 +137,10 @@
 							</td>
 						</tr>
 					</c:if>
-					
+
 				</c:forEach>
 			</table>
-			
+
 			<h3>> Mes demandes envoyées</h3>
 
 			<table>
@@ -152,7 +154,7 @@
 					<c:if test="${item.sent}">
 						<tr>
 							<td>${item.receiverName}</td>
-							
+
 							<!-- BOUTON ANNULER -->
 							<td>
 								<div class="header">
@@ -163,8 +165,8 @@
 									<%@ include file="forms/generic-request-hidden-form.jsp"%>
 								</div>
 							</td>
-							
-							
+
+
 						</tr>
 					</c:if>
 				</c:forEach>
@@ -179,7 +181,7 @@
 				<!-- Boucle -->
 				<c:forEach items="${currentUser.myFriends}" var="item">
 					<tr>
-						<td>${item.firstName} ${item.lastName}</td>
+						<td>${item.firstName}${item.lastName}</td>
 						<td><a
 							href="${pageContext.request.contextPath}/removeContact/${user.id}:${item.id}">SUPPRIMER</a>
 						</td>

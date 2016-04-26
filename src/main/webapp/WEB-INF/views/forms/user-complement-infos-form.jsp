@@ -90,7 +90,7 @@
 		<div class="form-group">
 
 			<div class="row">
-				<div class="col-lg-3">
+				<div class="col-lg-4">
 					<form:label path="birthDay">Jour de naissance</form:label>
 					<form:select path="birthDay" class="form-control">
 						<c:forEach begin="1" end="31" var="val">
@@ -100,7 +100,7 @@
 						</c:forEach>
 					</form:select>
 				</div>
-				<div class="col-lg-5">
+				<div class="col-lg-4">
 					<form:label path="birthMonth">Mois de naissance</form:label>
 
 					<form:select path="birthMonth" class="form-control">

@@ -12,7 +12,7 @@
   	<class>com.ingesup.labojava.bean.Student</class>
   	<properties>  		
   		<property name="hibernate.show_sql" value="true" />
-  		<property name="hibernate.hbm2ddl.auto" value="update"/>
+  		<property name="hibernate.hbm2ddl.auto" value="create"/>
   		<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
   	</properties>
   </persistence-unit>  

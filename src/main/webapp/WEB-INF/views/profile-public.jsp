@@ -17,13 +17,9 @@
 	<!--  HEADER INCLUSION  -->
 
 
-
-	<header class="">
-	<div class="">
+	<div>
 		<%@ include file="header.jsp"%>
 	</div>
-	</header>
-	<br>
 
 	<div class="container">
 		<div class="row">

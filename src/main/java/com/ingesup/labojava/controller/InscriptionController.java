@@ -17,6 +17,7 @@ import com.ingesup.labojava.bean.User;
 import com.ingesup.labojava.factory.UserFactory;
 import com.ingesup.labojava.form.FormsValidator;
 import com.ingesup.labojava.form.InscriptionFormBean;
+import com.ingesup.labojava.form.UserFormBean;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
@@ -42,6 +43,11 @@ public class InscriptionController {
 		return new InscriptionFormBean();
 	}
 	
+	@ModelAttribute("userBean") 
+	public UserFormBean addUserBean() {
+		return new UserFormBean();
+	}
+	
 
 	// Affichage de la page d'inscription
 
@@ -52,12 +58,12 @@ public class InscriptionController {
 		// model.addAttribute("inscriptionBean", new InscriptionFormBean());
 		
 		
-		/* Vérifions que l'user n'est pas déjà connecté */
+		/* Vï¿½rifions que l'user n'est pas dï¿½jï¿½ connectï¿½ */
 		
 		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
 		
 		
-		/* Déjà connecté */
+		/* Dï¿½jï¿½ connectï¿½ */
 		
 		if (currentUser != null) {
 			return "redirect:/profile";
@@ -67,7 +73,7 @@ public class InscriptionController {
 	}
 
 	
-	// Traitement de la requête POST d'inscription
+	// Traitement de la requï¿½te POST d'inscription
 	
 	@RequestMapping(value = "/inscription", method = RequestMethod.POST)
 	public String inscriptionPost(@ModelAttribute("inscriptionBean") @Valid final InscriptionFormBean iFormBean,
@@ -77,7 +83,7 @@ public class InscriptionController {
 
 		if (bindingResult.hasErrors()) {
 
-			userStatus = "Données du formulaire invalides!!! Vérifiez votre saisie.";
+			userStatus = "Donnï¿½es du formulaire invalides!!! Vï¿½rifiez votre saisie.";
 			model.addAttribute("userStatus", userStatus);
 			return "inscription";
 		}
@@ -87,17 +93,17 @@ public class InscriptionController {
 
 		// Si le formulaire n'est pas valide
 		if (!fValidator.isValidInscriptionForm(iFormBean)) {
-			userStatus = "Données du formulaire invalides!!! Vérifiez votre saisie.";
+			userStatus = "Donnï¿½es du formulaire invalides!!! Vï¿½rifiez votre saisie.";
 			model.addAttribute("userStatus", userStatus);
 			return "inscription";
 		}
 
-		/* On vérifie le mail */
+		/* On vï¿½rifie le mail */
 		
 		User user = userService.getUser(iFormBean.getEmail());
 			
 		if (user != null) {
-			userStatus = "Ce mail est déjà utilisé!";
+			userStatus = "Ce mail est dï¿½jï¿½ utilisï¿½!";
 			model.addAttribute("userStatus", userStatus);
 			return "inscription";			
 		}
