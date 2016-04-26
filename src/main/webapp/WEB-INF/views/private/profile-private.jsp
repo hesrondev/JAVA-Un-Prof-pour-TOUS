@@ -62,7 +62,8 @@
 
 							<!-- Champ profession -->
 							<c:choose>
-								<c:when test="${empty currentUser.profession && empty currentUser.gradeLevel}">
+								<c:when
+									test="${empty currentUser.profession && empty currentUser.gradeLevel}">
 									<c:out value="Non renseigné"></c:out>
 								</c:when>
 								<c:otherwise>
@@ -76,8 +77,10 @@
 
 							<!-- Champ ville pays -->
 							<c:choose>
-								<c:when test="${empty currentUser.city && empty currentUser.country}">
-									<c:out value="Non renseigné"></c:out><br>
+								<c:when
+									test="${empty currentUser.city && empty currentUser.country}">
+									<c:out value="Non renseigné"></c:out>
+									<br>
 								</c:when>
 								<c:otherwise>
 									${currentUser.city}&nbsp;&bull;&nbsp;${currentUser.country}<br>
@@ -86,16 +89,18 @@
 
 
 							<span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;${currentUser.email}<br>
-							
+
 							<!-- Champ télephone -->
 							<span class="glyphicon glyphicon-earphone"></span>&nbsp;
-							
+
 							<c:choose>
-								<c:when test="${empty currentUser.city && empty currentUser.country}">
-									<c:out value="Non renseigné"></c:out><br>
+								<c:when
+									test="${empty currentUser.city && empty currentUser.country}">
+									<c:out value="Non renseigné"></c:out>
+									<br>
 								</c:when>
 								<c:otherwise>
-									${currentUser.phoneNumber}<br>	
+									${currentUser.phoneNumber}<br>
 								</c:otherwise>
 							</c:choose>
 
@@ -180,12 +185,6 @@
 			</div>
 
 
-
-
-
-
-
-
 			<!-- SECTION DROITE -->
 
 
@@ -234,23 +233,13 @@
 				<div class="tab-content">
 
 					<!-- Mon emploi du temps -->
-					<div id="A" class="tab-pane fade in active">
-						<div class="row">
-							<div class="col-lg-12">
-
-								<h3 align="center">
-									Mon emploi du temps! <small>Section à remplir</small>
-								</h3>
-
-							</div>
-						</div>
-					</div>
+					<!-- Afficher si professeur -->
 
 					<!-- Mes profs / Eleves -->
 
 					<c:choose>
 						<c:when test="${currentUser.isStudent()}">
-							<div id="B" class="tab-pane fade">
+							<div id="B" class="tab-pane fade in active">
 								<div class="row">
 									<div class="col-lg-12">
 
@@ -261,6 +250,17 @@
 							</div>
 						</c:when>
 						<c:otherwise>
+
+							<div id="A" class="tab-pane fade in active">
+								<div class="row">
+									<div class="col-lg-12">
+
+										<%@ include file="myTimeTable.jsp"%>
+
+									</div>
+								</div>
+							</div>
+
 							<div id="B" class="tab-pane fade">
 								<div class="row">
 									<div class="col-lg-12">
