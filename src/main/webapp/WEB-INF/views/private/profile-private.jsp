@@ -62,7 +62,8 @@
 
 							<!-- Champ profession -->
 							<c:choose>
-								<c:when test="${empty currentUser.profession && empty currentUser.gradeLevel}">
+								<c:when
+									test="${empty currentUser.profession && empty currentUser.gradeLevel}">
 									<c:out value="Non renseigné"></c:out>
 								</c:when>
 								<c:otherwise>
@@ -76,8 +77,10 @@
 
 							<!-- Champ ville pays -->
 							<c:choose>
-								<c:when test="${empty currentUser.city && empty currentUser.country}">
-									<c:out value="Non renseigné"></c:out><br>
+								<c:when
+									test="${empty currentUser.city && empty currentUser.country}">
+									<c:out value="Non renseigné"></c:out>
+									<br>
 								</c:when>
 								<c:otherwise>
 									${currentUser.city}&nbsp;&bull;&nbsp;${currentUser.country}<br>
@@ -86,16 +89,18 @@
 
 
 							<span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;${currentUser.email}<br>
-							
+
 							<!-- Champ télephone -->
 							<span class="glyphicon glyphicon-earphone"></span>&nbsp;
-							
+
 							<c:choose>
-								<c:when test="${empty currentUser.city && empty currentUser.country}">
-									<c:out value="Non renseigné"></c:out><br>
+								<c:when
+									test="${empty currentUser.city && empty currentUser.country}">
+									<c:out value="Non renseigné"></c:out>
+									<br>
 								</c:when>
 								<c:otherwise>
-									${currentUser.phoneNumber}<br>	
+									${currentUser.phoneNumber}<br>
 								</c:otherwise>
 							</c:choose>
 
@@ -281,83 +286,91 @@
 							<div class="col-lg-12">
 
 								<%@ include file="myAnnonces.jsp"%>
+
+
+								<!-- formulaire ajout publication -->
+
+								<%@ include file="postPublication.jsp"%>
+								<%@ include file="publications.jsp"%>
+
+
 							</div>
 						</div>
 					</div>
 
 
-					<!-- Ma liste d'amis / Requetes Envoyées + Reçues -->
 
-					<div id="D" class="tab-pane fade">
 
-						<div class="row">
-							<div class="col-lg-12">
 
-								<%@ include file="myFriends-List.jsp"%>
+						<!-- Ma liste d'amis / Requetes Envoyées + Reçues -->
+
+						<div id="D" class="tab-pane fade">
+
+							<div class="row">
+								<div class="col-lg-12">
+
+									<%@ include file="myFriends-List.jsp"%>
+								</div>
+
+							</div>
+
+							<!-- Mes demandes en ami received/sent -->
+
+							<div class="row">
+								<div class="col-lg-6">
+									<%@ include file="receivedRequests-List.jsp"%>
+								</div>
+
+								<div class="col-lg-6">
+									<%@ include file="sentRequests-List.jsp"%>
+								</div>
 							</div>
 
 						</div>
 
-						<!-- Mes demandes en ami received/sent -->
 
-						<div class="row">
-							<div class="col-lg-6">
-								<%@ include file="receivedRequests-List.jsp"%>
-							</div>
-
-							<div class="col-lg-6">
-								<%@ include file="sentRequests-List.jsp"%>
-							</div>
-						</div>
 
 					</div>
-
-
+					<!-- FIN DIV TABCONTENT -->
 
 				</div>
-				<!-- FIN DIV TABCONTENT -->
-
 			</div>
 		</div>
-	</div>
 
-	<br>
-	<br>
-	<hr>
+		<br> <br>
+		<hr>
 
-	<!--  FOOTER INCLUSION  -->
+		<!--  FOOTER INCLUSION  -->
 
-	<div class="container">
-		<footer class="row">
-		<div class="col-lg-12">
-			<%@ include file="../footer.jsp"%>
+		<div class="container">
+			<footer class="row">
+			<div class="col-lg-12">
+				<%@ include file="../footer.jsp"%>
+			</div>
+			</footer>
 		</div>
-		</footer>
-	</div>
 
 
 
-	<!-- INCLUSION JS -->
+		<!-- INCLUSION JS -->
 
-	<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/resources/js/jquery.js"></script>
-
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet"
-		href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet"
-		href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script
-		src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/resources/js/jquery.js"></script>
 
 
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet"
+			href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet"
+			href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script
+			src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
 </html>

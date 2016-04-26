@@ -17,7 +17,7 @@
 				<!--  Formulaire -->
 
 				<form:form modelAttribute="publiBean" method="POST"
-					action="${pageContext.request.contextPath}/publications">
+					action="${pageContext.request.contextPath}/profile/publications">
 
 					<!-- Erreur FORM -->
 					<br>
@@ -49,12 +49,12 @@
 					<div class="form-group">
 						<form:textarea id="publi_description" name="description"
 							path="description" placeholder="Ecrivez ici le message que vous 
-							souhaitez publier" rows="6" class="form-control" />
+							souhaitez publier" rows="4" class="form-control input-sm" />
 					</div>					
 
 					<div class="form-group">
 						<input type="submit" value="Publier"
-							class="btn btn-default pull-right input-lg" />
+							class="btn btn-default pull-right input-sm" />
 					</div>
 
 				</form:form>

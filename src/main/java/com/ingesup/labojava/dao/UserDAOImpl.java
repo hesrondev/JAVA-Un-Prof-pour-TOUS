@@ -69,7 +69,7 @@ public class UserDAOImpl implements UserDAO {
 	public User getUser(String email, String pass) {
 
 		Query query = entityManager.createQuery("from User u left join fetch u.myFriends " + "left join fetch u.friendOf "
-						+ "left join fetch u.annonces " + "left join fetch u.friendRequests "
+						+ "left join fetch u.annonces " + "left join fetch u.friendRequests " + "left join fetch u.publications "
 						+ "where u.email = :email AND u.password = :password");
 		
 		query.setParameter("email", email);

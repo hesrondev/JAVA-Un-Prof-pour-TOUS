@@ -35,80 +35,78 @@ import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
-@RequestMapping("/profile/publications")
 @SessionAttributes("currentUser")
 public class PublicationController {
 
-		// List de publications
+	// List de publications
 
-		PublicationFormBean publicationfb = new PublicationFormBean();
-		List<Publication> publications = new ArrayList<Publication>();
+	PublicationFormBean publicationfb = new PublicationFormBean();
+	List<Publication> publications = new ArrayList<Publication>();
 
-		// Injection des services
+	// Injection des services
 
-		private UserService userService = new UserServiceImpl();
+	private UserService userService = new UserServiceImpl();
 
-		@Autowired(required = true)
-		@Qualifier(value = "userService")
-		public void setUserService(UserService us) {
-			this.userService = us;
-		}
+	@Autowired(required = true)
+	@Qualifier(value = "userService")
+	public void setUserService(UserService us) {
+		this.userService = us;
+	}
+	
+	@ModelAttribute("publiBean")
+	public PublicationFormBean addPublicationFormBean() {
+		return new PublicationFormBean();
+	}
 
-		// Affichage de la page de création d'une publication
+	// Méthode POST d'une publication
 
-		@RequestMapping(value = "/profile/publications", method = RequestMethod.GET)
-		public String displayPubliCreationPage(final Model model) {
+	@RequestMapping(value = "/profile/publications", method = RequestMethod.POST)
+	public ModelAndView createPubliPost(WebRequest request,
+			@ModelAttribute("publiBean") @Valid final PublicationFormBean publiFormBean,
+			final BindingResult bindingResult) {
 
-			model.addAttribute("publiBean", new PublicationFormBean());
-			return "createPubli";
-		}
+		ModelAndView mView = new ModelAndView();
 
-		// Méthode POST d'une annonce
+		// S'il y'a des erreurs
 
-		@RequestMapping(value = "/profile/publications", method = RequestMethod.POST)
-		public ModelAndView createPubliPost(WebRequest request,
-				@ModelAttribute("publiBean") @Valid final PublicationFormBean publiFormBean, final BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
 
-			ModelAndView mView = new ModelAndView();
+			String formStatus = "Erreur: vérifiez les champs!";
 
-			// S'il y'a des erreurs
-
-			if (bindingResult.hasErrors()) {
-
-				String formStatus = "Erreur: vérifiez les champs!";
-
-				mView.addObject("formStatus", formStatus);
-				mView.setViewName("createPubli");
-				return mView;
-			}
-
-			// Vérification de l'utilisateur
-
-			User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
-
-			if (currentUser == null) {
-
-				String formStatus = "Vous n'êtes pas connecté! Connectez-vous pour publier une publication.";
-
-				mView.addObject("notConnectedStatus", formStatus);
-				mView.setViewName("createPubli");
-				return mView;
-			}
-
-			// Création de l'annonce
-
-			PublicationFactory publicationFactory = new PublicationFactory();
-			Publication publi = publicationFactory.createPublication(publiFormBean);
-
-			currentUser.addPublication(publi);
-			publi.setUser(currentUser);
-
-			userService.updateUser(currentUser);
-
-			mView.addObject("currentUser", currentUser);
-			mView.setViewName("redirect:/profile/publications");
-
+			mView.addObject("formStatus", formStatus);
+			mView.setViewName("profile-private");
 			return mView;
 		}
+
+		// Vérification de l'utilisateur
+
+		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
+
+		if (currentUser == null) {
+
+			String formStatus = "Vous n'êtes pas connecté! Connectez-vous pour publier une publication.";
+
+			mView.addObject("notConnectedStatus", formStatus);
+			mView.setViewName("redirect:/restriction-page");
+			return mView;
+		}
+
+		// Création de l'annonce
+
+		PublicationFactory publicationFactory = new PublicationFactory();
+		Publication publi = publicationFactory.createPublication(publiFormBean);
+
+		currentUser.addPublication(publi);
+		publi.setUser(currentUser);
+		
+		System.out.println(currentUser.getPublications().size());
+
+		userService.updateUser(currentUser);
+
+		mView.addObject("currentUser", userService.getUser(currentUser.getId()));
+		mView.setViewName("redirect:/profile");
+
+		return mView;
+	}
 
 }

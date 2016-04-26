@@ -228,6 +228,7 @@ public abstract class User {
 	}
 	
 	public void addPublication(Publication publi) {
+		publi.setUser(this);
 		publications.add(publi);
 	}
 
