@@ -6,8 +6,10 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<!-- INCLURE UN CSS PERSO ICI -->
 
+<link href="<c:url value="/resources/custom/css/default.css"/>"
+	rel="stylesheet" />
+	
 
 
 <title>UPPT | ${!empty currentUser ? currentUser.firstName : Profile}</title>

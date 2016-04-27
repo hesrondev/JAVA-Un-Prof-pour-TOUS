@@ -7,7 +7,10 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<!-- INCLURE UN CSS PERSO ICI -->
+
+<link href="<c:url value="/resources/custom/css/default.css"/>"
+	rel="stylesheet" />
+	
 
 
 <title>UPPT | <c:if test="${!empty annonce}">${annonce.title}</c:if></title>
@@ -37,7 +40,7 @@
 
 
 							<div class="col-lg-8">
-								<h1>${annonce.title}</h1>
+								<h2>${annonce.title}</h2>
 								<p>
 									<span class="glyphicon glyphicon-user"></span> <a
 										href="${pageContext.request.contextPath}/profile/${item.user.id}">
@@ -93,25 +96,25 @@
 
 									<c:choose>
 										<c:when test="${listSize == 0}">
-											<h3>
+											<h4>
 												<c:out value="${listSize}" />
 												Candidature
-											</h3>
+											</h4>
 											<p>Soyez le premier à candidater!</p>
 										</c:when>
 										<c:when test="${listSize == 1}">
-											<h3>
+											<h4>
 												<c:out value="${listSize}" />
 												Candidature
-											</h3>
+											</h4>
 											<p>Comparez vous aux autres candidats</p>
 										</c:when>
 
 										<c:otherwise>
-											<h3>
+											<h4>
 												<c:out value="${listSize}" />
 												Candidatures
-											</h3>
+											</h4>
 											<p>Comparez vous aux autres candidats</p>
 										</c:otherwise>
 									</c:choose>
@@ -152,7 +155,7 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="page-header">
-											<h3>Informations sur l'annonce</h3>
+											<h4>Informations sur l'annonce</h4>
 										</div>
 									</div>
 								</div>
@@ -179,7 +182,7 @@
 
 										<!-- DESCRIPTION -->
 										<div class="page-header">
-											<h3>Description</h3>
+											<h4>Description</h4>
 										</div>
 
 										<p>${annonce.description}</p>
@@ -247,7 +250,7 @@
 									<!-- Recherche les annonces similaires -->
 									<div class="panel-footer" align="center">
 
-										<a class="btn btn-default btn-lg"
+										<a class="btn btn-default"
 											href="${pageContext.request.contextPath}/annonces/recherche?subject=${annonce.subject}&location=${annonce.location}">Voir
 											les offres similaires</a>
 									</div>

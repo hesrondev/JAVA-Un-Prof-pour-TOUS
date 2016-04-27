@@ -4,11 +4,11 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
+	
+<link href="<c:url value="/resources/custom/css/default.css"/>"
+	rel="stylesheet" />
 
 <link href="<c:url value="/resources/custom/css/custom-design.css"/>"
-	rel="stylesheet" />
-	
-<link href="<c:url value="/resources/custom/css/flaty.css"/>"
 	rel="stylesheet" />
 	
 	
@@ -66,7 +66,7 @@
 
 	<!-- Nos professeurs & elèves -->
 
-	<div class="jumbotron">
+	<div class="jumbotron" >
 		<div class="container">
 			<section class="row">
 			<div class="col-lg-12">
@@ -83,8 +83,8 @@
 					<c:forEach items="${latestUsers}" var="item">
 						<div class="col-lg-2">
 							<div align="center">
-								<img class="img-thumbnail" alt=""
-									src="resources/img/default-picture-s64.png"><br> <a
+								<img class="img-circle" alt=""
+									src="resources/img/default-picture-s90.png"><br> <a
 									href="${pageContext.request.contextPath}/profile/${item.firstName}.${item.lastName}/${item.id}">${item.firstName}
 									${item.lastName}</a> <br> ${item.type}<br>
 									Membre depuis ${item.duration()}
@@ -134,7 +134,7 @@
 										href="${pageContext.request.contextPath}/annonces/${item.id}">${item.title}</a></td>
 								</tr>
 								<tr>
-									<td>${item.location}&#8226${item.toStringDate()}</td>
+									<td>${item.location}&nbsp;&nbsp;&bull;&nbsp;&nbsp;${item.toStringDate()}</td>
 								</tr>
 							</table>
 						</div>
@@ -146,8 +146,6 @@
 							plus d'annonces</a>
 					</div>
 				</div>
-				<br>
-				<hr>
 			</div>
 			</section>
 		</div>
@@ -184,8 +182,8 @@
 											varStatus="loop">
 											<a class="label label-info"
 												href="${pageContext.request.contextPath}/annonces/recherche?subject=${item.value}&location=">${item.value}
-												<c:if test="${loop.index < fn:length(subjectFilters) - 1}"> &#8226 </c:if>
 											</a>
+											<c:if test="${loop.index < fn:length(subjectFilters) - 1}">&bull;</c:if>
 										</c:forEach>
 									</div>
 								</div>
@@ -196,7 +194,7 @@
 										<c:forEach items="${locationFilters}" var="item">
 											<a class="label label-info"
 												href="${pageContext.request.contextPath}/annonces/recherche?subject=&location=${item.value}">${item.value}
-												<c:if test="${loop.index < fn:length(subjectFilters) - 1}"> &#8226 </c:if>
+												<c:if test="${loop.index < fn:length(subjectFilters) - 1}"> &bnsp; </c:if>
 											</a>
 										</c:forEach>
 									</div>
@@ -209,8 +207,6 @@
 			</section>
 		</div>
 	</div>
-
-	<hr>
 
 	<!--  FOOTER INCLUSION  -->
 

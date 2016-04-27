@@ -4,7 +4,7 @@
 
 <!--  LOGO -->
 
-<div class="page-header">
+<div class="page-header page-header-header">
 	<div class="container">
 		<header class="row">
 

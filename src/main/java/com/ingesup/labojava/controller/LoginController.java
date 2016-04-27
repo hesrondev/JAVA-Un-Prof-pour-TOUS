@@ -1,5 +1,7 @@
 package com.ingesup.labojava.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,7 +55,8 @@ public class LoginController {
 	// Affichage de la page de connexion d'un utilisateur
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginPage(WebRequest request, final Model model) {
+	public String loginPage(WebRequest request, final Model model, @CookieValue(value="u_email", defaultValue="") String email,
+			@CookieValue(value="u_pass", defaultValue="") String pass) {
 		
 		
 		/* V�rifions que l'user n'est pas d�j� connect� */
@@ -66,6 +70,18 @@ public class LoginController {
 			return "redirect:/profile";
 		}
 		
+		// Si non on vérifid les cookies
+		
+		if (!email.isEmpty() && !pass.isEmpty()) {
+			
+			currentUser = userService.getUser(email, pass);
+			 if (currentUser != null) {
+				 model.addAttribute("currentUser", currentUser);
+				 
+				 return "redirect:/profile";
+			 }
+		}
+		
 		return "login";
 	}
 
@@ -74,7 +90,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(@ModelAttribute("loginBean") @Valid final LoginFormBean lFormBean,
-			final BindingResult bindingResult) {
+			final BindingResult bindingResult, HttpServletResponse response) {
 		
 		ModelAndView mView = new ModelAndView();
 
@@ -96,6 +112,17 @@ public class LoginController {
 		
 		if (user != null) {
 			
+			// Si remember me est coché, on créè un cookie pour le stocker pendant 1j
+			
+			Cookie em = new Cookie("u_email", user.getEmail());
+			Cookie mdp = new Cookie("u_pass", user.getPassword());
+			em.setMaxAge(86400);
+			mdp.setMaxAge(86400);
+			
+			response.addCookie(em);
+			response.addCookie(mdp);
+			
+			
 			// Test si c'est un �tudiant ou un professor pour le caster
 			
 			mView.addObject("currentUser", user);
@@ -103,7 +130,7 @@ public class LoginController {
 			
 			return mView;
 		}
-		
+			
 		// Sinon
 
 		String loginStatus = "Identifiants incorrects!";			
