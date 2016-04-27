@@ -43,7 +43,9 @@ public abstract class User {
 	protected String country;
 	protected String gradeLevel;
 	protected String aboutMe;
-	private String profession;
+	protected String profession;
+	
+	protected String gender;
 
 	// Collections
 
@@ -522,6 +524,15 @@ public abstract class User {
 
 	public void setProfession(String profession) {
 		this.profession = profession;
+	}
+	
+	@Column(name = "GENDER")
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	/* Friends section */

@@ -36,6 +36,7 @@ public class UserFactory {
 		student.setFirstName(ifb.getFirstName());
 		student.setLastName(ifb.getLastName());
 		student.setEmail(ifb.getEmail());
+		student.setGender(ifb.getGender());
 		student.setPassword(Crypto.crypter(ifb.getPassword())); // On crypte le mot de passe
 		
 		return student;

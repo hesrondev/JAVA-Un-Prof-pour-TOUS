@@ -71,6 +71,19 @@
 					<form:option value="professor">Compte Professeur Particulier</form:option>
 				</form:select>
 			</div>
+			
+			<div class="form-group">
+
+				<form:label path="gender">
+					<spring:message text="Vous êtes : " />
+				</form:label>
+
+				<form:select path="gender" class="form-control">
+					<form:option value="">Dérouler la liste</form:option>
+					<form:option value="FEMALE">Une Femme</form:option>
+					<form:option value="MALE">Un Homme</form:option>
+				</form:select>
+			</div>
 
 			<div class="form-group">
 				<input class="btn btn-primary" type="submit" value="INSCRIPTION" />

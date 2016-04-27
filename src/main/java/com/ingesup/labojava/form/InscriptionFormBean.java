@@ -27,6 +27,9 @@ public class InscriptionFormBean {
 	@NotEmpty(message="STATUT obligatoire!")
 	private String status;
 	
+	@NotEmpty(message="Genre Obligatoire!")
+	private String gender;
+	
 	//Getters and Setters
 	
 	
@@ -65,6 +68,13 @@ public class InscriptionFormBean {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 }
