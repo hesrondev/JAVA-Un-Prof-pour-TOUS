@@ -19,6 +19,8 @@
 		<c:forEach items="${currentUser.publications}" var="item">
 
 			<li class="list-group-item">
+				<!-- Date de la publication -->				
+				<h4>${item.toStringDate()}</h4>
 				
 				<!-- description -->
 				<p>

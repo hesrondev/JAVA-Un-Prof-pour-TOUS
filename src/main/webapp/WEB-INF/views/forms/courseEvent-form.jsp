@@ -1,6 +1,4 @@
 
-
-
 <!-- Formulaire pour l'ajout d'un cours au planning -->
 
 

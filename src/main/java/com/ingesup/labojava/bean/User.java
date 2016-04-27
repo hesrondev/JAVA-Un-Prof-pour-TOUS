@@ -449,7 +449,7 @@ public abstract class User {
 	@Column(name = "USER_TYPE")
 	public String getType() {
 
-		if (type.equals("PROFESSOR"))
+		if (this.getClass()== Professor.class)
 			return "Professeur";
 		else
 			return "Etudiant(e)";
