@@ -7,9 +7,9 @@
 
 			<div class="panel panel-default">
 
-				<c:if test="${empty currentUser.publications}">
+				<c:if test="${empty user.publications}">
 					<div class="panel-body">
-						<p align="center">Vous n'avez posté aucune publication
+						<p align="center">Cet utilisateur n'a posté aucune publication
 							pour le moment.</p>
 					</div>
 				</c:if>

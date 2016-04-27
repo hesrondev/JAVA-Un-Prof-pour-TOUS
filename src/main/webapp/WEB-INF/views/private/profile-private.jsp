@@ -6,7 +6,7 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-	
+
 <link href="<c:url value="/resources/custom/css/default.css"/>"
 	rel="stylesheet" />
 
@@ -216,8 +216,10 @@
 										</c:choose></a></li>
 
 								<li role="presentation"><a data-toggle="tab" href="#C"><span
-										class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Annonces
-										<c:out value="&"></c:out> Publications</a></li>
+										class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Annonces</a></li>
+
+								<li role="presentation"><a data-toggle="tab" href="#E"><span
+										class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Publications</a></li>
 
 								<li role="presentation"><a data-toggle="tab" href="#D"><span
 										class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Mes amis</a></li>
@@ -286,79 +288,85 @@
 
 								<%@ include file="myAnnonces.jsp"%>
 
+							</div>
+						</div>
+					</div>
+					
+					<!-- Mes publications -->
+					<div id="E" class="tab-pane">
+						<div class="row">
+							<div class="col-lg-12">
 
 								<!-- formulaire ajout publication -->
 
 								<%@ include file="postPublication.jsp"%>
 								<%@ include file="publications.jsp"%>
 
-
 							</div>
 						</div>
 					</div>
 
 
 
+					<!-- Ma liste d'amis / Requetes Envoyées + Reçues -->
 
+					<div id="D" class="tab-pane fade">
 
-						<!-- Ma liste d'amis / Requetes Envoyées + Reçues -->
+						<div class="row">
+							<div class="col-lg-12">
 
-						<div id="D" class="tab-pane fade">
-
-							<div class="row">
-								<div class="col-lg-12">
-
-									<%@ include file="myFriends-List.jsp"%>
-								</div>
-
-							</div>
-
-							<!-- Mes demandes en ami received/sent -->
-
-							<div class="row">
-								<div class="col-lg-6">
-									<%@ include file="receivedRequests-List.jsp"%>
-								</div>
-
-								<div class="col-lg-6">
-									<%@ include file="sentRequests-List.jsp"%>
-								</div>
+								<%@ include file="myFriends-List.jsp"%>
 							</div>
 
 						</div>
 
+						<!-- Mes demandes en ami received/sent -->
 
+						<div class="row">
+							<div class="col-lg-6">
+								<%@ include file="receivedRequests-List.jsp"%>
+							</div>
+
+							<div class="col-lg-6">
+								<%@ include file="sentRequests-List.jsp"%>
+							</div>
+						</div>
 
 					</div>
-					<!-- FIN DIV TABCONTENT -->
+
+
 
 				</div>
+				<!-- FIN DIV TABCONTENT -->
+
 			</div>
 		</div>
+	</div>
 
-		<br> <br>
-		<hr>
+	<br>
+	<br>
+	<hr>
 
-		<!--  FOOTER INCLUSION  -->
+	<!--  FOOTER INCLUSION  -->
 
-		<div class="container">
-			<footer class="row">
-			<div class="col-lg-12">
-				<%@ include file="../footer.jsp"%>
-			</div>
-			</footer>
+	<div class="container">
+		<footer class="row">
+		<div class="col-lg-12">
+			<%@ include file="../footer.jsp"%>
 		</div>
+		</footer>
+	</div>
 
 
 
-		<!-- INCLUSION JS -->
+	<!-- INCLUSION JS -->
 
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script
-			src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,11 +1,11 @@
-maths:Mathématiques
-francais:Français
+maths:Mathï¿½matiques
+francais:Franï¿½ais
 lagues:Langues (Anglais, Espagnol, Autre)
-Histoire:Histoire-Géographie
+Histoire:Histoire-GÃ©ographie
 musique:Musique
 philo:Philosophie
 eco:Economie
-sciences:Sciences (Biologie, Géologie, Autre)
+sciences:Sciences (Biologie, GÃ©ologie, Autre)
 physique :Physique
 chimie:Chimie
 info:Informatique

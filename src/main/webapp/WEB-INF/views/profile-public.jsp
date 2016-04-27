@@ -6,7 +6,7 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-	
+
 <link href="<c:url value="/resources/custom/css/default.css"/>"
 	rel="stylesheet" />
 
@@ -24,7 +24,8 @@
 	<div>
 		<%@ include file="header.jsp"%>
 	</div>
-
+	
+	<br>
 	<div class="container">
 		<div class="row">
 
@@ -38,7 +39,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 
-						<a href="#"> <img src="../resources/img/default-picture.jpg"
+						<a href="#"> <img src="${pageContext.request.contextPath}/resources/img/default-picture.jpg"
 							class="img-thumbnail"></a>
 						<h3>${user.firstName}&nbsp;${user.lastName}</h3>
 
@@ -77,7 +78,8 @@
 							<!-- Champ ville pays -->
 							<c:choose>
 								<c:when test="${empty user.city && empty user.country}">
-									<c:out value="Non renseigné"></c:out><br>
+									<c:out value="Non renseigné"></c:out>
+									<br>
 								</c:when>
 								<c:otherwise>
 									${user.city}&nbsp;&bull;&nbsp;${user.country}<br>
@@ -86,16 +88,17 @@
 
 
 							<span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;${user.email}<br>
-							
+
 							<!-- Champ télephone -->
 							<span class="glyphicon glyphicon-earphone"></span>&nbsp;
-							
+
 							<c:choose>
 								<c:when test="${empty user.city && empty user.country}">
-									<c:out value="Non renseigné"></c:out><br>
+									<c:out value="Non renseigné"></c:out>
+									<br>
 								</c:when>
 								<c:otherwise>
-									${user.phoneNumber}<br>	
+									${user.phoneNumber}<br>
 								</c:otherwise>
 							</c:choose>
 
@@ -128,7 +131,7 @@
 
 							<div class="col-lg-4">
 								<h3>
-									<a href="#"> ${user.publicationsCount()} </a>
+									<a href="#"> ${user.annoncesCount()} </a>
 								</h3>
 								<p>Annonces</p>
 							</div>
@@ -158,9 +161,11 @@
 
 							<ul class="nav nav-tabs">
 
-								<li class="active" role="presentation"><a data-toggle="tab" href="#C"><span
-										class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Annonces
-										<c:out value="&"></c:out> Publications</a></li>
+								<li class="active" role="presentation"><a data-toggle="tab"
+									href="#E"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Publications</a></li>
+
+								<li role="presentation"><a data-toggle="tab" href="#C"><span
+										class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;Annonces</a></li>
 
 								<li role="presentation"><a data-toggle="tab" href="#D"><span
 										class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Amis</a></li>
@@ -188,7 +193,20 @@
 							</div>
 						</div>
 					</div>
-					
+
+					<!-- Mes publications -->
+					<div id="E" class="tab-pane">
+						<div class="row">
+							<div class="col-lg-12">
+
+								<!-- formulaire ajout publication -->
+
+								<%@ include file="public-publications.jsp"%>
+
+							</div>
+						</div>
+					</div>
+
 
 
 					<!-- Liste d'amis -->
@@ -236,14 +254,6 @@
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet"
-		href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet"
-		href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script

@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.dom4j.Branch;
+
 public class FormMaps {
 
 	// Liste de toutes les MAP utilisées dans nos formulaires
@@ -55,8 +57,50 @@ public class FormMaps {
 		months.put("9", "Octobre");
 		months.put("10", "Novembre");
 		months.put("11", "Décembre");
+		
+		// Matières
+		
+		
+		subjectsMap = loadMapFromFile("resources/maps/matieres.txt");
 	}
 	
+	
+	// Charge Map
+	
+	private Map<String, String> loadMapFromFile(String path) {
+		Map<String, String> loadedMap = new LinkedHashMap<String, String>();
+		
+		
+		//ClassLoader cl = getClass().getClassLoader();
+		//File file = new File(cl.getResource(path).getFile());
+		// Read the file
+		
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			
+			String line = null;
+			
+			try {
+				while ((line = br.readLine()) != null) {
+					
+					String[] splited = line.split(":");
+					
+					loadedMap.put(splited[0], splited[1]);
+					
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return loadedMap;
+		
+	}
 	
 	
 	// Getters and Setters

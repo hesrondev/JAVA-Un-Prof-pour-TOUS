@@ -22,15 +22,10 @@
 	<!--  HEADER INCLUSION  -->
 
 
-	<div class="container">
-		<header class="row">
-		<div class="col-lg-12">
-			<%@ include file="header.jsp"%>
-		</div>
-		</header>
-	</div>
+	<!--  HEADER INCLUSION  -->
 
-	<hr>
+	<%@ include file="header.jsp"%>
+	
 	<div class="container">
 
 		<!-- Bloc formulaire d'annonce  -->
@@ -108,10 +103,7 @@
 						<div class="form-group">
 							<form:label path="subject">Matière</form:label>
 							<form:select path="subject" class="form-control">
-								<form:option value="litterature">Français - Littérature</form:option>
-								<form:option value="SES">Sciences économiques et sociales</form:option>
-
-								<!-- MAP KEY-VALUE A PARCOURIR !!! -->
+								<form:options items="${formMaps.subjectsMap}"/>
 							</form:select>
 						</div>
 

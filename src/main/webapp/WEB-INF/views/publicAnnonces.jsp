@@ -3,9 +3,6 @@
 
 
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<h4>Mes annonces</h4>
-	</div>
 
 	<c:if test="${empty user.annonces}">
 		<div class="panel-body">

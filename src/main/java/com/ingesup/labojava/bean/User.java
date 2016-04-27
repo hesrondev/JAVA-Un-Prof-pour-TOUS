@@ -162,6 +162,10 @@ public abstract class User {
 	}
 
 	public int publicationsCount() {
+		return publications.size();
+	}
+	
+	public int annoncesCount() {
 		return annonces.size();
 	}
 

@@ -28,6 +28,7 @@ import com.ingesup.labojava.form.AnnonceApplicationFormBean;
 import com.ingesup.labojava.form.AnnonceFormBean;
 import com.ingesup.labojava.form.Filter;
 import com.ingesup.labojava.form.FilterCategory;
+import com.ingesup.labojava.form.FormMaps;
 import com.ingesup.labojava.form.UserFormBean;
 import com.ingesup.labojava.service.UserService;
 import com.ingesup.labojava.service.UserServiceImpl;
@@ -57,6 +58,11 @@ public class AnnonceController {
 	@ModelAttribute("userBean") 
 	public UserFormBean addUserBean() {
 		return new UserFormBean();
+	}
+	
+	@ModelAttribute("formMaps")
+	public FormMaps addMaps() {
+		return new FormMaps();
 	}
 
 	// Affichage de la page de cr�ation d'une annonce

@@ -6,8 +6,14 @@
 
 <c:if test="${empty currentUser.annonces}">
 	<div class="panel-body">
-		<p align="center">Vous n'avez publiÃ© aucune annonce pour
-			l'instant.</p>
+		<p align="center">Vous n'avez publié aucune annonce pour
+			l'instant.<br><br>
+			
+			<a class="btn btn-xs btn-warning"
+				href="${pageContext.request.contextPath}/annonces/create.html">
+				<span class="glyphicon glyphicon-plus"></span>&nbsp;Publiez une annonce maintenant!
+			</a>	
+		</p>
 	</div>
 </c:if>
 
