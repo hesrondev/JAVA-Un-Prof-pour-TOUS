@@ -4,13 +4,21 @@
 
 <!--  LOGO -->
 
-<div class="page-header">
+<div class="page-header page-header-header">
 	<div class="container">
 		<header class="row">
 
+<<<<<<< HEAD
 			<div class="col-lg-2">
+=======
+			<div class="col-lg-2" style="margin-bottom:5px">
+>>>>>>> refs/heads/test
 				<a href="${pageContext.request.contextPath}/home.html"> <img
+<<<<<<< HEAD
 					class="img-thumbnail" src="resources/img/default-picture-s22.png">&nbsp;&nbsp;LOGO
+=======
+					class="img-thumbnail" src="${pageContext.request.contextPath}/resources/img/logo.png">
+>>>>>>> refs/heads/test
 				</a>
 			</div>
 
@@ -18,7 +26,11 @@
 			<!-- MENU 1 -->
 			<c:choose>
 				<c:when test="${!empty currentUser}">
+<<<<<<< HEAD
 					<nav class="col-lg-6">
+=======
+					<nav class="col-lg-6 nav-header">
+>>>>>>> refs/heads/test
 						<ul class="nav nav-pills">
 
 							<!-- Nos annonces -->
@@ -49,7 +61,11 @@
 						<div class="dropdown pull-right">
 							<div class="dropdown-toggle" data-toggle="dropdown">
 								<img class="img-thumbnail"
+<<<<<<< HEAD
 									src="resources/img/default-picture-s22.png">&nbsp;<span
+=======
+									src="${pageContext.request.contextPath}/resources/img/default-picture-s22.png">&nbsp;<span
+>>>>>>> refs/heads/test
 									class="caret"></span>
 							</div>
 

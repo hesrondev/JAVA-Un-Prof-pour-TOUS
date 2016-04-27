@@ -1,3 +1,13 @@
-hr {
-   padding: 0; 
+.page-header-header {
+	margin: 20px 0 0px;
+
+}
+
+.table-user-infos, .table-user-infos td {
+	vertical-align:top;
+	
+}
+
+.table-user-infos td {
+	padding: 5px;
 }

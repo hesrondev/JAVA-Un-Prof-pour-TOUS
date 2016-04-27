@@ -65,6 +65,7 @@ public class PlanningController {
 			return "redirect:/login";
 		}
 
+<<<<<<< HEAD
 		/* Réservé aux professeurs */
 
 		if (currentUser.getClass() != Professor.class) {
@@ -108,6 +109,37 @@ public class PlanningController {
 		CourseEvent course = cefb.createEvent();
 
 		((Professor) currentUser).addCourseEvent(course);
+=======
+		return "private/createCourseEvent";
+	}
+
+	@RequestMapping(value = "/profile/planning/add-event", method = RequestMethod.POST)
+	public String createCourseEventHandler(WebRequest request,
+			@ModelAttribute("courseEventBean") @Valid CourseEventFormBean cefb, final BindingResult br, Model model) {
+
+		// On vérifie la session
+
+		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
+
+		if (currentUser == null) {
+			// Restriction connexion
+			model.addAttribute("statusMessage", "ajouter un cours au planning");
+			return "redirect:/restriction";
+		}
+
+		// On vérifie la validité du formulaire
+
+		if (br.hasErrors()) {
+			model.addAttribute("errorStatus", "Tous les champs sont obligatoires");
+			return "private/createCourseEvent";
+		}
+
+		// Si toutes les infos sont cohérentes
+
+		CourseEvent course = cefb.createEvent();
+
+		currentUser.addCourseEvent(course);
+>>>>>>> refs/heads/test
 
 		// MAJ du professeur
 

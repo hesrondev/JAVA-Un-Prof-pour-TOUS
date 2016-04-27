@@ -7,7 +7,11 @@
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
 
-<!-- INCLURE UN CSS PERSO ICI -->
+<link href="<c:url value="/resources/custom/css/default.css"/>"
+	rel="stylesheet" />
+
+<link href="<c:url value="/resources/custom/css/custom-design.css"/>"
+	rel="stylesheet" />
 
 <title>UPPT | Students Page</title>
 </head>
@@ -43,7 +47,8 @@
 						</h2>
 					</c:when>
 					<c:otherwise>
-						<h3 class="text-uppercase">Aucune annonce ne correspond à vos critères de recherche</h3>
+						<h3 class="text-uppercase">Aucune annonce ne correspond à vos
+							critères de recherche</h3>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -69,14 +74,16 @@
 			<div class="col-lg-12">
 
 
-				<!-- PREMIERE LIGNE -->
-				<div class="row">
-					<div class="col-lg-offset-1 col-lg-2">
-						<h5>
-							<strong>Filtres:</strong>
-						</h5>
+				<c:if test="${!empty listAnnonces}">
+					<!-- PREMIERE LIGNE -->
+					<div class="row">
+						<div class="col-lg-offset-1 col-lg-2">
+							<h5>
+								<strong>Filtres:</strong>
+							</h5>
+						</div>
 					</div>
-				</div>
+				</c:if>
 
 
 				<!--  -->
@@ -240,20 +247,6 @@
 								</div>
 								<hr>
 							</c:forEach>
-
-							<!-- PAGINATION -->
-							<div class="row">
-								<div class="col-lg-12">
-									<ul class="pagination">
-										<li><a href="#">&laquo;</a></li>
-										<li><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">&raquo;</a></li>
-									</ul>
-								</div>
-							</div>
-
 						</div>
 
 					</c:if>

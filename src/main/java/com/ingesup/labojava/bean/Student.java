@@ -10,11 +10,18 @@ public class Student extends User{
 	public Student() {
 		super();
 		type = "STUDENT";
+		planning = new Planning(this);
 	}
 	
 	public String toString() {
 		
 		return type + "\n" + super.toString();
+	}
+
+	@Override
+	public void addCourseEvent(CourseEvent e) {
+		e.setPlanning(planning);
+		planning.addCourse(e);
 	}
 
 
