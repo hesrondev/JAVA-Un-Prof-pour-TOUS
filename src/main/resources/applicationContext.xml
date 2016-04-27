@@ -10,9 +10,9 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/unprofpourtousdb"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/uppt_db"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="souadmdp"></property>
+		<property name="password" value="hesron2010"></property>
 	</bean>
 
 	<bean id="persistenceUnitManager"
