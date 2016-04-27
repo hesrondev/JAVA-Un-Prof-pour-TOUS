@@ -10,8 +10,10 @@
 
 	<div class="panel-body">
 		<p>
-			<a class="btn btn-xs btn-warning" href="${pageContext.request.contextPath}/profile/planning/add-event"> <span
-				class="glyphicon glyphicon-plus"></span>&nbsp;Programmer un cours
+			<a class="btn btn-xs btn-warning"
+				href="${pageContext.request.contextPath}/profile/planning/add-event">
+				<span class="glyphicon glyphicon-plus"></span>&nbsp;Programmer un
+				cours
 			</a>
 		</p>
 	</div>
@@ -26,8 +28,8 @@
 			<th>Action</th>
 		</tr>
 
-		<c:forEach items="${currentUser.planning.courses}" var="item">
 
+		<c:forEach items="${currentUser.planning.courses}" var="item">
 			<tr>
 				<td>${item.title}</td>
 				<td>${item.studentName}</td>
@@ -45,13 +47,15 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
+
 	<!-- Si la table est vide l'afficher -->
 	<c:if test="${empty currentUser.planning.courses}">
-	<div class="panel-footer">
-		<p align = "center">
-			Vous n'avez programmé aucun cours. Appuyez sur <a href="${pageContext.request.contextPath}/profile/planning/add-event">programmer un cours</a> pour ajouter votre prochain cours.
-		</p>
-	</div>
+		<div class="panel-footer">
+			<p align="center">
+				Vous n'avez programmé aucun cours. Appuyez sur <a
+					href="${pageContext.request.contextPath}/profile/planning/add-event">programmer
+					un cours</a> pour ajouter votre prochain cours.
+			</p>
+		</div>
 	</c:if>
 </div>

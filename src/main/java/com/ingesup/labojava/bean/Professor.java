@@ -7,17 +7,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
+
 @Entity
 @Table(name = "PROFESSOR")
 public class Professor extends User {
 	
 	
 	private int experience;
-	
-	/* Collection */
-	
-	private Planning planning;
-	
 	
 	// Constructor
 	
@@ -27,32 +23,20 @@ public class Professor extends User {
 		planning = new Planning(this);
 	}
 	
-	// Ajouter un planning
 	
-	public void addPlanning(Planning planning) {
-		this.planning = planning;
-	}
-	
+	@Override
 	public void addCourseEvent(CourseEvent e) {
+		e.setPlanning(planning);
 		planning.addCourse(e);
 	}
-	
 	
 	// Getters and Setters
 	
 	
 	
+	
 	public int getExperience() {
 		return experience;
-	}
-
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "professor", targetEntity = Planning.class, cascade = CascadeType.ALL)
-	public Planning getPlanning() {
-		return planning;
-	}
-
-	public void setPlanning(Planning planning) {
-		this.planning = planning;
 	}
 
 	public void setExperience(int experience) {

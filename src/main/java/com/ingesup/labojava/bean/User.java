@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -43,9 +44,13 @@ public abstract class User {
 	protected String country;
 	protected String gradeLevel;
 	protected String aboutMe;
-	protected String profession;
 	
 	protected String gender;
+	protected String profession;
+
+	// Planning de l'utilisateur
+
+	protected Planning planning;
 
 	// Collections
 
@@ -68,6 +73,14 @@ public abstract class User {
 		return "ID : " + id + "\nFIRSTNAME : " + firstName + "\nLASTNAME : " + lastName + "\nEMAIL : " + email
 				+ "\nPASSWORD : " + password;
 	}
+
+	// Ajouter un planning
+
+	public void addPlanning(Planning planning) {
+		this.planning = planning;
+	}
+
+	public abstract void addCourseEvent(CourseEvent e);
 
 	/**
 	 * Ajout et suppression des �éléments dans les listes
@@ -566,6 +579,19 @@ public abstract class User {
 	public void setFriendRequests(Set<FriendRequest> myFriendRequests) {
 		this.friendRequests = myFriendRequests;
 	}
+	
+	// Planning
+	
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "user", targetEntity = Planning.class, cascade = CascadeType.ALL)
+	public Planning getPlanning() {
+		return planning;
+	}
+
+	public void setPlanning(Planning planning) {
+		this.planning = planning;
+	}
+
+	
 
 	// Equals AND hASH
 

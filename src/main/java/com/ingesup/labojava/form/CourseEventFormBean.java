@@ -61,18 +61,10 @@ public class CourseEventFormBean {
 		Calendar cal = Calendar.getInstance();
 		cal.set(startYear, startMonth, startDay, startHour, startMinutes);
 		
-		Date startDate = cal.getTime();
-		
-		System.out.println("DEBUT " + startDate.toString());
-		
 		Calendar cal2 = new GregorianCalendar(endYear, endMonth, endDay);
 		cal2.set(Calendar.HOUR, endHour);
 		cal2.set(Calendar.MINUTE, endMinutes);
-		
-		Date endDate = cal2.getTime();
-		
-		System.out.println("FIN " +endDate.toString());
-		
+						
 		return new CourseEvent(title, studentName, cal, cal2, city, comment);
 	}
 
