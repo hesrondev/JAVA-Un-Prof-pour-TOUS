@@ -44,6 +44,8 @@ public abstract class User {
 	protected String country;
 	protected String gradeLevel;
 	protected String aboutMe;
+	
+	protected String gender;
 	protected String profession;
 
 	// Planning de l'utilisateur
@@ -104,46 +106,51 @@ public abstract class User {
 		int y = today.getYear() - inscriptionDate.getYear();
 		int m = today.getMonth() - inscriptionDate.getMonth();
 		int d = today.getDate() - inscriptionDate.getDate();
-
+		
 		System.out.println("SUB: " + y + " // " + m + " // " + d);
+		
+		
 		String value = "";
-
+		
 		// Si même mois
 		// Soit année suivante, soit quelques jours
 		
-		if (d == 0)
+		
+		if (d == 0) 
 			return "aujourd'hui";
-
+		
 		if (m == 0) {
-			if (y > 0) {
+			if ( y > 0) {
 				value = y + " an";
 				if (y > 1)
 					value += "s";
-			} else {
+			}
+			else {
 				value = d + " jour";
-				if (d > 1)
-					value += "s";
+					if (d > 1)
+						value += "s";
 			}
 		}
-
+		
 		// Si mois sup, soit même année soit année suivante
 		else if (m > 0) {
-
-			if (y > 0) {
+			
+			if ( y > 0) {
 				value = y + " an";
 				if (y > 1)
 					value += "s";
-			} else {
-				value = m + " mois";
 			}
+			else {
+				value = m + " mois";
+			}				
 		}
-
+		
 		// Si mois inférieur
 		// Année suivante
 		else {
 			value = (12 - m) + " mois";
 		}
-
+		
 		return value;
 	}
 
@@ -169,7 +176,7 @@ public abstract class User {
 		return annonces.size();
 	}
 
-	// Demandes d'amis re�ues
+	// Demandes d'amis re�ues
 	public int receivedFriendRequestsCount() {
 		int counter = 0;
 
@@ -446,7 +453,7 @@ public abstract class User {
 	@Column(name = "USER_TYPE")
 	public String getType() {
 
-		if (type.equals("PROFESSOR"))
+		if (this.getClass()== Professor.class)
 			return "Professeur";
 		else
 			return "Etudiant(e)";
@@ -534,6 +541,15 @@ public abstract class User {
 
 	public void setProfession(String profession) {
 		this.profession = profession;
+	}
+	
+	@Column(name = "GENDER")
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	/* Friends section */

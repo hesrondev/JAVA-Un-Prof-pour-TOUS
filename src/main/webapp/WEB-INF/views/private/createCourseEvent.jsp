@@ -7,16 +7,15 @@
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
 	
-<<<<<<< HEAD
 	
 <!-- INCLURE UN CSS PERSO ICI -->
-=======
+
 <link href="<c:url value="/resources/custom/css/default.css"/>"
 	rel="stylesheet" />
 
 <link href="<c:url value="/resources/custom/css/custom-design.css"/>"
 	rel="stylesheet" />
->>>>>>> refs/heads/test
+
 
 <title>UPPT | Ajouter un cours</title>
 </head>
@@ -54,5 +53,16 @@
 		</div>
 		</footer>
 	</div>
+	
+			<!-- INCLUSION JS -->
+
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script
+			src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	
 </body>
 </html>

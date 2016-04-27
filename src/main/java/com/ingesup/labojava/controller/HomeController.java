@@ -81,6 +81,26 @@ public class HomeController {
 		return "guide";
 	}
 	
+	/* Page contact du footer */
+		
+		@RequestMapping(value="/contact", method = RequestMethod.GET)
+		public String displayContactPage() {
+			return "contact";
+		}
+		
+		/* Page à propos du footer */
+		
+		@RequestMapping(value="/about", method = RequestMethod.GET)
+		public String displayAboutPage() {
+			return "about";
+		}
+		
+	/* Page Développeurs du footer */
+		
+		@RequestMapping(value="/developpers", method = RequestMethod.GET)
+		public String displayDevPage() {
+			return "developpers";
+		}
 	
 	/**
 	 * PAGE DE TEST * */
