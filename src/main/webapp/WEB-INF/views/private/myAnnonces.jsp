@@ -23,7 +23,7 @@
 		<div class="panel-body">
 
 			<!-- titre -->
-			<h4>${item.title}&nbsp;&nbsp;<small><a class="" href="#"><span
+			<h4>${item.title}&nbsp;&nbsp;<small><a class="" href="${pageContext.request.contextPath}/annonces/{annonceID}"><span
 						class="glyphicon glyphicon-pencil"></span></a></small>
 			</h4>
 
@@ -33,7 +33,7 @@
 					class="badge">${item.subject}</span>&nbsp;&nbsp; <span
 					class="badge">${item.level}</span>&nbsp;&nbsp;<span class="badge">${item.toStringDate()}</span>&nbsp;&nbsp;
 				<span class="badge">${item.costPerHour}&nbsp;euros/h</span><br>
-				<br> <a class="btn btn-sm btn-primary" href="#">${item.applicationsCount()}&nbsp;candidatures</a>
+				<br> <a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/annonces/${item.id}/applications">${item.applicationsCount()}&nbsp;candidatures</a>
 			</p>
 			<!-- tags -->
 		</div>

@@ -46,41 +46,44 @@ public class ProfileController {
 
 		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
 
-		if (currentUser != null)
+		if (currentUser != null) {
+			model.addAttribute("currentUser", userService.getUser(currentUser.getId()));
 			return "private/profile-private";
+		}
 
-		else
-			return "redirect:/login";
+		return "redirect:/login";
 	}
 
 	/* INJECTION DES BEANS */
-	
+
 	@ModelAttribute("userBean")
 	public UserFormBean addUserBean() {
 		return new UserFormBean();
 	}
-	
+
 	@ModelAttribute("requestBean")
 	public FriendRequestBean addFriendRequest() {
 		return new FriendRequestBean();
 	}
-	
+
 	@ModelAttribute("publiBean")
 	public PublicationFormBean addPubliBean() {
 		return new PublicationFormBean();
 	}
-	
+
 	// Méthode qui injecte les MAPs
-	// Ajouter cette méthode dans chaque controlleur qui affiche une JSP qui doit utiliser cet objet
-	// J'ai choisi de séparer les MAPs pour les utiliser dans plusieur formulaires de manière indépendante
-	// RDV DANS LA JSP Du formulaire de completement d'infos pour voir ma déclaration
-	
+	// Ajouter cette méthode dans chaque controlleur qui affiche une JSP qui
+	// doit utiliser cet objet
+	// J'ai choisi de séparer les MAPs pour les utiliser dans plusieur
+	// formulaires de manière indépendante
+	// RDV DANS LA JSP Du formulaire de completement d'infos pour voir ma
+	// déclaration
+
 	@ModelAttribute("formMaps")
 	public FormMaps addMaps() {
 		return new FormMaps();
 	}
-	
-	
+
 	/* Profil Public */
 
 	@RequestMapping(value = "profile/*.*/{userID}")
@@ -340,21 +343,21 @@ public class ProfileController {
 			return "redirect:/restriction";
 		}
 		/*
-
-		if (bindingResult.hasErrors()) {
-			
-			System.err.println(bindingResult.getFieldErrorCount());
-			model.addAttribute("errorStatus", "V�rifiez votre saisie.");
-			model.addAttribute("userInfosBean", new UserComplementInfosBean());
-			return "/private/userComplementInfosPage";
-		} */
+		 * 
+		 * if (bindingResult.hasErrors()) {
+		 * 
+		 * System.err.println(bindingResult.getFieldErrorCount());
+		 * model.addAttribute("errorStatus", "V�rifiez votre saisie.");
+		 * model.addAttribute("userInfosBean", new UserComplementInfosBean());
+		 * return "/private/userComplementInfosPage"; }
+		 */
 
 		currentUser = ucb.completeInfos(currentUser);
-		
+
 		userService.updateUser(currentUser);
 
 		model.addAttribute("currentUser", userService.getUser(currentUser.getId()));
-		
+
 		return "redirect:/profile";
 	}
 

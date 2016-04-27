@@ -103,7 +103,9 @@
 						<div class="form-group">
 							<form:label path="subject">Matière</form:label>
 							<form:select path="subject" class="form-control">
-								<form:options items="${formMaps.subjectsMap}"/>
+								<form:option value="paris">Maths</form:option>
+								<form:option value="massy">Physique</form:option>
+								<form:option value="versailles">Français</form:option>
 							</form:select>
 						</div>
 

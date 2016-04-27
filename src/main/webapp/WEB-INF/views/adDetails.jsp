@@ -27,6 +27,8 @@
 	<div>
 		<%@ include file="header.jsp"%>
 	</div>
+	
+	<br>
 
 	<div class="container">
 		<div class="row">

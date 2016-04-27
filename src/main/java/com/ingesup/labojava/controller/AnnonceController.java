@@ -52,14 +52,14 @@ public class AnnonceController {
 	public void setUserService(UserService us) {
 		this.userService = us;
 	}
-	
+
 	// Injection des beans forms
-	
-	@ModelAttribute("userBean") 
+
+	@ModelAttribute("userBean")
 	public UserFormBean addUserBean() {
 		return new UserFormBean();
 	}
-	
+
 	@ModelAttribute("formMaps")
 	public FormMaps addMaps() {
 		return new FormMaps();
@@ -272,7 +272,7 @@ public class AnnonceController {
 	/**
 	 * Afficher la page de candidature
 	 */
-	
+
 	@ModelAttribute("annonceApplicationBean")
 	public AnnonceApplicationFormBean addAnnonceApplicationBean() {
 		return new AnnonceApplicationFormBean();
@@ -307,16 +307,15 @@ public class AnnonceController {
 	public ModelAndView postAnnonceAppication(@PathVariable("annonceID") Long annonceID,
 			@ModelAttribute("AnnonceApplicationBean") @Valid AnnonceApplicationFormBean apb,
 			final BindingResult bindingResult) {
-		
+
 		ModelAndView model = new ModelAndView();
-		
+
 		if (bindingResult.hasErrors()) {
 
 			model.addObject("ERRORS", "V�rifiez les champs des formulaires");
 			model.setViewName("annonceApplication");
 			return model;
 		}
-		
 
 		/* Recherche Annonce */
 
@@ -327,36 +326,71 @@ public class AnnonceController {
 			model.setViewName("status-page");
 			return model;
 		}
-		
-		
+
 		/* Initialisation de la candidature */
 		AnnonceApplicationFactory apFactory = new AnnonceApplicationFactory();
 		AnnonceApplication annonceApplication = apFactory.createAnnonceApplication(annonce, apb);
 
 		/* V�rifions si le mail n'a pas d�j� �t� utilis� */
-		
+
 		if (annonce.hasAlreadyApplied(annonceApplication) || annonce.getUser().getEmail().equals(apb.getEmail())) {
 			model.addObject("ERRORS", "Cette adresse mail a d�j� �t� utilis�e!");
 			model.setViewName("annonceApplication");
 			return model;
 		}
-		
-		
+
 		annonce.addApplication(annonceApplication);
 		annonce = userService.updateAnnonce(annonce);
 
 		String status = "";
-		
+
 		if (annonce != null) {
 			status = "Votre candidature a �t� envoy� avec succ�s!";
-			
+
 		} else {
 			status = "Erreur! L'envoi de votre candidature a �chou�. Veuillez r�essayer plus tard!";
 		}
-		
+
 		model.addObject("statusMessage", status);
-		model.setViewName("redirect:/status-page");	
+		model.setViewName("redirect:/status-page");
 		return model;
+	}
+
+	// Afficher les candidatures d'une annonce
+
+	@RequestMapping(value = "/{annonceID}/applications")
+	public String displayAnnonceApplications(WebRequest request, @PathVariable("annonceID") Long annonceID,
+			Model model) {
+
+		// On vérifie la session
+
+		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
+
+		if (currentUser == null) {
+			// Restriction connexion
+			model.addAttribute("statusMessage", "consulter les annonces de cette publication");
+			return "redirect:/restriction";
+		}
+		
+		
+		// Vérifier que l'annonce m'appartient
+		
+		
+
+		/* Recherche Annonce */
+
+		Annonce annonce = userService.getAdById(annonceID);
+
+		if (annonce == null) {
+			model.addAttribute("status", "Annonce introuvable!");
+			return "statusPage";
+		}
+
+		/* Bean */
+
+		model.addAttribute("annonce", annonce);
+
+		return "private/AnnonceApplicationsListPage";
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.ingesup.labojava.bean;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,10 +23,12 @@ public class AnnonceApplication {
 	private String phoneNumber;
 	private String message;
 	private Annonce annonce;
+	private Date applicationDate;
 
 	/* Constructors */
 
 	public AnnonceApplication() {
+		applicationDate = new Date();
 		firstName = "";
 		lastName = "";
 		email = "";
@@ -33,12 +37,21 @@ public class AnnonceApplication {
 	}
 
 	public AnnonceApplication(Annonce annonce, String fname, String lname, String em, String phone, String msg) {
+		applicationDate = new Date();
 		this.annonce = annonce;
 		firstName = fname;
 		lastName = lname;
 		email = em;
 		phoneNumber = phone;
 		message = msg;
+	}
+	
+	
+	// Methods
+	
+	public String toStringDate() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("EEE d MMM yyyy à HH:mm");
+		return dateFormat.format(applicationDate);
 	}
 
 	/* Getters and Setters */
@@ -98,6 +111,16 @@ public class AnnonceApplication {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	@Column(name = "APP_DATE")
+	public Date getApplicationDate() {
+		return applicationDate;
+	}
+
+	public void setApplicationDate(Date applicationDate) {
+		this.applicationDate = applicationDate;
+	}
+
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ANNONCE_ID", nullable = false)
@@ -134,5 +157,6 @@ public class AnnonceApplication {
 		// TODO Auto-generated method stub
 		return super.hashCode();
 	}
+
 
 }
