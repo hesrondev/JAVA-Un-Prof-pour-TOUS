@@ -6,24 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.ingesup.labojava.bean.Professor;
-import com.ingesup.labojava.bean.Student;
 import com.ingesup.labojava.bean.User;
+import com.ingesup.labojava.form.FriendRequestBean;
 import com.ingesup.labojava.form.UserFormBean;
-import com.ingesup.labojava.service.StudentServiceImpl;
 import com.ingesup.labojava.service.UserService;
+import com.ingesup.labojava.service.UserServiceImpl;
 
 @Controller
-@RequestMapping(value = "/students")
 @SessionAttributes("currentUser")
-public class StudentController {
+public class UserSearchController {
 
-	private UserService userService = new StudentServiceImpl();
+	// Injection des services
+
+	private UserService userService = new UserServiceImpl();
 
 	@Autowired(required = true)
 	@Qualifier(value = "userService")
@@ -31,29 +32,26 @@ public class StudentController {
 		this.userService = us;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String listStudents(Model model) {
+	/* INJECTION bean */
+
+	@ModelAttribute("userBean")
+	public UserFormBean addUserBean() {
+		return new UserFormBean();
+	}
+
+	@ModelAttribute("requestBean")
+	public FriendRequestBean addFriendRequest() {
+		return new FriendRequestBean();
+	}
+
+	// Afficher la page de résultats
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String userSearchPage(@RequestParam("fullName") final String fullName, final Model model) {
 
 		/* BEANS */
 
-		model.addAttribute("userStatus", "El�ves");
-		model.addAttribute("urlStatus", "students");
-		model.addAttribute("userBean", new UserFormBean());
-
-		return "students";
-	}
-
-	/* Recherche d'un �l�ve
-
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String searchProfessor(@RequestParam("fullName") final String fullName, final Model model) {
-
-		/* BEANS 
-
-		model.addAttribute("userStatus", "de l'�l�ve");
-		model.addAttribute("urlStatus", "students");
 		model.addAttribute("name", fullName);
-		model.addAttribute("userBean", new UserFormBean());
 
 		// Spliting string
 
@@ -66,9 +64,11 @@ public class StudentController {
 
 		// Recherche des noms dans la BDD
 
-		List<User> students = userService.getMatchingUsers(splited, "Student");
-		model.addAttribute("listProfessors", students);
+		List<User> users = userService.getMatchingUsers(splited, "User");
+		model.addAttribute("listUsers", users);
 
-		return "professors";
-	} */
+		return "usersPage";
+
+	}
+
 }

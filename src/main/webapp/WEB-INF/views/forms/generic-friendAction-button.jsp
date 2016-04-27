@@ -8,8 +8,6 @@
 
 	<c:when
 		test="${item.id == currentUser.id || currentUser.hasBeenRequestedByFriend(item.id) > -1}">
-
-		<!-- CAS OU JE NE PEUX RIEN FAIRE --> No action needed!
 	</c:when>
 	<c:when test="${currentUser.getFriend(item.id) != null}">
 

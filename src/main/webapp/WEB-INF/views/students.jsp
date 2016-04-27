@@ -6,7 +6,13 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<!-- INCLURE UN CSS PERSO ICI -->
+	
+	
+<link href="<c:url value="/resources/custom/css/default.css"/>"
+	rel="stylesheet" />
+
+<link href="<c:url value="/resources/custom/css/custom-design.css"/>"
+	rel="stylesheet" />
 
 
 <title>UPPT | Elèves</title>
@@ -50,9 +56,6 @@
 		</div>
 	</div>
 
-	<br>
-	<br>
-	<hr>
 
 	<!--  FOOTER INCLUSION  -->
 

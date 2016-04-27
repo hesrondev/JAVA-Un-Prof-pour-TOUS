@@ -77,7 +77,7 @@ public class ProfileController {
 	
 	/* Profil Public */
 
-	@RequestMapping(value = "profile/{userID}")
+	@RequestMapping(value = "profile/*.*/{userID}")
 	public String publicProfilePage(@PathVariable("userID") Long userID, final Model model) {
 
 		User user = userService.getUser(userID);

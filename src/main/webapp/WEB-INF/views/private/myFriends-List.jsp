@@ -25,7 +25,7 @@
 						<!-- Photo de profil 90*90 -->
 						<!-- Infos sur la personne -->
 
-						<table>
+						<table class="table-user-infos">
 							<tr>
 								<td><a href="#"> <img
 										src="resources/img/default-picture-s45.png"
