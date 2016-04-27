@@ -19,8 +19,18 @@ public class FormMaps {
 	private Map<String, String> experiencesMap = new LinkedHashMap<String, String>();
 	private Map<String, String> citiesMap = new LinkedHashMap<String, String>();
 	private Map<String, String> countriesMap = new LinkedHashMap<String, String>();
-	private Map<String, String> departementsMap = new LinkedHashMap<String, String>();
+	//private Map<String, String> departementsMap = new LinkedHashMap<String, String>();
 	private Map<String, String> levelsMap = new LinkedHashMap<String, String>();
+	
+	//map contenant les villes par département
+	private Map<String, String> parisMap = new LinkedHashMap<String, String>();
+	private Map<String, String> seineEtMarneMap = new LinkedHashMap<String, String>();
+	private Map<String, String> yvelinesMap = new LinkedHashMap<String, String>();
+	private Map<String, String> essoneMap = new LinkedHashMap<String, String>();
+	private Map<String, String> heutsDeSeineMap = new LinkedHashMap<String, String>();
+	private Map<String, String> seineSaintDenisMap = new LinkedHashMap<String, String>();
+	private Map<String, String> valDeMarneMap = new LinkedHashMap<String, String>();
+	private Map<String, String> valDoiseMap = new LinkedHashMap<String, String>();
 	
 	// Mois
 	
@@ -62,27 +72,34 @@ public class FormMaps {
 		experiencesMap.put("plus de 5 ans", "plus de 5 ans");
 		experiencesMap.put("plus de 10 ans", "plus de 10 ans");
 		
-		citiesMap.put("Paris", "Paris");
-		citiesMap.put("Versailles", "Versailles");
-		citiesMap.put("Lille", "Lille");
-		citiesMap.put("Lyon", "Lyon");
-		citiesMap.put("Marseille", "Marseille");
+		citiesMap.put("Paris", "Paris - 75");
+		citiesMap.put("Versailles", "Versailles - 78");
+		citiesMap.put("La Défense", "La Défense - 92");
+		citiesMap.put("Colombes", "Colombes - 92");
+		citiesMap.put("Lyon", "Lyon - 69");
 		
 		countriesMap.put("Fr", "France");
 		
-		departementsMap.put("75", "75");
-		departementsMap.put("78", "78");
-		departementsMap.put("13", "13");
-		departementsMap.put("59", "59");
-		departementsMap.put("69", "69");
+		//Départements
+		/*departementsMap.put("75", "75 - Paris");
+		departementsMap.put("77", "77 - Seine et Marne");
+		departementsMap.put("78", "78 - Yvelines");
+		departementsMap.put("91", "91 - Essone");
+		departementsMap.put("92", "92 - Hauts De Seine");		
+		departementsMap.put("93", "93 - Seine Saint Denis");
+		departementsMap.put("94", "94 - Val de Marne");
+		departementsMap.put("95", "95 - Val d'Oise");  */
+		
+		//Villes par départements
+		
 		
 		levelsMap.put("Primaire", "Primaire");
-		levelsMap.put("Collï¿½ge", "Collï¿½ge");
-		levelsMap.put("Lycï¿½e", "Lycï¿½e");
-		levelsMap.put("Universitï¿½", "Universitï¿½");
-		levelsMap.put("Dï¿½butant", "Dï¿½butant");
-		levelsMap.put("Intermï¿½diaire", "Intermï¿½diaire");
-		levelsMap.put("Avancï¿½", "Avancï¿½");
+		levelsMap.put("Collège", "Collège");
+		levelsMap.put("Lycée", "Lycée");
+		levelsMap.put("Universitée", "Universitée");
+		levelsMap.put("Débutant", "Débutant");
+		levelsMap.put("Intermédiaire", "Intermédiaire");
+		levelsMap.put("Avancé", "Avancé");
 		 //on remplit la map professions ï¿½ partir du fichier du mï¿½me nom
 		/*try
 	      {
@@ -137,7 +154,7 @@ public class FormMaps {
 	public void setCountriesMap(Map<String, String> countriesMap) {
 		this.countriesMap = countriesMap;
 	}
-
+/*
 	public Map<String, String> getDepartementsMap() {
 		return departementsMap;
 	}
@@ -145,6 +162,7 @@ public class FormMaps {
 	public void setDepartementsMap(Map<String, String> departementsMap) {
 		this.departementsMap = departementsMap;
 	}
+	*/
 
 	public Map<String, String> getLevelsMap() {
 		return levelsMap;

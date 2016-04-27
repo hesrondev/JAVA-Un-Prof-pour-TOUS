@@ -62,5 +62,25 @@
 		</div>
 		</footer>
 	</div>
+	<!-- INCLUSION JS -->
+
+		<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/resources/js/jquery.js"></script>
+		
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet"
+			href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet"
+			href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script
+			src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	
 </body>
 </html>
