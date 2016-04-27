@@ -20,6 +20,7 @@ public class UserFactory {
 		professor.setFirstName(ifb.getFirstName());
 		professor.setLastName(ifb.getLastName());
 		professor.setEmail(ifb.getEmail());
+		professor.setGender(ifb.getGender());
 		professor.setPassword(Crypto.crypter(ifb.getPassword()));	// On crypte le mot de passe
 		
 		return professor;
