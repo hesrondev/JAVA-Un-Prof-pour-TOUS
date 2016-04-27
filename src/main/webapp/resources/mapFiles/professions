@@ -1,3 +1,29 @@
-étudiant
-professeur de lycée
-ingénieur
+Agriculteur:Agriculteur
+Artisan:Artisan
+CadreAdmin:Cadre administratif ou commercial d'entreprise
+CadreFonctionPublique:Cadre de la fonction publique
+Chauffeur:Chauffeur
+Chef:Chef d'entreprise
+Commercant:Commerçant et assimilé
+Contremaitre:Contremaître, agent de maîtrise
+EmployeAdmin:Employé administratif du secteur privé
+EmployeCommerce:Employé de commerce
+EmployeSecteurPublic:Employé ou agent de service du secteur public
+Etudiant:Etudiant
+Ingenieur:Ingénieur ou cadre technique d'entreprise
+Instituteur:Instituteur et assimilié
+OuvrierAgricole:Ouvrier agricole ou assimilé
+OuvrierNQArtisanal:Ouvrier non qualifié de type artisanal
+OuvrierNQIndustriel:Ouvrier non qualifié de type industriel
+OuvrierQArtisanal:Ouvrier qualifié de type artisanal
+OuvrierQManutention:Ouvrier qualifié de la manutention , du transport
+OuvrierQIndustriel:Ouvrier qualifié de type industriel
+Personnel:Personnel des services directs au particulier
+Policier:Policier ou militaire
+ProfessionInfo:Profession de l'information des arts et spectacles
+ProfessionAdminPrive:Profession intermédiaire administrative du privé
+ProfessionAdminPublic:Profession intermédiaire administrative du public
+ProfessionSante:Profession intermédiaire de la santé et du travail social
+ProfessionLiberale:Profession libérale
+Professeur:Professeur , profession scientifique
+Technicien:Technicien (sauf technicien du tertiaire )

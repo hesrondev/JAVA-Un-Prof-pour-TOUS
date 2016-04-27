@@ -61,13 +61,13 @@
 
 		<legend>Votre emplacement</legend>
 
-		<div class="form-group">
+		<!--  <div class="form-group">
 			<form:label path="departement">Département</form:label>
 			<form:select path="departement" class="form-control">
 				<form:option value="">--Choisir son département--</form:option>
 				<form:options items="${formMaps.departementsMap}" />
 			</form:select>
-		</div>
+		</div>		-->
 
 		<div class="form-group">
 			<form:label path="city">Ville</form:label>
