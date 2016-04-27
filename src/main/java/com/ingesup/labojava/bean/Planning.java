@@ -25,7 +25,7 @@ public class Planning {
 	
 	// Propriétaire
 	
-	Professor professor;
+	User user;
 	
 	// Liste d'événement
 	
@@ -39,8 +39,8 @@ public class Planning {
 	
 	// Constructor
 	
-	public Planning(Professor p) {
-		professor = p;
+	public Planning(User p) {
+		user = p;
 	}
 	
 	// Ajouter un cours
@@ -63,7 +63,6 @@ public class Planning {
 		this.id = id;
 	}
 	
-	
 	@OneToMany(mappedBy = "planning", targetEntity = CourseEvent.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public Set<CourseEvent> getCourses() {
 		return courses;
@@ -75,12 +74,12 @@ public class Planning {
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
-	public Professor getProfessor() {
-		return professor;
+	public User getUser() {
+		return user;
 	}
 
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

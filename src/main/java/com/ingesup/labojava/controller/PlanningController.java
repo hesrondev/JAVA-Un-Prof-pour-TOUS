@@ -65,13 +65,6 @@ public class PlanningController {
 			return "redirect:/login";
 		}
 
-		/* Réservé aux professeurs */
-
-		if (currentUser.getClass() != Professor.class) {
-			model.addAttribute("statusMessage", "Cette action est réservé aux professeurs!");
-			return "redirect:/status-page";
-		}
-
 		return "private/createCourseEvent";
 	}
 
@@ -89,13 +82,6 @@ public class PlanningController {
 			return "redirect:/restriction";
 		}
 
-		/* Réservé aux professeurs */
-
-		if (currentUser.getClass() != Professor.class) {
-			model.addAttribute("statusMessage", "Cette action est réservé aux professeurs!");
-			return "redirect:/status-page";
-		}
-
 		// On vérifie la validité du formulaire
 
 		if (br.hasErrors()) {
@@ -107,7 +93,7 @@ public class PlanningController {
 
 		CourseEvent course = cefb.createEvent();
 
-		((Professor) currentUser).addCourseEvent(course);
+		currentUser.addCourseEvent(course);
 
 		// MAJ du professeur
 

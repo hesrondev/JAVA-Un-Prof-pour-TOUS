@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -43,7 +44,11 @@ public abstract class User {
 	protected String country;
 	protected String gradeLevel;
 	protected String aboutMe;
-	private String profession;
+	protected String profession;
+
+	// Planning de l'utilisateur
+
+	protected Planning planning;
 
 	// Collections
 
@@ -64,6 +69,16 @@ public abstract class User {
 
 		return "ID : " + id + "\nFIRSTNAME : " + firstName + "\nLASTNAME : " + lastName + "\nEMAIL : " + email
 				+ "\nPASSWORD : " + password;
+	}
+
+	// Ajouter un planning
+
+	public void addPlanning(Planning planning) {
+		this.planning = planning;
+	}
+
+	public void addCourseEvent(CourseEvent e) {
+		planning.addCourse(e);
 	}
 
 	/**
@@ -90,51 +105,47 @@ public abstract class User {
 		int y = today.getYear() - inscriptionDate.getYear();
 		int m = today.getMonth() - inscriptionDate.getMonth();
 		int d = today.getDate() - inscriptionDate.getDate();
-		
+
 		System.out.println("SUB: " + y + " // " + m + " // " + d);
-		
-		
+
 		String value = "";
-		
+
 		// Si même mois
 		// Soit année suivante, soit quelques jours
-		
-		
-		if (d == 0) 
+
+		if (d == 0)
 			return "aujourd'hui";
-		
+
 		if (m == 0) {
-			if ( y > 0) {
+			if (y > 0) {
 				value = y + " an";
 				if (y > 1)
 					value += "s";
-			}
-			else {
+			} else {
 				value = d + " jour";
-					if (d > 1)
-						value += "s";
+				if (d > 1)
+					value += "s";
 			}
 		}
-		
+
 		// Si mois sup, soit même année soit année suivante
 		else if (m > 0) {
-			
-			if ( y > 0) {
+
+			if (y > 0) {
 				value = y + " an";
 				if (y > 1)
 					value += "s";
-			}
-			else {
+			} else {
 				value = m + " mois";
-			}				
+			}
 		}
-		
+
 		// Si mois inférieur
 		// Année suivante
 		else {
 			value = (12 - m) + " mois";
 		}
-		
+
 		return value;
 	}
 
@@ -529,6 +540,19 @@ public abstract class User {
 	public void setFriendRequests(Set<FriendRequest> myFriendRequests) {
 		this.friendRequests = myFriendRequests;
 	}
+	
+	// Planning
+	
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "user", targetEntity = Planning.class, cascade = CascadeType.ALL)
+	public Planning getPlanning() {
+		return planning;
+	}
+
+	public void setPlanning(Planning planning) {
+		this.planning = planning;
+	}
+
+	
 
 	// Equals AND hASH
 

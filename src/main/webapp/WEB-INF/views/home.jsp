@@ -11,8 +11,7 @@
 <link href="<c:url value="/resources/custom/css/custom-design.css"/>"
 	rel="stylesheet" />
 	
-	
-<!-- INCLURE UN CSS PERSO ICI -->
+
 
 <title>UPPT | Accueil</title>
 

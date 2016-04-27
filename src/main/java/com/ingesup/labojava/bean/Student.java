@@ -10,6 +10,7 @@ public class Student extends User{
 	public Student() {
 		super();
 		type = "STUDENT";
+		planning = new Planning(this);
 	}
 	
 	public String toString() {

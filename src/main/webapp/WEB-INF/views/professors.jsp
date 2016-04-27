@@ -6,7 +6,12 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<!-- INCLURE UN CSS PERSO ICI -->
+	
+<link href="<c:url value="/resources/custom/css/default.css"/>"
+	rel="stylesheet" />
+
+<link href="<c:url value="/resources/custom/css/custom-design.css"/>"
+	rel="stylesheet" />
 
 
 <title>UPPT | Professeurs</title>
@@ -20,37 +25,36 @@
 		<%@ include file="header.jsp"%>
 	</div>
 
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-offset-1 col-lg-10">
+					<div>
+						<h3 class="page-header">Rencontrez nos professeurs</h3>
+						<c:if test="${!empty listProfessors}">
+							<table>
+								<c:forEach items="${listProfessors}" var="prof">
+									<tr>
+										<td>${prof.id}</td>
+										<td>${prof.firstName}</td>
+										<td>${prof.lastName}</td>
+										<td>${prof.email}</td>
+										<td>${prof.password}</td>
+										<td><a href="<c:url value='/edit/${prof.id}' />">Edit</a></td>
+										<td><a href="<c:url value='/remove/${prof.id}' />">Delete</a></td>
+									</tr>
+								</c:forEach>
+							</table>
+						</c:if>
+					</div>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-offset-1 col-lg-8">
-				<div>
-					<h3>Liste des professeurs</h3>
-					<c:if test="${!empty listProfessors}">
-						<table>
-							<c:forEach items="${listProfessors}" var="prof">
-								<tr>
-									<td>${prof.id}</td>
-									<td>${prof.firstName}</td>
-									<td>${prof.lastName}</td>
-									<td>${prof.email}</td>
-									<td>${prof.password}</td>
-									<td><a href="<c:url value='/edit/${prof.id}' />">Edit</a></td>
-									<td><a href="<c:url value='/remove/${prof.id}' />">Delete</a></td>
-								</tr>
-							</c:forEach>
-						</table>
-					</c:if>
+					<br> <br>
+
 				</div>
-
-				<br> <br>
-
 			</div>
 		</div>
 	</div>
-
-	<br>
-	<br>
+	
 	<hr>
 
 	<!--  FOOTER INCLUSION  -->
