@@ -4,26 +4,17 @@
 
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.css"/>"
 	rel="stylesheet" />
-<<<<<<< HEAD
 
-=======
 	
 <link href="<c:url value="/resources/custom/css/default.css"/>"
 	rel="stylesheet" />
->>>>>>> refs/heads/test
 
 <link href="<c:url value="/resources/custom/css/flaty.css"/>"
 	rel="stylesheet" />
 	
 <link href="<c:url value="/resources/custom/css/custom-design.css"/>"
 	rel="stylesheet" />
-	
-<<<<<<< HEAD
-	
-<!-- INCLURE UN CSS PERSO ICI -->
-=======
 
->>>>>>> refs/heads/test
 
 <title>UPPT | Accueil</title>
 
@@ -236,20 +227,9 @@
 
 
 <!-- INCLUSION JS -->
-
-		<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
-		<script src="/resources/js/jquery.js"></script>
 		
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet"
-			href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet"
-			href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script

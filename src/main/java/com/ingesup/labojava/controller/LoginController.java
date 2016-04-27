@@ -51,24 +51,15 @@ public class LoginController {
 		return new UserFormBean();
 	}
 
-	@ModelAttribute("userBean")
-	public UserFormBean addUserBean() {
-		return new UserFormBean();
-	}
 
 	// Affichage de la page de connexion d'un utilisateur
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-<<<<<<< HEAD
-	public String loginPage(WebRequest request, final Model model) {
-		
-		
-=======
+
 	public String loginPage(WebRequest request, final Model model,
 			@CookieValue(value = "u_email", defaultValue = "") String email,
 			@CookieValue(value = "u_pass", defaultValue = "") String pass) {
 
->>>>>>> refs/heads/test
 		/* V�rifions que l'user n'est pas d�j� connect� */
 
 		User currentUser = (User) request.getAttribute("currentUser", WebRequest.SCOPE_SESSION);
@@ -112,20 +103,11 @@ public class LoginController {
 
 		}
 
-<<<<<<< HEAD
-		
-		// On cherche l'utilisateur dans la base de données
-		// On cherche avec le mot de passe crypté
-		
-		User user = userService.getUser(lFormBean.getEmail(), Crypto.crypter(lFormBean.getPassword()));
-		
-=======
 		// On cherche l'utilisateur dans la base de données
 		// On cherche avec le mot de passe crypté
 
 		User user = userService.getUser(lFormBean.getEmail(), Crypto.crypter(lFormBean.getPassword()));
 
->>>>>>> refs/heads/test
 		if (user != null) {
 
 			// Si remember me est coché, on créè un cookie pour le stocker
