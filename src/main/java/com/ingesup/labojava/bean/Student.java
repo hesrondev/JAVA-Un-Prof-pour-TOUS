@@ -18,5 +18,10 @@ public class Student extends User{
 		return type + "\n" + super.toString();
 	}
 
+	@Override
+	public void addCourseEvent(CourseEvent e) {
+		planning.addCourse(e);
+	}
+
 
 }

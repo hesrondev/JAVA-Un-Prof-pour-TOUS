@@ -20,19 +20,13 @@ import javax.persistence.Table;
 public class Planning {
 	
 	
-	// ID
 	Long id;
-	
-	// Propriétaire
-	
 	User user;
 	
 	// Liste d'événement
 	
 	private Set<CourseEvent> courses = new HashSet<CourseEvent>();
 
-	// 
-	
 	public Planning() {
 		
 	}

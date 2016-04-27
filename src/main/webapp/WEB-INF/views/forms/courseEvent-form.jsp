@@ -31,7 +31,7 @@
 		</div>
 
 		<div class="form-group">
-			<form:label path="studentName">Nom de l'élève/professeur</form:label>
+			<form:label path="studentName">Nom de l'élève (ou du professeur)</form:label>
 			<form:input path="studentName" class="form-control" />
 		</div>
 

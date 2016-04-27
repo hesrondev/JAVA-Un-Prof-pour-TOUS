@@ -77,9 +77,7 @@ public abstract class User {
 		this.planning = planning;
 	}
 
-	public void addCourseEvent(CourseEvent e) {
-		planning.addCourse(e);
-	}
+	public abstract void addCourseEvent(CourseEvent e);
 
 	/**
 	 * Ajout et suppression des �éléments dans les listes

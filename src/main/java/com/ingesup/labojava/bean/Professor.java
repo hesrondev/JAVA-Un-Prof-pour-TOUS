@@ -19,7 +19,14 @@ public class Professor extends User {
 		planning = new Planning(this);
 	}
 	
+	
+	@Override
+	public void addCourseEvent(CourseEvent e) {
+		planning.addCourse(e);
+	}
+	
 	// Getters and Setters
+	
 	
 	
 	
